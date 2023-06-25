@@ -8,6 +8,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     private CharacterController _characterController;
     private AttackHandler _attackHandler;
+    public float RotationSpeed = 8f;
+    public float WalkSpeed = 3f;
 
     NavMeshAgent navMeshAgent;
     private const float STOP_THRESHOLD = 0.1f;
@@ -34,8 +36,10 @@ public class CharacterMovement : MonoBehaviour
         if (_input == Vector2.zero) return;
         _attackHandler.AttackTarget = null;
         navMeshAgent.isStopped = true;
-        Vector3 velocity = new Vector3(_input.x, 0, _input.y) * 3;
-        _characterController.Move(velocity * Time.deltaTime);
+        Vector3 velocity = new Vector3(_input.x, 0, _input.y) * WalkSpeed;
+        Quaternion targetRotation = Quaternion.LookRotation(velocity, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
+        _characterController.Move(WalkSpeed * Time.deltaTime * transform.forward);
     }
 
 
