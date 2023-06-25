@@ -1,35 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FSM;
+using Xiaohai.Input;
 
 public class PlayerController : MonoBehaviour
 {
     private StateMachine fsm;
     public string CurrentState;
-    [HideInInspector] public CharacterMovement CharacterMovement;
-    // Start is called before the first frame update
+    public InputReader InputReader;
+
+    [HideInInspector] public float WalkSpeed = 5f;
+    [HideInInspector] public float RotateSpeed = 8f;
     void Start()
     {
-        CharacterMovement = GetComponent<CharacterMovement>();
-        Debug.Log("Run start in player controller");
         fsm = new StateMachine(this);
         fsm.AddState("Idle", new IdleState());
         fsm.AddState("Walk", new WalkState(this));
+        fsm.AddState("Attack",new AttackState());
 
         fsm.AddTransition(new Transition("Idle", "Walk", t =>
         {
-            return (Input.GetMouseButtonDown(0));
-            
+            return InputReader.InputActions.GamePlay.Move.ReadValue<Vector2>() != Vector2.zero;
         }));
 
         fsm.AddTransition(new Transition("Walk", "Idle", t =>
         {
-            return !CharacterMovement.Moving;
+            return InputReader.InputActions.GamePlay.Move.ReadValue<Vector2>() == Vector2.zero;
         }));
+
+        fsm.AddTriggerTransitionFromAny("OnAttack", new Transition("", "Attack"));
 
         fsm.SetStartState("Idle");
         fsm.Init();
+
+        // user input
+        InputReader.InputActions.GamePlay.Attack.performed += ctx => 
+        {
+            fsm.Trigger("OnAttack");
+        };
     }
 
     // Update is called once per frame

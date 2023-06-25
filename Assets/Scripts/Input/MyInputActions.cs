@@ -44,6 +44,42 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""6aa566f7-d500-444c-97dd-a4f9dd72729d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""8734d86f-167d-4f7f-aad2-eebdd1931e1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""46d791e2-8f95-4f6d-a0f7-207880448f57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityThree"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d41b6a0-b41a-483d-8d34-aac3cb8d7b98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,7 +210,7 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""PointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -185,7 +221,7 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""My Touch Screen"",
                     ""action"": ""PointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -196,8 +232,63 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Touchscreen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""My Touch Screen"",
                     ""action"": ""PointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a07953ce-c2ff-4450-9b4b-98017dd91a9b"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c097d7be-de03-48b8-b1ce-2c390d4c15e9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6110c4a6-5ac6-45da-97af-89385cf00638"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""086a5d14-3c44-4b59-ad26-6d3194de31e6"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a95cb877-6bf7-4524-a832-4a959e6c21c6"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -243,6 +334,10 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
         m_GamePlay_PointerPosition = m_GamePlay.FindAction("PointerPosition", throwIfNotFound: true);
+        m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
+        m_GamePlay_AbilityOne = m_GamePlay.FindAction("AbilityOne", throwIfNotFound: true);
+        m_GamePlay_AbilityTwo = m_GamePlay.FindAction("AbilityTwo", throwIfNotFound: true);
+        m_GamePlay_AbilityThree = m_GamePlay.FindAction("AbilityThree", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,12 +401,20 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Move;
     private readonly InputAction m_GamePlay_PointerPosition;
+    private readonly InputAction m_GamePlay_Attack;
+    private readonly InputAction m_GamePlay_AbilityOne;
+    private readonly InputAction m_GamePlay_AbilityTwo;
+    private readonly InputAction m_GamePlay_AbilityThree;
     public struct GamePlayActions
     {
         private @MyInputActions m_Wrapper;
         public GamePlayActions(@MyInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
         public InputAction @PointerPosition => m_Wrapper.m_GamePlay_PointerPosition;
+        public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
+        public InputAction @AbilityOne => m_Wrapper.m_GamePlay_AbilityOne;
+        public InputAction @AbilityTwo => m_Wrapper.m_GamePlay_AbilityTwo;
+        public InputAction @AbilityThree => m_Wrapper.m_GamePlay_AbilityThree;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +430,18 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
             @PointerPosition.started += instance.OnPointerPosition;
             @PointerPosition.performed += instance.OnPointerPosition;
             @PointerPosition.canceled += instance.OnPointerPosition;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @AbilityOne.started += instance.OnAbilityOne;
+            @AbilityOne.performed += instance.OnAbilityOne;
+            @AbilityOne.canceled += instance.OnAbilityOne;
+            @AbilityTwo.started += instance.OnAbilityTwo;
+            @AbilityTwo.performed += instance.OnAbilityTwo;
+            @AbilityTwo.canceled += instance.OnAbilityTwo;
+            @AbilityThree.started += instance.OnAbilityThree;
+            @AbilityThree.performed += instance.OnAbilityThree;
+            @AbilityThree.canceled += instance.OnAbilityThree;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -337,6 +452,18 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
             @PointerPosition.started -= instance.OnPointerPosition;
             @PointerPosition.performed -= instance.OnPointerPosition;
             @PointerPosition.canceled -= instance.OnPointerPosition;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @AbilityOne.started -= instance.OnAbilityOne;
+            @AbilityOne.performed -= instance.OnAbilityOne;
+            @AbilityOne.canceled -= instance.OnAbilityOne;
+            @AbilityTwo.started -= instance.OnAbilityTwo;
+            @AbilityTwo.performed -= instance.OnAbilityTwo;
+            @AbilityTwo.canceled -= instance.OnAbilityTwo;
+            @AbilityThree.started -= instance.OnAbilityThree;
+            @AbilityThree.performed -= instance.OnAbilityThree;
+            @AbilityThree.canceled -= instance.OnAbilityThree;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -376,5 +503,9 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnAbilityOne(InputAction.CallbackContext context);
+        void OnAbilityTwo(InputAction.CallbackContext context);
+        void OnAbilityThree(InputAction.CallbackContext context);
     }
 }

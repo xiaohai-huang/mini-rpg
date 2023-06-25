@@ -22,6 +22,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "6aa566f7-d500-444c-97dd-a4f9dd72729d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityOne",
+                    "type": "Button",
+                    "id": "8734d86f-167d-4f7f-aad2-eebdd1931e1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityTwo",
+                    "type": "Button",
+                    "id": "46d791e2-8f95-4f6d-a0f7-207880448f57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityThree",
+                    "type": "Button",
+                    "id": "8d41b6a0-b41a-483d-8d34-aac3cb8d7b98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -152,7 +188,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard and Mouse",
                     "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -163,7 +199,7 @@
                     "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "My Touch Screen",
                     "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -174,8 +210,63 @@
                     "path": "<Touchscreen>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "My Touch Screen",
                     "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a07953ce-c2ff-4450-9b4b-98017dd91a9b",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c097d7be-de03-48b8-b1ce-2c390d4c15e9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6110c4a6-5ac6-45da-97af-89385cf00638",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "086a5d14-3c44-4b59-ad26-6d3194de31e6",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a95cb877-6bf7-4524-a832-4a959e6c21c6",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
