@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    public AttackState() : base(needsExitTime: false)
+    private readonly PlayerController _mono;
+    private readonly AttackHandler _attackHandler;
+    public AttackState(PlayerController mono) : base(needsExitTime: false)
     {
+        _mono = mono;
+        _attackHandler = mono.GetComponent<AttackHandler>();
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
-        Debug.Log("Perform the attack");
+        _attackHandler.Attack();
     }
 
     public override void OnLogic()

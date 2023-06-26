@@ -5,39 +5,14 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    [SerializeField] float _attackRange = 1;
-    CharacterMovement _characterMovement;
-    public Interactable AttackTarget;
-    private void Awake()
-    {
-        _characterMovement = GetComponent<CharacterMovement>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+    public Transform FirePoint;
+    public GameObject BulletPrefab;
+   
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    internal void Attack()
     {
-        if (AttackTarget)
-        {
-            if (Vector3.Distance(transform.position, AttackTarget.transform.position) < _attackRange)
-            {
-                _characterMovement.Stop();
-                Debug.Log("Attack " + AttackTarget.name);
-                AttackTarget = null;
-            }
-            else
-            {
-                _characterMovement.SetDestination(AttackTarget.transform.position);
-            }
-        }
-    }
-
-    internal void Attack(Interactable target)
-    {
-        AttackTarget = target;
+        var go = Instantiate(BulletPrefab);
+        go.GetComponent<GoForward>().Speed = 10f;
+        go.transform.SetPositionAndRotation(FirePoint.transform.position, FirePoint.transform.rotation);
     }
 }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
         fsm = new StateMachine(this);
         fsm.AddState("Idle", new IdleState());
         fsm.AddState("Walk", new WalkState(this));
-        fsm.AddState("Attack",new AttackState());
+        fsm.AddState("Attack",new AttackState(this));
 
         fsm.AddTransition(new Transition("Idle", "Walk", t =>
         {
