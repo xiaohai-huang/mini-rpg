@@ -250,11 +250,11 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c097d7be-de03-48b8-b1ce-2c390d4c15e9"",
-                    ""path"": """",
+                    ""id"": ""df50f4df-5106-4f83-94ab-95dead1abebc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""My Touch Screen;Keyboard and Mouse"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
