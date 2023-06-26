@@ -23,6 +23,10 @@ public class GoForward : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"hit {other}");
+        if(other.TryGetComponent(out HP hp))
+        {
+            hp.ReduceHP(10);
+        }
         Destroy(gameObject);
     }
 }

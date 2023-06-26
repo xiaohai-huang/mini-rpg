@@ -19,7 +19,7 @@ public class AttackState : State
 
     public override void OnLogic()
     {
-        if (timer.Elapsed > 0.2f)
+        if (timer.Elapsed > 0.1f)
         {
             fsm.RequestStateChange("Idle");
         }
