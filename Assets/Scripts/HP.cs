@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using Xiaohai.UI;
 
 public class HP : MonoBehaviour
 {
-    public float MaxHP;
-    public float CurrentHP;
+    public int MaxHP;
+    public int CurrentHP;
     [SerializeField] private ProgressBar _healthBar;
 
     private void Awake()
@@ -17,12 +18,12 @@ public class HP : MonoBehaviour
         _healthBar.SetProgress(CurrentHP / MaxHP);
     }
 
-    public void ReduceHP(float hp)
+    public void ReduceHP(int hp)
     {
         if (CurrentHP == 0) return;
         CurrentHP -= hp;
-        CurrentHP = Mathf.Max(CurrentHP, 0);
-        _healthBar.SetProgress(CurrentHP / MaxHP);
+        CurrentHP = Math.Max(CurrentHP, 0);
+        _healthBar.SetProgress((float)CurrentHP / MaxHP);
     }
 
 
