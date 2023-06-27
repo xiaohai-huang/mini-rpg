@@ -7,7 +7,6 @@ namespace Xiaohai.Input
     {
         [SerializeField] private Image _backgroundRing;
         [SerializeField] private Image _dot;
-        [SerializeField] private InputReader _inputReader;
         private OnScreenJoystick _joystick;
 
         void Start()

@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
 
         fsm.AddTransition(new Transition("Idle", "Walk", t =>
         {
-            return InputReader.InputActions.GamePlay.Move.ReadValue<Vector2>() != Vector2.zero;
+            return InputReader.Move != Vector2.zero;
         }));
 
         fsm.AddTransition(new Transition("Walk", "Idle", t =>
         {
-            return InputReader.InputActions.GamePlay.Move.ReadValue<Vector2>() == Vector2.zero;
+            return InputReader.Move == Vector2.zero;
         }));
 
         fsm.AddTriggerTransitionFromAny("OnAttack", new Transition("", "Attack"));
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         fsm.Init();
 
         // user input
-        InputReader.InputActions.GamePlay.Attack.performed += ctx => 
+        InputReader.OnAttack += () => 
         {
             fsm.Trigger("OnAttack");
         };

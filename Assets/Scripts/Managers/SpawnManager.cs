@@ -9,10 +9,10 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _inputReader.InputActions.GamePlay.SpawnEnemy.performed += SpawnEnemy_performed;
+        _inputReader.OnSpawnEnemy += SpawnEnemy_performed;
     }
 
-    private void SpawnEnemy_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void SpawnEnemy_performed()
     {
         var go = Instantiate(EnemyPrefab);
         go.transform.position = SpawnPoint.position;

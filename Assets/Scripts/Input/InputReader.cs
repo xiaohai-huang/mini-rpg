@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Xiaohai.Input
 {
@@ -8,18 +8,34 @@ namespace Xiaohai.Input
     public class InputReader : ScriptableObject
     {
         public MyInputActions InputActions;
+        public Vector2 Move { get => InputActions.GamePlay.Move.ReadValue<Vector2>(); }
+        public event Action OnAttack;
+        public event Action OnSpawnEnemy;
+
 
         private void OnEnable()
         {
             if (InputActions == null)
             {
                 InputActions = new MyInputActions();
+                InputActions.GamePlay.Attack.performed += Attack_performed;
+                InputActions.GamePlay.SpawnEnemy.performed += SpawnEnemy_performed;
             }
         }
 
         private void OnDisable()
         {
             InputActions.Disable();
+        }
+
+        private void SpawnEnemy_performed(InputAction.CallbackContext obj)
+        {
+            OnSpawnEnemy?.Invoke();
+        }
+
+        private void Attack_performed(InputAction.CallbackContext obj)
+        {
+            OnAttack?.Invoke();
         }
     }
 }

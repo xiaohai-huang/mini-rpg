@@ -24,10 +24,4 @@ public class GameManager : MonoBehaviour
     {
         _inputReader.InputActions.Enable();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
