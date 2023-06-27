@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Spawn Enemy",
+                    "type": "Button",
+                    "id": "2b5b6a6f-f018-47a3-b373-50916a59694e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -267,6 +276,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AbilityThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "514d1985-9a93-4924-be8e-0ca56116de56",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn Enemy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

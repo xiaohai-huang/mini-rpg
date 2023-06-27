@@ -80,6 +80,15 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spawn Enemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b5b6a6f-f018-47a3-b373-50916a59694e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,17 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""AbilityThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""514d1985-9a93-4924-be8e-0ca56116de56"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn Enemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -338,6 +358,7 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
         m_GamePlay_AbilityOne = m_GamePlay.FindAction("AbilityOne", throwIfNotFound: true);
         m_GamePlay_AbilityTwo = m_GamePlay.FindAction("AbilityTwo", throwIfNotFound: true);
         m_GamePlay_AbilityThree = m_GamePlay.FindAction("AbilityThree", throwIfNotFound: true);
+        m_GamePlay_SpawnEnemy = m_GamePlay.FindAction("Spawn Enemy", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -405,6 +426,7 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_AbilityOne;
     private readonly InputAction m_GamePlay_AbilityTwo;
     private readonly InputAction m_GamePlay_AbilityThree;
+    private readonly InputAction m_GamePlay_SpawnEnemy;
     public struct GamePlayActions
     {
         private @MyInputActions m_Wrapper;
@@ -415,6 +437,7 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
         public InputAction @AbilityOne => m_Wrapper.m_GamePlay_AbilityOne;
         public InputAction @AbilityTwo => m_Wrapper.m_GamePlay_AbilityTwo;
         public InputAction @AbilityThree => m_Wrapper.m_GamePlay_AbilityThree;
+        public InputAction @SpawnEnemy => m_Wrapper.m_GamePlay_SpawnEnemy;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -442,6 +465,9 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
             @AbilityThree.started += instance.OnAbilityThree;
             @AbilityThree.performed += instance.OnAbilityThree;
             @AbilityThree.canceled += instance.OnAbilityThree;
+            @SpawnEnemy.started += instance.OnSpawnEnemy;
+            @SpawnEnemy.performed += instance.OnSpawnEnemy;
+            @SpawnEnemy.canceled += instance.OnSpawnEnemy;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -464,6 +490,9 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
             @AbilityThree.started -= instance.OnAbilityThree;
             @AbilityThree.performed -= instance.OnAbilityThree;
             @AbilityThree.canceled -= instance.OnAbilityThree;
+            @SpawnEnemy.started -= instance.OnSpawnEnemy;
+            @SpawnEnemy.performed -= instance.OnSpawnEnemy;
+            @SpawnEnemy.canceled -= instance.OnSpawnEnemy;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -507,5 +536,6 @@ public partial class @MyInputActions: IInputActionCollection2, IDisposable
         void OnAbilityOne(InputAction.CallbackContext context);
         void OnAbilityTwo(InputAction.CallbackContext context);
         void OnAbilityThree(InputAction.CallbackContext context);
+        void OnSpawnEnemy(InputAction.CallbackContext context);
     }
 }

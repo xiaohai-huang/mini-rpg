@@ -7,9 +7,13 @@ public class HP : MonoBehaviour
     public float CurrentHP;
     [SerializeField] private ProgressBar _healthBar;
 
-    void Start()
+    private void Awake()
     {
         CurrentHP = MaxHP;
+    }
+
+    void Start()
+    {
         _healthBar.SetProgress(CurrentHP / MaxHP);
     }
 

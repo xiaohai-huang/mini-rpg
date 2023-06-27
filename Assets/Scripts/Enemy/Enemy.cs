@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         _fsm.AddTransition("FollowPlayer", "Attacking", (transition) => DistanceToPlayer() <= AttackRange);
 
         _fsm.AddTransition(new Transition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange));
-
+        _fsm.SetStartState("Idle");
         _fsm.Init();
     }
 

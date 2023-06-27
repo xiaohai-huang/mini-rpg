@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 847743273285036860}
   - component: {fileID: 7185464467812484679}
   m_Layer: 5
-  m_Name: Attack Button
+  m_Name: On Screen Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
