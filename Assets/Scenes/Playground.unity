@@ -2103,7 +2103,7 @@ GameObject:
   - component: {fileID: 1476320066}
   - component: {fileID: 1476320067}
   m_Layer: 0
-  m_Name: UI Camera
+  m_Name: World UI Transparent Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
