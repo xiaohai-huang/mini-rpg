@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2906875737339627628}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentState: 
   InputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
+  PlayerDeathEventChannel: {fileID: 11400000, guid: 6f88fceec6d2788418e102411d387e18,
+    type: 2}
   WalkSpeed: 5
   RotateSpeed: 8
 --- !u!114 &5003526713056141761
@@ -161,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49807b0af8503145bdac7a9c7f2c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 40
   CurrentHP: 0
   _healthBar: {fileID: 2418513949029455672}
 --- !u!1 &3847039586288818907

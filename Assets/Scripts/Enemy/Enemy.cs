@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public float AttackRange = 1.5f;
     public float AttackDegrees = 30f;
 
+    private PlayerController _playerController;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -22,6 +24,8 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
+        _playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+
         _fsm = new StateMachine(this);
         _fsm.AddState("Idle");
 
@@ -42,7 +46,7 @@ public class Enemy : MonoBehaviour
         {
             AttackPlayer();
         });
-        _fsm.AddState("Death", onEnter: (state) =>
+        _fsm.AddState("Defeat", onEnter: (state) =>
         {
             transform.localScale = Vector3.one * 0.5f;
             var mat = GetComponentInChildren<MeshRenderer>().material;
@@ -51,19 +55,20 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 10);
         });
 
-        _fsm.AddTransitionFromAny(new Transition("", "Death", (transition) => _hp.CurrentHP == 0));
+        _fsm.AddTransitionFromAny(new Transition("", "Defeat", (transition) => _hp.CurrentHP == 0));
         _fsm.AddTransition("Idle", "FollowPlayer", (transition) =>
         {
-            return DistanceToPlayer() <= DetectRange;
+            return IsPlayerAlive() && DistanceToPlayer() <= DetectRange && !IsPlayerVisible();
         });
         _fsm.AddTransition("FollowPlayer", "Idle", (transition) =>
         {
             return DistanceToPlayer() > DetectRange;
         });
-        _fsm.AddTransition("Idle", "Attacking", (transition) => DistanceToPlayer() <= AttackRange);
-        _fsm.AddTransition("FollowPlayer", "Attacking", (transition) => DistanceToPlayer() <= AttackRange);
+        _fsm.AddTransition("Idle", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
+        _fsm.AddTransition("FollowPlayer", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
+        _fsm.AddTransition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange && !IsPlayerVisible());
+        _fsm.AddTransitionFromAny("Idle", t => !IsPlayerAlive());
 
-        _fsm.AddTransition(new Transition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange));
         _fsm.SetStartState("Idle");
         _fsm.Init();
     }
@@ -73,6 +78,28 @@ public class Enemy : MonoBehaviour
         var playerPosition = GameManager.Instance.Player.transform.position;
         float distance = Vector3.Distance(transform.position, playerPosition);
         return distance;
+    }
+
+    /// <summary>
+    /// Check if the player is blocked by obstacles
+    /// </summary>
+    /// <returns>false if it is blocked by other obstacles</returns>
+    bool IsPlayerVisible()
+    {
+        if (Physics.CapsuleCast(transform.position, transform.position + Vector3.up, _agent.radius, transform.forward, out RaycastHit hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool IsPlayerAlive()
+    {
+        bool alive = _playerController.CurrentState != "Defeat";
+        return alive;
     }
 
     void MoveTowardsPlayer()

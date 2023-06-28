@@ -26,5 +26,9 @@ public class HP : MonoBehaviour
         _healthBar.SetProgress((float)CurrentHP / MaxHP);
     }
 
-
+    public void Resurrect()
+    {
+        CurrentHP = MaxHP;
+        _healthBar.SetProgress((float)CurrentHP / MaxHP);
+    }
 }
