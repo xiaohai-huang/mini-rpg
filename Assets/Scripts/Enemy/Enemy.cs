@@ -52,6 +52,11 @@ public class Enemy : MonoBehaviour
             var mat = GetComponentInChildren<MeshRenderer>().material;
             mat.color = Color.red;
 
+            var collider = GetComponent<CapsuleCollider>();
+            collider.enabled = false;
+
+            _agent.enabled = false;
+
             Destroy(gameObject, 10);
         });
 
@@ -66,7 +71,7 @@ public class Enemy : MonoBehaviour
         });
         _fsm.AddTransition("Idle", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
         _fsm.AddTransition("FollowPlayer", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
-        _fsm.AddTransition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange && !IsPlayerVisible());
+        _fsm.AddTransition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange || !IsPlayerVisible());
         _fsm.AddTransitionFromAny("Idle", t => !IsPlayerAlive());
 
         _fsm.SetStartState("Idle");
