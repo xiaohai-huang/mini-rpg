@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GoForward : MonoBehaviour
@@ -11,7 +9,7 @@ public class GoForward : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
-        if(_timer > 10)
+        if (_timer > 10)
         {
             Destroy(gameObject);
             return;
@@ -22,8 +20,7 @@ public class GoForward : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"hit {other}");
-        if(other.TryGetComponent(out HP hp))
+        if (other.TryGetComponent(out HP hp))
         {
             hp.ReduceHP(10);
         }

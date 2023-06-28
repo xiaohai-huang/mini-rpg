@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 8387816667608135020}
   - component: {fileID: 2830288855498797680}
   - component: {fileID: 9192176236322315642}
+  - component: {fileID: 4551162475387395374}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -471,6 +472,7 @@ Transform:
   m_Children:
   - {fileID: 1168066295254168775}
   - {fileID: 7656526726371208750}
+  - {fileID: 7898628865840436626}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -547,9 +549,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 
-  DetectRange: 10
-  AttackRange: 3
+  DetectRange: 20
+  AttackRange: 10
+  AttackDegrees: 20
   AttackInterval: 2
+  Degrees: 0
+--- !u!114 &4551162475387395374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817689699735025401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665dff9b1dc4e8d43b9b705682865dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePoint: {fileID: 7898628865840436626}
+  BulletPrefab: {fileID: 8034983545446361103, guid: a61a9ca3dd8536b49b60fc3411e65be7,
+    type: 3}
+--- !u!1 &8628327008064058142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7898628865840436626}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7898628865840436626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628327008064058142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.997, z: 1.027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5562360304466039511}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2933974621591052437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -713,4 +763,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d16ba2eabd7c154eb02bb54c3cc8ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtMode: 2
+  LookAtMode: 3

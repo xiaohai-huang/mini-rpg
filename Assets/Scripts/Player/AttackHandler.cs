@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
     public Transform FirePoint;
     public GameObject BulletPrefab;
-   
+
 
     internal void Attack()
     {
