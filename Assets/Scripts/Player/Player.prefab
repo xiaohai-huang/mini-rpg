@@ -70,7 +70,7 @@ Transform:
   - {fileID: 8995813304735472796}
   - {fileID: 8393521756693477018}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &4947489503205724181
 NavMeshAgent:
@@ -162,7 +162,7 @@ MonoBehaviour:
   PlayerResurrectEventChannel: {fileID: 11400000, guid: 183877090260e344286ab55136a8fa2d,
     type: 2}
   WalkSpeed: 5
-  RotateSpeed: 8
+  RotateSpeed: 12
 --- !u!114 &5003526713056141761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,7 +789,7 @@ PrefabInstance:
     - target: {fileID: 5387879377266115458, guid: d6ca7f4053d8f524db48a497f6f2b8c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.5
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 5387879377266115458, guid: d6ca7f4053d8f524db48a497f6f2b8c2,
         type: 3}

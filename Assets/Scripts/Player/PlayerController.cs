@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     [Header("Listening on")]
     public VoidEventChannel PlayerResurrectEventChannel;
 
-    [HideInInspector] public float WalkSpeed = 5f;
-    [HideInInspector] public float RotateSpeed = 8f;
+    public float WalkSpeed = 5f;
+    public float RotateSpeed = 12f;
     void Awake()
     {
         _damageable = GetComponent<Damageable>();
