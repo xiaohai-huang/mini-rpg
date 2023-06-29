@@ -1,4 +1,5 @@
 using UnityEngine;
+using Xiaohai.Character;
 
 public class GoForward : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class GoForward : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out HP hp))
+        if (other.TryGetComponent(out Damageable damageable))
         {
-            hp.ReduceHP(10);
+            damageable.TakeDamage(10);
         }
         Destroy(gameObject);
     }

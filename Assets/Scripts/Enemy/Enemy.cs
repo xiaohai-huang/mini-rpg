@@ -1,6 +1,7 @@
 using FSM;
 using UnityEngine;
 using UnityEngine.AI;
+using Xiaohai.Character;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     public string CurrentState;
     private NavMeshAgent _agent;
-    private HP _hp;
+    private Damageable _damageable;
     private AttackHandler _attackHandler;
     public float DetectRange = 10f;
     public float AttackRange = 1.5f;
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _hp = GetComponent<HP>();
+        _damageable = GetComponent<Damageable>();
         _attackHandler = GetComponent<AttackHandler>();
     }
     void Start()
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 10);
         });
 
-        _fsm.AddTransitionFromAny(new Transition("", "Defeat", (transition) => _hp.CurrentHP == 0));
+        _fsm.AddTransitionFromAny(new Transition("", "Defeat", (transition) => _damageable.IsDead));
         _fsm.AddTransition("Idle", "FollowPlayer", (transition) =>
         {
             return IsPlayerAlive() && DistanceToPlayer() <= DetectRange && !IsPlayerVisible();

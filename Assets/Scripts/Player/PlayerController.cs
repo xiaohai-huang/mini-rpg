@@ -1,5 +1,6 @@
 using FSM;
 using UnityEngine;
+using Xiaohai.Character;
 using Xiaohai.Input;
 
 public class PlayerController : MonoBehaviour
@@ -7,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private StateMachine fsm;
     public string CurrentState;
     public InputReader InputReader;
-    private HP _hp;
+    private Damageable _damageable;
     [Header("Broadcasting on")]
     public VoidEventChannel PlayerDefeatEventChannel;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float RotateSpeed = 8f;
     void Awake()
     {
-        _hp = GetComponent<HP>();
+        _damageable = GetComponent<Damageable>();
     }
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         fsm.AddState("Defeat", new DefeatState(this));
         fsm.AddState("Resurrection", onEnter: (s) =>
         {
-            _hp.Resurrect();
+            _damageable.Resurrect();
             s.fsm.RequestStateChange("Idle");
         });
 
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         fsm.AddTriggerTransition("OnAttack", new Transition("Idle", "Attack"));
         fsm.AddTriggerTransition("OnAttack", new Transition("Walk", "Attack"));
         fsm.AddTriggerTransition("Resurrect", new Transition("Defeat", "Resurrection"));
-        fsm.AddTransitionFromAny("Defeat", (t) => _hp.CurrentHP == 0);
+        fsm.AddTransitionFromAny("Defeat", (t) => _damageable.IsDead);
 
         fsm.SetStartState("Idle");
         fsm.Init();

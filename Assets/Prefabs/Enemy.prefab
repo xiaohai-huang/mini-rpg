@@ -446,11 +446,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5562360304466039511}
-  - component: {fileID: 8904640958837981934}
   - component: {fileID: 8387816667608135020}
   - component: {fileID: 2830288855498797680}
-  - component: {fileID: 9192176236322315642}
-  - component: {fileID: 4551162475387395374}
+  - component: {fileID: 1074020270054998284}
+  - component: {fileID: 1096994512242803410}
+  - component: {fileID: 6613595464461360383}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -474,23 +474,8 @@ Transform:
   - {fileID: 7656526726371208750}
   - {fileID: 7898628865840436626}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8904640958837981934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7817689699735025401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49807b0af8503145bdac7a9c7f2c4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHP: 30
-  CurrentHP: 0
-  _healthBar: {fileID: 2799834919177584525}
 --- !u!195 &8387816667608135020
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -536,7 +521,39 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &9192176236322315642
+--- !u!114 &1074020270054998284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817689699735025401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93a79bd04deeb84aba74132f8d051c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthConfig: {fileID: 11400000, guid: 25ff58d8666223e4e83f552d8ed63041, type: 2}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2799834919177584525}
+        m_TargetAssemblyTypeName: Xiaohai.UI.ProgressBar, Assembly-CSharp
+        m_MethodName: SetProgress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  IsDead: 0
+--- !u!114 &1096994512242803410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -549,12 +566,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 
-  DetectRange: 20
+  DetectRange: 30
   AttackRange: 10
-  AttackDegrees: 20
-  AttackInterval: 2
-  Degrees: 0
---- !u!114 &4551162475387395374
+  AttackDegrees: 30
+  AttackInterval: 1.5
+--- !u!114 &6613595464461360383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

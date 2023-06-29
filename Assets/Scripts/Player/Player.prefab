@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 4157342736276493957}
   - component: {fileID: 4947489503205724181}
   - component: {fileID: 4829815958390145453}
+  - component: {fileID: 7444139444091830815}
   - component: {fileID: 3879491689118534904}
   - component: {fileID: 5003526713056141761}
   - component: {fileID: 2906875737339627628}
+  - component: {fileID: 5907011034179803894}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,6 +120,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!136 &7444139444091830815
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3628858896944918475}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3879491689118534904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentState: 
   InputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
-  PlayerDeathEventChannel: {fileID: 11400000, guid: 6f88fceec6d2788418e102411d387e18,
+  PlayerDefeatEventChannel: {fileID: 11400000, guid: 6f88fceec6d2788418e102411d387e18,
+    type: 2}
+  PlayerResurrectEventChannel: {fileID: 11400000, guid: 183877090260e344286ab55136a8fa2d,
     type: 2}
   WalkSpeed: 5
   RotateSpeed: 8
@@ -149,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePoint: {fileID: 8995813304735472796}
-  BulletPrefab: {fileID: 8034983545446361103, guid: a61a9ca3dd8536b49b60fc3411e65be7,
+  BulletPrefab: {fileID: 8034983545446361103, guid: 1eee4067896c1b140851c75d145191c6,
     type: 3}
 --- !u!114 &2906875737339627628
 MonoBehaviour:
@@ -160,12 +187,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 3628858896944918475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49807b0af8503145bdac7a9c7f2c4e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b1f6949780d114a9ebb257cf7779eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 40
-  CurrentHP: 0
-  _healthBar: {fileID: 2418513949029455672}
+  MaxHealth: 100
+  CurrentHealth: 100
+--- !u!114 &5907011034179803894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3628858896944918475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93a79bd04deeb84aba74132f8d051c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthConfig: {fileID: 11400000, guid: 65c9807dcdb28c44e9a4f8ff36d17dfe, type: 2}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2418513949029455672}
+        m_TargetAssemblyTypeName: Xiaohai.UI.ProgressBar, Assembly-CSharp
+        m_MethodName: SetProgress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  IsDead: 0
 --- !u!1 &3847039586288818907
 GameObject:
   m_ObjectHideFlags: 0
