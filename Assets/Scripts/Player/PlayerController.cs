@@ -5,15 +5,13 @@ using Xiaohai.Input;
 
 public class PlayerController : MonoBehaviour
 {
-    private StateMachine fsm;
+    [SerializeField] private StateMachine fsm;
     public string CurrentState;
     public InputReader InputReader;
     private Damageable _damageable;
     [Header("Broadcasting on")]
     public VoidEventChannel PlayerDefeatEventChannel;
 
-    [Header("Listening on")]
-    public VoidEventChannel PlayerResurrectEventChannel;
 
     public float WalkSpeed = 5f;
     public float RotateSpeed = 12f;
@@ -57,9 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             fsm.Trigger("OnAttack");
         };
+    }
 
-        // event
-        PlayerResurrectEventChannel.OnEventRaised += () => fsm.Trigger("Resurrect");
+    public void Trigger(string trigger)
+    {
+        fsm.Trigger(trigger);
     }
 
     // Update is called once per frame

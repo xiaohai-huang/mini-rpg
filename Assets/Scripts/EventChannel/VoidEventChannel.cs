@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Void Event Channel", menuName = "My Scriptable Objects/Event Channel/Void Event Channel")]
 public class VoidEventChannel : ScriptableObject
 {
-    public event Action OnEventRaised;
+    public UnityAction OnEventRaised;
 
     public void RaiseEvent()
     {
