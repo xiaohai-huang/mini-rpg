@@ -158,8 +158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentState: 
   InputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
-  PlayerDefeatEventChannel: {fileID: 11400000, guid: 6f88fceec6d2788418e102411d387e18,
-    type: 2}
   WalkSpeed: 5
   RotateSpeed: 12
 --- !u!114 &5003526713056141761
@@ -209,7 +207,19 @@ MonoBehaviour:
       m_Calls: []
   OnDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6f88fceec6d2788418e102411d387e18, type: 2}
+        m_TargetAssemblyTypeName: VoidEventChannel, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   IsDead: 0
 --- !u!114 &7647064017787146043
 MonoBehaviour:

@@ -9,9 +9,6 @@ public class PlayerController : MonoBehaviour
     public string CurrentState;
     public InputReader InputReader;
     private Damageable _damageable;
-    [Header("Broadcasting on")]
-    public VoidEventChannel PlayerDefeatEventChannel;
-
 
     public float WalkSpeed = 5f;
     public float RotateSpeed = 12f;
@@ -25,7 +22,7 @@ public class PlayerController : MonoBehaviour
         fsm.AddState("Idle", new IdleState());
         fsm.AddState("Walk", new WalkState(this));
         fsm.AddState("Attack", new AttackState(this));
-        fsm.AddState("Defeat", new DefeatState(this));
+        fsm.AddState("Defeat", new DefeatState());
         fsm.AddState("Resurrection", onEnter: (s) =>
         {
             _damageable.Resurrect();
