@@ -280,8 +280,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3939f52e8a5dd140a3e95a525a4b71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
   _backgroundRing: {fileID: 7706298412399997602}
   _dot: {fileID: 4159406171729978038}
+  Width: 300
+  Height: 300
 --- !u!114 &8322983802994442234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f946d6a4e0c19b42a796b787d3f3dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementRange: 150
+  m_MovementRange: 50
   m_DynamicOriginRange: 300
   m_ControlPath: <Gamepad>/leftStick
   m_Behaviour: 2
