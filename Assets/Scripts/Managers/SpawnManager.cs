@@ -5,7 +5,7 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     public GameObject EnemyPrefab;
-    public Transform SpawnPoint;
+    public Transform[] SpawnPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,12 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy_performed()
     {
-        var go = Instantiate(EnemyPrefab);
-        go.transform.position = SpawnPoint.position;
+        for (int i = 0; i < 3; i++)
+        {
+            var go = Instantiate(EnemyPrefab);
+            var point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
+            go.transform.position = point.position;
+            go.SetActive(true);
+        }
     }
 }
