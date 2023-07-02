@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class VoidEventListener : MonoBehaviour
+public class VoidEventChannelListener : MonoBehaviour
 {
 
     [SerializeField] private VoidEventChannel EventChannel;

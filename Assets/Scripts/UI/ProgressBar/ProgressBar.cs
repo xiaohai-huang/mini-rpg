@@ -9,8 +9,8 @@ namespace Xiaohai.UI
     {
         [SerializeField] private Image _content;
         [SerializeField] private float _progress;
-        [SerializeField] private float _speed;         
-        
+        [SerializeField] private float _speed;
+
 
         // Update is called once per frame
         void Update()

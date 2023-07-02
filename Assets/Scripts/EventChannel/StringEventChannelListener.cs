@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StringEventListener : MonoBehaviour
+public class StringEventChannelListener : MonoBehaviour
 {
     [SerializeField] private StringEventChannel EventChannel;
     [SerializeField] private UnityEvent<string> Response;
@@ -20,7 +20,6 @@ public class StringEventListener : MonoBehaviour
 
     void Listener(string value)
     {
-        if (Response != null)
-            Response.Invoke(value);
+        Response?.Invoke(value);
     }
 }

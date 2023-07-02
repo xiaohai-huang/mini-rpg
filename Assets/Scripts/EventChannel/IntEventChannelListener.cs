@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class IntEventListener : MonoBehaviour
+public class IntEventChannelListener : MonoBehaviour
 {
     [SerializeField] private IntEventChannel EventChannel;
     public UnityEvent<int> Response;
