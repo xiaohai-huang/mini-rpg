@@ -38,7 +38,15 @@ namespace Xiaohai.Input
         private const string kDynamicOriginClickable = "DynamicOriginClickable";
 
         public Vector2 PointerDownPosition { get => m_PointerDownPos; }
+        /// <summary>
+        /// Clammped Pointer Position within the Movement Range
+        /// </summary>
         public Vector2 PointerPosition { get => ((RectTransform)transform).anchoredPosition; }
+        /// <summary>
+        /// The position of the pointer without any restriction. It reset to original position when the pointer is released
+        /// </summary>
+        public Vector2 RealPointerPosition { get; private set; }
+
         /// <summary>
         /// Callback to handle OnPointerDown UI events.
         /// </summary>
@@ -156,6 +164,7 @@ namespace Xiaohai.Input
                     m_PointerDownPos = ((RectTransform)transform).anchoredPosition = pointerDown;
                     break;
             }
+            RealPointerPosition = m_PointerDownPos;
         }
 
         private void MoveStick(Vector2 pointerPosition, Camera uiCamera)
@@ -190,12 +199,14 @@ namespace Xiaohai.Input
 
             var newPos = new Vector2(delta.x / movementRange, delta.y / movementRange);
             SendValueToControl(newPos);
+            RealPointerPosition = position;
         }
 
         private void EndInteraction()
         {
             ((RectTransform)transform).anchoredPosition = m_PointerDownPos = m_StartPos;
             SendValueToControl(Vector2.zero);
+            RealPointerPosition = m_StartPos;
         }
 
         private void OnPointerDown(InputAction.CallbackContext ctx)
