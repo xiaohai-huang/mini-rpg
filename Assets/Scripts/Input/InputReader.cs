@@ -10,6 +10,7 @@ namespace Xiaohai.Input
         public MyInputActions InputActions;
         public Vector2 Move { get => InputActions.GamePlay.Move.ReadValue<Vector2>(); }
         public event Action OnAttack;
+        public event Action OnAttackCanceled;
         public event Action OnSpawnEnemy;
 
 
@@ -19,9 +20,11 @@ namespace Xiaohai.Input
             {
                 InputActions = new MyInputActions();
                 InputActions.GamePlay.Attack.performed += Attack_performed;
+                InputActions.GamePlay.Attack.canceled += Attack_canceled;
                 InputActions.GamePlay.SpawnEnemy.performed += SpawnEnemy_performed;
             }
         }
+
 
         private void OnDisable()
         {
@@ -37,5 +40,11 @@ namespace Xiaohai.Input
         {
             OnAttack?.Invoke();
         }
+
+        private void Attack_canceled(InputAction.CallbackContext context)
+        {
+            OnAttackCanceled?.Invoke();
+        }
+
     }
 }
