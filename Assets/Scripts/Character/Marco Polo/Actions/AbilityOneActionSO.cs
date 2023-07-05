@@ -31,8 +31,12 @@ public class AbilityOneAction : StateAction
     public override void OnUpdate()
     {
         var direction = new Vector3(_character.AbilityOneDirection.x, 0, _character.AbilityOneDirection.y);
-        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-        _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, OriginSO.RotateSpeed * Time.deltaTime);
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, OriginSO.RotateSpeed * Time.deltaTime);
+        }
 
         if (_numBulletsFired >= OriginSO.NumberOfBullets)
         {
@@ -43,7 +47,7 @@ public class AbilityOneAction : StateAction
             if (Time.time > _lastFireTime + 1 / OriginSO.BulletSpawnSpeed)
             {
                 float angles = Vector3.Angle(_character.transform.forward, direction);
-                if (angles < 10)
+                if (angles < 1.0f)
                 {
                     FireBullet();
                     _lastFireTime = Time.time;
