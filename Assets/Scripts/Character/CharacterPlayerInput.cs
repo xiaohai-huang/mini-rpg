@@ -7,6 +7,7 @@ public class CharacterPlayerInput : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private AbilityButton _abilityOneButton;
+    [SerializeField] private AbilityButton _abilityTwoButton;
     private Character _character;
 
     void Awake()
@@ -19,6 +20,7 @@ public class CharacterPlayerInput : MonoBehaviour
         _inputReader.OnAttackCanceled += OnAttackCanceled;
 
         _abilityOneButton.OnClick += OnAbilityOneClicked;
+        _abilityTwoButton.OnClick += OnAbilityTwoClicked;
     }
 
 
@@ -29,7 +31,9 @@ public class CharacterPlayerInput : MonoBehaviour
         _inputReader.OnAttackCanceled -= OnAttackCanceled;
 
         _abilityOneButton.OnClick -= OnAbilityOneClicked;
+        _abilityTwoButton.OnClick -= OnAbilityTwoClicked;
     }
+
     void Update()
     {
         _character.HorizontalInput = _inputReader.Move;
@@ -48,5 +52,11 @@ public class CharacterPlayerInput : MonoBehaviour
     {
         _character.AbilityOneInput = true;
         _character.AbilityOneDirection = direction;
+    }
+
+    private void OnAbilityTwoClicked(Vector2 direction)
+    {
+        _character.AbilityTwoInput = true;
+        _character.AbilityTwoDirection = direction;
     }
 }

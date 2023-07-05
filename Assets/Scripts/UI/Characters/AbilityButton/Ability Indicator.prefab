@@ -126,7 +126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5574798532868835847}
   - component: {fileID: 2592372124492531058}
-  - component: {fileID: 5369620503732347387}
   m_Layer: 0
   m_Name: Ability Indicator
   m_TagString: Untagged
@@ -148,7 +147,7 @@ Transform:
   m_Children:
   - {fileID: 1909098153058213492}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2592372124492531058
 MonoBehaviour:
@@ -168,20 +167,6 @@ MonoBehaviour:
   _head: {fileID: 474259376547248419}
   _target: {fileID: 0}
   _length: 5
---- !u!114 &5369620503732347387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416079968801071253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65b3fb27bbcdcb4181350591c3517f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  Offset: {x: 0, y: 0.04, z: 0}
 --- !u!1 &8431222658591686559
 GameObject:
   m_ObjectHideFlags: 0
