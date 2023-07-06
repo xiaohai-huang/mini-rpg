@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AbilityOneAction
   m_EditorClassIdentifier: 
   description: 
-  RotateSpeed: 8
+  RotateSpeed: 18
   NumberOfBullets: 10
   BulletSpawnSpeed: 10

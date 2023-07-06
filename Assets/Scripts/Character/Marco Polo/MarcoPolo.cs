@@ -5,22 +5,38 @@ public class MarcoPolo : MonoBehaviour
     public Transform LeftGunFirePoint;
     public Transform RightGunFirePoint;
     public GameObject BulletPrefab;
+
+    public float RotateSpeed = 8f;
+    public int NumberOfBullets = 20;
+    /// <summary>
+    /// The number of bullets can be fired in one second.
+    /// </summary>
+    public float BulletSpawnSpeed = 10f;
+    public float Distance = 5f;
+
+    public bool ShouldPerformingAbilityOne;
+
     private bool _attackHand;
     private Character _character;
+    private float _lastFireTime;
+    private int _numBulletsFired;
     void Awake()
     {
         _character = GetComponent<Character>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (ShouldPerformingAbilityOne)
+        {
+            PerformAbilityOne();
+        }
+        else
+        {
+            _lastFireTime = 0;
+            _numBulletsFired = 0;
+        }
     }
 
     public void Attack()
@@ -36,36 +52,66 @@ public class MarcoPolo : MonoBehaviour
         _attackHand = !_attackHand;
     }
 
-    void ConsumeAttackInput()
-    {
-        _character.AttackInput = false;
-    }
 
     GameObject FireBullet(Transform firePoint)
     {
         var bullet = Instantiate(BulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<GoForward>().Speed = 10f;
+        bullet.GetComponent<GoForward>().Speed = 15f;
         return bullet;
     }
 
-    void FireBullet()
+    private bool toggle;
+
+    private void FireBullet()
     {
-        if (_attackHand)
+        FireBullet(toggle ? LeftGunFirePoint : RightGunFirePoint);
+        toggle = !toggle;
+    }
+
+    public void PerformAbilityOne()
+    {
+        var direction = new Vector3(_character.AbilityOneDirection.x, 0, _character.AbilityOneDirection.y);
+
+        if (direction != Vector3.zero)
         {
-            FireBullet(LeftGunFirePoint);
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+        }
+
+        if (_numBulletsFired >= NumberOfBullets)
+        {
+            _character.AbilityOneInput = false;
+            ShouldPerformingAbilityOne = false;
         }
         else
         {
-            FireBullet(RightGunFirePoint);
+            if (Time.time > _lastFireTime + 1 / BulletSpawnSpeed)
+            {
+                float angles = Vector3.Angle(_character.transform.forward, direction);
+                if (angles < 1.0f)
+                {
+                    FireBullet();
+                    _lastFireTime = Time.time;
+                    _numBulletsFired++;
+                }
+            }
         }
-        _attackHand = !_attackHand;
     }
 
-    public void AbilityOne(int numBullets)
+    public void PerformAbilityTwo()
     {
-        for (int i = 0; i < numBullets; i++)
+        var direction = new Vector3(_character.AbilityTwoDirection.x, 0, _character.AbilityTwoDirection.y);
+        if (direction == Vector3.zero)
         {
-            FireBullet();
+            _character.transform.position = _character.transform.position + _character.transform.forward * Distance;
+        }
+        else
+        {
+            if (!ShouldPerformingAbilityOne)
+            {
+                _character.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+            }
+            _character.transform.position = _character.transform.position + (direction * Distance);
         }
     }
 }

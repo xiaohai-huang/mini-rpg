@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AbilityTwoAction
   m_EditorClassIdentifier: 
   description: 
-  Distance: 3
+  Distance: 5

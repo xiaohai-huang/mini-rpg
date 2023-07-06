@@ -27,6 +27,10 @@ public class Character : MonoBehaviour
                 return AbilityOneInput;
             case Ability.Two:
                 return AbilityTwoInput;
+            case Ability.Three:
+                break;
+            case Ability.Four:
+                break;
         }
         return false;
     }

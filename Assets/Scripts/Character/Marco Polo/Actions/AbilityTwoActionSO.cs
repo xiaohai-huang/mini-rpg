@@ -12,11 +12,15 @@ public class AbilityTwoActionSO : StateActionSO
 public class AbilityTwoAction : StateAction
 {
     private Character _character;
+    private MarcoPolo _polo;
+
     protected new AbilityTwoActionSO OriginSO => (AbilityTwoActionSO)base.OriginSO;
 
     public override void Awake(StateMachine stateMachine)
     {
         _character = stateMachine.GetComponent<Character>();
+        _polo = stateMachine.GetComponent<MarcoPolo>();
+
     }
 
     public override void OnUpdate()
@@ -25,21 +29,14 @@ public class AbilityTwoAction : StateAction
 
     public override void OnStateEnter()
     {
-        var direction = new Vector3(_character.AbilityTwoDirection.x, 0, _character.AbilityTwoDirection.y);
-        if (direction == Vector3.zero)
-        {
-            _character.transform.position = _character.transform.position + _character.transform.forward * OriginSO.Distance;
-        }
-        else
-        {
-            _character.transform.position = _character.transform.position + (direction * OriginSO.Distance);
-        }
+        _polo.PerformAbilityTwo();
+        // consume the input, so that it can transition to other state
+        _character.AbilityTwoInput = false;
     }
 
 
 
     public override void OnStateExit()
     {
-        _character.AbilityTwoInput = false;
     }
 }

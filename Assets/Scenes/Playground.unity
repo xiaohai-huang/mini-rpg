@@ -277,13 +277,18 @@ PrefabInstance:
     - target: {fileID: 2592372124492531058, guid: 481e80332f766b741bb89d0e63871e75,
         type: 3}
       propertyPath: _length
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2592372124492531058, guid: 481e80332f766b741bb89d0e63871e75,
         type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 1326110719}
+    - target: {fileID: 3616798697127410096, guid: 481e80332f766b741bb89d0e63871e75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5574798532868835847, guid: 481e80332f766b741bb89d0e63871e75,
         type: 3}
       propertyPath: m_RootOrder
@@ -2394,6 +2399,11 @@ MonoBehaviour:
   RightGunFirePoint: {fileID: 1467758138}
   BulletPrefab: {fileID: 8034983545446361103, guid: 1eee4067896c1b140851c75d145191c6,
     type: 3}
+  RotateSpeed: 20
+  NumberOfBullets: 10
+  BulletSpawnSpeed: 10
+  Distance: 5
+  ShouldPerformingAbilityOne: 0
 --- !u!4 &1467758138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7749095795727261627, guid: 952d36f202aa225479a92257c92d03bd,
@@ -3317,6 +3327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spawn Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8699412914618316923, guid: 84be72cf904f1434191e716cc3f29018,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4500,6 +4515,11 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1326110719}
+    - target: {fileID: 3616798697127410096, guid: 481e80332f766b741bb89d0e63871e75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5369620503732347387, guid: 481e80332f766b741bb89d0e63871e75,
         type: 3}
       propertyPath: Target
