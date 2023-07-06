@@ -10,7 +10,7 @@ public class AbilityDirectionIndicator : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private float _length;
 
-    void Awake()
+    void Start()
     {
         _indicator.gameObject.SetActive(false);
 
@@ -19,13 +19,13 @@ public class AbilityDirectionIndicator : MonoBehaviour
         newScale.y = _length;
         _body.transform.localScale = newScale;
 
-        var newPosition = _body.transform.position;
+        var newPosition = _body.transform.localPosition;
         newPosition.z = _length / 2;
-        _body.transform.position = newPosition;
+        _body.transform.localPosition = newPosition;
 
-        var newHeadPosition = _head.transform.position;
+        var newHeadPosition = _head.transform.localPosition;
         newHeadPosition.z = _length;
-        _head.transform.position = newHeadPosition;
+        _head.transform.localPosition = newHeadPosition;
     }
 
     void OnEnable()
