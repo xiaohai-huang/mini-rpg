@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour
     public float AttackRange = 1.5f;
     public float AttackDegrees = 30f;
 
-    private PlayerController _playerController;
+
+    [SerializeField] private RuntimeTransformAnchor _playerTransform;
+    private Damageable _playerDamageable;
 
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
-        _playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        _playerDamageable = _playerTransform.Value.GetComponent<Damageable>();
 
         _fsm = new StateMachine(this);
         _fsm.AddState("Idle");
@@ -81,7 +83,7 @@ public class Enemy : MonoBehaviour
 
     float DistanceToPlayer()
     {
-        var playerPosition = GameManager.Instance.Player.transform.position;
+        var playerPosition = _playerTransform.Value.transform.position;
         float distance = Vector3.Distance(transform.position, playerPosition);
         return distance;
     }
@@ -104,20 +106,20 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerAlive()
     {
-        bool alive = _playerController.CurrentState != "Defeat";
+        bool alive = !_playerDamageable.IsDead;
         return alive;
     }
 
     void MoveTowardsPlayer()
     {
-        _agent.SetDestination(GameManager.Instance.Player.transform.position);
+        _agent.SetDestination(_playerTransform.Value.position);
     }
 
     float _timer;
     public float AttackInterval = 2f;
     void AttackPlayer()
     {
-        var playerPosition = GameManager.Instance.Player.transform.position;
+        var playerPosition = _playerTransform.Value.position;
         var direction = playerPosition - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), 4 * Time.deltaTime);
         if (_timer <= 0)

@@ -215,6 +215,7 @@ MonoBehaviour:
   DetectRange: 30
   AttackRange: 10
   AttackDegrees: 30
+  _playerTransform: {fileID: 11400000, guid: 8160fab7fb74f044ead81a6d859f4888, type: 2}
   AttackInterval: 1.5
 --- !u!114 &7497133985525433045
 MonoBehaviour:

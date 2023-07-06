@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using Xiaohai.Input;
 
@@ -5,11 +6,16 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     public GameObject EnemyPrefab;
+    public Character PlayerPrefab;
+    public Transform PlayerSpawnPoint;
     public Transform[] SpawnPoints;
+    [SerializeField] private TransformEventChannel _playerSpawnedEventChannel;
+    [SerializeField] private RuntimeTransformAnchor _playerTransform;
     // Start is called before the first frame update
     void Start()
     {
         _inputReader.OnSpawnEnemy += SpawnEnemy_performed;
+        SpawnPlayer();
     }
 
     private void SpawnEnemy_performed()
@@ -21,5 +27,12 @@ public class SpawnManager : MonoBehaviour
             go.transform.position = point.position;
             go.SetActive(true);
         }
+    }
+
+    private void SpawnPlayer()
+    {
+        Character player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+        _playerTransform.Provide(player.transform);
+        _playerSpawnedEventChannel.RaiseEvent(player.transform);
     }
 }

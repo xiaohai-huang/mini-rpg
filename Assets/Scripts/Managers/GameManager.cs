@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    public GameObject Player;
     public static GameManager Instance { get; private set; }
     private void Awake()
     {
@@ -27,12 +26,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         _inputReader.InputActions.Enable();
         StartGameEventChannel.RaiseEvent();
     }
-
-
-
-
 }

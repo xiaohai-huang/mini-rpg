@@ -5,6 +5,7 @@ public class GoForward : MonoBehaviour
 {
     private float _timer;
     public float Speed;
+    public int DamageAmount = 10;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +24,7 @@ public class GoForward : MonoBehaviour
     {
         if (other.TryGetComponent(out Damageable damageable))
         {
-            damageable.TakeDamage(10);
+            damageable.TakeDamage(DamageAmount);
         }
         Destroy(gameObject);
     }
