@@ -12,10 +12,18 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public UnityAction OnBeginInteraction;
     public UnityAction OnMoving;
     public UnityAction<bool> OnReleased;
+
+    /// <summary>
+    /// Pointer position relative to the button position. It is restricted by <see cref="MovementRange" />, a clamped version of the <see cref="RealPointerPosition" />
+    /// </summary>
     public Vector2 PointerPosition => _dot.rectTransform.anchoredPosition;
+    /// <summary>
+    /// Pointer position relative to the button position.
+    /// </summary>
     public Vector2 RealPointerPosition { get; private set; }
     public bool IsOverCancel { get; private set; }
     public Vector2 Direction => PointerPosition.normalized;
+    public Vector2 Position => PointerPosition / MovementRange;
 
     private Image _dot;
     private void Start()
