@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1909098153058213492
 Transform:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc7dd9dbb0d295345ad6d4c5db81a118, type: 2}
+  - {fileID: 2100000, guid: 0ed5bee8e87a1a948adf1ef9e7075c80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,7 +147,7 @@ Transform:
   m_Children:
   - {fileID: 1909098153058213492}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2592372124492531058
 MonoBehaviour:
@@ -165,6 +165,8 @@ MonoBehaviour:
   _indicator: {fileID: 1909098153058213492}
   _body: {fileID: 3819559322970037150}
   _head: {fileID: 474259376547248419}
+  _activeColor: {r: 0.12941177, g: 0.6039216, b: 0.8980392, a: 1}
+  _cancelColor: {r: 0.8980392, g: 0.12941177, b: 0.14509805, a: 1}
   _target: {fileID: 0}
   _length: 5
 --- !u!1 &8431222658591686559
@@ -228,7 +230,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc7dd9dbb0d295345ad6d4c5db81a118, type: 2}
+  - {fileID: 2100000, guid: 0ed5bee8e87a1a948adf1ef9e7075c80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

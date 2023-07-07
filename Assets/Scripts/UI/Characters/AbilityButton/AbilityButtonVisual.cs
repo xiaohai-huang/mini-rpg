@@ -39,7 +39,7 @@ public class AbilityButtonVisual : MonoBehaviour
     private void OnMoving()
     {
         _dot.rectTransform.anchoredPosition = _button.PointerPosition;
-        if (_button.IsOverCancel)
+        if (_button.Cancelling)
         {
             _background.color = _cancelColor;
         }

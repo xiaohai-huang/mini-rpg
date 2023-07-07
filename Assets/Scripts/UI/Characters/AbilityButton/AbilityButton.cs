@@ -21,7 +21,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Pointer position relative to the button position.
     /// </summary>
     public Vector2 RealPointerPosition { get; private set; }
-    public bool IsOverCancel { get; private set; }
+    public bool Cancelling { get; private set; }
     public Vector2 Direction => PointerPosition.normalized;
     public Vector2 Position => PointerPosition / MovementRange;
 
@@ -53,11 +53,11 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         // check if the pointer is above over the cancel button
         if (RectTransformUtility.RectangleContainsScreenPoint(_cancelButton, eventData.position))
         {
-            IsOverCancel = true;
+            Cancelling = true;
         }
         else
         {
-            IsOverCancel = false;
+            Cancelling = false;
         }
         RealPointerPosition = positionRelativeToOrigin;
         OnMoving?.Invoke();
@@ -69,13 +69,13 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(_cancelButton, eventData.position))
         {
-            IsOverCancel = false;
+            Cancelling = false;
             OnClick?.Invoke(_dot.rectTransform.anchoredPosition.normalized);
             OnReleased?.Invoke(true);
         }
         else
         {
-            IsOverCancel = true;
+            Cancelling = true;
             OnReleased?.Invoke(false);
         }
         _cancelButton.gameObject.SetActive(false);
