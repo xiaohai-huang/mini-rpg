@@ -41,6 +41,7 @@ public class AbilityDirectionIndicator : MonoBehaviour
         _arrowBodyMaterial = _arrowBody.GetComponent<MeshRenderer>().material;
         _arrowHeadMaterial = _arrowHead.GetComponent<MeshRenderer>().material;
         _rangeIndicatorMaterial = _circle.GetComponent<MeshRenderer>().material;
+        SetColor(_activeColor);
     }
 
     void OnEnable()
@@ -81,17 +82,13 @@ public class AbilityDirectionIndicator : MonoBehaviour
     private void OnCancellingChanged(bool cancelling)
     {
         // turn red if the player is trying to cancel the action
-        if (cancelling)
-        {
-            _arrowBodyMaterial.color = _cancelColor;
-            _arrowHeadMaterial.color = _cancelColor;
-            _rangeIndicatorMaterial.SetColor("_Color", _cancelColor);
-        }
-        else
-        {
-            _arrowBodyMaterial.color = _activeColor;
-            _arrowHeadMaterial.color = _activeColor;
-            _rangeIndicatorMaterial.SetColor("_Color", _activeColor);
-        }
+        SetColor(cancelling ? _cancelColor : _activeColor);
+    }
+
+    private void SetColor(Color color)
+    {
+        _arrowBodyMaterial.color = color;
+        _arrowHeadMaterial.color = color;
+        _rangeIndicatorMaterial.SetColor("_Color", color);
     }
 }
