@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 9161177354956934740}
   - component: {fileID: 9068344119069678347}
   m_Layer: 5
-  m_Name: Ability One Image
+  m_Name: Ability Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,5 +374,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _background: {fileID: 8396414446355678880}
   _dot: {fileID: 2748321309895677607}
+  _abilityIcon: {fileID: 9068344119069678347}
+  _abilityLevel: {fileID: 4379358948294869756}
   _activeColor: {r: 0.03137255, g: 0.76862746, b: 1, a: 0.12941177}
   _cancelColor: {r: 0.7607843, g: 0.19607843, b: 0.18431373, a: 0.12941177}
+  _buttonSize: 1

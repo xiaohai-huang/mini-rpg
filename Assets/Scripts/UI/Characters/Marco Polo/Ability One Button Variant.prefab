@@ -8,6 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3277170049668074551, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
+        type: 3}
+      propertyPath: _buttonSize
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657134349222520590, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 143
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657134349222520590, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 143
+      objectReference: {fileID: 0}
     - target: {fileID: 4902388432418656968, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
         type: 3}
       propertyPath: m_Name
@@ -96,12 +111,12 @@ PrefabInstance:
     - target: {fileID: 8908147443043394809, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -678
+      value: -596
       objectReference: {fileID: 0}
     - target: {fileID: 8908147443043394809, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 397
+      value: 226
       objectReference: {fileID: 0}
     - target: {fileID: 8908147443043394809, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
         type: 3}
@@ -124,6 +139,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: fcf03a5400602fa43af75422fe69cc11,
         type: 3}
+    - target: {fileID: 9182441447230011193, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 164.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182441447230011193, guid: 81e0361cc31d14c4c9fbbb86d5a53a3a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 164.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
