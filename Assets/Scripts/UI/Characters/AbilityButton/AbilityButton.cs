@@ -12,6 +12,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public UnityAction OnBeginInteraction;
     public UnityAction OnMoving;
     public UnityAction<bool> OnReleased;
+    public UnityAction<bool> OnCancellingChanged;
 
     /// <summary>
     /// Pointer position relative to the button position. It is restricted by <see cref="MovementRange" />, a clamped version of the <see cref="RealPointerPosition" />
@@ -21,7 +22,23 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Pointer position relative to the button position.
     /// </summary>
     public Vector2 RealPointerPosition { get; private set; }
-    public bool Cancelling { get; private set; }
+
+    private bool _cancelling;
+    public bool Cancelling
+    {
+        get
+        {
+            return _cancelling;
+        }
+        private set
+        {
+            if (value != _cancelling)
+            {
+                OnCancellingChanged?.Invoke(value);
+            }
+            _cancelling = value;
+        }
+    }
     public Vector2 Direction => PointerPosition.normalized;
     public Vector2 Position => PointerPosition / MovementRange;
 
@@ -69,16 +86,15 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(_cancelButton, eventData.position))
         {
-            Cancelling = false;
             OnClick?.Invoke(_dot.rectTransform.anchoredPosition.normalized);
             OnReleased?.Invoke(true);
         }
         else
         {
-            Cancelling = true;
             OnReleased?.Invoke(false);
         }
         _cancelButton.gameObject.SetActive(false);
         RealPointerPosition = Vector2.zero;
+        Cancelling = false;
     }
 }
