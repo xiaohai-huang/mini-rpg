@@ -56,7 +56,10 @@ public class MarcoPolo : MonoBehaviour
     GameObject FireBullet(Transform firePoint)
     {
         var bullet = Instantiate(BulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<GoForward>().Speed = 15f;
+        var go = bullet.GetComponent<GoForward>();
+        go.Speed = 15f;
+        go.DamageAmount = Random.Range(200, 500);
+
         return bullet;
     }
 

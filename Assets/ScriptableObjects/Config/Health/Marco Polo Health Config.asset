@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b13f3920fb9b81409ea58015af909d4, type: 3}
   m_Name: Marco Polo Health Config
   m_EditorClassIdentifier: 
-  MaxHealth: 2100
+  MaxHealth: 3500

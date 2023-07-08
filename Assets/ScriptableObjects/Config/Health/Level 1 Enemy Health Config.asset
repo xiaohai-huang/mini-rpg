@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b13f3920fb9b81409ea58015af909d4, type: 3}
   m_Name: Level 1 Enemy Health Config
   m_EditorClassIdentifier: 
-  MaxHealth: 30
+  MaxHealth: 2300

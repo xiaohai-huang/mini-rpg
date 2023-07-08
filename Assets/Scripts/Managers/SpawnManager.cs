@@ -32,6 +32,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnPlayer()
     {
         Character player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+        player.gameObject.SetActive(true);
         _playerTransform.Provide(player.transform);
         _playerSpawnedEventChannel.RaiseEvent(player.transform);
     }

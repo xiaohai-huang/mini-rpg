@@ -9,7 +9,7 @@ namespace Xiaohai.Character
         private Health _health;
 
         [Header("Broadcasting On")]
-        public UnityEvent<float> OnHealthChanged;
+        public UnityEvent<int, int> OnHealthChanged;
         public UnityEvent OnDie;
 
         public bool IsDead;
@@ -30,7 +30,7 @@ namespace Xiaohai.Character
 
         void FireOnHealthChangedEvent()
         {
-            OnHealthChanged?.Invoke((float)_health.CurrentHealth / _health.MaxHealth);
+            OnHealthChanged?.Invoke(_health.CurrentHealth, _health.MaxHealth);
         }
 
         public void TakeDamage(int amount)
