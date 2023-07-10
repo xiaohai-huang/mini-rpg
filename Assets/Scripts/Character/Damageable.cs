@@ -10,6 +10,8 @@ namespace Xiaohai.Character
 
         [Header("Broadcasting On")]
         public UnityEvent<int, int> OnHealthChanged;
+        public UnityEvent<int> OnTakenDamage;
+        public UnityEvent<int> OnRestoreHealth;
         public UnityEvent OnDie;
 
         public bool IsDead;
@@ -39,6 +41,7 @@ namespace Xiaohai.Character
             _health.ReduceHealth(amount);
 
             FireOnHealthChangedEvent();
+            OnTakenDamage?.Invoke(amount);
 
             if (_health.CurrentHealth <= 0)
             {
@@ -47,13 +50,14 @@ namespace Xiaohai.Character
             }
         }
 
-        public void Cure(int healthToAdd)
+        public void RestoreHealth(int healthToAdd)
         {
             if (IsDead) return;
 
             _health.IncreaseHealth(healthToAdd);
 
             FireOnHealthChangedEvent();
+            OnRestoreHealth?.Invoke(healthToAdd);
         }
 
         public void Kill()
@@ -64,7 +68,7 @@ namespace Xiaohai.Character
         public void Resurrect()
         {
             IsDead = false;
-            Cure(_health.MaxHealth);
+            RestoreHealth(_health.MaxHealth);
         }
     }
 }
