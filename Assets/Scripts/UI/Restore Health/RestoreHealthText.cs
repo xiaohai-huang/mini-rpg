@@ -11,6 +11,6 @@ public class RestoreHealthText : MonoBehaviour
     }
     private void OnEnable()
     {
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 2);
     }
 }

@@ -9,5 +9,6 @@ public class OnRestoreHealth : MonoBehaviour
     {
         var text = Instantiate(_restoreTextPrefab, transform);
         text.SetHealth(health);
+        text.gameObject.SetActive(true);
     }
 }
