@@ -8,6 +8,9 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public float MovementRange = 150f;
     [SerializeField] private RectTransform _cancelButton;
 
+    /// <summary>
+    /// The argument is the position of the release point. The values of each component is between 0 and 1.
+    /// </summary>
     public UnityAction<Vector2> OnClick;
     public UnityAction OnBeginInteraction;
     public UnityAction OnMoving;
@@ -86,7 +89,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(_cancelButton, eventData.position))
         {
-            OnClick?.Invoke(_dot.rectTransform.anchoredPosition.normalized);
+            OnClick?.Invoke(Position);
             OnReleased?.Invoke(true);
         }
         else

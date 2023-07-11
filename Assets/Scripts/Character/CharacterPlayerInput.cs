@@ -48,15 +48,15 @@ public class CharacterPlayerInput : MonoBehaviour
         _character.AttackInput = false;
     }
 
-    private void OnAbilityOneClicked(Vector2 direction)
+    private void OnAbilityOneClicked(Vector2 position)
     {
         _character.AbilityOneInput = true;
-        _character.AbilityOneDirection = direction;
+        _character.AbilityOneDirection = position.normalized;
     }
 
-    private void OnAbilityTwoClicked(Vector2 direction)
+    private void OnAbilityTwoClicked(Vector2 position)
     {
         _character.AbilityTwoInput = true;
-        _character.AbilityTwoDirection = direction;
+        _character.AbilityTwoDirection = position.normalized;
     }
 }
