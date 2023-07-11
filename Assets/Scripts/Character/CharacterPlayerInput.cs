@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Xiaohai.Input;
 
@@ -6,32 +5,30 @@ using Xiaohai.Input;
 public class CharacterPlayerInput : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private AbilityButton _abilityOneButton;
-    [SerializeField] private AbilityButton _abilityTwoButton;
+    [SerializeField] private OnScreenInputEventChannel _onScreenInputEventChannel;
+
     private Character _character;
+    private EffectSystem _effectSystem;
 
     void Awake()
     {
         _character = GetComponent<Character>();
+        _effectSystem = GetComponent<EffectSystem>();
     }
     void OnEnable()
     {
         _inputReader.OnAttack += OnAttack;
         _inputReader.OnAttackCanceled += OnAttackCanceled;
 
-        _abilityOneButton.OnClick += OnAbilityOneClicked;
-        _abilityTwoButton.OnClick += OnAbilityTwoClicked;
+        _onScreenInputEventChannel.OnClickEventRaised += OnScreenButtonClickEventRaised;
     }
-
-
 
     void OnDisable()
     {
         _inputReader.OnAttack -= OnAttack;
         _inputReader.OnAttackCanceled -= OnAttackCanceled;
 
-        _abilityOneButton.OnClick -= OnAbilityOneClicked;
-        _abilityTwoButton.OnClick -= OnAbilityTwoClicked;
+        _onScreenInputEventChannel.OnClickEventRaised -= OnScreenButtonClickEventRaised;
     }
 
     void Update()
@@ -58,5 +55,32 @@ public class CharacterPlayerInput : MonoBehaviour
     {
         _character.AbilityTwoInput = true;
         _character.AbilityTwoDirection = position.normalized;
+    }
+
+    private void OnHealClicked()
+    {
+        _effectSystem.AddEffect(new HealEffect("Heal Once", 520));
+    }
+
+    private void OnScreenButtonClickEventRaised(OnScreenInputEventChannel.Input inputType, Vector2 position)
+    {
+        switch (inputType)
+        {
+            case OnScreenInputEventChannel.Input.ABILITY_ONE:
+                {
+                    OnAbilityOneClicked(position);
+                    break;
+                }
+            case OnScreenInputEventChannel.Input.ABILITY_TWO:
+                {
+                    OnAbilityTwoClicked(position);
+                    break;
+                }
+            case OnScreenInputEventChannel.Input.HEAL:
+                {
+                    OnHealClicked();
+                    break;
+                }
+        }
     }
 }
