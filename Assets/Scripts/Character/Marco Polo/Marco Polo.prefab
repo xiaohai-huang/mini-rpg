@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8809407048828570748
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
-  _playerInputEventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f,
+  _onScreenInputEventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f,
     type: 2}
 --- !u!114 &8572563913138845437
 MonoBehaviour:
