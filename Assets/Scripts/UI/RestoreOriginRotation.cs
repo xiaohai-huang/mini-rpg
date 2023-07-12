@@ -3,16 +3,21 @@ using UnityEngine.Animations;
 
 public class RestoreOriginRotation : MonoBehaviour
 {
-    void Start()
+    private static GameObject _origin;
+    void OnEnable()
     {
-        var origin = new GameObject("origin");
+        if (_origin == null)
+        {
+            _origin = new GameObject("origin");
+        }
         var constraint = gameObject.AddComponent<RotationConstraint>();
 
-        ConstraintSource source = new ConstraintSource();
-        source.sourceTransform = origin.transform;
-        source.weight = 1;
+        ConstraintSource source = new ConstraintSource
+        {
+            sourceTransform = _origin.transform,
+            weight = 1
+        };
         constraint.AddSource(source);
-
         constraint.constraintActive = true;
     }
 }
