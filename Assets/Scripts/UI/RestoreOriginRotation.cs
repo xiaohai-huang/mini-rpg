@@ -4,7 +4,7 @@ using UnityEngine.Animations;
 public class RestoreOriginRotation : MonoBehaviour
 {
     private static GameObject _origin;
-    void OnEnable()
+    void Awake()
     {
         if (_origin == null)
         {
