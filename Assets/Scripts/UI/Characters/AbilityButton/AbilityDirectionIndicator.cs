@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class AbilityDirectionIndicator : MonoBehaviour
 {
-    [SerializeField] private AbilityButton _button;
+    [SerializeField] private OnScreenInputEventChannel _onScreenInputEventChannel;
+    [SerializeField] private OnScreenInputEventChannel.Input _inputType;
+
+    private AbilityButton _button;
     [SerializeField] private Transform _arrowIndicator;
     [SerializeField] private Transform _rangeIndicator;
     [SerializeField] private Transform _arrowBody;
@@ -46,6 +49,7 @@ public class AbilityDirectionIndicator : MonoBehaviour
 
     void OnEnable()
     {
+        _button = _onScreenInputEventChannel.GetButton(_inputType);
         _button.OnBeginInteraction += OnBeginInteraction;
         _button.OnMoving += OnMoving;
         _button.OnReleased += OnReleased;

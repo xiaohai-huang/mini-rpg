@@ -286,7 +286,7 @@ Transform:
   - {fileID: 1909098153058213492}
   - {fileID: 3232849015114812230}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2592372124492531058
 MonoBehaviour:
@@ -300,7 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbdf39f8489f1e4295272188044ee1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 0}
+  _onScreenInputEventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f,
+    type: 2}
+  _inputType: 0
   _arrowIndicator: {fileID: 1909098153058213492}
   _rangeIndicator: {fileID: 3232849015114812230}
   _arrowBody: {fileID: 3819559322970037150}
