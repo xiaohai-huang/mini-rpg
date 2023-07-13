@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Xiaohai.Input;
 
@@ -5,8 +6,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     [Header("Broadcasting on")]
-    [SerializeField] private VoidEventChannel StartGameEventChannel;
+    [SerializeField] private VoidEventChannel _startGameEventChannel;
+    [SerializeField] private VoidEventChannel _playerResurrectEventChannel;
 
+    [Header("Listening To")]
+    [SerializeField] private VoidEventChannel _gameOverEventChannel;
+    [SerializeField] private VoidEventChannel _restartGameEventChannel;
 
 
     public static GameManager Instance { get; private set; }
@@ -26,7 +31,36 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _inputReader.InputActions.Enable();
-        StartGameEventChannel.RaiseEvent();
+        _startGameEventChannel.RaiseEvent();
+    }
+
+    void OnEnable()
+    {
+        _startGameEventChannel.OnEventRaised += HandleStartGame;
+        _gameOverEventChannel.OnEventRaised += HandleGameOver;
+        _restartGameEventChannel.OnEventRaised += HandleRestartGame;
+    }
+
+    void OnDisable()
+    {
+        _gameOverEventChannel.OnEventRaised -= HandleGameOver;
+        _startGameEventChannel.OnEventRaised -= HandleStartGame;
+        _restartGameEventChannel.OnEventRaised -= HandleRestartGame;
+    }
+
+    private void HandleStartGame()
+    {
+        _inputReader.Enable();
+    }
+
+    private void HandleGameOver()
+    {
+        _inputReader.Disable();
+    }
+
+    private void HandleRestartGame()
+    {
+        _playerResurrectEventChannel.RaiseEvent();
+        _inputReader.Enable();
     }
 }

@@ -1,5 +1,5 @@
-using UnityEngine;
 using FSM;
+using UnityEngine;
 public class WalkState : StateBase
 {
     readonly PlayerController _mono;
@@ -14,7 +14,7 @@ public class WalkState : StateBase
 
     public override void OnLogic()
     {
-        Vector2 moveInput = _mono.InputReader.InputActions.GamePlay.Move.ReadValue<Vector2>();
+        Vector2 moveInput = _mono.InputReader.Move;
         Vector3 direction = new Vector3(moveInput.x, 0, moveInput.y);
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
         _mono.transform.rotation = Quaternion.Slerp(_mono.transform.rotation, targetRotation, _mono.RotateSpeed * Time.deltaTime);

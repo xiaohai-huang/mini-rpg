@@ -7,28 +7,37 @@ namespace Xiaohai.Input
     [CreateAssetMenu(fileName = "InputReader", menuName = "My Scriptable Objects/Input Reader")]
     public class InputReader : ScriptableObject
     {
-        public MyInputActions InputActions;
-        public Vector2 Move { get => InputActions.GamePlay.Move.ReadValue<Vector2>(); }
+        private MyInputActions _inputActions;
+        public Vector2 Move { get => _inputActions.GamePlay.Move.ReadValue<Vector2>(); }
         public event Action OnAttack;
         public event Action OnAttackCanceled;
         public event Action OnSpawnEnemy;
 
+        public void Enable()
+        {
+            _inputActions.Enable();
+        }
+
+        public void Disable()
+        {
+            _inputActions.Disable();
+        }
 
         private void OnEnable()
         {
-            if (InputActions == null)
+            if (_inputActions == null)
             {
-                InputActions = new MyInputActions();
-                InputActions.GamePlay.Attack.performed += Attack_performed;
-                InputActions.GamePlay.Attack.canceled += Attack_canceled;
-                InputActions.GamePlay.SpawnEnemy.performed += SpawnEnemy_performed;
+                _inputActions = new MyInputActions();
+                _inputActions.GamePlay.Attack.performed += Attack_performed;
+                _inputActions.GamePlay.Attack.canceled += Attack_canceled;
+                _inputActions.GamePlay.SpawnEnemy.performed += SpawnEnemy_performed;
             }
         }
 
-
         private void OnDisable()
         {
-            InputActions.Disable();
+            _inputActions.Disable();
+            _inputActions = null;
         }
 
         private void SpawnEnemy_performed(InputAction.CallbackContext obj)
