@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallCatcher : MonoBehaviour
@@ -10,10 +8,10 @@ public class FallCatcher : MonoBehaviour
         {
             if (go.CompareTag("Player"))
             {
-                go.SetActive(false);
+                var controller = go.GetComponent<CharacterController>();
+                controller.enabled = false;
                 go.transform.position = new Vector3(0, 2, 0);
-                go.SetActive(true);
-
+                controller.enabled = true;
             }
         }
     }
