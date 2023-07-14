@@ -25,7 +25,7 @@ namespace Xiaohai.Character.MarcoPolo
         public override void OnApply(EffectSystem system)
         {
             _circle = Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
-            _circle.transform.localScale = new Vector3(_radius, _circle.transform.localScale.y, _radius);
+            _circle.transform.localScale = new Vector3(_radius * 2, _circle.transform.localScale.y, _radius * 2);
             _circle.SetActive(true);
         }
 
