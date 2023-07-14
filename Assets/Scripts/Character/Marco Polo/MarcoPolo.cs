@@ -35,6 +35,8 @@ public class MarcoPolo : MonoBehaviour
     private Character _character;
     private EffectSystem _effectSystem;
     private CharacterController _characterController;
+    private Animator _animator;
+    private static readonly int ABILITY_THREE_ANIMATION_ID = Animator.StringToHash("Ability Three");
     private float _lastFireTime;
     private int _numBulletsFired;
     void Awake()
@@ -42,6 +44,7 @@ public class MarcoPolo : MonoBehaviour
         _character = GetComponent<Character>();
         _characterController = GetComponent<CharacterController>();
         _effectSystem = GetComponent<EffectSystem>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -158,6 +161,7 @@ public class MarcoPolo : MonoBehaviour
         {
             _character.transform.SetPositionAndRotation(_character.transform.position + (direction * AbilityThreeDashDistance), Quaternion.LookRotation(direction, Vector3.up));
         }
+        _animator.SetBool(ABILITY_THREE_ANIMATION_ID, true);
         _abilityThreeEffect = new AbilityThreeEffect(AbilityThreeDamage, AbilityThreeEffectRadius, AbilityThreeSpinDuration, AbilityThreeAttackRate, AbilityThreeEffectPrefab);
         _effectSystem.AddEffect(_abilityThreeEffect);
         _characterController.enabled = true;
@@ -169,6 +173,7 @@ public class MarcoPolo : MonoBehaviour
     {
         StopCoroutine(_abilityThreeCoroutine);
         _effectSystem.RemoveEffect(_abilityThreeEffect);
+        _animator.SetBool(ABILITY_THREE_ANIMATION_ID, false);
     }
 
     IEnumerator MoveForward()

@@ -52,8 +52,8 @@ public class EffectSystem : MonoBehaviour
 
         _effectsToRemove.ForEach(effect =>
         {
-            _effects.Remove(effect);
-            effect.OnRemove(this);
+            bool success = _effects.Remove(effect);
+            if (success) effect.OnRemove(this);
         });
 
         _effectsToRemove.Clear();

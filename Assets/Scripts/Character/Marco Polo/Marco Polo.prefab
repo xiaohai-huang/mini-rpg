@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 5383846276083910951}
   - component: {fileID: 357847607689931411}
   - component: {fileID: 4830320886893070281}
+  - component: {fileID: 6331372443241604621}
   m_Layer: 0
   m_Name: Marco Polo
   m_TagString: Player
@@ -472,6 +473,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f1f79a29cb81749a1b56bb2d64a7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6331372443241604621
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691150277221288302}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d736b311bd9be443b3d685d98241f64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6654378251041569843
 GameObject:
   m_ObjectHideFlags: 0
