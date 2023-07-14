@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
     [NonSerialized] public Vector2 AbilityOneDirection;
     [NonSerialized] public bool AbilityTwoInput;
     [NonSerialized] public Vector2 AbilityTwoDirection;
+    [NonSerialized] public bool AbilityThreeInput;
+    [NonSerialized] public Vector2 AbilityThreeDirection;
+
 
     public enum Ability
     {
@@ -28,7 +31,7 @@ public class Character : MonoBehaviour
             case Ability.Two:
                 return AbilityTwoInput;
             case Ability.Three:
-                break;
+                return AbilityThreeInput;
             case Ability.Four:
                 break;
         }

@@ -57,6 +57,12 @@ public class CharacterPlayerInput : MonoBehaviour
         _character.AbilityTwoDirection = position.normalized;
     }
 
+    private void OnAbilityThreeClicked(Vector2 position)
+    {
+        _character.AbilityThreeInput = true;
+        _character.AbilityThreeDirection = position.normalized;
+    }
+
     private void OnHealClicked()
     {
         _effectSystem.AddEffect(new HealEffect("Heal Once", 520));
@@ -74,6 +80,11 @@ public class CharacterPlayerInput : MonoBehaviour
             case OnScreenInputEventChannel.Input.ABILITY_TWO:
                 {
                     OnAbilityTwoClicked(position);
+                    break;
+                }
+            case OnScreenInputEventChannel.Input.ABILITY_THREE:
+                {
+                    OnAbilityThreeClicked(position);
                     break;
                 }
             case OnScreenInputEventChannel.Input.HEAL:

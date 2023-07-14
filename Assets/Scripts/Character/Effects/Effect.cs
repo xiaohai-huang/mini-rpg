@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Effect that can be applied to an object. e.g., Heal Effect
+/// </summary>
 public abstract class Effect
 {
     public string Name;
@@ -11,7 +14,7 @@ public abstract class Effect
 
     public override bool Equals(object obj)
     {
-        if (obj == null || !(obj is Effect))
+        if (obj is null or not Effect)
         {
             return false;
         }

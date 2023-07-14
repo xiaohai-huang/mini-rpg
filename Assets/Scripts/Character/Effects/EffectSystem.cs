@@ -4,24 +4,30 @@ using Xiaohai.Character;
 
 public class EffectSystem : MonoBehaviour
 {
-    public HashSet<Effect> Effects = new HashSet<Effect>();
+    private readonly HashSet<Effect> _effects = new();
+    private readonly List<Effect> _effectsToRemove = new();
+
     private Damageable _damageable;
     public void AddEffect(Effect effect)
     {
-        Effects.Add(effect);
+        _effects.Add(effect);
         effect.OnApply(this);
     }
 
     public void RemoveEffect(Effect effect)
     {
-        Effects.Remove(effect);
-        effect.OnRemove(this);
+        _effectsToRemove.Add(effect);
     }
 
     public void RestoreHealth(int healthToAdd)
     {
         // TODO: add checks for health reduction effects. e.g., 梦魇，制裁
         _damageable.RestoreHealth(healthToAdd);
+    }
+
+    public void DealDamage(int damageAmount)
+    {
+        _damageable.TakeDamage(damageAmount);
     }
 
     void Awake()
@@ -32,10 +38,24 @@ public class EffectSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Effects.RemoveWhere(effect => effect.Finished);
-        foreach (Effect effect in Effects)
+        foreach (Effect effect in _effects)
         {
-            effect.OnUpdate(this);
+            if (effect.Finished)
+            {
+                _effectsToRemove.Add(effect);
+            }
+            else
+            {
+                effect.OnUpdate(this);
+            }
         }
+
+        _effectsToRemove.ForEach(effect =>
+        {
+            _effects.Remove(effect);
+            effect.OnRemove(this);
+        });
+
+        _effectsToRemove.Clear();
     }
 }
