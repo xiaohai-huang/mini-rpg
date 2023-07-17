@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Xiaohai.Character.MarcoPolo
@@ -13,6 +14,7 @@ namespace Xiaohai.Character.MarcoPolo
         private readonly GameObject _circlePrefab;
         private Character _character;
         private GameObject _circle;
+        private LayerMask _targetMask = LayerMask.GetMask("Enemy");
         public AbilityThreeEffect(int damage, float radius, float duration, float attackRate, GameObject effectPrefab)
         {
             Name = "Marco Polo Ability Three";
@@ -26,7 +28,7 @@ namespace Xiaohai.Character.MarcoPolo
         public override void OnApply(EffectSystem system)
         {
             _character = system.GetComponent<Character>();
-            _circle = Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
+            _circle = UnityEngine.Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
             _circle.transform.localScale = new Vector3(_radius * 2, _circle.transform.localScale.y, _radius * 2);
             _circle.SetActive(true);
         }
@@ -35,7 +37,8 @@ namespace Xiaohai.Character.MarcoPolo
         {
             if (_attackCoolDownTimer < 0)
             {
-                _character.GetNearByDamageables(_radius).ForEach(damageable => damageable.TakeDamage(_damage));
+                Damageable[] damageables = _character.GetNearByDamageables(_radius, _targetMask);
+                Array.ForEach(damageables, damageable => damageable.TakeDamage(_damage));
                 _attackCoolDownTimer = _attackRate;
             }
             _attackCoolDownTimer -= Time.deltaTime;
@@ -50,7 +53,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnRemove(EffectSystem system)
         {
-            Object.Destroy(_circle);
+            UnityEngine.Object.Destroy(_circle);
         }
     }
 

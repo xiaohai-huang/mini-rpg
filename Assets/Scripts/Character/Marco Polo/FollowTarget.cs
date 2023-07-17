@@ -1,10 +1,11 @@
 using UnityEngine;
 using Xiaohai.Character;
 
-public class GoForward : MonoBehaviour
+public class FollowTarget : MonoBehaviour
 {
     public float Speed;
-    public int DamageAmount = 10;
+    public int DamageAmount;
+    public Transform Target;
     void Start()
     {
         Destroy(gameObject, 10f);
@@ -12,8 +13,10 @@ public class GoForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 velocity = transform.forward * Speed;
-        transform.position += velocity * Time.deltaTime;
+        if (Target != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -42,22 +42,36 @@ namespace Xiaohai.Character
         }
 
         private readonly Collider[] colliders = new Collider[20];
-        public List<Damageable> GetNearByDamageables(float radius)
+        public Damageable[] GetNearByDamageables(float radius)
         {
-            Physics.OverlapSphereNonAlloc(transform.position, radius, colliders);
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders);
             List<Damageable> damageables = new();
-            foreach (Collider collider in colliders)
+            for (int i = 0; i < numColliders; i++)
             {
-                if (collider != null)
+                var collider = colliders[i];
+                if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
                 {
-                    if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
-                    {
-                        damageables.Add(damageable);
-                    }
+                    damageables.Add(damageable);
+                }
+            }
+            return damageables.ToArray();
+        }
+
+        private readonly Collider[] colliders2 = new Collider[20];
+
+        public Damageable[] GetNearByDamageables(float radius, LayerMask layerMask)
+        {
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders2, layerMask);
+            Damageable[] damageables = new Damageable[numColliders];
+            for (int i = 0; i < numColliders; i++)
+            {
+                var collider = colliders2[i];
+                if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
+                {
+                    damageables[i] = damageable;
                 }
             }
             return damageables;
         }
     }
-
 }

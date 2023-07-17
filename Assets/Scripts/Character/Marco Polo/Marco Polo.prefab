@@ -233,13 +233,14 @@ GameObject:
   - component: {fileID: 357847607689931411}
   - component: {fileID: 4830320886893070281}
   - component: {fileID: 6331372443241604621}
+  - component: {fileID: 782018881564824063}
   m_Layer: 0
   m_Name: Marco Polo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8809407048828570748
 Transform:
   m_ObjectHideFlags: 0
@@ -346,9 +347,12 @@ MonoBehaviour:
   RightGunFirePoint: {fileID: 2669639540918585661}
   BulletPrefab: {fileID: 8034983545446361103, guid: 1eee4067896c1b140851c75d145191c6,
     type: 3}
+  FollowBulletPrefab: {fileID: 8606479256611987637, guid: c23b11116f43687469e4efd7365e6ed9,
+    type: 3}
   RotateSpeed: 20
   NumberOfBullets: 10
   BulletSpawnSpeed: 10
+  AttackRange: 7
   ShouldPerformingAbilityOne: 0
   AbilityTwoDashDistance: 5
   AbilityThreeDashDistance: 8
@@ -495,6 +499,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &782018881564824063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691150277221288302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc4ecb58225f524984f4ba6b5f0cd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  Target: {fileID: 0}
+  OnTargetChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6654378251041569843
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ namespace Xiaohai.Character.MarcoPolo
         public Transform LeftGunFirePoint;
         public Transform RightGunFirePoint;
         public GameObject BulletPrefab;
+        public GameObject FollowBulletPrefab;
 
         public float RotateSpeed = 8f;
         public int NumberOfBullets = 20;
@@ -36,6 +37,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         private bool _attackHand;
         private Character _character;
+        private TargetPicker _targetPicker;
         private EffectSystem _effectSystem;
         private CharacterController _characterController;
         private Animator _animator;
@@ -47,6 +49,7 @@ namespace Xiaohai.Character.MarcoPolo
             _character = GetComponent<Character>();
             _characterController = GetComponent<CharacterController>();
             _effectSystem = GetComponent<EffectSystem>();
+            _targetPicker = GetComponent<TargetPicker>();
             _animator = GetComponent<Animator>();
         }
 
@@ -63,20 +66,51 @@ namespace Xiaohai.Character.MarcoPolo
                 _numBulletsFired = 0;
             }
         }
-
+        private Coroutine _attackCoroutine;
         public void Attack()
         {
-            if (_attackHand)
+            if (_targetPicker.Target == null)
             {
-                FireBullet(LeftGunFirePoint);
+                if (_attackHand)
+                {
+                    FireBullet(LeftGunFirePoint);
+                }
+                else
+                {
+                    FireBullet(RightGunFirePoint);
+                }
             }
             else
             {
-                FireBullet(RightGunFirePoint);
+                _attackCoroutine = StartCoroutine(NormalAttack(_targetPicker.Target.transform, 16f, _attackHand ? LeftGunFirePoint : RightGunFirePoint));
             }
             _attackHand = !_attackHand;
         }
 
+        IEnumerator NormalAttack(Transform target, float rotateSpeed, Transform firePoint)
+        {
+            var direction = (target.position - transform.position).normalized;
+            while (!(Vector3.Dot(transform.forward, direction) > 0.99f))
+            {
+                var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+                direction = (target.position - transform.position).normalized;
+                yield return null;
+            }
+
+            FireFollowBullet(firePoint);
+        }
+
+        GameObject FireFollowBullet(Transform firePoint)
+        {
+            var bullet = Instantiate(FollowBulletPrefab, firePoint.position, firePoint.rotation);
+            var follow = bullet.GetComponent<FollowTarget>();
+            follow.Target = _targetPicker.Target.transform;
+            follow.Speed = 15f;
+            follow.DamageAmount = Random.Range(200, 500);
+
+            return bullet;
+        }
 
         GameObject FireBullet(Transform firePoint)
         {

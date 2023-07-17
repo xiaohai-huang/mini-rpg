@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WalkAttacking
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: 54d1bddb5ddbe7d49a0987281828f4cd, type: 2}
   - {fileID: 11400000, guid: 6b05861c665132440ad11e079e2da03a, type: 2}
+  - {fileID: 11400000, guid: 54d1bddb5ddbe7d49a0987281828f4cd, type: 2}
   - {fileID: 11400000, guid: 9398adcb5c4d153429b48e68484a972f, type: 2}

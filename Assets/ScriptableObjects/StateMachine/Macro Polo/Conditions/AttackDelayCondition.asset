@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cc77a483c1af349aaed4ffbeb09968, type: 3}
   m_Name: AttackDelayCondition
   m_EditorClassIdentifier: 
-  TimerDuration: 0.1
+  TimerDuration: 0.5
