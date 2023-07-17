@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "ApplyVelocityAction", menuName = "State Machines/Actions/Apply Velocity Action")]
 public class ApplyVelocityActionSO : StateActionSO

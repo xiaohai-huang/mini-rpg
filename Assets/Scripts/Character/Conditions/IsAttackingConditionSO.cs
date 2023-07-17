@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "IsAttackingCondition", menuName = "State Machines/Conditions/Is Attacking Condition")]
 public class IsAttackingConditionSO : StateConditionSO

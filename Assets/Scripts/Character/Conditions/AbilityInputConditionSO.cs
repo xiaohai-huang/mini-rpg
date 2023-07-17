@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "AbilityInputCondition", menuName = "State Machines/Conditions/Ability Input Condition")]
 public class AbilityInputConditionSO : StateConditionSO

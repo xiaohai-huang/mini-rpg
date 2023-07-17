@@ -11,6 +11,7 @@ namespace Xiaohai.Character.MarcoPolo
         private float _timer;
         private float _attackCoolDownTimer;
         private readonly GameObject _circlePrefab;
+        private Character _character;
         private GameObject _circle;
         public AbilityThreeEffect(int damage, float radius, float duration, float attackRate, GameObject effectPrefab)
         {
@@ -24,6 +25,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnApply(EffectSystem system)
         {
+            _character = system.GetComponent<Character>();
             _circle = Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
             _circle.transform.localScale = new Vector3(_radius * 2, _circle.transform.localScale.y, _radius * 2);
             _circle.SetActive(true);
@@ -33,14 +35,7 @@ namespace Xiaohai.Character.MarcoPolo
         {
             if (_attackCoolDownTimer < 0)
             {
-                Collider[] colliders = Physics.OverlapSphere(system.transform.position, _radius);
-                foreach (Collider collider in colliders)
-                {
-                    if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
-                    {
-                        damageable.TakeDamage(_damage);
-                    }
-                }
+                _character.GetNearByDamageables(_radius).ForEach(damageable => damageable.TakeDamage(_damage));
                 _attackCoolDownTimer = _attackRate;
             }
             _attackCoolDownTimer -= Time.deltaTime;

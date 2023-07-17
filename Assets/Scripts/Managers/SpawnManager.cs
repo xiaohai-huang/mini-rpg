@@ -1,5 +1,5 @@
-using Unity.Cinemachine;
 using UnityEngine;
+using Xiaohai.Character;
 using Xiaohai.Input;
 
 public class SpawnManager : MonoBehaviour

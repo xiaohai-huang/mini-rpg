@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 166288571635303748}
   - component: {fileID: 2346670405002570533}
   - component: {fileID: 7497133985525433045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,6 +540,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Restore Health Text Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 407282089404663261, guid: 300da3e9ab3783d478e9ec8bb13a7f4a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8966001392182914024, guid: 300da3e9ab3783d478e9ec8bb13a7f4a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -676,6 +681,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3808149990019426270}
     m_Modifications:
+    - target: {fileID: 778905808803973515, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703391874061654936, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215004847125448817, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4190679014291713136, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -786,10 +806,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Damage Text Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5360096978749719439, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6122972721585571308, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426281936120241978, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8827199841499136183, guid: d3d30b7efe0711a4b82d5bb1b3c0bf1d,
         type: 3}
@@ -866,6 +896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322262145328449356, guid: a2ac516a299024b4987146ff4abed414,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7909175715411099024, guid: a2ac516a299024b4987146ff4abed414,
         type: 3}
@@ -972,10 +1007,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8224419365028908956, guid: a2ac516a299024b4987146ff4abed414,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8224880754865520039, guid: a2ac516a299024b4987146ff4abed414,
         type: 3}
       propertyPath: m_Name
       value: Progress Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224880754865520039, guid: a2ac516a299024b4987146ff4abed414,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103789969037207430, guid: a2ac516a299024b4987146ff4abed414,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

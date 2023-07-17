@@ -2,33 +2,36 @@
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "AbilityOneAction", menuName = "State Machines/Actions/Marco Polo/Ability One Action")]
-public class AbilityOneActionSO : StateActionSO
+namespace Xiaohai.Character.MarcoPolo
 {
-    protected override StateAction CreateAction() => new AbilityOneAction();
-}
-
-public class AbilityOneAction : StateAction
-{
-    private MarcoPolo _polo;
-    protected new AbilityOneActionSO OriginSO => (AbilityOneActionSO)base.OriginSO;
-
-    public override void Awake(StateMachine stateMachine)
+    [CreateAssetMenu(fileName = "AbilityOneAction", menuName = "State Machines/Actions/Marco Polo/Ability One Action")]
+    public class AbilityOneActionSO : StateActionSO
     {
-        _polo = stateMachine.GetComponent<MarcoPolo>();
+        protected override StateAction CreateAction() => new AbilityOneAction();
     }
 
-    public override void OnUpdate()
+    public class AbilityOneAction : StateAction
     {
+        private MarcoPolo _polo;
+        protected new AbilityOneActionSO OriginSO => (AbilityOneActionSO)base.OriginSO;
 
-    }
+        public override void Awake(StateMachine stateMachine)
+        {
+            _polo = stateMachine.GetComponent<MarcoPolo>();
+        }
 
-    public override void OnStateEnter()
-    {
-        _polo.ShouldPerformingAbilityOne = true;
-    }
+        public override void OnUpdate()
+        {
 
-    public override void OnStateExit()
-    {
+        }
+
+        public override void OnStateEnter()
+        {
+            _polo.ShouldPerformingAbilityOne = true;
+        }
+
+        public override void OnStateExit()
+        {
+        }
     }
 }

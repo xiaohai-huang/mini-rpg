@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "StopMoveAction", menuName = "State Machines/Actions/Stop Move Action")]
 public class StopMoveActionSO : StateActionSO

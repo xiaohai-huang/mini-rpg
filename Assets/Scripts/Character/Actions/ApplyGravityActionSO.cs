@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "ApplyGravityAction", menuName = "State Machines/Actions/Apply Gravity Action")]
 public class ApplyGravityActionSO : StateActionSO

@@ -54,5 +54,5 @@
   "omnisharp.useModernNet": true,
   "omnisharp.sdkIncludePrereleases": false,
   "omnisharp.organizeImportsOnFormat": true,
-  "cSpell.words": ["Keyalias"]
+  "cSpell.words": ["Damageables", "Keyalias"]
 }

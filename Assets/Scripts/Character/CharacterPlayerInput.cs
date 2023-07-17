@@ -1,4 +1,5 @@
 using UnityEngine;
+using Xiaohai.Character;
 using Xiaohai.Input;
 
 [RequireComponent(typeof(Character))]

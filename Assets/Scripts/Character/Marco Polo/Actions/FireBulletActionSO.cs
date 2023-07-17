@@ -2,32 +2,35 @@
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "FireBulletAction", menuName = "State Machines/Actions/Marco Polo/Fire Bullet Action")]
-public class FireBulletActionSO : StateActionSO
+namespace Xiaohai.Character.MarcoPolo
 {
-    protected override StateAction CreateAction() => new FireBulletAction();
-}
-
-public class FireBulletAction : StateAction
-{
-    private MarcoPolo _marcoPolo;
-    protected new FireBulletActionSO OriginSO => (FireBulletActionSO)base.OriginSO;
-
-    public override void Awake(StateMachine stateMachine)
+    [CreateAssetMenu(fileName = "FireBulletAction", menuName = "State Machines/Actions/Marco Polo/Fire Bullet Action")]
+    public class FireBulletActionSO : StateActionSO
     {
-        _marcoPolo = stateMachine.GetComponent<MarcoPolo>();
+        protected override StateAction CreateAction() => new FireBulletAction();
     }
 
-    public override void OnUpdate()
+    public class FireBulletAction : StateAction
     {
-    }
+        private MarcoPolo _marcoPolo;
+        protected new FireBulletActionSO OriginSO => (FireBulletActionSO)base.OriginSO;
 
-    public override void OnStateEnter()
-    {
-        _marcoPolo.Attack();
-    }
+        public override void Awake(StateMachine stateMachine)
+        {
+            _marcoPolo = stateMachine.GetComponent<MarcoPolo>();
+        }
 
-    public override void OnStateExit()
-    {
+        public override void OnUpdate()
+        {
+        }
+
+        public override void OnStateEnter()
+        {
+            _marcoPolo.Attack();
+        }
+
+        public override void OnStateExit()
+        {
+        }
     }
 }

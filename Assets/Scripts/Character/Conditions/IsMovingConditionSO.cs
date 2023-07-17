@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 [CreateAssetMenu(fileName = "IsMovingCondition", menuName = "State Machines/Conditions/Is Moving Condition")]
 public class IsMovingConditionSO : StateConditionSO
