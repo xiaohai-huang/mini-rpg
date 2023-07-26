@@ -15,6 +15,7 @@ public class FollowTarget : MonoBehaviour
     {
         if (Target != null)
         {
+            transform.LookAt(Target);
             transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
         }
     }
