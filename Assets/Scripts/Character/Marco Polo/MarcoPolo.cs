@@ -16,7 +16,7 @@ namespace Xiaohai.Character.MarcoPolo
         /// The number of bullets can be fired in one second.
         /// </summary>
         public float BulletSpawnSpeed = 10f;
-        [Header("Attack")]
+        [Header("Normal Attack")]
         public float AttackRange = 7f;
         [Header("Ability 1")]
         public bool ShouldPerformingAbilityOne;

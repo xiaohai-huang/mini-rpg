@@ -597,6 +597,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Marco Polo
       objectReference: {fileID: 0}
+    - target: {fileID: 5691150277221288302, guid: e9a927409a0214a4fb35ef48c4177de0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8809407048828570748, guid: e9a927409a0214a4fb35ef48c4177de0,
         type: 3}
       propertyPath: m_RootOrder
