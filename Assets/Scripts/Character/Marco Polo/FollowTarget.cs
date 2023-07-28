@@ -6,6 +6,7 @@ public class FollowTarget : MonoBehaviour
     public float Speed;
     public int DamageAmount;
     public Transform Target;
+    public Vector3 Offset;
     void Start()
     {
         Destroy(gameObject, 10f);
@@ -16,7 +17,7 @@ public class FollowTarget : MonoBehaviour
         if (Target != null)
         {
             transform.LookAt(Target);
-            transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, Target.position + Offset, Speed * Time.deltaTime);
         }
     }
 
