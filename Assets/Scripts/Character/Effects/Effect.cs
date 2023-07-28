@@ -8,9 +8,12 @@ public abstract class Effect
 {
     public string Name;
     public bool Finished;
-    public virtual void OnApply(EffectSystem system) { }
-    public virtual void OnUpdate(EffectSystem system) { }
-    public virtual void OnRemove(EffectSystem system) { }
+    public Action OnApplyCallback;
+    public Action OnUpdateCallback;
+    public Action OnRemoveCallback;
+    public virtual void OnApply(EffectSystem system) { OnApplyCallback?.Invoke(); }
+    public virtual void OnUpdate(EffectSystem system) { OnUpdateCallback?.Invoke(); }
+    public virtual void OnRemove(EffectSystem system) { OnRemoveCallback?.Invoke(); }
 
     public override bool Equals(object obj)
     {

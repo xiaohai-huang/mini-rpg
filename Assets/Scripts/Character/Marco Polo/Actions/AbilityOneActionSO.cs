@@ -12,11 +12,14 @@ namespace Xiaohai.Character.MarcoPolo
 
     public class AbilityOneAction : StateAction
     {
-        private MarcoPolo _polo;
         protected new AbilityOneActionSO OriginSO => (AbilityOneActionSO)base.OriginSO;
+        private Character _character;
+        private MarcoPolo _polo;
+
 
         public override void Awake(StateMachine stateMachine)
         {
+            _character = stateMachine.GetComponent<Character>();
             _polo = stateMachine.GetComponent<MarcoPolo>();
         }
 
@@ -27,7 +30,8 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnStateEnter()
         {
-            _polo.ShouldPerformingAbilityOne = true;
+            _polo.PerformAbilityOne();
+            _character.AbilityOneInput = false;
         }
 
         public override void OnStateExit()

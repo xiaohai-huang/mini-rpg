@@ -6,15 +6,22 @@ namespace Xiaohai.Character
 {
     public class Character : MonoBehaviour
     {
-        [NonSerialized] public Vector3 Velocity;
-        [NonSerialized] public bool AttackInput;
-        [NonSerialized] public Vector2 HorizontalInput;
-        [NonSerialized] public bool AbilityOneInput;
-        [NonSerialized] public Vector2 AbilityOneDirection;
-        [NonSerialized] public bool AbilityTwoInput;
-        [NonSerialized] public Vector2 AbilityTwoDirection;
-        [NonSerialized] public bool AbilityThreeInput;
-        [NonSerialized] public Vector2 AbilityThreeDirection;
+        public Vector3 Velocity;
+        public Vector2 HorizontalInput;
+        [Header("Basic Attack")]
+        public bool AttackInput;
+        [Header("Ability One")]
+        public bool AbilityOneInput;
+        public bool PerformingAbilityOne;
+        public Vector2 AbilityOneDirection;
+        [Header("Ability Two")]
+        public bool AbilityTwoInput;
+        public bool PerformingAbilityTwo;
+        public Vector2 AbilityTwoDirection;
+        [Header("Ability Three")]
+        public bool AbilityThreeInput;
+        public bool PerformingAbilityThree;
+        public Vector2 AbilityThreeDirection;
 
 
         public enum Ability
@@ -35,6 +42,22 @@ namespace Xiaohai.Character
                     return AbilityTwoInput;
                 case Ability.Three:
                     return AbilityThreeInput;
+                case Ability.Four:
+                    break;
+            }
+            return false;
+        }
+
+        public bool IsAbilityPerforming(Ability ability)
+        {
+            switch (ability)
+            {
+                case Ability.One:
+                    return PerformingAbilityOne;
+                case Ability.Two:
+                    return PerformingAbilityTwo;
+                case Ability.Three:
+                    return PerformingAbilityThree;
                 case Ability.Four:
                     break;
             }

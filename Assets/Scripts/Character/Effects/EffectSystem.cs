@@ -19,6 +19,11 @@ public class EffectSystem : MonoBehaviour
         _effectsToRemove.Add(effect);
     }
 
+    public bool Contains(Effect effect)
+    {
+        return _effects.Contains(effect);
+    }
+
     public void RestoreHealth(int healthToAdd)
     {
         // TODO: add checks for health reduction effects. e.g., 梦魇，制裁
@@ -38,6 +43,12 @@ public class EffectSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _effectsToRemove.ForEach(effect =>
+        {
+            bool success = _effects.Remove(effect);
+            if (success) effect.OnRemove(this);
+        });
+
         foreach (Effect effect in _effects)
         {
             if (effect.Finished)

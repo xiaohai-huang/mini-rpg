@@ -28,7 +28,10 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnStateEnter()
         {
-
+            if (_character.IsAbilityPerforming(Character.Ability.One))
+            {
+                _polo.CancelAbilityOne();
+            }
             _polo.PerformAbilityThree();
             _character.AbilityThreeInput = false;
         }

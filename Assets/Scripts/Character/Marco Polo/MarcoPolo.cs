@@ -12,11 +12,10 @@ namespace Xiaohai.Character.MarcoPolo
 
         public float RotateSpeed = 8f;
 
-        [Header("Normal Attack")]
+        [Header("Basic Attack")]
         public float AttackRange = 7f;
         public float NormalAttackSpeed = 5f;
         [Header("Ability 1")]
-        public bool ShouldPerformingAbilityOne;
         /// <summary>
         /// The number of bullets can be fired in one second.
         /// </summary>
@@ -45,8 +44,6 @@ namespace Xiaohai.Character.MarcoPolo
         private Animator _animator;
         private static readonly int ABILITY_ONE_ANIMATION_ID = Animator.StringToHash("Ability One");
         private static readonly int ABILITY_THREE_ANIMATION_ID = Animator.StringToHash("Ability Three");
-        private float _lastFireTime;
-        private int _numBulletsFired;
         void Awake()
         {
             _character = GetComponent<Character>();
@@ -59,17 +56,7 @@ namespace Xiaohai.Character.MarcoPolo
         // Update is called once per frame
         void Update()
         {
-            if (ShouldPerformingAbilityOne)
-            {
-                PerformAbilityOne();
-                _animator.SetBool(ABILITY_ONE_ANIMATION_ID, true);
-            }
-            else
-            {
-                _lastFireTime = 0;
-                _numBulletsFired = 0;
-                _animator.SetBool(ABILITY_ONE_ANIMATION_ID, false);
-            }
+
         }
         private Coroutine _attackCoroutine;
         public void Attack()
@@ -130,44 +117,59 @@ namespace Xiaohai.Character.MarcoPolo
 
         private bool toggle;
 
-        private void FireBullet()
+        public void FireBullet()
         {
             FireBullet(toggle ? LeftGunFirePoint : RightGunFirePoint);
             toggle = !toggle;
         }
 
+        // Marco Polo gains a 10% increase in movement speed during the continuous shooting process in the specified direction. Each shot causes 150 (+17% physical bonus) physical damage
+        // When his attack speed reaches 0/75%/150%, the number of bullets fired is 5/7/9.
+        private Coroutine _abilityOneCorutine;
         public void PerformAbilityOne()
         {
+            _character.PerformingAbilityOne = true;
+
             var direction = new Vector3(_character.AbilityOneDirection.x, 0, _character.AbilityOneDirection.y);
 
+            _abilityOneCorutine = StartCoroutine(PerformAbilityOneCoroutine(direction));
+        }
+        private AbilityOneEffect _abilityOneEffect;
+        private IEnumerator PerformAbilityOneCoroutine(Vector3 direction)
+        {
+            // rotate towards the direction
             if (direction != Vector3.zero)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-                _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
-            }
-
-            if (_numBulletsFired >= NumberOfBullets)
-            {
-                _character.AbilityOneInput = false;
-                ShouldPerformingAbilityOne = false;
-            }
-            else
-            {
-                if (Time.time > _lastFireTime + 1 / BulletSpawnSpeed)
+                float angles = Vector3.Angle(_character.transform.forward, direction);
+                while (angles > 1.0f)
                 {
-                    float angles = Vector3.Angle(_character.transform.forward, direction);
-                    if (angles < 1.0f)
-                    {
-                        FireBullet();
-                        _lastFireTime = Time.time;
-                        _numBulletsFired++;
-                    }
+                    Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                    _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+
+                    angles = Vector3.Angle(_character.transform.forward, direction);
+                    yield return null;
                 }
             }
+
+            // add continuous shoot effect
+            _animator.SetBool(ABILITY_ONE_ANIMATION_ID, true);
+            _abilityOneEffect = new AbilityOneEffect(NumberOfBullets, BulletSpawnSpeed);
+            _abilityOneEffect.OnRemoveCallback += () =>
+            {
+                _animator.SetBool(ABILITY_ONE_ANIMATION_ID, false);
+                _character.PerformingAbilityOne = false;
+            };
+            _effectSystem.AddEffect(_abilityOneEffect);
+        }
+        public void CancelAbilityOne()
+        {
+            StopCoroutine(_abilityOneCorutine);
+            _effectSystem.RemoveEffect(_abilityOneEffect);
         }
 
         public void PerformAbilityTwo()
         {
+            _character.PerformingAbilityTwo = true;
             _characterController.enabled = false;
             var direction = new Vector3(_character.AbilityTwoDirection.x, 0, _character.AbilityTwoDirection.y);
             if (direction == Vector3.zero)
@@ -176,13 +178,15 @@ namespace Xiaohai.Character.MarcoPolo
             }
             else
             {
-                if (!ShouldPerformingAbilityOne)
+                // if not performing ability one, face towards the direction
+                if (!_character.IsAbilityPerforming(Character.Ability.One))
                 {
                     _character.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
                 }
                 _character.transform.position = _character.transform.position + (direction * AbilityTwoDashDistance);
             }
             _characterController.enabled = true;
+            _character.PerformingAbilityTwo = false;
         }
 
         private Coroutine _abilityThreeCoroutine;
@@ -192,7 +196,7 @@ namespace Xiaohai.Character.MarcoPolo
             // 1. dash along to the direction instructed by _character.AbilityThreeDirection for `AbilityThreeDashDistance` distance
             // 2. spin for `AbilityThreeSpinDuration` seconds and deal damage to enemies, neutral objects within the circle of `AbilityThreeEffectRadius` radius
             // while spinning, move towards the direction of _character.AbilityThreeDirection with the speed of `AbilityThreeSpinMoveSpeed`
-
+            _character.PerformingAbilityThree = true;
             _characterController.enabled = false;
 
             var direction = new Vector3(_character.AbilityThreeDirection.x, 0, _character.AbilityThreeDirection.y);
@@ -206,17 +210,15 @@ namespace Xiaohai.Character.MarcoPolo
             }
             _animator.SetBool(ABILITY_THREE_ANIMATION_ID, true);
             _abilityThreeEffect = new AbilityThreeEffect(AbilityThreeDamage, AbilityThreeEffectRadius, AbilityThreeSpinDuration, AbilityThreeAttackRate, AbilityThreeEffectPrefab);
+            _abilityThreeEffect.OnRemoveCallback += () =>
+            {
+                _animator.SetBool(ABILITY_THREE_ANIMATION_ID, false);
+                _character.PerformingAbilityThree = false;
+            };
             _effectSystem.AddEffect(_abilityThreeEffect);
             _characterController.enabled = true;
 
             _abilityThreeCoroutine = StartCoroutine(MoveForward());
-        }
-
-        public void CancelAbilityThree()
-        {
-            StopCoroutine(_abilityThreeCoroutine);
-            _effectSystem.RemoveEffect(_abilityThreeEffect);
-            _animator.SetBool(ABILITY_THREE_ANIMATION_ID, false);
         }
 
         IEnumerator MoveForward()
@@ -231,6 +233,12 @@ namespace Xiaohai.Character.MarcoPolo
                 yield return null;
             }
 
+        }
+
+        public void CancelAbilityThree()
+        {
+            StopCoroutine(_abilityThreeCoroutine);
+            _effectSystem.RemoveEffect(_abilityThreeEffect);
         }
     }
 }

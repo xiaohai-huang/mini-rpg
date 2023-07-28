@@ -27,6 +27,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnApply(EffectSystem system)
         {
+            base.OnApply(system);
             _character = system.GetComponent<Character>();
             _circle = UnityEngine.Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
             _circle.transform.localScale = new Vector3(_radius * 2, _circle.transform.localScale.y, _radius * 2);
@@ -35,6 +36,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnUpdate(EffectSystem system)
         {
+            base.OnUpdate(system);
             if (_attackCoolDownTimer < 0)
             {
                 Damageable[] damageables = _character.GetNearByDamageables(_radius, _targetMask);
@@ -53,6 +55,7 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnRemove(EffectSystem system)
         {
+            base.OnRemove(system);
             UnityEngine.Object.Destroy(_circle);
         }
     }
