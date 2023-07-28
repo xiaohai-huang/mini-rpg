@@ -11,15 +11,17 @@ namespace Xiaohai.Character.MarcoPolo
         public GameObject FollowBulletPrefab;
 
         public float RotateSpeed = 8f;
-        public int NumberOfBullets = 20;
+
+        [Header("Normal Attack")]
+        public float AttackRange = 7f;
+        public float NormalAttackSpeed = 5f;
+        [Header("Ability 1")]
+        public bool ShouldPerformingAbilityOne;
         /// <summary>
         /// The number of bullets can be fired in one second.
         /// </summary>
         public float BulletSpawnSpeed = 10f;
-        [Header("Normal Attack")]
-        public float AttackRange = 7f;
-        [Header("Ability 1")]
-        public bool ShouldPerformingAbilityOne;
+        public int NumberOfBullets = 20;
 
 
         [Header("Ability 2")]
@@ -41,6 +43,7 @@ namespace Xiaohai.Character.MarcoPolo
         private EffectSystem _effectSystem;
         private CharacterController _characterController;
         private Animator _animator;
+        private static readonly int ABILITY_ONE_ANIMATION_ID = Animator.StringToHash("Ability One");
         private static readonly int ABILITY_THREE_ANIMATION_ID = Animator.StringToHash("Ability Three");
         private float _lastFireTime;
         private int _numBulletsFired;
@@ -59,11 +62,13 @@ namespace Xiaohai.Character.MarcoPolo
             if (ShouldPerformingAbilityOne)
             {
                 PerformAbilityOne();
+                _animator.SetBool(ABILITY_ONE_ANIMATION_ID, true);
             }
             else
             {
                 _lastFireTime = 0;
                 _numBulletsFired = 0;
+                _animator.SetBool(ABILITY_ONE_ANIMATION_ID, false);
             }
         }
         private Coroutine _attackCoroutine;
@@ -107,6 +112,7 @@ namespace Xiaohai.Character.MarcoPolo
             var follow = bullet.GetComponent<FollowTarget>();
             follow.Target = _targetPicker.Target.transform;
             follow.Speed = 15f;
+            follow.Offset = new Vector3(0, 0.5f, 0);
             follow.DamageAmount = Random.Range(200, 500);
 
             return bullet;
