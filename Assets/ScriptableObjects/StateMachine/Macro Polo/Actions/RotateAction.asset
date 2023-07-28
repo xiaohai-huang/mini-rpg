@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac7e2717a19fab4a8d818e49de05546, type: 3}
   m_Name: RotateAction
   m_EditorClassIdentifier: 
-  description: Rotate the Character towards the direction of horizontal input
+  description: Rotate the Character towards the direction of horizontal velocity
   RotateSpeed: 8
