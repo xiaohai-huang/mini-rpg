@@ -14,7 +14,10 @@ namespace Xiaohai.Character.MarcoPolo
 
         [Header("Basic Attack")]
         public float AttackRange = 7f;
-        public float NormalAttackSpeed = 5f;
+        /// <summary>
+        /// The number of attacks per second.
+        /// </summary>
+        public float BasicAttackSpeed = 0.7f;
         [Header("Ability 1")]
         /// <summary>
         /// The number of bullets can be fired in one second.

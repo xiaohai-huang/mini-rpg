@@ -19,7 +19,6 @@ public class CharacterPlayerInput : MonoBehaviour
     void OnEnable()
     {
         _inputReader.OnAttack += OnAttack;
-        _inputReader.OnAttackCanceled += OnAttackCanceled;
 
         _onScreenInputEventChannel.OnClickEventRaised += OnScreenButtonClickEventRaised;
     }
@@ -27,7 +26,6 @@ public class CharacterPlayerInput : MonoBehaviour
     void OnDisable()
     {
         _inputReader.OnAttack -= OnAttack;
-        _inputReader.OnAttackCanceled -= OnAttackCanceled;
 
         _onScreenInputEventChannel.OnClickEventRaised -= OnScreenButtonClickEventRaised;
     }
@@ -39,11 +37,7 @@ public class CharacterPlayerInput : MonoBehaviour
 
     void OnAttack()
     {
-        _character.AttackInput = true;
-    }
-    private void OnAttackCanceled()
-    {
-        _character.AttackInput = false;
+        _character.BasicAttackInput = true;
     }
 
     private void OnAbilityOneClicked(Vector2 position)

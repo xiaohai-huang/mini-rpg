@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,8 @@ namespace Xiaohai.Character
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         [Header("Basic Attack")]
-        public bool AttackInput;
+        public bool BasicAttackInput;
+        public bool PerformingBasicAttack;
         [Header("Ability One")]
         public bool AbilityOneInput;
         public bool PerformingAbilityOne;
@@ -26,6 +26,7 @@ namespace Xiaohai.Character
 
         public enum Ability
         {
+            Basic,
             One,
             Two,
             Three,
@@ -36,6 +37,8 @@ namespace Xiaohai.Character
         {
             switch (ability)
             {
+                case Ability.Basic:
+                    return BasicAttackInput;
                 case Ability.One:
                     return AbilityOneInput;
                 case Ability.Two:
@@ -52,6 +55,8 @@ namespace Xiaohai.Character
         {
             switch (ability)
             {
+                case Ability.Basic:
+                    return PerformingBasicAttack;
                 case Ability.One:
                     return PerformingAbilityOne;
                 case Ability.Two:
