@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ca0880e2ca9464ba371f9771ed1e96, type: 3}
   m_Name: Ability Three Input Condition
   m_EditorClassIdentifier: 
-  Ability: 2
+  Ability: 3

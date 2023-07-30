@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fe78ad36a0e6a74187c25da4ba3f8ca, type: 3}
-  m_Name: FireBulletAction
+  m_Name: Basic Attack Action
   m_EditorClassIdentifier: 
   description: 
