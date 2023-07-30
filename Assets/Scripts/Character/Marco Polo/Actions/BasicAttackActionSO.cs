@@ -7,10 +7,10 @@ namespace Xiaohai.Character.MarcoPolo
     [CreateAssetMenu(fileName = "Basic Attack Action", menuName = "State Machines/Actions/Marco Polo/Basic Attack Action")]
     public class BasicAttackActionSO : StateActionSO
     {
-        protected override StateAction CreateAction() => new FireBulletAction();
+        protected override StateAction CreateAction() => new BasicAttackAction();
     }
 
-    public class FireBulletAction : StateAction
+    public class BasicAttackAction : StateAction
     {
         protected new BasicAttackActionSO OriginSO => (BasicAttackActionSO)base.OriginSO;
         private Character _character;
