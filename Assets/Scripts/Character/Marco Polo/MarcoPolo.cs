@@ -18,6 +18,8 @@ namespace Xiaohai.Character.MarcoPolo
         /// The number of attacks per second.
         /// </summary>
         public float BasicAttackSpeed = 0.7f;
+        public bool CanDoBasicAttack => _basicAttackCoolDownTimer <= 0f;
+        private float _basicAttackCoolDownTimer;
         [Header("Ability 1")]
         /// <summary>
         /// The number of bullets can be fired in one second.
@@ -59,30 +61,26 @@ namespace Xiaohai.Character.MarcoPolo
         // Update is called once per frame
         void Update()
         {
-
+            if (_basicAttackCoolDownTimer > 0f)
+            {
+                _basicAttackCoolDownTimer -= Time.deltaTime;
+            }
         }
-        private Coroutine _attackCoroutine;
-        public void Attack()
+        public void BasicAttack()
         {
+            _basicAttackCoolDownTimer = BasicAttackSpeed;
             if (_targetPicker.Target == null)
             {
-                if (_attackHand)
-                {
-                    FireBullet(LeftGunFirePoint);
-                }
-                else
-                {
-                    FireBullet(RightGunFirePoint);
-                }
+                FireBullet(_attackHand ? LeftGunFirePoint : RightGunFirePoint);
             }
             else
             {
-                _attackCoroutine = StartCoroutine(NormalAttack(_targetPicker.Target.transform, 16f, _attackHand ? LeftGunFirePoint : RightGunFirePoint));
+                StartCoroutine(BasicAttack(_targetPicker.Target.transform, 20f, _attackHand ? LeftGunFirePoint : RightGunFirePoint));
             }
             _attackHand = !_attackHand;
         }
 
-        IEnumerator NormalAttack(Transform target, float rotateSpeed, Transform firePoint)
+        IEnumerator BasicAttack(Transform target, float rotateSpeed, Transform firePoint)
         {
             var direction = (target.position - transform.position).normalized;
             while (!(Vector3.Dot(transform.forward, direction) > 0.99f))

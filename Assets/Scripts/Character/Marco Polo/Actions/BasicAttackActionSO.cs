@@ -28,12 +28,13 @@ namespace Xiaohai.Character.MarcoPolo
 
         public override void OnStateEnter()
         {
-            _polo.Attack();
+            _polo.BasicAttack();
             _character.BasicAttackInput = false;
         }
 
         public override void OnStateExit()
         {
+            _character.BasicAttackInput = false;
         }
     }
 }
