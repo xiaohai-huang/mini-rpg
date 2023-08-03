@@ -54,5 +54,6 @@
   "omnisharp.useModernNet": true,
   "omnisharp.sdkIncludePrereleases": false,
   "omnisharp.organizeImportsOnFormat": true,
-  "cSpell.words": ["Damageables", "Keyalias"]
+  "cSpell.words": ["Damageables", "Keyalias"],
+  "dotnet.defaultSolution": "mini-rpg.sln"
 }

@@ -1,15 +1,18 @@
 ﻿{
-    "RoslynExtensionsOptions": {
-        "EnableAnalyzersSupport": true,
-        "AnalyzeOpenDocumentsOnly": true,
-        "DocumentAnalysisTimeoutMs": 600000
-    },
-    "FormattingOptions": {
-        "enableEditorConfigSupport": true
-    },
-    "RenameOptions": {
-        "RenameInComments": true,
-        "RenameOverloads": true,
-        "RenameInStrings": true
-    }
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true,
+    "LocationPaths": [
+      "./NuGet/microsoft.unity.analyzers.1.17.0/analyzers/dotnet/cs"
+    ],
+    "AnalyzeOpenDocumentsOnly": true,
+    "DocumentAnalysisTimeoutMs": 600000
+  },
+  "FormattingOptions": {
+    "enableEditorConfigSupport": true
+  },
+  "RenameOptions": {
+    "RenameInComments": true,
+    "RenameOverloads": true,
+    "RenameInStrings": true
+  }
 }
