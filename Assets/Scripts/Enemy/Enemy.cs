@@ -1,4 +1,6 @@
+using System.Collections;
 using FSM;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Xiaohai.Character;
@@ -8,17 +10,14 @@ public class Enemy : MonoBehaviour
     private StateMachine _fsm;
 
     public string CurrentState;
-    private NavMeshAgent _agent;
-    private Damageable _damageable;
-    private AttackHandler _attackHandler;
+    [SerializeField] private Damageable _target;
     public float DetectRange = 10f;
     public float AttackRange = 1.5f;
     public float AttackDegrees = 30f;
-
-
-    [SerializeField] private RuntimeTransformAnchor _playerTransform;
-    private Damageable _playerDamageable;
-
+    private NavMeshAgent _agent;
+    private Damageable _damageable;
+    private AttackHandler _attackHandler;
+    private Coroutine _updateNearbyTargetCoroutine;
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -27,8 +26,7 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
-        _playerDamageable = _playerTransform.Value.GetComponent<Damageable>();
-
+        _updateNearbyTargetCoroutine = StartCoroutine(UpdateNearbyTarget());
         _fsm = new StateMachine(this);
         _fsm.AddState("Idle");
 
@@ -51,6 +49,11 @@ public class Enemy : MonoBehaviour
         });
         _fsm.AddState("Defeat", onEnter: (state) =>
         {
+            // hide UI
+            var ui = GetComponentInChildren<Canvas>();
+            ui.gameObject.SetActive(false);
+
+            // shrink the enemy and turn red
             transform.localScale = Vector3.one * 0.5f;
             var mat = GetComponentInChildren<MeshRenderer>().material;
             mat.color = Color.red;
@@ -59,7 +62,7 @@ public class Enemy : MonoBehaviour
             collider.enabled = false;
 
             _agent.enabled = false;
-
+            StopCoroutine(_updateNearbyTargetCoroutine);
             Destroy(gameObject, 10);
         });
 
@@ -81,9 +84,30 @@ public class Enemy : MonoBehaviour
         _fsm.Init();
     }
 
+    private readonly Collider[] _colliders = new Collider[16];
+    IEnumerator UpdateNearbyTarget()
+    {
+        while (true)
+        {
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, DetectRange, _colliders);
+            bool hasTarget = false;
+            for (int i = 0; i < numColliders; i++)
+            {
+                if (_colliders[i].CompareTag("Player"))
+                {
+                    _target = _colliders[i].GetComponent<Damageable>();
+                    hasTarget = true;
+                    break;
+                }
+            }
+            if (!hasTarget) _target = null;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
     float DistanceToPlayer()
     {
-        var playerPosition = _playerTransform.Value.transform.position;
+        if (_target == null) return float.MaxValue;
+        var playerPosition = _target.transform.position;
         float distance = Vector3.Distance(transform.position, playerPosition);
         return distance;
     }
@@ -106,20 +130,21 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerAlive()
     {
-        bool alive = !_playerDamageable.IsDead;
+        if (_target == null) return false;
+        bool alive = !_target.IsDead;
         return alive;
     }
 
     void MoveTowardsPlayer()
     {
-        _agent.SetDestination(_playerTransform.Value.position);
+        _agent.SetDestination(_target.transform.position);
     }
 
     float _timer;
     public float AttackInterval = 2f;
     void AttackPlayer()
     {
-        var playerPosition = _playerTransform.Value.position;
+        var playerPosition = _target.transform.position;
         var direction = playerPosition - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction.normalized, Vector3.up), 4 * Time.deltaTime);
         if (_timer <= 0)
@@ -143,4 +168,11 @@ public class Enemy : MonoBehaviour
         _fsm.OnLogic();
         CurrentState = _fsm.ActiveStateName;
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.yellow;
+        Handles.DrawWireDisc(transform.position, Vector3.up, DetectRange);
+    }
+
 }
