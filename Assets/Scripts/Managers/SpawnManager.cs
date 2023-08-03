@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     public GameObject EnemyPrefab;
     public Character PlayerPrefab;
+    public Character ExistingPlayer;
     public Transform PlayerSpawnPoint;
     public Transform[] SpawnPoints;
     [SerializeField] private TransformEventChannel _playerSpawnedEventChannel;
@@ -31,7 +32,11 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        Character player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+        Character player = ExistingPlayer;
+        if(ExistingPlayer == null)
+        {
+            player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation); 
+        }
         player.gameObject.SetActive(true);
         _playerTransform.Provide(player.transform);
         _playerSpawnedEventChannel.RaiseEvent(player.transform);
