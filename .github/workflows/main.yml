@@ -43,7 +43,7 @@ jobs:
           path: Library
           key: Library-Android
       - name: Free disk space
-      - uses: jlumbroso/free-disk-space@v1.2.0
+        uses: jlumbroso/free-disk-space@v1.2.0
       - name: Build Android APK
         uses: game-ci/unity-builder@v2
         env:
