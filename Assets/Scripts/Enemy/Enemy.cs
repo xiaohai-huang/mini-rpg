@@ -1,9 +1,12 @@
 using System.Collections;
 using FSM;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Xiaohai.Character;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Enemy : MonoBehaviour
 {
@@ -168,11 +171,11 @@ public class Enemy : MonoBehaviour
         _fsm.OnLogic();
         CurrentState = _fsm.ActiveStateName;
     }
-
+# if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
         Handles.color = Color.yellow;
         Handles.DrawWireDisc(transform.position, Vector3.up, DetectRange);
     }
-
+#endif
 }
