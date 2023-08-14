@@ -66,10 +66,13 @@ namespace UOP1.StateMachine.Editor
 
 					//The name of the StateAction
 					string label = prop.objectReferenceValue.name;
+					// remove action at the end of the label
+					label = label.Replace("Action", "").Trim();
+
 					GUI.Label(r, label, EditorStyles.boldLabel);
 
 					//The description
-					r.x += 180;
+					r.x += 200;
 					r.width = rect.width - 50 - 180;
 					string description = (prop.objectReferenceValue as DescriptionSMActionBaseSO).description;
 					GUI.Label(r, description);
