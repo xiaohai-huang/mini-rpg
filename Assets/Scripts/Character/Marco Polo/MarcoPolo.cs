@@ -126,14 +126,14 @@ namespace Xiaohai.Character.MarcoPolo
 
         // Marco Polo gains a 10% increase in movement speed during the continuous shooting process in the specified direction. Each shot causes 150 (+17% physical bonus) physical damage
         // When his attack speed reaches 0/75%/150%, the number of bullets fired is 5/7/9.
-        private Coroutine _abilityOneCorutine;
+        private Coroutine _abilityOneCoroutine;
         public void PerformAbilityOne()
         {
             _character.PerformingAbilityOne = true;
 
             var direction = new Vector3(_character.AbilityOneDirection.x, 0, _character.AbilityOneDirection.y);
 
-            _abilityOneCorutine = StartCoroutine(PerformAbilityOneCoroutine(direction));
+            _abilityOneCoroutine = StartCoroutine(PerformAbilityOneCoroutine(direction));
         }
         private AbilityOneEffect _abilityOneEffect;
         private IEnumerator PerformAbilityOneCoroutine(Vector3 direction)
@@ -164,7 +164,7 @@ namespace Xiaohai.Character.MarcoPolo
         }
         public void CancelAbilityOne()
         {
-            StopCoroutine(_abilityOneCorutine);
+            StopCoroutine(_abilityOneCoroutine);
             _effectSystem.RemoveEffect(_abilityOneEffect);
         }
 
