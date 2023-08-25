@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Xiaohai.Character.MarcoPolo
 {
-    public class MarcoPolo : MonoBehaviour
+    public class MarcoPolo : Character
     {
         public Transform LeftGunFirePoint;
         public Transform RightGunFirePoint;

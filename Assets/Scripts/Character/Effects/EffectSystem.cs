@@ -1,17 +1,33 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Xiaohai.Character;
 
 public class EffectSystem : MonoBehaviour
 {
+    public Effect[] Effects
+    {
+        get
+        {
+            var temp = new Effect[_effects.Count];
+            _effects.CopyTo(temp, 0);
+            return temp;
+        }
+    }
     private readonly HashSet<Effect> _effects = new();
     private readonly List<Effect> _effectsToRemove = new();
 
     private Damageable _damageable;
-    public void AddEffect(Effect effect)
+    public void AddEffect(Effect newEffect)
     {
-        _effects.Add(effect);
-        effect.OnApply(this);
+        if (Contains(newEffect))
+        {
+            Effect oldEffect = Array.Find(Effects, (effect) => effect.Name == newEffect.Name);
+            bool success = _effects.Remove(newEffect);
+            if (success) oldEffect.OnRemove(this);
+        }
+        _effects.Add(newEffect);
+        newEffect.OnApply(this);
     }
 
     public void RemoveEffect(Effect effect)

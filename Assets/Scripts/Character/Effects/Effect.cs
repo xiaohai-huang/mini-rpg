@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 /// <summary>
 /// Effect that can be applied to an object. e.g., Heal Effect

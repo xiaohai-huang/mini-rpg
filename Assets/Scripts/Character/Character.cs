@@ -5,6 +5,12 @@ namespace Xiaohai.Character
 {
     public class Character : MonoBehaviour
     {
+        public float BaseWalkSpeed;
+        public float BonusWalkSpeed;
+        /// <summary>
+        /// Final walk speed.
+        /// </summary>
+        public float WalkSpeed;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         [Header("Basic Attack")]

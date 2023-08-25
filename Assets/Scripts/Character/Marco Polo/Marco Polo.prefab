@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 8809407048828570748}
   - component: {fileID: 8089133216822350913}
   - component: {fileID: 5382019197039035438}
-  - component: {fileID: 3874252357001466974}
   - component: {fileID: 701825680431708345}
   - component: {fileID: 8572563913138845437}
   - component: {fileID: 5383846276083910951}
@@ -304,30 +303,6 @@ MonoBehaviour:
     appendConditionsInfo: 1
     appendActionsInfo: 1
     currentState: 
---- !u!114 &3874252357001466974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5691150277221288302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89747409792f1c4449bfe0dee6b45a61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocity: {x: 0, y: 0, z: 0}
-  HorizontalInput: {x: 0, y: 0}
-  AttackInput: 0
-  AbilityOneInput: 0
-  PerformingAbilityOne: 0
-  AbilityOneDirection: {x: 0, y: 0}
-  AbilityTwoInput: 0
-  PerformingAbilityTwo: 0
-  AbilityTwoDirection: {x: 0, y: 0}
-  AbilityThreeInput: 0
-  PerformingAbilityThree: 0
-  AbilityThreeDirection: {x: 0, y: 0}
 --- !u!114 &701825680431708345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +330,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda2726516d5ed94781d5d188e5e88a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaseWalkSpeed: 5
+  BonusWalkSpeed: 0
+  WalkSpeed: 0
+  Velocity: {x: 0, y: 0, z: 0}
+  HorizontalInput: {x: 0, y: 0}
+  BasicAttackInput: 0
+  PerformingBasicAttack: 0
+  AbilityOneInput: 0
+  PerformingAbilityOne: 0
+  AbilityOneDirection: {x: 0, y: 0}
+  AbilityTwoInput: 0
+  PerformingAbilityTwo: 0
+  AbilityTwoDirection: {x: 0, y: 0}
+  AbilityThreeInput: 0
+  PerformingAbilityThree: 0
+  AbilityThreeDirection: {x: 0, y: 0}
   LeftGunFirePoint: {fileID: 8750941290713334252}
   RightGunFirePoint: {fileID: 2669639540918585661}
   BulletPrefab: {fileID: 8034983545446361103, guid: 1eee4067896c1b140851c75d145191c6,
@@ -363,7 +354,7 @@ MonoBehaviour:
     type: 3}
   RotateSpeed: 20
   AttackRange: 7
-  NormalAttackSpeed: 5
+  BasicAttackSpeed: 0.7
   BulletSpawnSpeed: 10
   NumberOfBullets: 10
   AbilityTwoDashDistance: 5
