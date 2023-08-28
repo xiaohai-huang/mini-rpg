@@ -7,6 +7,7 @@ namespace Xiaohai.Character.Arthur
 	[CreateAssetMenu(fileName = "AbilityOneAction", menuName = "State Machines/Actions/Arthur/Ability One Action")]
 	public class AbilityOneActionSO : StateActionSO
 	{
+		public AbilityOneEffectSO AbilityOneEffectSO;
 		protected override StateAction CreateAction() => new AbilityOneAction();
 	}
 
@@ -31,7 +32,9 @@ namespace Xiaohai.Character.Arthur
 
 		public override void OnStateEnter()
 		{
-			_effectSystem.AddEffect(new AbilityOneEffect(0.3f, 3000f));
+			var effect = (AbilityOneEffect)OriginSO.AbilityOneEffectSO.CreateEffect();
+			effect.Init(0.3f, 3000f);
+			_effectSystem.AddEffect(effect);
 			_character.AbilityOneInput = false;
 		}
 

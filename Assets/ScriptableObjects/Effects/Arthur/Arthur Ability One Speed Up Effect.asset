@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28190b9ea1ec564382319c3444c1d75, type: 3}
-  m_Name: Arthur_Ability One Action
+  m_Script: {fileID: 11500000, guid: 1b94cc8bc80a7494780759e35872923c, type: 3}
+  m_Name: Arthur Ability One Speed Up Effect
   m_EditorClassIdentifier: 
-  description: 
-  AbilityOneEffectSO: {fileID: 11400000, guid: 0fac7541a19e79144a34cd313a0edfd8, type: 2}
+  Name: Arthur Ability One Speed Up
+  ShowInListUI: 1
+  CoolDownTime: -1
+  Icon: {fileID: 21300000, guid: 56f243ca3ee6e284492b12b289a5fc59, type: 3}

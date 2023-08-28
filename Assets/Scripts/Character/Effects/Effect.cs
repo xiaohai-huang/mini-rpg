@@ -1,12 +1,21 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Effect that can be applied to an object. e.g., Heal Effect
 /// </summary>
 public abstract class Effect
 {
+    public EffectSO OriginSO;
     public string Name;
+    [NonSerialized]
     public bool Finished;
+    public bool ShowInListUI;
+    /// <summary>
+    /// CoolDown time in ms.
+    /// </summary>
+    public float CoolDownTime;
+    public Sprite Icon;
     public Action OnApplyCallback;
     public Action OnUpdateCallback;
     public Action OnRemoveCallback;

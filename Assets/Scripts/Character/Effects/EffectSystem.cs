@@ -14,6 +14,8 @@ public class EffectSystem : MonoBehaviour
             return temp;
         }
     }
+    public Action<Effect> OnAddEffect;
+    public Action<Effect> OnRemoveEffect;
     private readonly HashSet<Effect> _effects = new();
     private readonly List<Effect> _effectsToRemove = new();
 
@@ -24,15 +26,21 @@ public class EffectSystem : MonoBehaviour
         {
             Effect oldEffect = Array.Find(Effects, (effect) => effect.Name == newEffect.Name);
             bool success = _effects.Remove(newEffect);
-            if (success) oldEffect.OnRemove(this);
+            if (success)
+            {
+                oldEffect.OnRemove(this);
+                OnRemoveEffect?.Invoke(oldEffect);
+            }
         }
         _effects.Add(newEffect);
         newEffect.OnApply(this);
+        OnAddEffect?.Invoke(newEffect);
     }
 
     public void RemoveEffect(Effect effect)
     {
         _effectsToRemove.Add(effect);
+        OnRemoveEffect?.Invoke(effect);
     }
 
     public bool Contains(Effect effect)
@@ -62,7 +70,11 @@ public class EffectSystem : MonoBehaviour
         _effectsToRemove.ForEach(effect =>
         {
             bool success = _effects.Remove(effect);
-            if (success) effect.OnRemove(this);
+            if (success)
+            {
+                effect.OnRemove(this);
+                OnRemoveEffect?.Invoke(effect);
+            }
         });
 
         foreach (Effect effect in _effects)
@@ -80,7 +92,11 @@ public class EffectSystem : MonoBehaviour
         _effectsToRemove.ForEach(effect =>
         {
             bool success = _effects.Remove(effect);
-            if (success) effect.OnRemove(this);
+            if (success)
+            {
+                effect.OnRemove(this);
+                OnRemoveEffect?.Invoke(effect);
+            }
         });
 
         _effectsToRemove.Clear();
