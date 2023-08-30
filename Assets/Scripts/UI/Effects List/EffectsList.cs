@@ -28,9 +28,12 @@ namespace Xiaohai.UI
 
         private void OnRemoveEffect(Effect effect)
         {
-            var effectToRemove = _effectUIs.Find(ui => ui.Name == effect.Name);
-            _effectUIs.Remove(effectToRemove);
-            Destroy(effectToRemove.gameObject);
+            if (effect.ShowInListUI)
+            {
+                var effectToRemove = _effectUIs.Find(ui => ui.Name == effect.Name);
+                _effectUIs.Remove(effectToRemove);
+                if (effectToRemove != null) Destroy(effectToRemove.gameObject);
+            }
         }
     }
 }

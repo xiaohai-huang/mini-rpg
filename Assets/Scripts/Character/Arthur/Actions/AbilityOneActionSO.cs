@@ -20,10 +20,13 @@ namespace Xiaohai.Character.Arthur
 		protected new AbilityOneActionSO OriginSO => (AbilityOneActionSO)base.OriginSO;
 		private EffectSystem _effectSystem;
 		private Character _character;
+		private Animator _animator;
+		private static readonly int ABILITY_ONE_PREPARE_ANIMATION_ID = Animator.StringToHash("Ability One Preparation");
 		public override void Awake(StateMachine stateMachine)
 		{
 			_character = stateMachine.GetComponent<Character>();
 			_effectSystem = stateMachine.GetComponent<EffectSystem>();
+			_animator = stateMachine.GetComponent<Animator>();
 		}
 
 		public override void OnUpdate()
@@ -35,6 +38,7 @@ namespace Xiaohai.Character.Arthur
 			var effect = (AbilityOneEffect)OriginSO.AbilityOneEffectSO.CreateEffect();
 			effect.Init(0.3f, 3000f);
 			_effectSystem.AddEffect(effect);
+			_animator.SetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
 			_character.AbilityOneInput = false;
 		}
 
