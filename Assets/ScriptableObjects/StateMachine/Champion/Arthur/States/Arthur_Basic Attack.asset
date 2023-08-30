@@ -10,10 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35432205b9a6a374bbbfe6b7cac92179, type: 3}
-  m_Name: Arthur_Idle
+  m_Name: Arthur_Basic Attack
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: bd3a97851dc851246a2f69480997a9c7, type: 2}
-  - {fileID: 11400000, guid: 54d1bddb5ddbe7d49a0987281828f4cd, type: 2}
-  - {fileID: 11400000, guid: 90c2187a80d0db649932751bd81ba5c8, type: 2}
-  - {fileID: 11400000, guid: 9398adcb5c4d153429b48e68484a972f, type: 2}
+  - {fileID: 11400000, guid: aa4391d00270c184798d3eb6edae303a, type: 2}
