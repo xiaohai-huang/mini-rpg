@@ -86,8 +86,8 @@ public class Enemy : MonoBehaviour
         _fsm.SetStartState("Idle");
         _fsm.Init();
     }
-
-    private readonly Collider[] _colliders = new Collider[16];
+    // bug: if there are multiple colliders, it will not be able to find the player
+    private readonly Collider[] _colliders = new Collider[32];
     IEnumerator UpdateNearbyTarget()
     {
         while (true)

@@ -25,16 +25,18 @@ namespace Xiaohai.Character.Arthur
 		public override void OnUpdate()
 		{
 		}
-
+		private int _timer;
 		public override void OnStateEnter()
 		{
 			_character.PerformingBasicAttack = true;
 			_character.BasicAttackInput = false;
 			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
+			_timer = Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, 500.0f);
 		}
 
 		public override void OnStateExit()
 		{
+			Timer.Instance.ClearTimeout(_timer);
 		}
 	}
 }
