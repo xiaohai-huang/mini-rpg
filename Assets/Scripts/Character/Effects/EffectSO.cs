@@ -1,9 +1,14 @@
 using UnityEngine;
 
 
-public abstract class EffectSO<T> : EffectSO where T : Effect, new()
+public abstract class EffectSO<T> : ScriptableObject where T : Effect, new()
 {
-    public override Effect CreateEffect()
+    public string Name;
+    public bool ShowInListUI;
+    public float CoolDownTime;
+    public Sprite Icon;
+
+    public T CreateEffect()
     {
         var effect = new T
         {
@@ -18,12 +23,3 @@ public abstract class EffectSO<T> : EffectSO where T : Effect, new()
     }
 }
 
-public abstract class EffectSO : ScriptableObject
-{
-    public string Name;
-    public bool ShowInListUI;
-    public float CoolDownTime;
-    public Sprite Icon;
-
-    public abstract Effect CreateEffect();
-}

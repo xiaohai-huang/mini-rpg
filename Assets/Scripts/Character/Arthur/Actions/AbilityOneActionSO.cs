@@ -35,7 +35,7 @@ namespace Xiaohai.Character.Arthur
 
 		public override void OnStateEnter()
 		{
-			var effect = (AbilityOneEffect)OriginSO.AbilityOneEffectSO.CreateEffect();
+			var effect = OriginSO.AbilityOneEffectSO.CreateEffect();
 			effect.Init(0.3f, 3000f);
 			_effectSystem.AddEffect(effect);
 			_animator.SetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);

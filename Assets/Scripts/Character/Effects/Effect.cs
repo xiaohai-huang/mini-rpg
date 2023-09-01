@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Effect
 {
-    public EffectSO OriginSO;
+    public object OriginSO;
     public string Name;
     [NonSerialized]
     public bool Finished;

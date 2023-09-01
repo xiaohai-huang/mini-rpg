@@ -38,6 +38,7 @@ namespace Xiaohai.Character.Arthur
 
         public override void OnRemove(EffectSystem system)
         {
+            base.OnRemove(system);
             _character.BonusWalkSpeed -= _speedPercentage * _character.BaseWalkSpeed;
             Timer.Instance.ClearTimeout(_timerId);
         }

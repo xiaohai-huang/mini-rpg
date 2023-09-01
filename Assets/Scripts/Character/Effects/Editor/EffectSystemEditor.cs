@@ -22,7 +22,7 @@ public class EffectSystemEditor : Editor
         var effects = _system.Effects;
         for (int i = 0; i < effects.Length; i++)
         {
-            EditorGUILayout.LabelField(effects[i].Name);
+            EditorGUILayout.LabelField($"{effects[i].Name}\t {effects[i].CoolDownTime}ms");
         }
         // for (int i = 0; i < _effectsProperty.arraySize; i++)
         // {
