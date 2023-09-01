@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
         _fsm.AddTransition("Idle", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
         _fsm.AddTransition("FollowPlayer", "Attacking", (transition) => IsPlayerAlive() && DistanceToPlayer() <= AttackRange && IsPlayerVisible());
         _fsm.AddTransition("Attacking", "FollowPlayer", (transition) => DistanceToPlayer() > AttackRange || !IsPlayerVisible());
-        _fsm.AddTransitionFromAny("Idle", t => !IsPlayerAlive());
+        _fsm.AddTransitionFromAny("Idle", t => !_damageable.IsDead && !IsPlayerAlive());
 
         _fsm.SetStartState("Idle");
         _fsm.Init();
