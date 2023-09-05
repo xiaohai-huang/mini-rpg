@@ -42,5 +42,9 @@
     "Temp/": true
   },
   "cSpell.words": ["Damageables", "Keyalias"],
-  "dotnet.defaultSolution": "mini-rpg.sln"
+  "dotnet.defaultSolution": "mini-rpg.sln",
+  "[csharp]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
 }
