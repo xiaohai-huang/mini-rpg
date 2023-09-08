@@ -263,9 +263,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5574798532868835847}
-  - component: {fileID: 2592372124492531058}
+  - component: {fileID: -3026512324144270433}
   m_Layer: 0
-  m_Name: Ability Indicator
+  m_Name: Directional Ability Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2592372124492531058
+--- !u!114 &-3026512324144270433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8416079968801071253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbdf39f8489f1e4295272188044ee1f, type: 3}
+  m_Script: {fileID: 11500000, guid: d5d48bd9073411d4f8c866660f5734df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _onScreenInputEventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f,
