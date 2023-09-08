@@ -44,7 +44,12 @@ namespace Xiaohai.Character.Arthur
             }
 
             // calculate the destination
-            var destinations = CalculateIntersectionPoints(new Vector2(target.transform.position.x, target.transform.position.z), ABILITY_THREE_CLOSE_RADIUS, new Vector2(direction.x, direction.z)).Select(intersection => new Vector3(intersection.x, target.transform.position.y, intersection.y)).ToArray();
+            var destinations = CalculateIntersectionPoints(
+                                new Vector2(target.transform.position.x, target.transform.position.z),
+                                ABILITY_THREE_CLOSE_RADIUS,
+                                new Vector2(direction.x, direction.z)).
+                            Select(intersection => new Vector3(intersection.x, target.transform.position.y, intersection.y)).ToArray();
+
             Vector3 destination = Vector3.zero;
             if (destinations.Length == 0)
             {
@@ -86,36 +91,40 @@ namespace Xiaohai.Character.Arthur
         /// <returns>Intersection points.</returns>
         private List<Vector2> CalculateIntersectionPoints(Vector2 center, float radius, Vector2 direction)
         {
+            // Formula inspired by https://math.stackexchange.com/a/228855
             List<Vector2> intersectionPoints = new List<Vector2>();
-            Vector2 lineOrigin = center - direction * radius;
-            Vector2 lineEnd = center + direction * radius;
+            var slope = direction.y / direction.x;
+            var yIntercept = center.y - slope * center.x;
+            // line:    y = slope * x + yIntercept
+            // circle:  (x - center.x)^2 + (y - center.y)^2 = radius^2
+            // subsititute the line equation into circle equation
+            // (x - center.x)^2 + (slope * x + yIntercept - center.y)^2 = radius^2
 
-            float dx = lineEnd.x - lineOrigin.x;
-            float dy = lineEnd.y - lineOrigin.y;
+            var a = 1 + slope * slope;
+            var b = 2 * (slope * yIntercept - slope * center.y - center.x);
+            var c = center.y * center.y - radius * radius + center.x * center.x - 2 * (yIntercept * center.y) + yIntercept * yIntercept;
 
-            float A = dx * dx + dy * dy;
-            float B = 2 * (dx * (lineOrigin.x - center.x) + dy * (lineOrigin.y - center.y));
-            float C = (lineOrigin.x - center.x) * (lineOrigin.x - center.x) +
-                      (lineOrigin.y - center.y) * (lineOrigin.y - center.y) - radius * radius;
+            var delta = b * b - 4 * a * c;
 
-            float det = B * B - 4 * A * C;
-            if ((A <= 0.0000001) || (det < 0))
+            if (delta < 0) { }// no intersection
+            else if (delta == 0) // 1 point
             {
-                // No real solutions, no intersection.
+                var x = -b / (2 * a);
+                var y = slope * x + yIntercept;
+                intersectionPoints.Add(new Vector2(x, y));
             }
-            else if (det == 0)
+            else if (delta > 0) // 2 points
             {
-                // One solution, one intersection point.
-                float t = -B / (2 * A);
-                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
-            }
-            else
-            {
-                // Two solutions, two intersection points.
-                float t = (float)((-B + Math.Sqrt(det)) / (2 * A));
-                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
-                t = (float)((-B - Math.Sqrt(det)) / (2 * A));
-                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
+                var x_1 = (-b + Mathf.Sqrt(delta)) / (2 * a);
+                var y_1 = slope * x_1 + yIntercept;
+                var v1 = new Vector2(x_1, y_1);
+
+                var x_2 = (-b - Mathf.Sqrt(delta)) / (2 * a);
+                var y_2 = slope * x_2 + yIntercept;
+                var v2 = new Vector2(x_2, y_2);
+
+                intersectionPoints.Add(v1);
+                intersectionPoints.Add(v2);
             }
 
 #if UNITY_EDITOR
