@@ -171,7 +171,8 @@ public class Enemy : MonoBehaviour
         _fsm.OnLogic();
         CurrentState = _fsm.ActiveStateName;
     }
-# if UNITY_EDITOR
+
+#if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
         Handles.color = Color.yellow;
