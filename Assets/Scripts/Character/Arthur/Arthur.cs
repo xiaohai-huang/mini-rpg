@@ -29,23 +29,38 @@ namespace Xiaohai.Character.Arthur
         {
             StartCoroutine(LeapTowardsEnemyCoroutine(target, callback));
         }
-        private const float ABILITY_THREE_CLOSE_RADIUS = 3f;
+        private const float ABILITY_THREE_CLOSE_RADIUS = 2f;
         private IEnumerator LeapTowardsEnemyCoroutine(GameObject target, Action callback)
         {
             // calculate direction towards the enemy
             Vector3 direction = (target.transform.position - transform.position).normalized;
 
             // face towards the target
-
-            // calculate the distance to leap
+            while (!(Vector3.Dot(transform.forward, direction) > 0.99f))
+            {
+                var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20f * Time.deltaTime);
+                yield return null;
+            }
 
             // calculate the destination
-            var destinations = CalculateIntersectionPoints(new Vector2(target.transform.position.x, target.transform.position.z), ABILITY_THREE_CLOSE_RADIUS, new Vector2(direction.x, direction.z)).Select(intersection => new Vector3(target.transform.position.x + intersection.x, target.transform.position.y, target.transform.position.z + intersection.y)).ToArray();
-
-            Vector3 destination = Vector3.Distance(transform.position, destinations[0]) < Vector3.Distance(transform.position, destinations[1])
+            var destinations = CalculateIntersectionPoints(new Vector2(target.transform.position.x, target.transform.position.z), ABILITY_THREE_CLOSE_RADIUS, new Vector2(direction.x, direction.z)).Select(intersection => new Vector3(intersection.x, target.transform.position.y, intersection.y)).ToArray();
+            Vector3 destination = Vector3.zero;
+            if (destinations.Length == 0)
+            {
+                Debug.LogError("Not intersection.");
+                destination = target.transform.position;
+            }
+            else if (destinations.Length == 1)
+            {
+                destination = destinations[0];
+            }
+            else
+            {
+                destination = Vector3.Distance(transform.position, destinations[0]) < Vector3.Distance(transform.position, destinations[1])
                                   ? destinations[0] : destinations[1];
+            }
 
-            Debug.Log($"destination: {destination}");
             _characterController.enabled = false;
             // while the character is not at the destination
             while (transform.position != destination)
@@ -62,41 +77,56 @@ namespace Xiaohai.Character.Arthur
             callback();
         }
 
+        /// <summary>
+        /// Find the intersection points between a circle and a line.
+        /// </summary>
+        /// <param name="center">The center of the circle.</param>
+        /// <param name="radius">The radius of the circle.</param>
+        /// <param name="direction">The direction vector of the line.</param>
+        /// <returns>Intersection points.</returns>
         private List<Vector2> CalculateIntersectionPoints(Vector2 center, float radius, Vector2 direction)
         {
             List<Vector2> intersectionPoints = new List<Vector2>();
-            var slope = direction.y / direction.x;
-            // line:    y = slope * x 
-            // circle:  (x - center.x)^2 + (y - center.y)^2 = radius^2
-            // (x - center.x)^2 + (slope * x - center.y)^2 = radius^2
+            Vector2 lineOrigin = center - direction * radius;
+            Vector2 lineEnd = center + direction * radius;
 
-            // x^2 - 2*(center.x*x) + (center.x)^2 + (slope*x)^2 - 2*(slope * center.y*x) + center.y^2 = radius^2
-            // (1+slope)x^2 + (-2*center.x -2*slope*center.y ) * x + (center.x)^2 + (center.y)^2  - radius^2 = 0
-            var a = 1 + slope;
-            var b = -2 * center.x - 2 * slope * center.y;
-            var c = center.x * center.x + center.y * center.y - radius * radius;
+            float dx = lineEnd.x - lineOrigin.x;
+            float dy = lineEnd.y - lineOrigin.y;
 
-            var delta = b * b - 4 * a * c;
+            float A = dx * dx + dy * dy;
+            float B = 2 * (dx * (lineOrigin.x - center.x) + dy * (lineOrigin.y - center.y));
+            float C = (lineOrigin.x - center.x) * (lineOrigin.x - center.x) +
+                      (lineOrigin.y - center.y) * (lineOrigin.y - center.y) - radius * radius;
 
-            if (delta < 0) { }// no intersection
-            else if (delta == 0) // 1 point
+            float det = B * B - 4 * A * C;
+            if ((A <= 0.0000001) || (det < 0))
             {
-                var x = (-b + Mathf.Sqrt(delta)) / 2;
-                var y = slope * x;
-                intersectionPoints.Add(new Vector2(x, y));
+                // No real solutions, no intersection.
             }
-            else if (delta > 0) // 2 points
+            else if (det == 0)
             {
-                var x_1 = (-b + Mathf.Sqrt(delta)) / 2 * a;
-                var y_1 = slope * x_1;
-
-                var x_2 = (-b - Mathf.Sqrt(delta)) / 2 * a;
-                var y_2 = slope * x_2;
-
-                intersectionPoints.Add(new Vector2(x_1, y_1));
-                intersectionPoints.Add(new Vector2(x_2, y_2));
+                // One solution, one intersection point.
+                float t = -B / (2 * A);
+                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
             }
+            else
+            {
+                // Two solutions, two intersection points.
+                float t = (float)((-B + Math.Sqrt(det)) / (2 * A));
+                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
+                t = (float)((-B - Math.Sqrt(det)) / (2 * A));
+                intersectionPoints.Add(new Vector2(lineOrigin.x + t * dx, lineOrigin.y + t * dy));
+            }
+
+#if UNITY_EDITOR
+            intersectionPoints.ForEach(point =>
+            {
+                Vector3 pointV3 = new Vector3(point.x, 0, point.y);
+                Debug.DrawRay(pointV3, Vector3.up, Color.red, 5f);
+            });
+#endif
             return intersectionPoints;
         }
+
     }
 }
