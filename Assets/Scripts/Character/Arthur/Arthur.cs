@@ -29,6 +29,10 @@ namespace Xiaohai.Character.Arthur
         {
             StartCoroutine(LeapTowardsEnemyCoroutine(target, callback));
         }
+
+        /// <summary>
+        /// The distance that the character should keep away from the enemy while leaping towards the enemy
+        /// </summary>
         private const float ABILITY_THREE_CLOSE_RADIUS = 2f;
         private IEnumerator LeapTowardsEnemyCoroutine(GameObject target, Action callback)
         {
@@ -44,27 +48,7 @@ namespace Xiaohai.Character.Arthur
             }
 
             // calculate the destination
-            var destinations = CalculateIntersectionPoints(
-                                new Vector2(target.transform.position.x, target.transform.position.z),
-                                ABILITY_THREE_CLOSE_RADIUS,
-                                new Vector2(direction.x, direction.z)).
-                            Select(intersection => new Vector3(intersection.x, target.transform.position.y, intersection.y)).ToArray();
-
-            Vector3 destination = Vector3.zero;
-            if (destinations.Length == 0)
-            {
-                Debug.LogError("Not intersection.");
-                destination = target.transform.position;
-            }
-            else if (destinations.Length == 1)
-            {
-                destination = destinations[0];
-            }
-            else
-            {
-                destination = Vector3.Distance(transform.position, destinations[0]) < Vector3.Distance(transform.position, destinations[1])
-                                  ? destinations[0] : destinations[1];
-            }
+            Vector3 destination = CalculateAttackDestination(target.transform.position, ABILITY_THREE_CLOSE_RADIUS, direction);
 
             _characterController.enabled = false;
             // while the character is not at the destination
@@ -137,5 +121,31 @@ namespace Xiaohai.Character.Arthur
             return intersectionPoints;
         }
 
+        private Vector3 CalculateAttackDestination(Vector3 target, float radius, Vector3 direction)
+        {
+            var destinations = CalculateIntersectionPoints(
+                                         new Vector2(target.x, target.z),
+                                         radius,
+                                         new Vector2(direction.x, direction.z)).
+                                     Select(intersection => new Vector3(intersection.x, target.y, intersection.y)).ToArray();
+
+            Vector3 destination = Vector3.zero;
+            if (destinations.Length == 0)
+            {
+                Debug.LogError("Not intersection.");
+                destination = target;
+            }
+            else if (destinations.Length == 1)
+            {
+                destination = destinations[0];
+            }
+            else
+            {
+                destination = Vector3.Distance(transform.position, destinations[0]) < Vector3.Distance(transform.position, destinations[1])
+                                  ? destinations[0] : destinations[1];
+            }
+
+            return destination;
+        }
     }
 }
