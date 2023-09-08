@@ -21,7 +21,7 @@ public class GoForward : MonoBehaviour
         if (other.TryGetComponent(out Damageable damageable))
         {
             damageable.TakeDamage(DamageAmount);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

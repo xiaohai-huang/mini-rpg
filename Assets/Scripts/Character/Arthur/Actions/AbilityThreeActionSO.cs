@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
@@ -12,6 +10,11 @@ namespace Xiaohai.Character.Arthur
 	public class AbilityThreeActionSO : StateActionSO
 	{
 		public float AttackRange = 10f;
+		public HolySeal HolySealPrefab;
+		/// <summary>
+		/// The number of ms that the holy seal lasts.
+		/// </summary>
+		public float HolySealDuration = 5000f;
 		protected override StateAction CreateAction() => new AbilityThreeAction();
 	}
 
@@ -57,6 +60,11 @@ namespace Xiaohai.Character.Arthur
 						float damageAmount = 0.16f * targetHealth.MaxHealth;
 						targetDamageable.TakeDamage((int)damageAmount);
 
+						// summons a holy seal to cover the landing area.
+						var seal = SummonHolySeal(target.transform.position, 85f);
+						Object.Destroy(seal.gameObject, OriginSO.HolySealDuration / 1000f);
+
+
 						_character.PerformingAbilityThree = false;
 					});
 
@@ -74,6 +82,20 @@ namespace Xiaohai.Character.Arthur
 
 		public override void OnStateExit()
 		{
+		}
+
+		/// <summary>
+		/// summons a holy seal to cover the landing area.
+		/// The holy seal deals 85/105/125 points of magic damage per second to enemies within range for 5 seconds.
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="damageAmount"></param>
+		/// <returns>The HolySeal</returns>
+		public HolySeal SummonHolySeal(Vector3 position, float damageAmount)
+		{
+			var seal = Object.Instantiate(OriginSO.HolySealPrefab, position, Quaternion.identity);
+			seal.DamageAmount = damageAmount;
+			return seal;
 		}
 	}
 }
