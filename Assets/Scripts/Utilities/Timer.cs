@@ -52,11 +52,11 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public int SetInterval(Action task, float intervalInMilliseconds)
+    public int SetInterval(Action task, float intervalInMilliseconds, bool immediate = false)
     {
         float intervalInSeconds = intervalInMilliseconds / 1000f;
         int timerId = _nextTimerId++;
-        _timers[timerId] = StartCoroutine(ExecuteRepeatedly(intervalInSeconds, task));
+        _timers[timerId] = StartCoroutine(ExecuteRepeatedly(intervalInSeconds, task, immediate));
         return timerId;
     }
 
@@ -71,12 +71,20 @@ public class Timer : MonoBehaviour
         task();
     }
 
-    private IEnumerator ExecuteRepeatedly(float interval, Action task)
+    private IEnumerator ExecuteRepeatedly(float interval, Action task, bool immediate = false)
     {
         while (true)
         {
-            yield return new WaitForSeconds(interval);
-            task();
+            if (immediate)
+            {
+                task();
+                yield return new WaitForSeconds(interval);
+            }
+            else
+            {
+                yield return new WaitForSeconds(interval);
+                task();
+            }
         }
     }
 }
