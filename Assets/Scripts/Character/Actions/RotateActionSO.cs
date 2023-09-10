@@ -25,6 +25,7 @@ public class RotateAction : StateAction
     public override void OnUpdate()
     {
         var inputDirection = new Vector3(_character.HorizontalInput.x, 0, _character.HorizontalInput.y);
+        if (inputDirection == Vector3.zero) return;
         Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
         _tf.rotation = Quaternion.Slerp(_tf.rotation, targetRotation, OriginSO.RotateSpeed * Time.deltaTime);
     }
