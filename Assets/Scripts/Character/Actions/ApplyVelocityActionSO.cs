@@ -23,7 +23,10 @@ public class ApplyVelocityAction : StateAction
 
     public override void OnUpdate()
     {
-        _characterController.Move(_character.Velocity * Time.deltaTime);
+        if (_characterController.enabled)
+        {
+            _characterController.Move(_character.Velocity * Time.deltaTime);
+        }
         _character.Velocity = _characterController.velocity;
     }
 
