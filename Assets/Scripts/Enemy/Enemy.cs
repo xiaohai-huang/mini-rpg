@@ -3,6 +3,8 @@ using FSM;
 using UnityEngine;
 using UnityEngine.AI;
 using Xiaohai.Character;
+using Xiaohai.Utilities;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,6 +14,7 @@ public class Enemy : MonoBehaviour
 {
     private StateMachine _fsm;
 
+    [ReadOnly]
     public string CurrentState;
     [SerializeField] private Damageable _target;
     public float DetectRange = 10f;

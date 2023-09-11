@@ -81,7 +81,7 @@ namespace Xiaohai.Character.Arthur
             var yIntercept = center.y - slope * center.x;
             // line:    y = slope * x + yIntercept
             // circle:  (x - center.x)^2 + (y - center.y)^2 = radius^2
-            // subsititute the line equation into circle equation
+            // substitute the line equation into circle equation
             // (x - center.x)^2 + (slope * x + yIntercept - center.y)^2 = radius^2
 
             var a = 1 + slope * slope;
