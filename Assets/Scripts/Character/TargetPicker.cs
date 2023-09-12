@@ -12,6 +12,8 @@ namespace Xiaohai.Character
     {
         [SerializeField]
         private LayerMask _enemyMask;
+        [SerializeField]
+        private RuntimeTransformAnchor _targetEnemyAnchor;
 
         [Range(0f, 30f)]
         public float Radius;
@@ -47,6 +49,11 @@ namespace Xiaohai.Character
                 Count = Physics.OverlapSphereNonAlloc(transform.position, Radius, _colliders, _enemyMask);
                 return _colliders;
             }
+        }
+
+        void Awake()
+        {
+            _targetEnemyAnchor.Provide(() => Target == null ? null : Target.transform);
         }
 
         public GameObject GetClosest()

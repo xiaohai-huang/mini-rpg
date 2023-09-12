@@ -1758,6 +1758,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arthur
       objectReference: {fileID: 0}
+    - target: {fileID: 2731591379759273124, guid: db745c22b51f35b429d1ac88dffea0ed,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731591379759273124, guid: db745c22b51f35b429d1ac88dffea0ed,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4516680752836270683, guid: db745c22b51f35b429d1ac88dffea0ed,
         type: 3}
       propertyPath: m_RootOrder
