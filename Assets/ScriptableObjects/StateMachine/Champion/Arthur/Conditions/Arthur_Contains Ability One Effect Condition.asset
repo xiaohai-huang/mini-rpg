@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23022602cf2a81e43af0f23b3bc53b50, type: 3}
+  m_Name: Arthur_Contains Ability One Effect Condition
+  m_EditorClassIdentifier: 
+  EffectSO: {fileID: 11400000, guid: 0fac7541a19e79144a34cd313a0edfd8, type: 2}
