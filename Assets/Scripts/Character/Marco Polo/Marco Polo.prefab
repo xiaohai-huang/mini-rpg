@@ -257,7 +257,7 @@ Transform:
   - {fileID: 600298835637286537}
   - {fileID: 2064396889145672904}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8089133216822350913
 CharacterController:
@@ -514,13 +514,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc4ecb58225f524984f4ba6b5f0cd1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetMask:
+  _enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  Target: {fileID: 0}
-  OnTargetChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  _targetEnemyAnchor: {fileID: 11400000, guid: cfa822f171ad5a04082c798a9daaf40b, type: 2}
+  Radius: 15
+  _target: {fileID: 0}
+  Count: 0
+  _colliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6654378251041569843
 GameObject:
   m_ObjectHideFlags: 0

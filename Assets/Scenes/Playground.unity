@@ -1758,16 +1758,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arthur
       objectReference: {fileID: 0}
-    - target: {fileID: 2731591379759273124, guid: db745c22b51f35b429d1ac88dffea0ed,
-        type: 3}
-      propertyPath: m_Speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731591379759273124, guid: db745c22b51f35b429d1ac88dffea0ed,
-        type: 3}
-      propertyPath: m_Acceleration
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 4516680752836270683, guid: db745c22b51f35b429d1ac88dffea0ed,
         type: 3}
       propertyPath: m_RootOrder
@@ -1869,12 +1859,12 @@ PrefabInstance:
     - target: {fileID: 6922106582409625023, guid: d78fec5819f13414a9cd4bf5a6856443,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015436479
+      value: 0.000000015436493
       objectReference: {fileID: 0}
     - target: {fileID: 6922106582409625023, guid: d78fec5819f13414a9cd4bf5a6856443,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000076009465
+      value: -0.000000007600953
       objectReference: {fileID: 0}
     - target: {fileID: 6922106582409625023, guid: d78fec5819f13414a9cd4bf5a6856443,
         type: 3}
@@ -2158,12 +2148,12 @@ PrefabInstance:
     - target: {fileID: 4733448500806636552, guid: 89601c62d7eedeb46b28802dcfe21399,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015436479
+      value: 0.000000015436493
       objectReference: {fileID: 0}
     - target: {fileID: 4733448500806636552, guid: 89601c62d7eedeb46b28802dcfe21399,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000076009465
+      value: -0.000000007600953
       objectReference: {fileID: 0}
     - target: {fileID: 4733448500806636552, guid: 89601c62d7eedeb46b28802dcfe21399,
         type: 3}

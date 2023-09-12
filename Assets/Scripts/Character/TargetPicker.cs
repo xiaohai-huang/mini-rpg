@@ -16,7 +16,7 @@ namespace Xiaohai.Character
         private RuntimeTransformAnchor _targetEnemyAnchor;
 
         [Range(0f, 30f)]
-        public float Radius;
+        public float Radius = 15f;
 
         [SerializeField]
         [ReadOnly]
