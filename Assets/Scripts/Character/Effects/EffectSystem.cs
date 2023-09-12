@@ -43,9 +43,35 @@ public class EffectSystem : MonoBehaviour
         OnRemoveEffect?.Invoke(effect);
     }
 
+    public void RemoveEffect(EffectSO effectSO)
+    {
+        var effect = Find(effectSO);
+        if (effect != null)
+        {
+            RemoveEffect(effect);
+        }
+    }
+
+    public Effect Find(EffectSO effectSO)
+    {
+        foreach (var effect in _effects)
+        {
+            if (effect.OriginSO == effectSO)
+            {
+                return effect;
+            }
+        }
+        return null;
+    }
+
     public bool Contains(Effect effect)
     {
         return _effects.Contains(effect);
+    }
+
+    public bool Contains(EffectSO effectSO)
+    {
+        return Find(effectSO) != null;
     }
 
     public void RestoreHealth(int healthToAdd)
