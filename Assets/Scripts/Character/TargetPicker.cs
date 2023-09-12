@@ -1,51 +1,85 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
+using Xiaohai.Utilities;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Xiaohai.Character
 {
     public class TargetPicker : MonoBehaviour
     {
-        [SerializeField] private LayerMask _targetMask;
-        private Character _character;
-        public GameObject Target;
-        /// <summary>
-        /// The first argument is the new target.  
-        /// The second argument is the previous target.
-        /// </summary>
-        public UnityEvent<GameObject, GameObject> OnTargetChanged;
-        void Awake()
-        {
-            _character = GetComponent<Character>();
-        }
+        [SerializeField]
+        private LayerMask _enemyMask;
 
-        // Update is called once per frame
-        void Update()
-        {
-            var newTarget = GetTarget(15f);
-            OnTargetChanged?.Invoke(newTarget, Target);
-            Target = newTarget;
-        }
+        [Range(0f, 30f)]
+        public float Radius;
 
-        GameObject GetTarget(float radius)
+        [SerializeField]
+        [ReadOnly]
+        private GameObject _target;
+        public GameObject Target
         {
-            var damageables = _character.GetNearByDamageables(radius, _targetMask);
-            if (damageables.Length > 0)
+            get
             {
-                Damageable target = damageables[0];
-                float minDistance = Mathf.Infinity;
-                Array.ForEach(damageables, damageable =>
-                {
-                    var distance = Vector3.Distance(transform.position, damageable.transform.position);
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        target = damageable;
-                    }
-                });
-                return target.gameObject;
+                _target = GetClosest();
+                return _target;
             }
-            return null;
         }
+
+        /// <summary>
+        /// The number of colliders near the unit.
+        /// </summary>
+        /// <remarks>
+        /// Access `Colliders` before using this field.
+        /// </remarks>
+        [ReadOnly]
+        public int Count;
+
+        [SerializeField]
+        [ReadOnly]
+        private Collider[] _colliders = new Collider[32];
+        public Collider[] Colliders
+        {
+            get
+            {
+                Count = Physics.OverlapSphereNonAlloc(transform.position, Radius, _colliders, _enemyMask);
+                return _colliders;
+            }
+        }
+
+        public GameObject GetClosest()
+        {
+            Collider[] colliders = Colliders;
+
+            if (Count == 0)
+                return null;
+
+
+            float minDistSqr = Radius * Radius;
+            Collider closest = colliders[0];
+
+            // begin loop from second element
+            for (int i = 1; i < Count; i++)
+            {
+                float distSqr = (colliders[i].transform.position - transform.position).sqrMagnitude;
+                if (distSqr < minDistSqr)
+                {
+                    minDistSqr = distSqr;
+                    closest = colliders[i];
+                }
+            }
+
+            return closest.gameObject;
+        }
+
+#if UNITY_EDITOR
+        void OnDrawGizmosSelected()
+        {
+            Handles.color = Color.yellow;
+            Handles.DrawWireDisc(transform.position, Vector3.up, Radius);
+        }
+#endif
     }
 }

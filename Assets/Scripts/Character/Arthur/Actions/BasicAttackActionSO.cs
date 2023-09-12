@@ -23,7 +23,7 @@ namespace Xiaohai.Character.Arthur
 		protected new BasicAttackActionSO OriginSO => (BasicAttackActionSO)base.OriginSO;
 		private Animator _animator;
 		private Character _character;
-		private NearByUnits _nearByUnits;
+		private TargetPicker _targetPicker;
 		private CharacterController _characterController;
 		private NavMeshAgent _navMeshAgent;
 
@@ -32,7 +32,7 @@ namespace Xiaohai.Character.Arthur
 		{
 			_animator = stateMachine.GetComponent<Animator>();
 			_character = stateMachine.GetComponent<Character>();
-			_nearByUnits = stateMachine.GetComponent<NearByUnits>();
+			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 			_characterController = stateMachine.GetComponent<CharacterController>();
 			_navMeshAgent = stateMachine.GetComponent<NavMeshAgent>();
 		}
@@ -57,7 +57,7 @@ namespace Xiaohai.Character.Arthur
 		private async void DoBasicAttackWithAbilityOneEffect()
 		{
 			_character.PerformingBasicAttack = true;
-			var target = _nearByUnits.GetClosest();
+			var target = _targetPicker.Target;
 
 			if (target != null)
 			{
@@ -102,7 +102,7 @@ namespace Xiaohai.Character.Arthur
 		private async void DoBasicAttack()
 		{
 			_character.PerformingBasicAttack = true;
-			var target = _nearByUnits.GetClosest();
+			var target = _targetPicker.Target;
 			_characterController.enabled = false;
 
 			_navMeshAgent.enabled = true;

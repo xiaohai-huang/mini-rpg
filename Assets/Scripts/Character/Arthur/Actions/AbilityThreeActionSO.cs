@@ -27,12 +27,12 @@ namespace Xiaohai.Character.Arthur
 	{
 		protected new AbilityThreeActionSO OriginSO => (AbilityThreeActionSO)base.OriginSO;
 		private Arthur _character;
-		private NearByUnits _nearByUnits;
+		private TargetPicker _targetPicker;
 		private Animator _animator;
 		public override void Awake(StateMachine stateMachine)
 		{
 			_character = stateMachine.GetComponent<Arthur>();
-			_nearByUnits = stateMachine.GetComponent<NearByUnits>();
+			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 			_animator = stateMachine.GetComponent<Animator>();
 		}
 
@@ -45,7 +45,7 @@ namespace Xiaohai.Character.Arthur
 			// consume the input
 			_character.AbilityThreeInput = false;
 			_character.PerformingAbilityThree = true;
-			var target = _nearByUnits.GetClosest();
+			var target = _targetPicker.Target;
 			if (target != null)
 			{
 				if (Vector3.Distance(target.transform.position, _character.transform.position) <= OriginSO.AttackRange)
