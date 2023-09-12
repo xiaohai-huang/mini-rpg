@@ -7,6 +7,7 @@ namespace Xiaohai.Character.Arthur
 	[CreateAssetMenu(fileName = "AbilityOneAction", menuName = "State Machines/Actions/Arthur/Ability One Action")]
 	public class AbilityOneActionSO : StateActionSO
 	{
+		public float EnhancedBasicAttackRange = 5f;
 		public AbilityOneEffectSO AbilityOneEffectSO;
 		protected override StateAction CreateAction() => new AbilityOneAction();
 	}
@@ -36,7 +37,7 @@ namespace Xiaohai.Character.Arthur
 		public override void OnStateEnter()
 		{
 			var effect = OriginSO.AbilityOneEffectSO.CreateEffect();
-			effect.Init(0.3f, 3000f);
+			effect.Init(0.3f, 3000f, OriginSO.EnhancedBasicAttackRange);
 			_effectSystem.AddEffect(effect);
 			_animator.SetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
 			_character.AbilityOneInput = false;

@@ -2,7 +2,6 @@
 using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
-using Xiaohai.Utilities;
 
 namespace Xiaohai.Character.Arthur
 {
@@ -23,7 +22,6 @@ namespace Xiaohai.Character.Arthur
 		private Animator _animator;
 		private Character _character;
 		private TargetPicker _targetPicker;
-		private CharacterController _characterController;
 
 		private static readonly int BASIC_ATTACK_ANIMATION_ID = Animator.StringToHash("Basic Attack");
 		public override void Awake(StateMachine stateMachine)
@@ -31,7 +29,6 @@ namespace Xiaohai.Character.Arthur
 			_animator = stateMachine.GetComponent<Animator>();
 			_character = stateMachine.GetComponent<Character>();
 			_targetPicker = stateMachine.GetComponent<TargetPicker>();
-			_characterController = stateMachine.GetComponent<CharacterController>();
 		}
 
 		public override void OnUpdate()
@@ -41,7 +38,6 @@ namespace Xiaohai.Character.Arthur
 		public override void OnStateEnter()
 		{
 			_character.BasicAttackInput = false;
-			// DoBasicAttackWithAbilityOneEffect();
 			DoBasicAttack();
 		}
 
@@ -50,67 +46,22 @@ namespace Xiaohai.Character.Arthur
 			Timer.Instance.ClearTimeout(_timer);
 		}
 
-		// private const float DESTINATION_OFFSET = 1.25f;
-		// 		private async void DoBasicAttackWithAbilityOneEffect()
-		// 		{
-		// 			_character.PerformingBasicAttack = true;
-		// 			var target = _targetPicker.Target;
-
-		// 			if (target != null)
-		// 			{
-		// 				Vector3 direction = (target.transform.position - _character.transform.position).normalized;
-		// 				// face towards the target
-		// 				while (!(Vector3.Dot(_character.transform.forward, direction) > 0.99f))
-		// 				{
-		// 					var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-		// 					_character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, 5f * Time.deltaTime);
-
-		// 					await Task.Yield();
-		// 				}
-
-		// 				if (Vector3.Distance(_character.transform.position, target.transform.position) > DESTINATION_OFFSET)
-		// 				{
-		// 					// walk towards the target
-		// 					Vector3 destination = Navigation.GetLocationWithOffset(target.transform.position, _character.transform.position, DESTINATION_OFFSET);
-
-		// 					_characterController.enabled = false;
-
-		// #if UNITY_EDITOR
-		// 					Debug.DrawLine(_character.transform.position, destination, Color.blue, 5f);
-		// #endif
-
-
-		// 					// move towards the target
-		// 					while (_character.transform.position != destination)
-		// 					{
-		// 						_character.transform.position = Vector3.MoveTowards(_character.transform.position, destination, Time.deltaTime * 10f);
-
-		// 						await Task.Yield();
-		// 					}
-		// 					_characterController.enabled = true;
-		// 				}
-
-		// 			}
-
-		// 			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
-		// 			_timer = Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);
-		// 		}
-
 		private async void DoBasicAttack()
 		{
 			_character.PerformingBasicAttack = true;
 			var target = _targetPicker.Target;
-
-			Vector3 direction = (target.transform.position - _character.transform.position).normalized;
-			// face towards the target
-			while (!(Vector3.Dot(_character.transform.forward, direction) > 0.99f))
+			if (target != null)
 			{
-				var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-				_character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, 5f * Time.deltaTime);
+				Vector3 direction = (target.transform.position - _character.transform.position).normalized;
+				// face towards the target
+				while (!(Vector3.Dot(_character.transform.forward, direction) > 0.99f))
+				{
+					var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+					_character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, 5f * Time.deltaTime);
 
-				await Task.Yield();
+					await Task.Yield();
+				}
 			}
-
 
 			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
 			_timer = Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);

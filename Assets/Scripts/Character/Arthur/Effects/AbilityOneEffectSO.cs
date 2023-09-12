@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-
     [CreateAssetMenu(fileName = "Arthur Ability One Speed Up Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/ Ability One Speed Up Effect")]
     public class AbilityOneEffectSO : EffectSO<AbilityOneEffect>
     {
@@ -14,6 +13,7 @@ namespace Xiaohai.Character.Arthur
     public class AbilityOneEffect : Effect
     {
         private float _speedPercentage;
+        private float _enhancedBasicAttackRange;
         private Character _character;
         private int _timerId;
 
@@ -22,9 +22,10 @@ namespace Xiaohai.Character.Arthur
         /// </summary>
         /// <param name="speedUpPercentage"></param>
         /// <param name="duration">Duration of the effect in milliseconds.</param>
-        public void Init(float speedUpPercentage, float duration)
+        public void Init(float speedUpPercentage, float duration, float enhancedBasicAttackRange)
         {
             _speedPercentage = speedUpPercentage;
+            _enhancedBasicAttackRange = enhancedBasicAttackRange;
             CoolDownTime = duration;
         }
 
@@ -33,6 +34,8 @@ namespace Xiaohai.Character.Arthur
             base.OnApply(system);
             _character = system.GetComponent<Character>();
             _character.BonusWalkSpeed += _speedPercentage * _character.BaseWalkSpeed;
+
+            // TODO: show the visual of enhanced basic attack range indicator
             _timerId = Timer.Instance.SetTimeout(() => Finished = true, CoolDownTime);
         }
 
