@@ -31,6 +31,8 @@ namespace Xiaohai.Character.Conditions
 
 		protected override bool Statement()
 		{
+			if (OriginSO.TargetTransform.Value == null) return true;
+
 			float dist = Vector3.Distance(OriginSO.TargetTransform.Value.position, _transform.position);
 			// Debug.Log($"dist between {_transform} & {OriginSO.TargetTransform.Value} is {dist}");
 			switch (OriginSO.Operator)
