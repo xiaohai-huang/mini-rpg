@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Effect
 {
-    public object OriginSO;
+    public EffectSO OriginSO;
     public string Name;
     [NonSerialized]
     public bool Finished;
@@ -22,7 +22,6 @@ public abstract class Effect
     public virtual void OnApply(EffectSystem system) { OnApplyCallback?.Invoke(); }
     public virtual void OnUpdate(EffectSystem system) { OnUpdateCallback?.Invoke(); }
     public virtual void OnRemove(EffectSystem system) { OnRemoveCallback?.Invoke(); }
-
     public override bool Equals(object obj)
     {
         if (obj is null or not Effect)
@@ -30,11 +29,11 @@ public abstract class Effect
             return false;
         }
         Effect other = (Effect)obj;
-        return Name == other.Name;
+        return Name == other.Name && OriginSO == other.OriginSO;
     }
 
     public override int GetHashCode()
     {
-        return Name.GetHashCode();
+        return Name.GetHashCode() + OriginSO.GetHashCode();
     }
 }
