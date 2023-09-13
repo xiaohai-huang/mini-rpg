@@ -2,19 +2,19 @@ using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
-using Xiaohai.Utilities;
-
 namespace Xiaohai.Character.Arthur
 {
 	[CreateAssetMenu(fileName = "AbilityThreeAction", menuName = "State Machines/Actions/Arthur/Ability Three Action")]
 	public class AbilityThreeActionSO : StateActionSO
 	{
+		public float DamagePercentage;
 		public float AttackRange = 10f;
 		public HolySeal HolySealPrefab;
 		/// <summary>
 		/// The number of ms that the holy seal lasts.
 		/// </summary>
 		public float HolySealDuration = 5000f;
+		public float HolySealDamageAmount;
 		protected override StateAction CreateAction() => new AbilityThreeAction();
 	}
 
@@ -57,11 +57,11 @@ namespace Xiaohai.Character.Arthur
 					_character.LeapTowardsEnemy(target, () =>
 					{
 						// dealing 16/20/24% magic damage to the enemy hero's maximum health
-						float damageAmount = 0.16f * targetHealth.MaxHealth;
+						float damageAmount = OriginSO.DamagePercentage * targetHealth.MaxHealth;
 						targetDamageable.TakeDamage((int)damageAmount);
 
 						// summons a holy seal to cover the landing area.
-						var seal = SummonHolySeal(target.transform.position, 85f);
+						var seal = SummonHolySeal(target.transform.position, OriginSO.HolySealDamageAmount);
 						Object.Destroy(seal.gameObject, OriginSO.HolySealDuration / 1000f);
 
 
@@ -85,7 +85,7 @@ namespace Xiaohai.Character.Arthur
 		}
 
 		/// <summary>
-		/// summons a holy seal to cover the landing area.
+		/// Summons a holy seal to cover the landing area.
 		/// The holy seal deals 85/105/125 points of magic damage per second to enemies within range for 5 seconds.
 		/// </summary>
 		/// <param name="position"></param>
