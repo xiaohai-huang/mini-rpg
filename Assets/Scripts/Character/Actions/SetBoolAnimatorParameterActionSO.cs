@@ -15,7 +15,7 @@ public class SetBoolAnimatorParamAction : StateAction
 	protected new SetBoolAnimatorParameterActionSO OriginSO => (SetBoolAnimatorParameterActionSO)base.OriginSO;
 
 	private Animator _animator;
-	private static int ANIMATION_ID;
+	private int ANIMATION_ID;
 	public override void Awake(StateMachine stateMachine)
 	{
 		_animator = stateMachine.GetComponent<Animator>();
