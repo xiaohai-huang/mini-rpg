@@ -16,5 +16,5 @@ MonoBehaviour:
   ShowInListUI: 1
   CoolDownTime: 0
   Icon: {fileID: 21300000, guid: 56f243ca3ee6e284492b12b289a5fc59, type: 3}
-  RecoverPercentage: 0.2
+  RecoverPercentage: 0.02
   RecoverRate: 2000
