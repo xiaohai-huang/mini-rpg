@@ -8,15 +8,22 @@ namespace Xiaohai.Character.Arthur
 {
     public class Arthur : Character
     {
+        [Header("Passive")]
+        [SerializeField]
+        private PassiveEffectSO _passiveEffectSO;
         private CharacterController _characterController;
+        private EffectSystem _effectSystem;
         void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+            _effectSystem = GetComponent<EffectSystem>();
         }
+
         // Start is called before the first frame update
         void Start()
         {
-
+            var passiveEffect = _passiveEffectSO.CreateEffect();
+            _effectSystem.AddEffect(passiveEffect);
         }
 
         // Update is called once per frame

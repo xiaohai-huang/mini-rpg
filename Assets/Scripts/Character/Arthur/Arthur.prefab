@@ -485,6 +485,7 @@ MonoBehaviour:
   AbilityThreeInput: 0
   PerformingAbilityThree: 0
   AbilityThreeDirection: {x: 0, y: 0}
+  _passiveEffectSO: {fileID: 11400000, guid: ea82946ffd13d5745877dd7b65ce2efd, type: 2}
 --- !u!114 &8118097012172470327
 MonoBehaviour:
   m_ObjectHideFlags: 0

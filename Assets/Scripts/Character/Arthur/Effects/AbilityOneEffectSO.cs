@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-    [CreateAssetMenu(fileName = "Arthur Ability One Speed Up Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/ Ability One Speed Up Effect")]
+    [CreateAssetMenu(fileName = "Arthur Ability One Speed Up Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability One Speed Up Effect")]
     public class AbilityOneEffectSO : EffectSO<AbilityOneEffect>
     {
         public GameObject RangeIndicatorPrefab;

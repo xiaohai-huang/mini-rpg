@@ -73,7 +73,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!114 &6262939427190948407
 MonoBehaviour:
   m_ObjectHideFlags: 0
