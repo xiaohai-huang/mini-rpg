@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Arthur_Ability One Action
   m_EditorClassIdentifier: 
   description: 
+  EnhancedBasicAttackRange: 6
   AbilityOneEffectSO: {fileID: 11400000, guid: 0fac7541a19e79144a34cd313a0edfd8, type: 2}

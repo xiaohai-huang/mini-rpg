@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arthur_Ability Three Action
   m_EditorClassIdentifier: 
   description: 
-  AttackRange: 10
+  AttackRange: 6
   HolySealPrefab: {fileID: 727592962996709849, guid: 1f17c23c91d318741a8678afc2c02a2a,
     type: 3}
   HolySealDuration: 5000

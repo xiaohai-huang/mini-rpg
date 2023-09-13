@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   AttackTime: 500
-  AttackRange: 5
+  AttackRange: 6
   AbilityOneEffectSO: {fileID: 11400000, guid: 0fac7541a19e79144a34cd313a0edfd8, type: 2}

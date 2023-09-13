@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Arthur_Within Ability Three Attack Distance Condition
   m_EditorClassIdentifier: 
   TargetTransform: {fileID: 11400000, guid: cfa822f171ad5a04082c798a9daaf40b, type: 2}
-  Distance: 10
+  Distance: 6
   Operator: 2
