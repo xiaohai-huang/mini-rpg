@@ -34,6 +34,11 @@ public abstract class Effect
 
     public override int GetHashCode()
     {
-        return Name.GetHashCode() + OriginSO.GetHashCode();
+        int hash = Name.GetHashCode();
+        if (OriginSO != null)
+        {
+            hash += OriginSO.GetHashCode();
+        }
+        return hash;
     }
 }
