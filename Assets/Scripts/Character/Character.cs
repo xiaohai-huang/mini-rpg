@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Xiaohai.Character
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class Character : MonoBehaviour
     {
         public float BaseWalkSpeed;
         public float BonusWalkSpeed;
         /// <summary>
-        /// Final walk speed.
+        /// Final walk speed. BaseWalkSpeed + BonusWalkSpeed
         /// </summary>
-        public float WalkSpeed;
+        public float WalkSpeed => BaseWalkSpeed + BonusWalkSpeed;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         [Header("Basic Attack")]
@@ -28,7 +30,7 @@ namespace Xiaohai.Character
         public bool AbilityThreeInput;
         public bool PerformingAbilityThree;
         public Vector2 AbilityThreeDirection;
-
+        private NavMeshAgent _navMeshAgent;
 
         public enum Ability
         {
@@ -73,6 +75,16 @@ namespace Xiaohai.Character
                     break;
             }
             return false;
+        }
+
+        public virtual void Awake()
+        {
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        public virtual void Update()
+        {
+            _navMeshAgent.speed = WalkSpeed;
         }
 
         private readonly Collider[] colliders = new Collider[20];

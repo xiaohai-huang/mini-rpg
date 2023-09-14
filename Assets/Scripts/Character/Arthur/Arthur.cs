@@ -13,8 +13,9 @@ namespace Xiaohai.Character.Arthur
         private PassiveEffectSO _passiveEffectSO;
         private CharacterController _characterController;
         private EffectSystem _effectSystem;
-        void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _characterController = GetComponent<CharacterController>();
             _effectSystem = GetComponent<EffectSystem>();
         }
@@ -27,9 +28,9 @@ namespace Xiaohai.Character.Arthur
         }
 
         // Update is called once per frame
-        void Update()
+        public override void Update()
         {
-
+            base.Update();
         }
 
         public void LeapTowardsEnemy(GameObject target, Action callback)

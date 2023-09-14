@@ -49,8 +49,9 @@ namespace Xiaohai.Character.MarcoPolo
         private Animator _animator;
         private static readonly int ABILITY_ONE_ANIMATION_ID = Animator.StringToHash("Ability One");
         private static readonly int ABILITY_THREE_ANIMATION_ID = Animator.StringToHash("Ability Three");
-        void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _character = GetComponent<Character>();
             _characterController = GetComponent<CharacterController>();
             _effectSystem = GetComponent<EffectSystem>();
@@ -59,8 +60,9 @@ namespace Xiaohai.Character.MarcoPolo
         }
 
         // Update is called once per frame
-        void Update()
+        public override void Update()
         {
+            base.Update();
             if (_basicAttackCoolDownTimer > 0f)
             {
                 _basicAttackCoolDownTimer -= Time.deltaTime;

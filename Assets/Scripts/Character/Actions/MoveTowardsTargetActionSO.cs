@@ -17,14 +17,14 @@ namespace Xiaohai.Character.Arthur
     public class MoveTowardsTargetAction : StateAction
     {
         private NavMeshAgent _navMeshAgent;
-        private CharacterController _characterController;
+        private Character _character;
         CancellationTokenSource _cts;
 
         protected new MoveTowardsTargetActionSO OriginSO => (MoveTowardsTargetActionSO)base.OriginSO;
         public override void Awake(StateMachine stateMachine)
         {
             _navMeshAgent = stateMachine.GetComponent<NavMeshAgent>();
-            _characterController = stateMachine.GetComponent<CharacterController>();
+            _character = stateMachine.GetComponent<Character>();
         }
         public override void OnUpdate()
         {
@@ -33,15 +33,14 @@ namespace Xiaohai.Character.Arthur
 
         public override void OnStateEnter()
         {
-            _characterController.enabled = false;
             _navMeshAgent.enabled = true;
+            _navMeshAgent.updatePosition = false;
             _cts = new CancellationTokenSource();
             MoveTowards(OriginSO.Target.Value);
         }
 
         public override void OnStateExit()
         {
-            _characterController.enabled = true;
             _navMeshAgent.isStopped = true;
             _navMeshAgent.enabled = false;
             _cts.Cancel();
@@ -53,6 +52,10 @@ namespace Xiaohai.Character.Arthur
             while (!_cts.IsCancellationRequested)
             {
                 _navMeshAgent.SetDestination(targetTransform.position);
+                Vector3 worldDirection = (_navMeshAgent.nextPosition - _character.transform.position).normalized;
+
+                _character.Velocity.x = _character.WalkSpeed * worldDirection.x;
+                _character.Velocity.z = _character.WalkSpeed * worldDirection.z;
 
                 if (!_navMeshAgent.pathPending)
                 {
@@ -60,7 +63,11 @@ namespace Xiaohai.Character.Arthur
                     {
                         if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
                         {
-                            break;
+                            float realRemainingDistance = Vector3.Distance(_character.transform.position, targetTransform.position);
+                            if (realRemainingDistance <= _navMeshAgent.stoppingDistance)
+                            {
+                                break;
+                            }
                         }
                     }
                 }

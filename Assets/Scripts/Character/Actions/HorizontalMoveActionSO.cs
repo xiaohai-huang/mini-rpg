@@ -21,7 +21,6 @@ public class HorizontalMoveAction : StateAction
 
     public override void OnUpdate()
     {
-        _character.WalkSpeed = _character.BaseWalkSpeed + _character.BonusWalkSpeed;
         _character.Velocity.x = _character.WalkSpeed * _character.HorizontalInput.x;
         _character.Velocity.z = _character.WalkSpeed * _character.HorizontalInput.y;
     }
