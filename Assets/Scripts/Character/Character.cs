@@ -15,6 +15,9 @@ namespace Xiaohai.Character
         public float WalkSpeed => BaseWalkSpeed + BonusWalkSpeed;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
+        public Vector2 HorizontalAutoInput;
+        public bool IsAutoMove;
+
         [Header("Basic Attack")]
         public bool BasicAttackInput;
         public bool PerformingBasicAttack;

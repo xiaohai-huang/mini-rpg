@@ -24,7 +24,8 @@ public class RotateAction : StateAction
 
     public override void OnUpdate()
     {
-        var inputDirection = new Vector3(_character.HorizontalInput.x, 0, _character.HorizontalInput.y);
+        var input = _character.IsAutoMove ? _character.HorizontalAutoInput : _character.HorizontalInput;
+        var inputDirection = new Vector3(input.x, 0, input.y);
         if (inputDirection == Vector3.zero) return;
         Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
         _tf.rotation = Quaternion.Slerp(_tf.rotation, targetRotation, OriginSO.RotateSpeed * Time.deltaTime);
