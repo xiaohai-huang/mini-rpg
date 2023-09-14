@@ -57,7 +57,7 @@ namespace Xiaohai.Character.Arthur
 				while (!(Vector3.Dot(_character.transform.forward, direction) > 0.99f))
 				{
 					var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-					_character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, 5f * Time.deltaTime);
+					_character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, targetRotation, 10f * Time.deltaTime);
 
 					await Task.Yield();
 				}

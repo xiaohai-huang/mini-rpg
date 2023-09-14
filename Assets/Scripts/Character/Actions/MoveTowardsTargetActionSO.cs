@@ -34,7 +34,6 @@ namespace Xiaohai.Character.Arthur
         public override void OnStateEnter()
         {
             _navMeshAgent.enabled = true;
-            _navMeshAgent.updatePosition = false;
             _cts = new CancellationTokenSource();
             MoveTowards(OriginSO.Target.Value);
         }
@@ -52,11 +51,6 @@ namespace Xiaohai.Character.Arthur
             while (!_cts.IsCancellationRequested)
             {
                 _navMeshAgent.SetDestination(targetTransform.position);
-                Vector3 worldDirection = (_navMeshAgent.nextPosition - _character.transform.position).normalized;
-
-                _character.Velocity.x = _character.WalkSpeed * worldDirection.x;
-                _character.Velocity.z = _character.WalkSpeed * worldDirection.z;
-
                 if (!_navMeshAgent.pathPending)
                 {
                     if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
@@ -71,6 +65,7 @@ namespace Xiaohai.Character.Arthur
                         }
                     }
                 }
+                _character.Velocity = _navMeshAgent.velocity;
                 await Task.Yield();
             }
         }
