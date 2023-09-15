@@ -8,7 +8,7 @@ on:
 jobs:
   buildForWebGL:
     name: Build For WebGL Platform
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
