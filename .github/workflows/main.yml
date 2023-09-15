@@ -8,7 +8,7 @@ on:
 jobs:
   buildForWebGL:
     name: Build For WebGL Platform
-    runs-on: ubuntu-latest
+    runs-on: windows-2019
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -18,7 +18,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-WebGL
+          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-WebGL-
       - name: Build WebGL
         uses: game-ci/unity-builder@v3
         env:
@@ -44,7 +46,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-Android
+          key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-Android-
       - name: Free disk space
         uses: hirnidrin/free-disk-space@main
       - name: Build Android APK
@@ -65,6 +69,33 @@ jobs:
         with:
           name: Build-Android
           path: build/Android
+
+  buildForWindowsPlatform:
+    name: Build For Windows Platform
+    runs-on: windows-2019
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-Windows
+      - name: Build Windows
+        uses: game-ci/unity-builder@v3
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          versioning: None
+          targetPlatform: StandaloneWindows64
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build-Windows-64bit
+          path: build/StandaloneWindows64
 
   uploadWebGL:
     name: Upload WebGL to MinIO
