@@ -82,7 +82,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-Windows
+          key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-Windows-
       - name: Build Windows
         uses: game-ci/unity-builder@v3
         env:
