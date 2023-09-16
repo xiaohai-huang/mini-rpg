@@ -18,7 +18,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-WebGL
           restore-keys: |
             Library-WebGL-
       - name: Build WebGL
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Android
           restore-keys: |
             Library-Android-
       - name: Free disk space
@@ -82,7 +82,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Windows
           restore-keys: |
             Library-Windows-
       - name: Build Windows
