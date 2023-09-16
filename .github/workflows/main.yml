@@ -116,6 +116,9 @@ jobs:
         with:
           versioning: None
           targetPlatform: StandaloneWindows64
+      - name: Remove DoNotShip Folders
+        run: |
+          Get-ChildItem -Path build/StandaloneWindows64 -Recurse -Directory -Include *DoNotShip, *ButDontShipItWithYourGame | Remove-Item -Recurse -Force
       - uses: actions/upload-artifact@v3
         with:
           name: Build-Windows-64bit
