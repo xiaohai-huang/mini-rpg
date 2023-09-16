@@ -37,6 +37,7 @@ jobs:
         with:
           name: Build-WebGL
           path: build/WebGL
+          retention-days: 14
 
   buildForAndroidPlatform:
     name: Build For Android Platform
@@ -73,6 +74,7 @@ jobs:
         with:
           name: Build-Android
           path: build/Android
+          retention-days: 14
 
   buildForWindowsPlatform:
     name: Build For Windows Platform
@@ -123,6 +125,7 @@ jobs:
         with:
           name: Build-Windows-64bit
           path: build/StandaloneWindows64
+          retention-days: 14
 
   uploadWebGL:
     name: Upload WebGL to MinIO
