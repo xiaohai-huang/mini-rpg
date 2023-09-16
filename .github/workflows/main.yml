@@ -72,7 +72,7 @@ jobs:
 
   buildForWindowsPlatform:
     name: Build For Windows Platform
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
