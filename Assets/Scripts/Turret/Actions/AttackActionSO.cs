@@ -44,7 +44,7 @@ namespace Xiaohai.Turret.Actions
 				var goForward = bullet.GetComponent<GoForward>();
 				goForward.transform.position = _turret.FirePoint.position;
 				goForward.transform.LookAt(target.transform.position);
-				goForward.Speed = 5f;
+				goForward.Speed = 10f;
 				goForward.DamageAmount = 250;
 			}, 1000f / _turret.AttackSpeed);
 		}
