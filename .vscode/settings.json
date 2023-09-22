@@ -38,7 +38,8 @@
     "obj/": true,
     "Obj/": true,
     "temp/": true,
-    "Temp/": true
+    "Temp/": true,
+    "Assets/ScriptableObjects/": true
   },
   "cSpell.words": ["Damageables", "Keyalias"],
   "dotnet.defaultSolution": "mini-rpg.sln",

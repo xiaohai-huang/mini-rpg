@@ -53,7 +53,10 @@ namespace Xiaohai.Character
 
         void Awake()
         {
-            _targetEnemyAnchor.Provide(() => Target == null ? null : Target.transform);
+            if (_targetEnemyAnchor != null)
+            {
+                _targetEnemyAnchor.Provide(() => Target == null ? null : Target.transform);
+            }
         }
 
         public GameObject GetClosest()
