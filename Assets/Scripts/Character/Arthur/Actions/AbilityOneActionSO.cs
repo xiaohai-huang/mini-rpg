@@ -28,6 +28,7 @@ namespace Xiaohai.Character.Arthur
 		private Character _character;
 		private Animator _animator;
 		private static readonly int ABILITY_ONE_PREPARE_ANIMATION_ID = Animator.StringToHash("Ability One Preparation");
+		private static readonly int ABILITY_ONE_SPEED_UP_ANIMATION_ID = Animator.StringToHash("Ability One Speed Up");
 		public override void Awake(StateMachine stateMachine)
 		{
 			_character = stateMachine.GetComponent<Character>();
@@ -45,6 +46,11 @@ namespace Xiaohai.Character.Arthur
 			effect.Init(OriginSO.SpeedUpPercentage, OriginSO.SpeedUpDuration, OriginSO.EnhancedBasicAttackRange);
 			_effectSystem.AddEffect(effect);
 			_animator.SetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
+			_animator.SetBool(ABILITY_ONE_SPEED_UP_ANIMATION_ID, true);
+			Timer.Instance.SetTimeout(() =>
+			{
+				_animator.SetBool(ABILITY_ONE_SPEED_UP_ANIMATION_ID, false);
+			}, OriginSO.SpeedUpDuration);
 			_character.AbilityOneInput = false;
 		}
 

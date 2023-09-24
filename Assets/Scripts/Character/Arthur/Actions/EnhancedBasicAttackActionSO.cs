@@ -25,6 +25,8 @@ namespace Xiaohai.Character.Arthur
 		private CharacterController _characterController;
 		private EffectSystem _effectSystem;
 		private TargetPicker _targetPicker;
+		private Animator _animator;
+		private static readonly int BASIC_ATTACK_ANIMATION_ID = Animator.StringToHash("Basic Attack");
 
 		protected new EnhancedBasicAttackActionSO OriginSO => (EnhancedBasicAttackActionSO)base.OriginSO;
 
@@ -34,6 +36,7 @@ namespace Xiaohai.Character.Arthur
 			_characterController = stateMachine.GetComponent<CharacterController>();
 			_effectSystem = stateMachine.GetComponent<EffectSystem>();
 			_targetPicker = stateMachine.GetComponent<TargetPicker>();
+			_animator = stateMachine.GetComponent<Animator>();
 		}
 
 		public override void OnUpdate()
@@ -75,8 +78,9 @@ namespace Xiaohai.Character.Arthur
 				// deal damage to the target
 				var targetDamageable = target.GetComponent<Damageable>();
 				targetDamageable.TakeDamage(180);
-				Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);
 			}
+			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
+			Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);
 		}
 
 		public override void OnStateExit()
