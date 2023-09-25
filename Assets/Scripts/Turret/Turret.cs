@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using Xiaohai.Character;
 
 namespace Xiaohai.Turret
 {
@@ -12,6 +11,6 @@ namespace Xiaohai.Turret
         public Transform FirePoint;
         public float AttackSpeed;
         public float AttackRange;
-        public GameObject BulletPrefab;
+        public TurretProjectile BulletPrefab;
     }
 }

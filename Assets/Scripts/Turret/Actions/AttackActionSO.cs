@@ -15,12 +15,10 @@ namespace Xiaohai.Turret.Actions
 	{
 		protected new AttackActionSO OriginSO => (AttackActionSO)base.OriginSO;
 		private Turret _turret;
-		private Collider _turretCollider;
 		private TargetPicker _targetPicker;
 		public override void Awake(StateMachine stateMachine)
 		{
 			_turret = stateMachine.GetComponent<Turret>();
-			_turretCollider = stateMachine.GetComponent<Collider>();
 			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 		}
 
@@ -43,9 +41,7 @@ namespace Xiaohai.Turret.Actions
 							{
 								GameObject target = _targetPicker.Target;
 								if (target == null) return;
-								var bullet = Object.Instantiate(_turret.BulletPrefab);
-								Physics.IgnoreCollision(bullet.GetComponent<BoxCollider>(), _turretCollider, true);
-								var projectile = bullet.GetComponent<TurretProjectile>();
+								var projectile = Object.Instantiate(_turret.BulletPrefab);
 								projectile.SetTarget(target.GetComponent<Damageable>());
 								projectile.transform.position = _turret.FirePoint.position;
 								projectile.Speed = 10f;
