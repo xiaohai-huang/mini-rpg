@@ -655,7 +655,7 @@ MonoBehaviour:
   FirePoint: {fileID: 2627882319580775487}
   AttackSpeed: 0.833
   AttackRange: 7.5
-  BulletPrefab: {fileID: 8034983545446361103, guid: a61a9ca3dd8536b49b60fc3411e65be7,
+  BulletPrefab: {fileID: 8034983545446361103, guid: 89fb22113931a0f4b99cae6696082bd6,
     type: 3}
 --- !u!114 &2699226185597063687
 MonoBehaviour:

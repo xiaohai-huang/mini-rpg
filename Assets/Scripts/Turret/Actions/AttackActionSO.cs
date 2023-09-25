@@ -33,24 +33,30 @@ namespace Xiaohai.Turret.Actions
 			}
 		}
 		private int _attackTimer;
+		private int _startAttackTimer;
 		public override void OnStateEnter()
 		{
-			_attackTimer = Timer.Instance.SetInterval(() =>
+			// Delay for 500ms and then start the attack
+			_startAttackTimer = Timer.Instance.SetTimeout(() =>
 			{
-				GameObject target = _targetPicker.Target;
-				if (target == null) return;
-				var bullet = Object.Instantiate(_turret.BulletPrefab);
-				Physics.IgnoreCollision(bullet.GetComponent<BoxCollider>(), _turretCollider, true);
-				var goForward = bullet.GetComponent<GoForward>();
-				goForward.transform.position = _turret.FirePoint.position;
-				goForward.transform.LookAt(target.transform.position);
-				goForward.Speed = 10f;
-				goForward.DamageAmount = 250;
-			}, 1000f / _turret.AttackSpeed);
+				_attackTimer = Timer.Instance.SetInterval(() =>
+							{
+								GameObject target = _targetPicker.Target;
+								if (target == null) return;
+								var bullet = Object.Instantiate(_turret.BulletPrefab);
+								Physics.IgnoreCollision(bullet.GetComponent<BoxCollider>(), _turretCollider, true);
+								var projectile = bullet.GetComponent<TurretProjectile>();
+								projectile.SetTarget(target.GetComponent<Damageable>());
+								projectile.transform.position = _turret.FirePoint.position;
+								projectile.Speed = 10f;
+								projectile.DamageAmount = 250;
+							}, 1000f / _turret.AttackSpeed, true);
+			}, 500f);
 		}
 
 		public override void OnStateExit()
 		{
+			Timer.Instance.ClearTimeout(_startAttackTimer);
 			Timer.Instance.ClearInterval(_attackTimer);
 		}
 	}
