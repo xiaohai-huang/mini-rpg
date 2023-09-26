@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
-using Xiaohai.Character;
 
 namespace Xiaohai.Turret.Actions
 {
@@ -15,41 +14,35 @@ namespace Xiaohai.Turret.Actions
 	{
 		protected new AttackActionSO OriginSO => (AttackActionSO)base.OriginSO;
 		private Turret _turret;
-		private TargetPicker _targetPicker;
-		private GameObject _target;
 
 		public override void Awake(StateMachine stateMachine)
 		{
 			_turret = stateMachine.GetComponent<Turret>();
-			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 		}
 
 		public override void OnUpdate()
 		{
-			if (_target != null)
+			if (_turret.Target != null)
 			{
-				_turret.AttackBallTarget.position = _target.transform.position;
+				_turret.AttackBallTarget.position = Vector3.Lerp(
+									_turret.AttackBallTarget.position,
+									_turret.Target.transform.position,
+									5f * Time.deltaTime);
 			}
 		}
 		private int _attackTimer;
 		private int _startAttackTimer;
 		public override void OnStateEnter()
 		{
-			_target = _targetPicker.Target;
 			// Delay for 500ms and then start the attack
 			_startAttackTimer = Timer.Instance.SetTimeout(() =>
 			{
 				_attackTimer = Timer.Instance.SetInterval(() =>
 							{
-								if (_target == null) return;
-								// Pick a new target if the current one does not stay within the attack range
-								if (Vector3.Distance(_turret.transform.position, _target.transform.position) > _turret.AttackRange)
-								{
-									_target = _targetPicker.Target;
-									if (_target == null) return;
-								}
+								if (_turret.Target == null) return;
+
 								var projectile = Object.Instantiate(_turret.BulletPrefab);
-								projectile.SetTarget(_target.GetComponent<Damageable>());
+								projectile.SetTarget(_turret.Target);
 								projectile.transform.position = _turret.FirePoint.position;
 								projectile.Speed = 10f;
 								projectile.DamageAmount = 250;
@@ -61,7 +54,6 @@ namespace Xiaohai.Turret.Actions
 		{
 			Timer.Instance.ClearTimeout(_startAttackTimer);
 			Timer.Instance.ClearInterval(_attackTimer);
-			_target = null;
 		}
 	}
 }

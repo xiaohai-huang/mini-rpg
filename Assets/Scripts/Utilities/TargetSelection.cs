@@ -6,21 +6,28 @@ namespace Xiaohai.Utilities
 {
     public abstract class TargetSelection<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public LayerMask TargetLayer;
+        [SerializeField]
+        private LayerMask _targetLayer;
         public readonly List<TargetInfo<T>> Targets = new();
 
         void OnTriggerEnter(Collider other)
         {
-            // Debug.Log($"target layer value: {TargetLayer.value} | other.gameObject.layer:{other.gameObject.layer}", other);
-            if ((TargetLayer.value & (1 << other.gameObject.layer)) != 0)
+            // Debug.Log($"target layer value: {_targetLayer.value} | other.gameObject.layer:{other.gameObject.layer}", other);
+            if ((_targetLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 if (other.TryGetComponent<T>(out var target))
                 {
-                    Targets.Add(new TargetInfo<T>()
+                    TargetInfo<T> info = new()
                     {
                         EnteredTime = Time.time,
                         target = target,
                         GO = other.gameObject
+                    };
+                    Targets.Add(info);
+
+                    target.destroyCancellationToken.Register(() =>
+                    {
+                        Targets.Remove(info);
                     });
                 }
             }
@@ -28,7 +35,8 @@ namespace Xiaohai.Utilities
 
         void OnTriggerExit(Collider other)
         {
-            if ((TargetLayer.value & (1 << other.gameObject.layer)) != 0)
+            // Debug.Log("exit area", other);
+            if ((_targetLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 var index = Targets.FindIndex(t => t.GO == other.gameObject);
                 if (index != -1)
@@ -39,6 +47,13 @@ namespace Xiaohai.Utilities
         }
 
 #if UNITY_EDITOR
+        void Update()
+        {
+            UpdateInspector();
+        }
+#endif
+
+#if UNITY_EDITOR
         [Header("Editor Only")]
         [SerializeField]
         [ReadOnly]
@@ -46,7 +61,7 @@ namespace Xiaohai.Utilities
 
         [SerializeField]
         private TargetInfo<T>[] TargetInfos = new TargetInfo<T>[12];
-        void Update()
+        void UpdateInspector()
         {
             Array.Clear(TargetInfos, 0, TargetInfos.Length);
             for (int i = 0; i < Targets.Count; i++)
