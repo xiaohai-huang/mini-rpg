@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd9f5279e46ee54288f6980d1a9ca4e, type: 3}
-  m_Name: Player Transform Anchor
+  m_Script: {fileID: 11500000, guid: 0e8668d4fc8f3664d9add20b6794b64a, type: 3}
+  m_Name: Player Character Anchor
   m_EditorClassIdentifier: 

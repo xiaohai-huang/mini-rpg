@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     public Transform PlayerSpawnPoint;
     public Transform[] SpawnPoints;
     [SerializeField] private TransformEventChannel _playerSpawnedEventChannel;
-    [SerializeField] private RuntimeTransformAnchor _playerTransform;
+    [SerializeField] private RuntimeCharacterAnchor _playerAnchor;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
             player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
         }
         player.gameObject.SetActive(true);
-        _playerTransform.Provide(player.transform);
+        _playerAnchor.Provide(player);
         _playerSpawnedEventChannel.RaiseEvent(player.transform);
     }
 }
