@@ -26,8 +26,6 @@ namespace Xiaohai.Turret
         void Init()
         {
             TargetSelection.GetComponent<CapsuleCollider>().radius = AttackRange;
-            TargetPicker targetPicker = GetComponent<TargetPicker>();
-            targetPicker.Radius = AttackRange;
         }
 
 #if UNITY_EDITOR

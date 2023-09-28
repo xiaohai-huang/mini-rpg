@@ -1,12 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Xiaohai.Utilities;
 
 namespace Xiaohai.Character
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class Character : MonoBehaviour
     {
+        [ReadOnly]
+        public Damageable Target;
+        /// <summary>
+        /// Measured in radius.
+        /// </summary>
+        [Range(0f, 30f)]
+        public float ViewRange;
         public float BaseWalkSpeed;
         public float BonusWalkSpeed;
         /// <summary>
@@ -34,6 +42,11 @@ namespace Xiaohai.Character
         public bool PerformingAbilityThree;
         public Vector2 AbilityThreeDirection;
         private NavMeshAgent _navMeshAgent;
+        public DamageableTargetSelection TargetSelection
+        {
+            get;
+            private set;
+        }
 
         public enum Ability
         {
@@ -83,11 +96,16 @@ namespace Xiaohai.Character
         public virtual void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
+
+            // Sync the range of the character with target selection's selection range
+            TargetSelection = GetComponentInChildren<DamageableTargetSelection>();
+            TargetSelection.GetComponent<CapsuleCollider>().radius = ViewRange;
         }
 
         public virtual void Update()
         {
             _navMeshAgent.speed = WalkSpeed;
+            Target = TargetSelection.GetTarget(DamageableTargetSelection.SelectionStrategy.Closest);
         }
 
         private readonly Collider[] colliders = new Collider[20];

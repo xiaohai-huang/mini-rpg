@@ -579,7 +579,6 @@ GameObject:
   - component: {fileID: 7827251140930863068}
   - component: {fileID: 3854525974738798759}
   - component: {fileID: 5062448957387612732}
-  - component: {fileID: 2699226185597063687}
   - component: {fileID: 7280707608642234657}
   - component: {fileID: 4818027347874190616}
   m_Layer: 0
@@ -692,58 +691,6 @@ MonoBehaviour:
   BulletPrefab: {fileID: 6179058120295677611, guid: 89fb22113931a0f4b99cae6696082bd6,
     type: 3}
   TargetSelection: {fileID: 6141770017485225726}
---- !u!114 &2699226185597063687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530242830773342366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecc4ecb58225f524984f4ba6b5f0cd1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _targetEnemyAnchor: {fileID: 0}
-  Radius: 7.5
-  _target: {fileID: 0}
-  Count: 0
-  _colliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &7280707608642234657
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,12 +27,10 @@ namespace Xiaohai.Character.Arthur
 	{
 		protected new AbilityThreeActionSO OriginSO => (AbilityThreeActionSO)base.OriginSO;
 		private Arthur _character;
-		private TargetPicker _targetPicker;
 		private Animator _animator;
 		public override void Awake(StateMachine stateMachine)
 		{
 			_character = stateMachine.GetComponent<Arthur>();
-			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 			_animator = stateMachine.GetComponent<Animator>();
 		}
 
@@ -45,20 +43,19 @@ namespace Xiaohai.Character.Arthur
 			// consume the input
 			_character.AbilityThreeInput = false;
 			_character.PerformingAbilityThree = true;
-			var target = _targetPicker.Target;
+			var target = _character.Target;
 			if (target != null)
 			{
 				if (Vector3.Distance(target.transform.position, _character.transform.position) <= OriginSO.AttackRange)
 				{
-					var targetDamageable = target.GetComponent<Damageable>();
 					var targetHealth = target.GetComponent<Health>();
 
 					// leap towards the enemy
-					_character.LeapTowardsEnemy(target, () =>
+					_character.LeapTowardsEnemy(target.gameObject, () =>
 					{
 						// dealing 16/20/24% magic damage to the enemy hero's maximum health
 						float damageAmount = OriginSO.DamagePercentage * targetHealth.MaxHealth;
-						targetDamageable.TakeDamage((int)damageAmount);
+						target.TakeDamage((int)damageAmount);
 
 						// summons a holy seal to cover the landing area.
 						var seal = SummonHolySeal(target.transform.position, OriginSO.HolySealDamageAmount);

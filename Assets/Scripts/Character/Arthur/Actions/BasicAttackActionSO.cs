@@ -21,14 +21,12 @@ namespace Xiaohai.Character.Arthur
 		protected new BasicAttackActionSO OriginSO => (BasicAttackActionSO)base.OriginSO;
 		private Animator _animator;
 		private Character _character;
-		private TargetPicker _targetPicker;
 
 		private static readonly int BASIC_ATTACK_ANIMATION_ID = Animator.StringToHash("Basic Attack");
 		public override void Awake(StateMachine stateMachine)
 		{
 			_animator = stateMachine.GetComponent<Animator>();
 			_character = stateMachine.GetComponent<Character>();
-			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 		}
 
 		public override void OnUpdate()
@@ -49,7 +47,7 @@ namespace Xiaohai.Character.Arthur
 		private async void DoBasicAttack()
 		{
 			_character.PerformingBasicAttack = true;
-			var target = _targetPicker.Target;
+			var target = _character.Target;
 			if (target != null)
 			{
 				Vector3 direction = (target.transform.position - _character.transform.position).normalized;

@@ -10,7 +10,6 @@ namespace Xiaohai.Character.Arthur
     [CreateAssetMenu(fileName = "Move Towards Target", menuName = "State Machines/Actions/Move Towards Target Action")]
     public class MoveTowardsTargetActionSO : StateActionSO
     {
-        public RuntimeTransformAnchor Target;
         protected override StateAction CreateAction() => new MoveTowardsTargetAction();
     }
 
@@ -38,7 +37,7 @@ namespace Xiaohai.Character.Arthur
             _navMeshAgent.updatePosition = false;
             _navMeshAgent.updateRotation = false;
             _cts = new CancellationTokenSource();
-            MoveTowards(OriginSO.Target.Value);
+            MoveTowards(_character.Target.transform);
         }
 
         public override void OnStateExit()

@@ -24,7 +24,6 @@ namespace Xiaohai.Character.Arthur
 		private Character _character;
 		private CharacterController _characterController;
 		private EffectSystem _effectSystem;
-		private TargetPicker _targetPicker;
 		private Animator _animator;
 		private static readonly int BASIC_ATTACK_ANIMATION_ID = Animator.StringToHash("Basic Attack");
 
@@ -35,7 +34,6 @@ namespace Xiaohai.Character.Arthur
 			_character = stateMachine.GetComponent<Character>();
 			_characterController = stateMachine.GetComponent<CharacterController>();
 			_effectSystem = stateMachine.GetComponent<EffectSystem>();
-			_targetPicker = stateMachine.GetComponent<TargetPicker>();
 			_animator = stateMachine.GetComponent<Animator>();
 		}
 
@@ -50,7 +48,7 @@ namespace Xiaohai.Character.Arthur
 			_effectSystem.RemoveEffect(OriginSO.AbilityOneEffectSO);
 
 			_character.PerformingBasicAttack = true;
-			var target = _targetPicker.Target;
+			var target = _character.Target;
 
 			if (target != null)
 			{
@@ -76,8 +74,7 @@ namespace Xiaohai.Character.Arthur
 				_characterController.enabled = true;
 
 				// deal damage to the target
-				var targetDamageable = target.GetComponent<Damageable>();
-				targetDamageable.TakeDamage(180);
+				target.TakeDamage(180);
 			}
 			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
 			Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);
