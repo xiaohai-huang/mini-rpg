@@ -7,6 +7,8 @@ namespace Xiaohai.Character
     {
         [SerializeField] private HealthConfig _healthConfig;
         private Health _health;
+        public int CurrentHealth => _health.CurrentHealth;
+        public int MaxHealth => _health.MaxHealth;
 
         [Header("Broadcasting On")]
         public UnityEvent<int, int> OnHealthChanged;
