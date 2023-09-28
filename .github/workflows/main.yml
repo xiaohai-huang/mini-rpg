@@ -56,6 +56,8 @@ jobs:
             Library-Android-
       - name: Free disk space
         uses: hirnidrin/free-disk-space@main
+        with:
+          large-packages: false
       - name: Build Android APK
         uses: game-ci/unity-builder@v3
         env:
