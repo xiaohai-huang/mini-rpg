@@ -31,6 +31,8 @@
     "**/*.mat": true,
     "**/*.meta": true,
     "**/*.prefab": true,
+    "**/*.asset": true,
+    "**/*.anim": true,
     "build/": true,
     "Build/": true,
     "Library/": true,
