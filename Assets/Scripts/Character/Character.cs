@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,7 +29,18 @@ namespace Xiaohai.Character
 
         [Header("Basic Attack")]
         public bool BasicAttackInput;
-        public bool PerformingBasicAttack;
+        [SerializeField]
+        private bool _performingBasicAttack;
+        public bool PerformingBasicAttack
+        {
+            get { return _performingBasicAttack; }
+            set
+            {
+                _performingBasicAttack = value;
+                OnPerformingBasicAttackChanged?.Invoke(value);
+            }
+        }
+        public Action<bool> OnPerformingBasicAttackChanged;
         [Header("Ability One")]
         public bool AbilityOneInput;
         public bool PerformingAbilityOne;

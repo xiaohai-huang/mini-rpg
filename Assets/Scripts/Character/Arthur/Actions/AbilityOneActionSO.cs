@@ -29,11 +29,21 @@ namespace Xiaohai.Character.Arthur
 		private Animator _animator;
 		private static readonly int ABILITY_ONE_PREPARE_ANIMATION_ID = Animator.StringToHash("Ability One Preparation");
 		private static readonly int ABILITY_ONE_SPEED_UP_ANIMATION_ID = Animator.StringToHash("Ability One Speed Up");
+		private int _speedUpTimer;
 		public override void Awake(StateMachine stateMachine)
 		{
 			_character = stateMachine.GetComponent<Character>();
 			_effectSystem = stateMachine.GetComponent<EffectSystem>();
 			_animator = stateMachine.GetComponent<Animator>();
+			_character.OnPerformingBasicAttackChanged += OnPerformingBasicAttackChanged;
+		}
+
+		private void OnPerformingBasicAttackChanged(bool newPerformingBasicAttack)
+		{
+			if (!newPerformingBasicAttack)
+			{
+				Timer.Instance.ClearTimeout(_speedUpTimer);
+			}
 		}
 
 		public override void OnUpdate()
@@ -47,7 +57,7 @@ namespace Xiaohai.Character.Arthur
 			_effectSystem.AddEffect(effect);
 			_animator.SetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
 			_animator.SetBool(ABILITY_ONE_SPEED_UP_ANIMATION_ID, true);
-			Timer.Instance.SetTimeout(() =>
+			_speedUpTimer = Timer.Instance.SetTimeout(() =>
 			{
 				_animator.SetBool(ABILITY_ONE_SPEED_UP_ANIMATION_ID, false);
 			}, OriginSO.SpeedUpDuration);

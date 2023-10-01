@@ -26,6 +26,8 @@ namespace Xiaohai.Character.Arthur
 		private EffectSystem _effectSystem;
 		private Animator _animator;
 		private static readonly int BASIC_ATTACK_ANIMATION_ID = Animator.StringToHash("Basic Attack");
+		private static readonly int ABILITY_ONE_SPEED_UP_ANIMATION_ID = Animator.StringToHash("Ability One Speed Up");
+		private static readonly int ABILITY_ONE_FLYING_ANIMATION_ID = Animator.StringToHash("Ability One Flying");
 
 		protected new EnhancedBasicAttackActionSO OriginSO => (EnhancedBasicAttackActionSO)base.OriginSO;
 
@@ -42,14 +44,16 @@ namespace Xiaohai.Character.Arthur
 		}
 
 		private const float DESTINATION_OFFSET = 1.25f;
+		private const float FLYING_SPEED = 25f;
 		public override async void OnStateEnter()
 		{
 			_character.BasicAttackInput = false;
 			_effectSystem.RemoveEffect(OriginSO.AbilityOneEffectSO);
+			_animator.SetBool(ABILITY_ONE_SPEED_UP_ANIMATION_ID, false);
 
 			_character.PerformingBasicAttack = true;
 			var target = _character.Target;
-
+			_animator.SetBool(ABILITY_ONE_FLYING_ANIMATION_ID, true);
 			if (target != null)
 			{
 				// face towards the target
@@ -67,7 +71,7 @@ namespace Xiaohai.Character.Arthur
 
 				while (_character.transform.position != destination)
 				{
-					_character.transform.position = Vector3.MoveTowards(_character.transform.position, destination, Time.deltaTime * 20f);
+					_character.transform.position = Vector3.MoveTowards(_character.transform.position, destination, Time.deltaTime * FLYING_SPEED);
 					await Task.Yield();
 				}
 
@@ -76,6 +80,7 @@ namespace Xiaohai.Character.Arthur
 				// deal damage to the target
 				target.TakeDamage(180);
 			}
+			_animator.SetBool(ABILITY_ONE_FLYING_ANIMATION_ID, false);
 			_animator.SetTrigger(BASIC_ATTACK_ANIMATION_ID);
 			Timer.Instance.SetTimeout(() => { _character.PerformingBasicAttack = false; }, OriginSO.AttackTime);
 		}
