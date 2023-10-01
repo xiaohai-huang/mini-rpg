@@ -55,9 +55,7 @@ jobs:
           restore-keys: |
             Library-Android-
       - name: Free disk space
-        uses: hirnidrin/free-disk-space@main
-        with:
-          large-packages: false
+        uses: jlumbroso/free-disk-space@main
       - name: Build Android APK
         uses: game-ci/unity-builder@v3
         env:
