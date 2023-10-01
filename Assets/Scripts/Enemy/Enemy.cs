@@ -144,6 +144,11 @@ public class Enemy : MonoBehaviour
     void MoveTowardsPlayer()
     {
         _agent.SetDestination(_target.transform.position);
+
+        if (_agent.remainingDistance < _agent.stoppingDistance)
+        {
+            transform.LookAt(_target.transform);
+        }
     }
 
     float _timer;
