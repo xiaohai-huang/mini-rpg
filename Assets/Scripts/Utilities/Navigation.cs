@@ -27,7 +27,7 @@ namespace Xiaohai.Utilities
             Vector3 destination = Vector3.zero;
             if (destinations.Length == 0)
             {
-                Debug.LogError("Not intersection.");
+                Debug.LogError($"Not intersection. target:{target}, origin:{origin}");
                 destination = target;
             }
             else if (destinations.Length == 1)
