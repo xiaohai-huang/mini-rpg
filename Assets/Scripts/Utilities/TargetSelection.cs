@@ -64,7 +64,7 @@ namespace Xiaohai.Utilities
         void UpdateInspector()
         {
             Array.Clear(TargetInfos, 0, TargetInfos.Length);
-            for (int i = 0; i < Targets.Count; i++)
+            for (int i = 0; i < Targets.Count && i < TargetInfos.Length; i++)
             {
                 TargetInfos[i] = Targets[i];
             }

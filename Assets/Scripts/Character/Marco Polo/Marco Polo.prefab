@@ -35,7 +35,6 @@ RectTransform:
   - {fileID: 335204480854466652}
   - {fileID: 7425181300596352624}
   m_Father: {fileID: 8809407048828570748}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -145,7 +144,6 @@ RectTransform:
   - {fileID: 5690709116240480585}
   - {fileID: 6937083778805811857}
   m_Father: {fileID: 8809407048828570748}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -234,7 +232,7 @@ GameObject:
   - component: {fileID: 4830320886893070281}
   - component: {fileID: 6331372443241604621}
   - component: {fileID: 782018881564824063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Marco Polo
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -248,6 +246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5691150277221288302}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -258,7 +257,6 @@ Transform:
   - {fileID: 600298835637286537}
   - {fileID: 2064396889145672904}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8089133216822350913
 CharacterController:
@@ -353,12 +351,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda2726516d5ed94781d5d188e5e88a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  ViewRange: 0
   BaseWalkSpeed: 5
   BonusWalkSpeed: 0
   Velocity: {x: 0, y: 0, z: 0}
   HorizontalInput: {x: 0, y: 0}
+  HorizontalAutoInput: {x: 0, y: 0}
+  IsAutoMove: 0
   BasicAttackInput: 0
-  PerformingBasicAttack: 0
+  _performingBasicAttack: 0
   AbilityOneInput: 0
   PerformingAbilityOne: 0
   AbilityOneDirection: {x: 0, y: 0}
@@ -601,6 +603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6654378251041569843}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -610,7 +613,6 @@ Transform:
   - {fileID: 1574105588154617017}
   - {fileID: 1638986445576285101}
   m_Father: {fileID: 8809407048828570748}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1112618365530673250
 MonoBehaviour:
@@ -669,7 +671,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6937083778805811857}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -805,7 +806,6 @@ RectTransform:
   m_Children:
   - {fileID: 2015714506830464439}
   m_Father: {fileID: 600298835637286537}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
