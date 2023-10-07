@@ -51,7 +51,7 @@ namespace Xiaohai.Character.Arthur
 
         private async void MoveTowards(Transform targetTransform)
         {
-            while (!_cts.IsCancellationRequested && !Application.exitCancellationToken.IsCancellationRequested)
+            while (!_cts.IsCancellationRequested && !_character.destroyCancellationToken.IsCancellationRequested)
             {
                 _navMeshAgent.SetDestination(targetTransform.position);
                 var t = _navMeshAgent.steeringTarget;
