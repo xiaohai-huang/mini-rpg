@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43606bdaadc75524489bc1967a290a26, type: 3}
-  m_Name: Move Towards Target Enemy
+  m_Name: Move Towards Target Action
   m_EditorClassIdentifier: 
-  description: 
-  Target: {fileID: 11400000, guid: cfa822f171ad5a04082c798a9daaf40b, type: 2}
+  description: Move towards character's target

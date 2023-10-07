@@ -5,10 +5,11 @@ namespace Xiaohai.Character.MarcoPolo
 {
     public class MarcoPolo : Character
     {
+        [Header("Marco Polo")]
         public Transform LeftGunFirePoint;
         public Transform RightGunFirePoint;
-        public GameObject BulletPrefab;
-        public GameObject FollowBulletPrefab;
+        public GoForward BulletPrefab;
+        public FollowTarget FollowBulletPrefab;
 
         public float RotateSpeed = 8f;
 
@@ -43,7 +44,6 @@ namespace Xiaohai.Character.MarcoPolo
 
         private bool _attackHand;
         private Character _character;
-        private TargetPicker _targetPicker;
         private EffectSystem _effectSystem;
         private CharacterController _characterController;
         private Animator _animator;
@@ -55,7 +55,6 @@ namespace Xiaohai.Character.MarcoPolo
             _character = GetComponent<Character>();
             _characterController = GetComponent<CharacterController>();
             _effectSystem = GetComponent<EffectSystem>();
-            _targetPicker = GetComponent<TargetPicker>();
             _animator = GetComponent<Animator>();
         }
 
@@ -71,13 +70,13 @@ namespace Xiaohai.Character.MarcoPolo
         public void BasicAttack()
         {
             _basicAttackCoolDownTimer = BasicAttackSpeed;
-            if (_targetPicker.Target == null)
+            if (Target == null)
             {
                 FireBullet(_attackHand ? LeftGunFirePoint : RightGunFirePoint);
             }
             else
             {
-                StartCoroutine(BasicAttack(_targetPicker.Target.transform, 20f, _attackHand ? LeftGunFirePoint : RightGunFirePoint));
+                StartCoroutine(BasicAttack(Target.transform, 20f, _attackHand ? LeftGunFirePoint : RightGunFirePoint));
             }
             _attackHand = !_attackHand;
         }
@@ -96,26 +95,20 @@ namespace Xiaohai.Character.MarcoPolo
             FireFollowBullet(firePoint);
         }
 
-        GameObject FireFollowBullet(Transform firePoint)
+        void FireFollowBullet(Transform firePoint)
         {
             var bullet = Instantiate(FollowBulletPrefab, firePoint.position, firePoint.rotation);
-            var follow = bullet.GetComponent<FollowTarget>();
-            follow.Target = _targetPicker.Target.transform;
-            follow.Speed = 15f;
-            follow.Offset = new Vector3(0, 0.5f, 0);
-            follow.DamageAmount = Random.Range(200, 500);
-
-            return bullet;
+            bullet.Target = Target.transform;
+            bullet.Speed = 15f;
+            bullet.Offset = new Vector3(0, 0.5f, 0);
+            bullet.DamageAmount = Random.Range(200, 500);
         }
 
-        GameObject FireBullet(Transform firePoint)
+        void FireBullet(Transform firePoint)
         {
             var bullet = Instantiate(BulletPrefab, firePoint.position, firePoint.rotation);
-            var go = bullet.GetComponent<GoForward>();
-            go.Speed = 15f;
-            go.DamageAmount = Random.Range(200, 500);
-
-            return bullet;
+            bullet.Speed = 15f;
+            bullet.DamageAmount = Random.Range(200, 500);
         }
 
         private bool toggle;

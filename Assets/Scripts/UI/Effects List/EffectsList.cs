@@ -7,13 +7,25 @@ namespace Xiaohai.UI
     {
         [SerializeField]
         private EffectUI _effectUI;
-        public EffectSystem EffectSys;
+        private EffectSystem _effectSys;
+        [SerializeField] private RuntimeCharacterAnchor _player;
         private List<EffectUI> _effectUIs = new();
-        // Start is called before the first frame update
-        void Start()
+
+        void OnEnable()
         {
-            EffectSys.OnAddEffect += OnAddEffect;
-            EffectSys.OnRemoveEffect += OnRemoveEffect;
+            _player.OnProvided += Init;
+        }
+
+        void OnDisable()
+        {
+            _player.OnProvided -= Init;
+        }
+
+        void Init(Character.Character character)
+        {
+            _effectSys = _player.Value.GetComponent<EffectSystem>();
+            _effectSys.OnAddEffect += OnAddEffect;
+            _effectSys.OnRemoveEffect += OnRemoveEffect;
         }
 
         private void OnAddEffect(Effect effect)

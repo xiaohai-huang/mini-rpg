@@ -33,7 +33,6 @@ RectTransform:
   m_Children:
   - {fileID: 5770853142465673003}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -88,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectUI: {fileID: 7365359801786570099, guid: f309cf1af0b291a45b81d50bf1decf4f,
     type: 3}
-  EffectSys: {fileID: 0}
+  _player: {fileID: 11400000, guid: daab3df93d4156b429887fa2e34c165b, type: 2}
 --- !u!1001 &6137937248400114076
 PrefabInstance:
   m_ObjectHideFlags: 0
