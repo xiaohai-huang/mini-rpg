@@ -105,6 +105,27 @@ namespace Xiaohai.Character
             return false;
         }
 
+        public void SetAbilityInput(Ability ability, bool value)
+        {
+            switch (ability)
+            {
+                case Ability.Basic:
+                    BasicAttackInput = value;
+                    break;
+                case Ability.One:
+                    AbilityOneInput = value;
+                    break;
+                case Ability.Two:
+                    AbilityTwoInput = value;
+                    break;
+                case Ability.Three:
+                    AbilityThreeInput = value;
+                    break;
+                case Ability.Four:
+                    break;
+            }
+        }
+
         public virtual void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
