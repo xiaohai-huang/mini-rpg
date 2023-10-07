@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f01f94a00b8d04584cfebf3566fbed, type: 3}
-  m_Name: PlayDeathAnimationAction
+  m_Script: {fileID: 11500000, guid: 8c07e2557361b39449c874137aa2add5, type: 3}
+  m_Name: MarcoPolo_Within Basic Attack Distance Condition
   m_EditorClassIdentifier: 
-  description: 
+  Distance: 7
+  Operator: 2
