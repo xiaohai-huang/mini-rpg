@@ -7,6 +7,7 @@ public class OnScreenInputEventChannel : ScriptableObject
 {
     public enum Input
     {
+        BASIC_ATTACK,
         ABILITY_ONE,
         ABILITY_TWO,
         ABILITY_THREE,
