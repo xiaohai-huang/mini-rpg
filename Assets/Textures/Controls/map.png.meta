@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 6b8429fcd07a07045b5afc6d0fcd1f20
+guid: 7cd4717d1fa4ecb4a8b321e8f7d8f4ed
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,17 +43,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
-  spriteExtrude: 0
-  spriteMeshType: 0
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 168, z: 168, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -77,7 +77,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -90,7 +89,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -103,69 +101,22 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: map_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 168
-        width: 344
-        height: 344
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffd6b357d8c135b4e802b3f860db4a19
-      internalID: -1749843122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline:
-    - - {x: 0, y: 256}
-      - {x: -221.70251, y: 127.99999}
-      - {x: -221.7025, y: -128.00002}
-      - {x: 0.00002238023, y: -256}
-      - {x: 221.70251, y: -127.99998}
-      - {x: 221.70251, y: 127.99998}
-    physicsShape:
-    - - {x: 90, y: -49}
-      - {x: 90, y: 256}
-      - {x: -219, y: 256}
-      - {x: -256, y: 228}
-      - {x: -256, y: -90}
-      - {x: 60, y: -90}
-    - - {x: -196, y: 250}
-      - {x: -195, y: 251}
-      - {x: 83, y: 251}
-      - {x: 83, y: -27}
-      - {x: 82, y: -28}
-      - {x: 82, y: 250}
-    - - {x: -251, y: -83}
-      - {x: -251, y: 195}
-      - {x: -250, y: 196}
-      - {x: -250, y: -82}
-      - {x: 28, y: -82}
-      - {x: 27, y: -83}
+    sprites: []
+    outline: []
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      map_0: -1749843122
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
