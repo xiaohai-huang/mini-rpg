@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Arthur Ability Two Shields Effect
   m_EditorClassIdentifier: 
   Name: Arthur Ability Two Shields
-  ShowInListUI: 1
+  ShowInListUI: 0
   CoolDownTime: -1
-  Icon: {fileID: 21300000, guid: 41ca6d1d656f3d947bfb72ee27896fff, type: 3}
+  Icon: {fileID: 0}

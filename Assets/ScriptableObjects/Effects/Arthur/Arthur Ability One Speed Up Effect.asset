@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Arthur Ability One Speed Up
   ShowInListUI: 1
   CoolDownTime: -1
-  Icon: {fileID: 21300000, guid: 56f243ca3ee6e284492b12b289a5fc59, type: 3}
+  Icon: {fileID: 21300000, guid: 9a47d75ea3a1c7340a4426227790fad8, type: 3}
   RangeIndicatorPrefab: {fileID: 8199844526890745871, guid: b2a41c7c1ec09c04a9d12fd7a7345837,
     type: 3}
   Offset: {x: 0, y: 0.04, z: 0}
