@@ -21,7 +21,6 @@ public class ExportSubSprites : Editor
     [MenuItem("Assets/Export Sub-Sprites", true)]
     private static bool CanExportSubSprites()
     {
-        Debug.Log($"active obj: {Selection.activeObject}");
         return Selection.activeObject is Sprite;
     }
 
