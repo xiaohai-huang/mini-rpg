@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -105,18 +105,1624 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: arthur-abilities-icon_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa108ed9e1788f478b3433d80a7b51c
+      internalID: -1478148791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993bc101e7b723e48944d22d15d69ac2
+      internalID: -795081366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8576d1e4a4a555c4da422d71e5e4a2b3
+      internalID: 517649445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_3
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 979
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1672a83ae1ebef843a83db0613cece6e
+      internalID: -1303662763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_4
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 979
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31666ee8f3c8e094d96d97c429ff8a98
+      internalID: 1048281507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_5
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 979
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f07c354ed5149c4d98153fbcb88519a
+      internalID: -1922212557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 930
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4907b3dd6211d45a2929a9ed3ceca6
+      internalID: 12795516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_7
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 931
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9265e4e3cde186440b1778f688f6d4d5
+      internalID: -2119807799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_8
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 931
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31ba887909fc864aa23fcb567e63626
+      internalID: -493246141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 766
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a46fabab77549494c8b79b1c8f32a302
+      internalID: -1845474463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_10
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 766
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc358b7d5a6ed549a85e7199d29b66c
+      internalID: 1512659529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_11
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 766
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ea9271875db90449f1d88d6db2f94f
+      internalID: 1809679289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_12
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 883
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263e3eec42b332f42a58a12cbca5cd4a
+      internalID: -1449412769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_13
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 883
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c4c6642e3d5cf142a0fb30981c59dc6
+      internalID: -1194050126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_14
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 888
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c01589199ede98048a89aaff6a8fd3a5
+      internalID: 533562147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_15
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 834
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a586ff8af20b74baeed6389efd4816
+      internalID: -1006836036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_16
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 835
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df3c0c8cb3cd5f48a7df369c4780758
+      internalID: 2106077739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_17
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 786
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbcefa3cdbbf6be40a5ccda396a3d387
+      internalID: -132408613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_18
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 786
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b733ca2b549e7844e8f6cf09583a471a
+      internalID: -564322679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arthur-Avatar-Square
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 637
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c7f28fe48d2e64ca4756895020b730
+      internalID: -2101338982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_20
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 636
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 840d2d65eda0b384faaf0af67d87dbd9
+      internalID: 1377226314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_21
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 636
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7659550ed9679b743875bb79dbc708fd
+      internalID: 1534050484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_22
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 738
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da4b96dd1e1dcdf4fb0bb414434974d1
+      internalID: 1183168127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_23
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 739
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f36cab206dec845adddd689bd03be2
+      internalID: 107137723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_24
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 691
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf35cdefe214a1948b7e59762c409af3
+      internalID: 1148806115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_25
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 691
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa8a9150e482f242b41442c50715fad
+      internalID: 80653978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_26
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 643
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71df4c54155cb2c46a579ca8bab66df7
+      internalID: 1053914031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_27
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 643
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e14da701a2366478b3e62b0963f9fc
+      internalID: -2048188490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Recall Icon
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 506
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43f2d79620e8b1479b555689a3a990e
+      internalID: 1985539784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heal Icon
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 507
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046be2aedb9fad542b25f58cb825f3a9
+      internalID: 602457316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_30
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 506
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610391ae780411d4fbe8847bd77fbe20
+      internalID: -768098353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_31
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 595
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad36505d5847b941b81f539ca94b243
+      internalID: 232556449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_32
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 595
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08829549fdb775247abc42b0b89df811
+      internalID: 1976296687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_33
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 547
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a3d61ef4403404a9e88b472872d14b
+      internalID: -1657221476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_34
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 547
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98537fd0abce2d34a90f6d1f7d9a8cae
+      internalID: 1046983314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZhanSha Icon
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 376
+        width: 127
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f6891474280fbb4f990aa405097f047
+      internalID: 849783340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_36
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 376
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 047a3b017cc38f046b576cb221870e52
+      internalID: 1770810779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_37
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 376
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a50ab5edc186643ac53f322cb0aa2e
+      internalID: -1888412437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_38
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 499
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53725861960a6db4eb3ae69cc7d7c988
+      internalID: -1961836430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_39
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 498
+        width: 45
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64ce368de6aa9540aa5131e29f4c510
+      internalID: -909537994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_40
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 451
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 738516b2bfe2be740b445af3b338f939
+      internalID: -146499205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_41
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 451
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078db4e4ddc1080428ec9e924b28401f
+      internalID: 1883542843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_42
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 402
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4c64a757e48f246ae90ccfcfb54bd8
+      internalID: 930996255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_43
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 403
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f05ad31b923fef44bb35c44a102b7e52
+      internalID: -665582972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda7c80579e06f14b9327f792838ea9f
+      internalID: -297961365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_45
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 246
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30211754e6c0b7f4583034bb4a894f69
+      internalID: 1472318676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_46
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 246
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c04b4ca5c5be841976dc1ac394a459
+      internalID: 1641406752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_47
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 354
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2305a393aac8e9446bce212d6fdf30da
+      internalID: 1613406696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_48
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 354
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80eba901d575982418758aa1e0425322
+      internalID: -1584021250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_49
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 306
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad1fa6677d63b640a8aa952da4451c0
+      internalID: 970537383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_50
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 307
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e2e115a0f2daa4e96505ab6e9aab37
+      internalID: 729145479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_51
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 258
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9999a1b499d46134bab3c8a0c38c0617
+      internalID: 962322535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_52
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 259
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ab20470196e194ab8c0b7b3bea8d27
+      internalID: -7002817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_53
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f43b8041cac9148be294bfc7440cc1
+      internalID: 1703092995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_54
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 116
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aacd7961d2138a04f9260b092d9bb8e5
+      internalID: -1939593602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_55
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c29edd24bb589a647a54a665d38ac333
+      internalID: 2128885489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_56
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 210
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0270a43cf388a743851bb9e6dc9167a
+      internalID: -1093386350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arthur-Passive-Icon
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 211
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97480d1c8dd7ae6438094193f9949fb9
+      internalID: -1563802867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_58
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 163
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965060f9ddced464d96fab57c833315f
+      internalID: -877341827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_59
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 163
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4b2bce8921f7d4aa7ebba10494496d
+      internalID: -1452812690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_60
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 114
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed27d7b8b67101c459297d50a1d09d47
+      internalID: -280416330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_61
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 115
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d7ed5094f75ad40a563345fb5bdf79
+      internalID: -1060430926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_62
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f764385e9d80ec04ead0a85f78f9c287
+      internalID: 2091417755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_63
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 34
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc8efe987f4128240bdffee5e777b590
+      internalID: -1607005766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arthur-Avatar-Round
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 34
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5012095ecdf4134bb1e2382d4b5d291
+      internalID: -557331328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_65
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 34
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78fe2a2aef139da44832015d27143916
+      internalID: -706370861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_66
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 50
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11b12345de136246bd63d4b90a8665c
+      internalID: 252795403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_67
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 66
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21ee505893286845a51d22271e54517
+      internalID: -1251255551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_68
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 67
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0964badc89fbff4a9e1be9879df378f
+      internalID: 244783246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_69
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 2
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f50bf15b9314de847a099de8bd532ace
+      internalID: 1280537178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_70
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 3
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c48a039dc39cc445b82e8ea3a8dd13b
+      internalID: 1081573413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_71
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 18
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c05482f5811c3645885c22c1dbad4e2
+      internalID: 193380179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arthur-abilities-icon_72
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 19
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f928eb3671a541b40a05433378041bf0
+      internalID: -59595389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dbf9b4e5f6b6ca842bc54cf588a841d3
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Arthur-Avatar-Round: -557331328
+      Arthur-Avatar-Square: -2101338982
+      Arthur-Passive-Icon: -1563802867
+      Heal Icon: 602457316
+      Recall Icon: 1985539784
+      ZhanSha Icon: 849783340
+      arthur-abilities-icon_0: -1478148791
+      arthur-abilities-icon_1: -795081366
+      arthur-abilities-icon_10: 1512659529
+      arthur-abilities-icon_11: 1809679289
+      arthur-abilities-icon_12: -1449412769
+      arthur-abilities-icon_13: -1194050126
+      arthur-abilities-icon_14: 533562147
+      arthur-abilities-icon_15: -1006836036
+      arthur-abilities-icon_16: 2106077739
+      arthur-abilities-icon_17: -132408613
+      arthur-abilities-icon_18: -564322679
+      arthur-abilities-icon_2: 517649445
+      arthur-abilities-icon_20: 1377226314
+      arthur-abilities-icon_21: 1534050484
+      arthur-abilities-icon_22: 1183168127
+      arthur-abilities-icon_23: 107137723
+      arthur-abilities-icon_24: 1148806115
+      arthur-abilities-icon_25: 80653978
+      arthur-abilities-icon_26: 1053914031
+      arthur-abilities-icon_27: -2048188490
+      arthur-abilities-icon_3: -1303662763
+      arthur-abilities-icon_30: -768098353
+      arthur-abilities-icon_31: 232556449
+      arthur-abilities-icon_32: 1976296687
+      arthur-abilities-icon_33: -1657221476
+      arthur-abilities-icon_34: 1046983314
+      arthur-abilities-icon_36: 1770810779
+      arthur-abilities-icon_37: -1888412437
+      arthur-abilities-icon_38: -1961836430
+      arthur-abilities-icon_39: -909537994
+      arthur-abilities-icon_4: 1048281507
+      arthur-abilities-icon_40: -146499205
+      arthur-abilities-icon_41: 1883542843
+      arthur-abilities-icon_42: 930996255
+      arthur-abilities-icon_43: -665582972
+      arthur-abilities-icon_44: -297961365
+      arthur-abilities-icon_45: 1472318676
+      arthur-abilities-icon_46: 1641406752
+      arthur-abilities-icon_47: 1613406696
+      arthur-abilities-icon_48: -1584021250
+      arthur-abilities-icon_49: 970537383
+      arthur-abilities-icon_5: -1922212557
+      arthur-abilities-icon_50: 729145479
+      arthur-abilities-icon_51: 962322535
+      arthur-abilities-icon_52: -7002817
+      arthur-abilities-icon_53: 1703092995
+      arthur-abilities-icon_54: -1939593602
+      arthur-abilities-icon_55: 2128885489
+      arthur-abilities-icon_56: -1093386350
+      arthur-abilities-icon_58: -877341827
+      arthur-abilities-icon_59: -1452812690
+      arthur-abilities-icon_6: 12795516
+      arthur-abilities-icon_60: -280416330
+      arthur-abilities-icon_61: -1060430926
+      arthur-abilities-icon_62: 2091417755
+      arthur-abilities-icon_63: -1607005766
+      arthur-abilities-icon_65: -706370861
+      arthur-abilities-icon_66: 252795403
+      arthur-abilities-icon_67: -1251255551
+      arthur-abilities-icon_68: 244783246
+      arthur-abilities-icon_69: 1280537178
+      arthur-abilities-icon_7: -2119807799
+      arthur-abilities-icon_70: 1081573413
+      arthur-abilities-icon_71: 193380179
+      arthur-abilities-icon_72: -59595389
+      arthur-abilities-icon_8: -493246141
+      arthur-abilities-icon_9: -1845474463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
