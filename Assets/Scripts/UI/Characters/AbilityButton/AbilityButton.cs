@@ -7,6 +7,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     public float MovementRange = 150f;
     [SerializeField] private RectTransform _cancelButton;
+    public RectTransform CancelButton => _cancelButton;
 
     /// <summary>
     /// The argument is the position of the release point. The values of each component is between 0 and 1.
@@ -56,7 +57,6 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerDown(PointerEventData eventData)
     {
         _dot.rectTransform.anchoredPosition = Vector2.zero;
-        _cancelButton.gameObject.SetActive(true);
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, eventData.position, eventData.pressEventCamera, out var positionRelativeToOrigin);
         RealPointerPosition = positionRelativeToOrigin;
@@ -96,7 +96,6 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             OnReleased?.Invoke(false);
         }
-        _cancelButton.gameObject.SetActive(false);
         RealPointerPosition = Vector2.zero;
         Cancelling = false;
     }

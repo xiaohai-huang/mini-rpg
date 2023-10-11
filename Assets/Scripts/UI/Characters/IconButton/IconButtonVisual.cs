@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AbilityButton))]
 public class IconButtonVisual : MonoBehaviour
 {
     public bool ScaleAnimation = true;
@@ -58,6 +59,7 @@ public class IconButtonVisual : MonoBehaviour
     {
         if (ShowDotStrategy == ShowDotStrategies.AlwaysShow)
         {
+            _button.CancelButton.gameObject.SetActive(true);
             _background.gameObject.SetActive(true);
             _dot.gameObject.SetActive(true);
             _dot.rectTransform.anchoredPosition = Vector2.zero;
@@ -70,6 +72,7 @@ public class IconButtonVisual : MonoBehaviour
         }
         else if (ShowDotStrategy == ShowDotStrategies.Hidden)
         {
+            _button.CancelButton.gameObject.SetActive(false);
             _background.gameObject.SetActive(false);
             _dot.gameObject.SetActive(false);
         }
@@ -81,6 +84,7 @@ public class IconButtonVisual : MonoBehaviour
     {
         if (ShowDotStrategy == ShowDotStrategies.ShowAfterMove)
         {
+            _button.CancelButton.gameObject.SetActive(true);
             _background.gameObject.SetActive(true);
             _dot.gameObject.SetActive(true);
         }
@@ -104,6 +108,7 @@ public class IconButtonVisual : MonoBehaviour
         {
             _background.gameObject.SetActive(false);
             _dot.gameObject.SetActive(false);
+            _button.CancelButton.gameObject.SetActive(false);
         }
 
         _scale = 1f;
