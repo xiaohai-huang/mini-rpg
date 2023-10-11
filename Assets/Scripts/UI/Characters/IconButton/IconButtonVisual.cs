@@ -3,6 +3,14 @@ using UnityEngine.UI;
 
 public class IconButtonVisual : MonoBehaviour
 {
+    public bool ScaleAnimation = true;
+    public ShowDotStrategies ShowDotStrategy = ShowDotStrategies.AlwaysShow;
+    public enum ShowDotStrategies
+    {
+        Hidden = 0,
+        AlwaysShow,
+        ShowAfterMove
+    }
     [SerializeField] private Image _background;
     [SerializeField] private Image _dot;
     [SerializeField] private RectTransform _container;
@@ -26,7 +34,10 @@ public class IconButtonVisual : MonoBehaviour
 
     void Update()
     {
-        _container.localScale = Vector3.Lerp(_container.localScale, new Vector3(_scale, _scale, 1f), SCALE_TRANSITION_SPEED * Time.deltaTime);
+        if (ScaleAnimation)
+        {
+            _container.localScale = Vector3.Lerp(_container.localScale, new Vector3(_scale, _scale, 1f), SCALE_TRANSITION_SPEED * Time.deltaTime);
+        }
     }
 
     void OnEnable()
@@ -45,30 +56,56 @@ public class IconButtonVisual : MonoBehaviour
 
     void OnBeginInteraction()
     {
-        _background.gameObject.SetActive(true);
-        _dot.gameObject.SetActive(true);
-        _dot.rectTransform.anchoredPosition = Vector2.zero;
-        _background.color = _activeColor;
+        if (ShowDotStrategy == ShowDotStrategies.AlwaysShow)
+        {
+            _background.gameObject.SetActive(true);
+            _dot.gameObject.SetActive(true);
+            _dot.rectTransform.anchoredPosition = Vector2.zero;
+            _background.color = _activeColor;
+        }
+        else if (ShowDotStrategy == ShowDotStrategies.ShowAfterMove)
+        {
+            _dot.rectTransform.anchoredPosition = Vector2.zero;
+            _background.color = _activeColor;
+        }
+        else if (ShowDotStrategy == ShowDotStrategies.Hidden)
+        {
+            _background.gameObject.SetActive(false);
+            _dot.gameObject.SetActive(false);
+        }
+
         _scale = PRESSED_SCALE;
     }
 
     private void OnMoving()
     {
-        _dot.rectTransform.anchoredPosition = _button.PointerPosition;
-        if (_button.Cancelling)
+        if (ShowDotStrategy == ShowDotStrategies.ShowAfterMove)
         {
-            _background.color = _cancelColor;
+            _background.gameObject.SetActive(true);
+            _dot.gameObject.SetActive(true);
         }
-        else
+        if (ShowDotStrategy == ShowDotStrategies.AlwaysShow || ShowDotStrategy == ShowDotStrategies.ShowAfterMove)
         {
-            _background.color = _activeColor;
+            _dot.rectTransform.anchoredPosition = _button.PointerPosition;
+            if (_button.Cancelling)
+            {
+                _background.color = _cancelColor;
+            }
+            else
+            {
+                _background.color = _activeColor;
+            }
         }
     }
 
     private void OnReleased(bool arg0)
     {
-        _background.gameObject.SetActive(false);
-        _dot.gameObject.SetActive(false);
+        if (ShowDotStrategy == ShowDotStrategies.AlwaysShow || ShowDotStrategy == ShowDotStrategies.ShowAfterMove)
+        {
+            _background.gameObject.SetActive(false);
+            _dot.gameObject.SetActive(false);
+        }
+
         _scale = 1f;
     }
 

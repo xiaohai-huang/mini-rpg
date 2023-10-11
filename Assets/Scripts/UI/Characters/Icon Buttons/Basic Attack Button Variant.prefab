@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 3164607814768053385, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3164607814768053385, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
@@ -127,6 +127,16 @@ PrefabInstance:
     - target: {fileID: 5154452448436783479, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
       propertyPath: _buttonSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154452448436783479, guid: 48759117a21777f46ba679d02126c6ea,
+        type: 3}
+      propertyPath: ScaleAnimation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154452448436783479, guid: 48759117a21777f46ba679d02126c6ea,
+        type: 3}
+      propertyPath: ShowDotStrategy
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7009713525552480938, guid: 48759117a21777f46ba679d02126c6ea,

@@ -18,6 +18,16 @@ PrefabInstance:
       propertyPath: _buttonSize
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2927536642344076361, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: ScaleAnimation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2927536642344076361, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: ShowDotStrategy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3047948522186549249, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
         type: 3}
       propertyPath: m_SizeDelta.x
