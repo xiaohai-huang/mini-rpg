@@ -26,6 +26,8 @@ jobs:
           key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-WebGL-
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
       - name: Build WebGL
         uses: game-ci/unity-builder@v4
         env:
