@@ -1,4 +1,4 @@
-using FSM;
+using UnityHFSM;
 
 public class IdleState : State
 {

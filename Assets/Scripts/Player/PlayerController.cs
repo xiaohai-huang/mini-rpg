@@ -1,4 +1,4 @@
-using FSM;
+using UnityHFSM;
 using UnityEngine;
 using Xiaohai.Character;
 using Xiaohai.Input;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         fsm.AddState("Resurrection", onEnter: (s) =>
         {
             _damageable.Resurrect();
-            s.fsm.RequestStateChange("Idle");
+            fsm.RequestStateChange("Idle");
         });
 
         fsm.AddTransition(new Transition("Idle", "Walk", t =>

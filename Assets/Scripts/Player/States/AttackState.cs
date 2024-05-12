@@ -1,14 +1,15 @@
-using FSM;
-using UnityEngine;
+using UnityHFSM;
 
 public class AttackState : State
 {
     private readonly PlayerController _mono;
     private readonly AttackHandler _attackHandler;
+    private StateMachine _sm;
     public AttackState(PlayerController mono) : base(needsExitTime: false)
     {
         _mono = mono;
         _attackHandler = mono.GetComponent<AttackHandler>();
+        _sm = (StateMachine)fsm;
     }
 
     public override void OnEnter()
@@ -21,7 +22,7 @@ public class AttackState : State
     {
         if (timer.Elapsed > 0.1f)
         {
-            fsm.RequestStateChange("Idle");
+            _sm.RequestStateChange("Idle");
         }
     }
 }
