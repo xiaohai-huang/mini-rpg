@@ -43,7 +43,13 @@
     "Temp/": true,
     "Assets/ScriptableObjects/": true
   },
-  "cSpell.words": ["Behaviour", "Damageables", "Keyalias", "XiaoQiao"],
+  "cSpell.words": [
+    "Behaviour",
+    "Damageables",
+    "Keyalias",
+    "Scriptable",
+    "XiaoQiao"
+  ],
   "dotnet.defaultSolution": "mini-rpg.sln",
   "[csharp]": {
     "editor.formatOnSave": true,

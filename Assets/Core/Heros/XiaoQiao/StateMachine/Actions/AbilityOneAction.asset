@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69c608e2250a74488bcd8011b48d59b, type: 3}
+  m_Name: AbilityOneAction
+  m_EditorClassIdentifier: 
+  description: "\u5C0F\u4E54\u5411\u6307\u5B9A\u65B9\u5411\u6254\u51FA\u4E00\u628A\u56DE\u65CB\u98DE\u884C\u7684\u6247\u5B50\uFF0C\u4F1A\u5BF9\u7B2C\u4E00\u4E2A\u547D\u4E2D\u7684\u654C\u4EBA\u9020\u6210585/635/685/735/785/835\uFF08+80\uFF05\u6CD5\u672F\u52A0\u6210\uFF09\u70B9\u6CD5\u672F\u4F24\u5BB3\uFF0C\u6BCF\u6B21\u547D\u4E2D\u540E\u4F24\u5BB3\u90FD\u4F1A\u8870\u51CF20\uFF05\uFF0C\u6700\u4F4E\u8870\u51CF\u81F3\u521D\u59CB\u4F24\u5BB3\u768450\uFF05\u3002"

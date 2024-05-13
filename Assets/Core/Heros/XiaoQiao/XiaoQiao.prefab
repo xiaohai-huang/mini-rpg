@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &476601942985288595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8363048546261250668}
+  m_Layer: 9
+  m_Name: Fan Throw Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8363048546261250668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476601942985288595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.15, z: 1.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8285796180761926735}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4232162750497204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,9 +126,14 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1.08
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8791383263296508626, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8282689918333509115, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8363048546261250668}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2695485531350049118, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
@@ -141,3 +177,12 @@ MonoBehaviour:
   AbilityThreeInput: 0
   PerformingAbilityThree: 0
   AbilityThreeDirection: {x: 0, y: 0}
+  _fanPrefab: {fileID: 2268402220673106687, guid: 87efe086abc752e40b8419eab9913fdc,
+    type: 3}
+  _fanThrowPoint: {fileID: 8363048546261250668}
+--- !u!4 &8285796180761926735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8282689918333509115, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+    type: 3}
+  m_PrefabInstance: {fileID: 4232162750497204}
+  m_PrefabAsset: {fileID: 0}
