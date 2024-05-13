@@ -36,7 +36,13 @@ namespace Xiaohai.Input
 
         private void OnDisable()
         {
-            _inputActions.Disable();
+            if (_inputActions != null)
+            {
+                _inputActions.Disable();
+                _inputActions.GamePlay.Attack.performed -= Attack_performed;
+                _inputActions.GamePlay.Attack.canceled -= Attack_canceled;
+                _inputActions.GamePlay.SpawnEnemy.performed -= SpawnEnemy_performed;
+            }
             _inputActions = null;
         }
 
