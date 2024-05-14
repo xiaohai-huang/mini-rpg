@@ -25,11 +25,13 @@ namespace Xiaohai.Character.XiaoQiao
         {
             // calculate the destination
             _destination = transform.position + transform.forward * Distance;
+            sm.RequestStateChange("FlyingForwards");
         }
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+
+        void Awake()
         {
             sm = new StateMachine();
+            sm.AddState("Idle", onEnter: (_) => { });
             sm.AddState("FlyingForwards", onLogic: (_) =>
             {
 
@@ -58,7 +60,7 @@ namespace Xiaohai.Character.XiaoQiao
                 Destroy(gameObject);
             });
 
-            sm.SetStartState("FlyingForwards");
+            sm.SetStartState("Idle");
 
             sm.Init();
         }
@@ -67,9 +69,6 @@ namespace Xiaohai.Character.XiaoQiao
         void Update()
         {
             sm.OnLogic();
-
         }
-
-
     }
 }
