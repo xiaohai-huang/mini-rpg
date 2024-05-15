@@ -5,15 +5,15 @@ namespace Xiaohai.Character.XiaoQiao
     public class XiaoQiao : Character
     {
         [Header("XiaoQiao")]
-
         [Header("Ability One")]
-        [SerializeField] private Fan _fanPrefab;
-        [SerializeField] private Transform _fanThrowPoint;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        [SerializeField]
+        private Fan _fanPrefab;
 
-        }
+        [SerializeField]
+        private Transform _fanThrowPoint;
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start() { }
 
         public override void Update()
         {
@@ -29,7 +29,10 @@ namespace Xiaohai.Character.XiaoQiao
 
             // Throw a fan
             // Adjust the throw point based on ability one input direction
-            _fanThrowPoint.rotation = Quaternion.LookRotation(new Vector3(AbilityOneDirection.x, 0, AbilityOneDirection.y), Vector3.up);
+            _fanThrowPoint.rotation = Quaternion.LookRotation(
+                new Vector3(AbilityOneDirection.x, 0, AbilityOneDirection.y),
+                Vector3.up
+            );
 
             Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
             fan.SetReceiver(transform);

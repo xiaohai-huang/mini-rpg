@@ -45,7 +45,6 @@ namespace Xiaohai.Character.XiaoQiao
                 "FlyingForwards",
                 onEnter: (_) =>
                 {
-
                     _hits = 0;
                     _victims.Clear();
                 },
@@ -111,12 +110,14 @@ namespace Xiaohai.Character.XiaoQiao
             // Hit a new target
             if (!_victims.Contains(other))
             {
-
                 // Apply damage
                 if (other.TryGetComponent<Damageable>(out var enemy))
                 {
                     // Calculate damage
-                    float reductionAmount = Mathf.Max(MIN_DAMAGE_REDUCTION_RATE, 1f - (_hits * DAMAGE_DECAY_RATE));
+                    float reductionAmount = Mathf.Max(
+                        MIN_DAMAGE_REDUCTION_RATE,
+                        1f - (_hits * DAMAGE_DECAY_RATE)
+                    );
 
                     enemy.TakeDamage((int)(_damage * reductionAmount));
                 }
