@@ -33,7 +33,7 @@ namespace Xiaohai.Character.XiaoQiao
 
             Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
             fan.SetReceiver(transform);
-            fan.Throw();
+            fan.Throw(585);
         }
 
         public void PerformAbilityTwo()
