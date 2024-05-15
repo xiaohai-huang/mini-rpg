@@ -5,6 +5,9 @@ namespace Xiaohai.Character.XiaoQiao
     public class XiaoQiao : Character
     {
         [Header("XiaoQiao")]
+        [SerializeField]
+        private float _rotationSpeed;
+
         [Header("Ability One")]
         [SerializeField]
         private Fan _fanPrefab;
@@ -12,31 +15,63 @@ namespace Xiaohai.Character.XiaoQiao
         [SerializeField]
         private Transform _fanThrowPoint;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start() { }
+        private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
+        private Animator _animator;
+
+        public override void Awake()
+        {
+            base.Awake();
+            _animator = GetComponent<Animator>();
+        }
 
         public override void Update()
         {
             base.Update();
         }
 
-        public void PerformAbilityOne()
+        private readonly AwaitableCompletionSource _abilityOneCompletionSource = new();
+
+        public async Awaitable PerformAbilityOne()
         {
+            _abilityOneCompletionSource.Reset();
             // 小乔向指定方向扔出一把回旋飞行的扇子，
             // 会对第一个命中的敌人造成585/635/685/735/785/835（+80％法术加成）点法术伤害，
             // 每次命中后伤害都会衰减20％，最低衰减至初始伤害的50％。
             Debug.Log("Start to perform XQ Ab 1");
-
+            // Rotate towards the direction specified by the ab one input
+            await RotateTowards(new Vector3(AbilityOneDirection.x, 0, AbilityOneDirection.y));
             // Throw a fan
-            // Adjust the throw point based on ability one input direction
-            _fanThrowPoint.rotation = Quaternion.LookRotation(
-                new Vector3(AbilityOneDirection.x, 0, AbilityOneDirection.y),
-                Vector3.up
-            );
+            _animator.SetTrigger(ABILITY_ONE);
+            await _abilityOneCompletionSource.Awaitable;
+        }
 
+        public void ThrowFan()
+        {
             Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
             fan.SetReceiver(transform);
             fan.Throw(585);
+            _abilityOneCompletionSource.SetResult();
+        }
+
+        private async Awaitable RotateTowards(Vector3 targetDirection)
+        {
+            // Rotate towards the direction
+            if (targetDirection != Vector3.zero)
+            {
+                var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+                float angles = Vector3.Angle(transform.forward, targetDirection);
+                while (angles > 1f)
+                {
+                    transform.rotation = Quaternion.Slerp(
+                        transform.rotation,
+                        targetRotation,
+                        Time.deltaTime * _rotationSpeed
+                    );
+
+                    angles = Vector3.Angle(transform.forward, targetDirection);
+                    await Awaitable.NextFrameAsync();
+                }
+            }
         }
 
         public void PerformAbilityTwo()

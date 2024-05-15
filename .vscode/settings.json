@@ -48,7 +48,10 @@
     "Damageables",
     "HFSM",
     "Keyalias",
+    "Lerp",
+    "Mathf",
     "Scriptable",
+    "Slerp",
     "XiaoQiao"
   ],
   "dotnet.defaultSolution": "mini-rpg.sln",
