@@ -52,6 +52,7 @@
     "Mathf",
     "Scriptable",
     "Slerp",
+    "Tweening",
     "XiaoQiao"
   ],
   "dotnet.defaultSolution": "mini-rpg.sln",
