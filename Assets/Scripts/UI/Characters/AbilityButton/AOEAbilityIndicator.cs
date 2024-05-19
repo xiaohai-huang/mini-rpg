@@ -93,7 +93,7 @@ namespace Xiaohai.UI
 
             _final_AOE_Indicator.gameObject.SetActive(true);
 
-            await Awaitable.WaitForSecondsAsync(0.1f);
+            await Awaitable.WaitForSecondsAsync(0.05f);
             _final_AOE_Indicator.gameObject.SetActive(false);
         }
 
