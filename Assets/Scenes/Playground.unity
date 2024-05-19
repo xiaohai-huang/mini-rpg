@@ -2260,11 +2260,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: XiaoQiao
       objectReference: {fileID: 0}
-    - target: {fileID: 2695194293289820394, guid: a4b48188009aaf149ada85be5b891d81,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8285796180761926735, guid: a4b48188009aaf149ada85be5b891d81,
         type: 3}
       propertyPath: m_LocalPosition.x

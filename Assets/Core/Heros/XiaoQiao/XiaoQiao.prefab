@@ -151,6 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8791383263296508626, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
+    - {fileID: 5193091676713643087, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2022249374917885123, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
     - {fileID: 7558912574671977960, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
@@ -203,17 +204,23 @@ MonoBehaviour:
   _performingBasicAttack: 0
   AbilityOneInput: 0
   PerformingAbilityOne: 0
+  AbilityOnePosition: {x: 0, y: 0}
   AbilityOneDirection: {x: 0, y: 0}
   AbilityTwoInput: 0
   PerformingAbilityTwo: 0
+  AbilityTwoPosition: {x: 0, y: 0}
   AbilityTwoDirection: {x: 0, y: 0}
   AbilityThreeInput: 0
   PerformingAbilityThree: 0
+  AbilityThreePosition: {x: 0, y: 0}
   AbilityThreeDirection: {x: 0, y: 0}
   _rotationSpeed: 18
   _fanPrefab: {fileID: 2268402220673106687, guid: 87efe086abc752e40b8419eab9913fdc,
     type: 3}
   _fanThrowPoint: {fileID: 8363048546261250668}
+  _wind: {fileID: 5256276487196366623, guid: a98a6464a1d81e149aac10c97b9f60df, type: 3}
+  _windMaxRange: 10
+  _windSize: 2
 --- !u!4 &6710836274454276860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6714487884994784072, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
@@ -300,7 +307,8 @@ PrefabInstance:
     - {fileID: -1638973823236815559, guid: 87efe086abc752e40b8419eab9913fdc, type: 3}
     - {fileID: 2268402220673106687, guid: 87efe086abc752e40b8419eab9913fdc, type: 3}
     - {fileID: 6012776285424567021, guid: 87efe086abc752e40b8419eab9913fdc, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8866704325022594271, guid: 87efe086abc752e40b8419eab9913fdc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87efe086abc752e40b8419eab9913fdc, type: 3}
@@ -318,6 +326,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8715438537607433272}
     m_Modifications:
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _AOE_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5246398398987956033, guid: edb97c5406f11384fab7b76e62e2154d,
         type: 3}
       propertyPath: m_Name

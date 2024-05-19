@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Xiaohai.Character.XiaoQiao
@@ -14,6 +15,20 @@ namespace Xiaohai.Character.XiaoQiao
 
         [SerializeField]
         private Transform _fanThrowPoint;
+
+        [Header("Ability Two")]
+        [SerializeField]
+        private GameObject _wind;
+
+        [SerializeField]
+        [Range(0.5f, 30f)]
+        [Tooltip("Wind range radius")]
+        private float _windMaxRange;
+
+        [SerializeField]
+        [Range(0.1f, 30f)]
+        [Tooltip("Wind radius")]
+        private float _windSize;
 
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
         private Animator _animator;
@@ -74,11 +89,18 @@ namespace Xiaohai.Character.XiaoQiao
             }
         }
 
-        public void PerformAbilityTwo()
+        public async Awaitable PerformAbilityTwo()
         {
             // 小乔在指定区域召唤出一道旋风，
             // 对区域内敌人造成300/340/380/420/460/500（+50％法术加成）点法术伤害并击飞1.5秒，攻击盒半径240
             Debug.Log("Start to perform XQ Ab 2");
+            // Get the world position of the attack area
+            var offset = _windMaxRange * AbilityTwoPosition;
+            var attackPosition = transform.position + new Vector3(offset.x, 0, offset.y);
+
+            await Awaitable.WaitForSecondsAsync(0.1f);
+            var wind = Instantiate(_wind, attackPosition, Quaternion.identity);
+            wind.transform.localScale = new Vector3(_windSize * 2, 1, _windSize * 2);
         }
 
         public void PerformAbilityThree()
