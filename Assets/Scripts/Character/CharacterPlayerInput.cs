@@ -5,8 +5,11 @@ using Xiaohai.Input;
 [RequireComponent(typeof(Character))]
 public class CharacterPlayerInput : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
-    [SerializeField] private OnScreenInputEventChannel _onScreenInputEventChannel;
+    [SerializeField]
+    private InputReader _inputReader;
+
+    [SerializeField]
+    private OnScreenInputEventChannel _onScreenInputEventChannel;
 
     private Character _character;
     private EffectSystem _effectSystem;
@@ -16,15 +19,14 @@ public class CharacterPlayerInput : MonoBehaviour
         _character = GetComponent<Character>();
         _effectSystem = GetComponent<EffectSystem>();
     }
+
     void OnEnable()
     {
-
         _onScreenInputEventChannel.OnClickEventRaised += OnScreenButtonClickEventRaised;
     }
 
     void OnDisable()
     {
-
         _onScreenInputEventChannel.OnClickEventRaised -= OnScreenButtonClickEventRaised;
     }
 
@@ -41,18 +43,21 @@ public class CharacterPlayerInput : MonoBehaviour
     private void OnAbilityOneClicked(Vector2 position)
     {
         _character.AbilityOneInput = true;
+        _character.AbilityOnePosition = position;
         _character.AbilityOneDirection = position.normalized;
     }
 
     private void OnAbilityTwoClicked(Vector2 position)
     {
         _character.AbilityTwoInput = true;
+        _character.AbilityTwoPosition = position;
         _character.AbilityTwoDirection = position.normalized;
     }
 
     private void OnAbilityThreeClicked(Vector2 position)
     {
         _character.AbilityThreeInput = true;
+        _character.AbilityThreePosition = position;
         _character.AbilityThreeDirection = position.normalized;
     }
 
@@ -61,35 +66,38 @@ public class CharacterPlayerInput : MonoBehaviour
         _effectSystem.AddEffect(new HealEffect("Heal Once", 520));
     }
 
-    private void OnScreenButtonClickEventRaised(OnScreenInputEventChannel.Input inputType, Vector2 position)
+    private void OnScreenButtonClickEventRaised(
+        OnScreenInputEventChannel.Input inputType,
+        Vector2 position
+    )
     {
         switch (inputType)
         {
             case OnScreenInputEventChannel.Input.BASIC_ATTACK:
-                {
-                    OnBasicAttack(position);
-                    break;
-                }
+            {
+                OnBasicAttack(position);
+                break;
+            }
             case OnScreenInputEventChannel.Input.ABILITY_ONE:
-                {
-                    OnAbilityOneClicked(position);
-                    break;
-                }
+            {
+                OnAbilityOneClicked(position);
+                break;
+            }
             case OnScreenInputEventChannel.Input.ABILITY_TWO:
-                {
-                    OnAbilityTwoClicked(position);
-                    break;
-                }
+            {
+                OnAbilityTwoClicked(position);
+                break;
+            }
             case OnScreenInputEventChannel.Input.ABILITY_THREE:
-                {
-                    OnAbilityThreeClicked(position);
-                    break;
-                }
+            {
+                OnAbilityThreeClicked(position);
+                break;
+            }
             case OnScreenInputEventChannel.Input.HEAL:
-                {
-                    OnHealClicked();
-                    break;
-                }
+            {
+                OnHealClicked();
+                break;
+            }
         }
     }
 }
