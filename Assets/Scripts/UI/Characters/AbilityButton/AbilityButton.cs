@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public float MovementRange = 150f;
-    [SerializeField] private RectTransform _cancelButton;
+
+    [SerializeField]
+    private RectTransform _cancelButton;
     public RectTransform CancelButton => _cancelButton;
 
     /// <summary>
@@ -22,6 +24,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Pointer position relative to the button position. It is restricted by <see cref="MovementRange" />, a clamped version of the <see cref="RealPointerPosition" />
     /// </summary>
     public Vector2 PointerPosition => _dot.rectTransform.anchoredPosition;
+
     /// <summary>
     /// Pointer position relative to the button position.
     /// </summary>
@@ -30,10 +33,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private bool _cancelling;
     public bool Cancelling
     {
-        get
-        {
-            return _cancelling;
-        }
+        get { return _cancelling; }
         private set
         {
             if (value != _cancelling)
@@ -47,6 +47,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public Vector2 Position => PointerPosition / MovementRange;
 
     private Image _dot;
+
     private void Start()
     {
         _dot = new GameObject("Invisible Dot", typeof(Image)).GetComponent<Image>();
@@ -58,7 +59,12 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         _dot.rectTransform.anchoredPosition = Vector2.zero;
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, eventData.position, eventData.pressEventCamera, out var positionRelativeToOrigin);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)transform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var positionRelativeToOrigin
+        );
         RealPointerPosition = positionRelativeToOrigin;
 
         OnBeginInteraction?.Invoke();
@@ -66,7 +72,12 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnDrag(PointerEventData eventData)
     {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, eventData.position, eventData.pressEventCamera, out var positionRelativeToOrigin);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)transform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var positionRelativeToOrigin
+        );
         var restrictedPosition = Vector2.ClampMagnitude(positionRelativeToOrigin, MovementRange);
         _dot.rectTransform.anchoredPosition = restrictedPosition;
 
@@ -83,10 +94,8 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         OnMoving?.Invoke();
     }
 
-
     public void OnPointerUp(PointerEventData eventData)
     {
-
         if (!RectTransformUtility.RectangleContainsScreenPoint(_cancelButton, eventData.position))
         {
             OnClick?.Invoke(Position);
