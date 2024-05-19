@@ -21,10 +21,11 @@ namespace Core.Game
             _timer = Timer.Instance.SetInterval(
                 () =>
                 {
-                    if (_count > _spawnPoints.Length)
+                    if (_count >= _spawnPoints.Length)
                     {
                         Timer.Instance.ClearInterval(_timer);
                         Debug.Log("Stop Spawn");
+                        return;
                     }
                     Spawn();
                     _count++;
