@@ -11,6 +11,13 @@ namespace Xiaohai.UI
         private Transform _AOE_Indicator;
 
         [SerializeField]
+        private Transform _final_AOE_Indicator;
+
+        [SerializeField]
+        [Range(0, 20f)]
+        private float Sensitivity;
+
+        [SerializeField]
         [Range(0.5f, 30f)]
         [Tooltip("Range radius")]
         private float _radius;
@@ -33,6 +40,7 @@ namespace Xiaohai.UI
         {
             _rangeIndicator.gameObject.SetActive(false);
             _AOE_Indicator.gameObject.SetActive(false);
+            _final_AOE_Indicator.gameObject.SetActive(false);
 
             UpdateSize();
 
@@ -43,24 +51,50 @@ namespace Xiaohai.UI
             SetColor(_activeColor);
         }
 
+        Vector2 _position;
+        bool _moving;
+
+        void Update()
+        {
+            if (_moving)
+            {
+                _position = Vector2.MoveTowards(
+                    _position,
+                    _button.Position,
+                    Sensitivity * Time.deltaTime
+                );
+                _AOE_Indicator.localPosition = new Vector3(_position.x, 0, _position.y) * _radius;
+            }
+        }
+
         protected override void OnMoving()
         {
+            _moving = true;
             _rangeIndicator.gameObject.SetActive(true);
-            var buttonPos = _button.Position;
-            _AOE_Indicator.localPosition = new Vector3(buttonPos.x, 0, buttonPos.y) * _radius;
         }
 
         protected override void OnBeginInteraction()
         {
             _AOE_Indicator.localPosition = Vector3.zero;
+            _position = Vector2.zero;
             _rangeIndicator.gameObject.SetActive(false);
             _AOE_Indicator.gameObject.SetActive(true);
+            _final_AOE_Indicator.gameObject.SetActive(false);
         }
 
-        protected override void OnReleased(bool released)
+        protected override async void OnReleased(bool released)
         {
+            _moving = false;
             _rangeIndicator.gameObject.SetActive(false);
+            await Awaitable.NextFrameAsync();
             _AOE_Indicator.gameObject.SetActive(false);
+            var buttonPos = _button.Position;
+            _final_AOE_Indicator.localPosition = new Vector3(buttonPos.x, 0, buttonPos.y) * _radius;
+
+            _final_AOE_Indicator.gameObject.SetActive(true);
+
+            await Awaitable.WaitForSecondsAsync(0.1f);
+            _final_AOE_Indicator.gameObject.SetActive(false);
         }
 
         protected override void OnCancellingChanged(bool cancelling)
@@ -80,6 +114,11 @@ namespace Xiaohai.UI
             // update the size of the range indicator
             _rangeIndicator.transform.localScale = new Vector3(_radius * 2, 1, _radius * 2);
             _AOE_Indicator.transform.localScale = new Vector3(_AOE_Radius * 2, 1, _AOE_Radius * 2);
+            _final_AOE_Indicator.transform.localScale = new Vector3(
+                _AOE_Radius * 2,
+                1,
+                _AOE_Radius * 2
+            );
         }
 
 #if UNITY_EDITOR
