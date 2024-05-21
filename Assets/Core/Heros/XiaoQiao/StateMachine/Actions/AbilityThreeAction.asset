@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e6a5462a7ec9d4b9910a70152cf43e, type: 3}
+  m_Name: AbilityThreeAction
+  m_EditorClassIdentifier: 
+  description: "\u5C0F\u4E54\u53EC\u5524\u6D41\u661F\u5E76\u4E0D\u65AD\u5411\u9644\u8FD1\u7684\u654C\u4EBA\u5760\u843D\uFF0C\u53EC\u5524\u6301\u7EED6\u79D2\uFF0C\r\n\u6BCF\u9897\u6D41\u661F\u4F1A\u9020\u6210400/500/600\uFF08+100\uFF05\u6CD5\u672F\u52A0\u6210\uFF09\u70B9\u6CD5\u672F\u4F24\u5BB3\uFF0C\r\n\u6BCF\u4E2A\u654C\u4EBA\u6700\u591A\u627F\u53D74\u6B21\u653B\u51FB\uFF0C\r\n\u5F53\u591A\u9897\u6D41\u661F\u547D\u4E2D\u540C\u4E00\u76EE\u6807\u65F6\uFF0C\u4ECE\u7B2C\u4E8C\u9897\u6D41\u661F\u5F00\u59CB\u5C06\u53EA\u9020\u621050\uFF05\u4F24\u5BB3\u3002\u91CA\u653E\u671F\u95F4\u6301\u7EED\u83B7\u5F97\u88AB\u52A8\u52A0\u901F\u6548\u679C\u3002"

@@ -4,19 +4,37 @@ namespace Xiaohai.UI
 {
     public class DirectionalAbilityIndicator : AbilityIndicator
     {
-        [SerializeField] private Transform _arrowIndicator;
-        [SerializeField] private Transform _rangeIndicator;
-        [SerializeField] private Transform _arrowBody;
-        [SerializeField] private Transform _arrowHead;
-        [SerializeField] private Transform _circle;
-        [SerializeField] private Color _activeColor;
-        [SerializeField] private Color _cancelColor;
+        [SerializeField]
+        private Transform _arrowIndicator;
+
+        [SerializeField]
+        private Transform _rangeIndicator;
+
+        [SerializeField]
+        private Transform _arrowBody;
+
+        [SerializeField]
+        private Transform _arrowHead;
+
+        [SerializeField]
+        private Transform _circle;
+
+        [ColorUsage(true, true)]
+        [SerializeField]
+        private Color _activeColor;
+
+        [ColorUsage(true, true)]
+        [SerializeField]
+        private Color _cancelColor;
         private Material _arrowBodyMaterial;
         private Material _arrowHeadMaterial;
         private Material _rangeIndicatorMaterial;
 
-        [SerializeField] private Transform _target;
-        [SerializeField] private float _length;
+        [SerializeField]
+        private Transform _target;
+
+        [SerializeField]
+        private float _length;
 
         void Awake()
         {
@@ -37,7 +55,6 @@ namespace Xiaohai.UI
 
             // update the size of the range indicator
             _circle.transform.localScale = new Vector3(_length * 2, _length * 2, 1);
-
 
             _arrowBodyMaterial = _arrowBody.GetComponent<MeshRenderer>().material;
             _arrowHeadMaterial = _arrowHead.GetComponent<MeshRenderer>().material;
@@ -73,10 +90,15 @@ namespace Xiaohai.UI
             SetColor(cancelling ? _cancelColor : _activeColor);
         }
 
+        Color _arrowActiveColor = new Color(0, 0.635f, 0.909f);
+        Color _arrowCancelColor = new Color(1f, 0, 0);
+
         private void SetColor(Color color)
         {
-            _arrowBodyMaterial.color = color;
-            _arrowHeadMaterial.color = color;
+            Color arrowColor = color == _activeColor ? _arrowActiveColor : _arrowCancelColor;
+
+            _arrowBodyMaterial.color = arrowColor;
+            _arrowHeadMaterial.color = arrowColor;
             _rangeIndicatorMaterial.SetColor("_Color", color);
         }
     }

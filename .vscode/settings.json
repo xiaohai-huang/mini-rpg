@@ -43,10 +43,21 @@
     "Temp/": true,
     "Assets/ScriptableObjects/": true
   },
-  "cSpell.words": ["Damageables", "Keyalias"],
+  "cSpell.words": [
+    "Behaviour",
+    "Damageables",
+    "HFSM",
+    "Keyalias",
+    "Lerp",
+    "Mathf",
+    "Scriptable",
+    "Slerp",
+    "Tweening",
+    "XiaoQiao"
+  ],
   "dotnet.defaultSolution": "mini-rpg.sln",
   "[csharp]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
+    "editor.defaultFormatter": "csharpier.csharpier-vscode"
   }
 }

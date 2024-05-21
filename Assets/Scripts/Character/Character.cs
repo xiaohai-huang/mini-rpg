@@ -11,6 +11,7 @@ namespace Xiaohai.Character
     {
         [ReadOnly]
         public Damageable Target;
+
         /// <summary>
         /// Measured in radius.
         /// </summary>
@@ -18,6 +19,7 @@ namespace Xiaohai.Character
         public float ViewRange;
         public float BaseWalkSpeed;
         public float BonusWalkSpeed;
+
         /// <summary>
         /// Final walk speed. BaseWalkSpeed + BonusWalkSpeed
         /// </summary>
@@ -29,6 +31,7 @@ namespace Xiaohai.Character
 
         [Header("Basic Attack")]
         public bool BasicAttackInput;
+
         [SerializeField]
         private bool _performingBasicAttack;
         public bool PerformingBasicAttack
@@ -41,24 +44,26 @@ namespace Xiaohai.Character
             }
         }
         public Action<bool> OnPerformingBasicAttackChanged;
+
         [Header("Ability One")]
         public bool AbilityOneInput;
         public bool PerformingAbilityOne;
+        public Vector2 AbilityOnePosition;
         public Vector2 AbilityOneDirection;
+
         [Header("Ability Two")]
         public bool AbilityTwoInput;
         public bool PerformingAbilityTwo;
+        public Vector2 AbilityTwoPosition;
         public Vector2 AbilityTwoDirection;
+
         [Header("Ability Three")]
         public bool AbilityThreeInput;
         public bool PerformingAbilityThree;
+        public Vector2 AbilityThreePosition;
         public Vector2 AbilityThreeDirection;
         private NavMeshAgent _navMeshAgent;
-        public DamageableTargetSelection TargetSelection
-        {
-            get;
-            private set;
-        }
+        public DamageableTargetSelection TargetSelection { get; private set; }
 
         public enum Ability
         {
@@ -142,6 +147,7 @@ namespace Xiaohai.Character
         }
 
         private readonly Collider[] colliders = new Collider[20];
+
         public Damageable[] GetNearByDamageables(float radius)
         {
             int numColliders = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders);
@@ -149,7 +155,10 @@ namespace Xiaohai.Character
             for (int i = 0; i < numColliders; i++)
             {
                 var collider = colliders[i];
-                if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
+                if (
+                    !collider.CompareTag("Player")
+                    && collider.TryGetComponent(out Damageable damageable)
+                )
                 {
                     damageables.Add(damageable);
                 }
@@ -161,12 +170,20 @@ namespace Xiaohai.Character
 
         public Damageable[] GetNearByDamageables(float radius, LayerMask layerMask)
         {
-            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders2, layerMask);
+            int numColliders = Physics.OverlapSphereNonAlloc(
+                transform.position,
+                radius,
+                colliders2,
+                layerMask
+            );
             Damageable[] damageables = new Damageable[numColliders];
             for (int i = 0; i < numColliders; i++)
             {
                 var collider = colliders2[i];
-                if (!collider.CompareTag("Player") && collider.TryGetComponent(out Damageable damageable))
+                if (
+                    !collider.CompareTag("Player")
+                    && collider.TryGetComponent(out Damageable damageable)
+                )
                 {
                     damageables[i] = damageable;
                 }

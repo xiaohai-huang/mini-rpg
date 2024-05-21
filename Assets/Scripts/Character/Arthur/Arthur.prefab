@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -343,6 +346,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -392,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4516680752836270683
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +456,6 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -525,12 +530,15 @@ MonoBehaviour:
   _performingBasicAttack: 0
   AbilityOneInput: 0
   PerformingAbilityOne: 0
+  AbilityOnePosition: {x: 0, y: 0}
   AbilityOneDirection: {x: 0, y: 0}
   AbilityTwoInput: 0
   PerformingAbilityTwo: 0
+  AbilityTwoPosition: {x: 0, y: 0}
   AbilityTwoDirection: {x: 0, y: 0}
   AbilityThreeInput: 0
   PerformingAbilityThree: 0
+  AbilityThreePosition: {x: 0, y: 0}
   AbilityThreeDirection: {x: 0, y: 0}
   _passiveEffectSO: {fileID: 11400000, guid: ea82946ffd13d5745877dd7b65ce2efd, type: 2}
 --- !u!114 &8118097012172470327
@@ -879,15 +887,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -995,6 +1005,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1173,6 +1186,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1256,6 +1272,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1443,6 +1462,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1528,6 +1550,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1612,6 +1637,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1716,6 +1744,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1875,6 +1906,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2396,6 +2430,46 @@ PrefabInstance:
       propertyPath: _inputType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 28.51895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 17.619034
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0.32653046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8416079968801071253, guid: 094e57e0f8e704f4fbd64d631115e068,
         type: 3}
       propertyPath: m_Name
@@ -2499,6 +2573,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _inputType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 28.51895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 17.619034
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0.32653046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8416079968801071253, guid: 094e57e0f8e704f4fbd64d631115e068,
         type: 3}
@@ -3047,6 +3161,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _inputType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 28.51895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 17.619034
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0.32653046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933509007637063447, guid: 094e57e0f8e704f4fbd64d631115e068,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8416079968801071253, guid: 094e57e0f8e704f4fbd64d631115e068,
         type: 3}

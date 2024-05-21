@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67282d59e5162f45a845732ffcde081, type: 3}
+  m_Name: Health Biscuit Data
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 2353641566138980687, guid: 660495d29c12b2e4aae92362cd7d5b9d, type: 3}
+  Icon: {fileID: 2800000, guid: 1b715ea3055f15d408f925bab1a99994, type: 3}

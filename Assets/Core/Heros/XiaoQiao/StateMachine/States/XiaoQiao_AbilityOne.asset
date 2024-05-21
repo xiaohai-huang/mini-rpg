@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35432205b9a6a374bbbfe6b7cac92179, type: 3}
+  m_Name: XiaoQiao_AbilityOne
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: 54d1bddb5ddbe7d49a0987281828f4cd, type: 2}
+  - {fileID: 11400000, guid: 90c2187a80d0db649932751bd81ba5c8, type: 2}
+  - {fileID: 11400000, guid: 9398adcb5c4d153429b48e68484a972f, type: 2}
+  - {fileID: 11400000, guid: ab37a09c9d018b14dacc414355275fa3, type: 2}
