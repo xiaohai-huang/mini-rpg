@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Range Indicator Material
+  m_Name: Full Range Indicator Material
   m_Shader: {fileID: -6465566751694194690, guid: 45c1a5d0e3ca6c04c95c417e72d92dfc,
     type: 3}
   m_Parent: {fileID: 0}
@@ -55,8 +55,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Radius: 0.5
-    - _Thickness: 0.12
+    - _Thickness: 0.5
     m_Colors:
-    - _Color: {r: 0, g: 3.1028156, b: 4, a: 1}
+    - _Color: {r: 0, g: 3.8716574, b: 4, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

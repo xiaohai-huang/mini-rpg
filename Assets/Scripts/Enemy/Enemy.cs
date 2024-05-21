@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
             {
                 _agent.enabled = false;
                 await Launch(_knockUpDuration);
+                // only exit KnockUp if it is grounded
                 _fsm.RequestStateChange("Idle");
             },
             onExit: (s) => _agent.enabled = true

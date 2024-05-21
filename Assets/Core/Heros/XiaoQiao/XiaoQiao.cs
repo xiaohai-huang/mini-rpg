@@ -30,6 +30,15 @@ namespace Xiaohai.Character.XiaoQiao
         [Tooltip("Wind radius")]
         private float _windSize;
 
+        [Header("Ability Three")]
+        [SerializeField]
+        private GameObject _meteor;
+
+        [SerializeField]
+        [Range(0.1f, 30f)]
+        [Tooltip("Meteor rain radius")]
+        private float _meteorRainRange;
+
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
         private Animator _animator;
 

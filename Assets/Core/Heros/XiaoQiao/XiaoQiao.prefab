@@ -51,6 +51,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b034934e67257e24c9c51eea691e8cfe,
         type: 3}
+    - target: {fileID: 1928983034536730969, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4734fe6cf8540584f9a86ac6829d96e5, type: 2}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _length
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 12.280157
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0.21131992
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0.33507854
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230306188616293964, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 2695485531350049118, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
       propertyPath: m_Name
@@ -83,6 +123,51 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 016a874f718f7df4a82f85472359a1df,
         type: 3}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 1.4980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 1.1679412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0.087621085
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0.33507854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788699707422848844, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6220708037510197950, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
       propertyPath: _transitionTableSO
@@ -97,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 8282689918333509115, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.814
       objectReference: {fileID: 0}
     - target: {fileID: 8282689918333509115, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
@@ -221,6 +306,8 @@ MonoBehaviour:
   _wind: {fileID: 5256276487196366623, guid: a98a6464a1d81e149aac10c97b9f60df, type: 3}
   _windMaxRange: 10
   _windSize: 2
+  _meteor: {fileID: 3818222870667126373, guid: d24339a4f123c7748a735000153c11e1, type: 3}
+  _meteorRainRange: 10
 --- !u!4 &6710836274454276860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6714487884994784072, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
@@ -331,10 +418,50 @@ PrefabInstance:
       propertyPath: _AOE_Radius
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _activeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _activeColor.b
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _activeColor.g
+      value: 12.280157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _activeColor.r
+      value: 0.21131992
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _cancelColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _cancelColor.g
+      value: 0.33507854
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818414178764585551, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: _cancelColor.r
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5246398398987956033, guid: edb97c5406f11384fab7b76e62e2154d,
         type: 3}
       propertyPath: m_Name
       value: Ability Two Indicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246398398987956033, guid: edb97c5406f11384fab7b76e62e2154d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357643113325161227, guid: edb97c5406f11384fab7b76e62e2154d,
         type: 3}

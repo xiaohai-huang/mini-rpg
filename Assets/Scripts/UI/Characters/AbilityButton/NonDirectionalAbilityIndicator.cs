@@ -9,7 +9,10 @@ namespace Xiaohai.UI
         [SerializeField]
         [Range(0.5f, 30f)]
         private float _radius;
+        [ColorUsage(true, true)]
         [SerializeField] private Color _activeColor;
+
+        [ColorUsage(true, true)]
         [SerializeField] private Color _cancelColor;
 
         private Material _indicatorMaterial;
