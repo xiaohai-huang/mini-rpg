@@ -32,7 +32,7 @@ namespace Xiaohai.Character.XiaoQiao
 
         [Header("Ability Three")]
         [SerializeField]
-        private GameObject _meteor;
+        private GameObject _meteorRain;
 
         [SerializeField]
         [Range(0.1f, 30f)]
@@ -119,6 +119,8 @@ namespace Xiaohai.Character.XiaoQiao
             // 每个敌人最多承受4次攻击，
             // 当多颗流星命中同一目标时，从第二颗流星开始将只造成50％伤害。释放期间持续获得被动加速效果。
             Debug.Log("Start to perform XQ Ab 3");
+            var meteorRain = Instantiate(_meteorRain, transform);
+            meteorRain.transform.position += Vector3.up * 0.04f;
         }
     }
 }
