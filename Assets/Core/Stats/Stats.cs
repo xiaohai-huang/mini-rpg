@@ -6,7 +6,7 @@ namespace Core.Game
 {
     public enum StatType
     {
-        Health,
+        MaxHealth,
         HealthRegeneration,
         MagicDamage,
         MoveSpeed
@@ -22,7 +22,7 @@ namespace Core.Game
         {
             Mediators = new()
             {
-                { StatType.Health, new StatMediator(_baseStats.Health) },
+                { StatType.MaxHealth, new StatMediator(_baseStats.MaxHealth) },
                 { StatType.HealthRegeneration, new StatMediator(_baseStats.HealthRegeneration) },
                 { StatType.MagicDamage, new StatMediator(_baseStats.MagicDamage) },
                 { StatType.MoveSpeed, new StatMediator(_baseStats.MoveSpeed) }
@@ -37,7 +37,7 @@ namespace Core.Game
             }
         }
 
-        public float Health => Mediators[StatType.Health].Stat;
+        public float MaxHealth => Mediators[StatType.MaxHealth].Stat;
 
         public float HealthRegeneration => 0;
 

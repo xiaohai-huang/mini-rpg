@@ -18,13 +18,13 @@ namespace Core.Game
         void Start()
         {
             var tenPercent = new AddTenPercentModifier();
-            _stats.Mediators[StatType.Health].AddModifier(tenPercent);
-            _stats.Mediators[StatType.Health].AddModifier(new AddFiveHundredModifier());
+            _stats.Mediators[StatType.MaxHealth].AddModifier(tenPercent);
+            _stats.Mediators[StatType.MaxHealth].AddModifier(new AddFiveHundredModifier());
 
             Timer.Instance.SetTimeout(
                 () =>
                 {
-                    _stats.Mediators[StatType.Health].RemoveModifier(tenPercent);
+                    _stats.Mediators[StatType.MaxHealth].RemoveModifier(tenPercent);
                 },
                 4000f
             );

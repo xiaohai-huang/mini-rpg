@@ -5,7 +5,7 @@ namespace Core.Game
     [CreateAssetMenu(fileName = "Base Stats", menuName = "My Scriptable Objects/Config/Base Stats")]
     public class BaseStats : ScriptableObject
     {
-        public float Health;
+        public float MaxHealth;
 
         /// <summary>
         /// The rate at which a champion regains health over time.

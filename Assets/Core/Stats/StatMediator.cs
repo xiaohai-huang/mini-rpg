@@ -1,16 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
 
 namespace Core.Game
 {
-    public class StatInfo
-    {
-        public float Base;
-        public float Effect;
-        public LinkedList<StatModifier> Modifiers;
-    }
-
     public class StatMediator
     {
         private readonly float _baseStat;
