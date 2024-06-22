@@ -12,8 +12,7 @@ namespace Core.Game
         /// e.g., XiaoQiao regenerates 7 health per second at level 1.
         /// </summary>
         public float HealthRegeneration;
-
-        public float Mana;
+        public float MaxMana;
         public float ManaRegeneration;
         public float PhysicalDamage;
         public float MagicDamage;
@@ -22,7 +21,7 @@ namespace Core.Game
         public float MagicResistance;
 
         /// <summary>
-        /// /// Miss Fortune has an attack speed of 0.679 attacks per second at level 1.
+        /// Miss Fortune has an attack speed of 0.679 attacks per second at level 1.
         /// </summary>
         public float AttackSpeed;
         public float MoveSpeed;
