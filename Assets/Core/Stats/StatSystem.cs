@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Core.Game
 {
-    public class StatSystem : IStatSystem
+    public class StatSystemA : IStatSystem
     {
         public void AttachModifier(string statName, Modifier modifier)
         {

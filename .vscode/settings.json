@@ -50,6 +50,8 @@
     "Keyalias",
     "Lerp",
     "Mathf",
+    "Raycast",
+    "Rigidbody",
     "Scriptable",
     "Slerp",
     "Tweening",
