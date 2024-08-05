@@ -29,7 +29,10 @@ public class Enemy : MonoBehaviour
     private AttackHandler _attackHandler;
     private Coroutine _updateNearbyTargetCoroutine;
 
-    private float _knockUpDuration;
+    /// <summary>
+    /// Crowd Control duration
+    /// </summary>
+    private float _ccDuration;
     private Canvas ui;
 
     private void Awake()
@@ -48,13 +51,10 @@ public class Enemy : MonoBehaviour
         _fsm.AddState("Idle");
 
         _fsm.AddState(
-            "KnockUp",
-            onEnter: async (s) =>
+            "CrowdControl",
+            onEnter: (s) =>
             {
                 _agent.enabled = false;
-                await Launch(_knockUpDuration);
-                // only exit KnockUp if it is grounded
-                _fsm.RequestStateChange("Idle");
             },
             onExit: (s) => _agent.enabled = true
         );
@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour
                 "FollowPlayer",
                 (transition) => DistanceToPlayer() > AttackRange || !IsPlayerVisible()
             );
+            _fsm.AddTransition("CrowdControl", "Idle", t => _ccDuration <= 0);
             _fsm.AddTransitionFromAny("Idle", t => !_damageable.IsDead && !IsPlayerAlive());
         }
 
@@ -259,23 +260,29 @@ public class Enemy : MonoBehaviour
     {
         _fsm.OnLogic();
         CurrentState = _fsm.ActiveStateName;
+        if (_ccDuration > 0)
+        {
+            _ccDuration -= Time.deltaTime;
+        }
     }
 
-    async Awaitable Launch(float duration, float angle = 90f)
+    void Launch(float duration, float angle = 90f)
     {
         float initialVelocity = (-Physics.gravity.y) * duration / 2;
         float v0x = initialVelocity * Mathf.Cos(angle * Mathf.Deg2Rad);
         float v0y = initialVelocity * Mathf.Sin(angle * Mathf.Deg2Rad);
         _rigidbody.linearVelocity = new Vector3(v0x, v0y, 0);
-        await Awaitable.WaitForSecondsAsync(duration);
     }
 
     public void KnockUp(float duration)
     {
         if (_fsm.ActiveStateName == "Defeat")
             return;
-        _knockUpDuration = duration;
-        _fsm.RequestStateChange("KnockUp");
+        Launch(duration);
+
+        float diff = duration - _ccDuration;
+        _ccDuration += diff;
+        _fsm.RequestStateChange("CrowdControl");
     }
 
 #if UNITY_EDITOR
