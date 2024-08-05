@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
                     mat.color = Color.red;
 
                     var collider = GetComponent<CapsuleCollider>();
-                    collider.enabled = false;
+                    collider.enabled = true;
 
                     _agent.enabled = false;
                     StopCoroutine(_updateNearbyTargetCoroutine);
