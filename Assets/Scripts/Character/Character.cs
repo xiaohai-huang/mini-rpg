@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Core.Game.Entities;
+using Core.Game.Statistics;
 using UnityEngine;
 using UnityEngine.AI;
 using Xiaohai.Utilities;
@@ -7,16 +9,10 @@ using Xiaohai.Utilities;
 namespace Xiaohai.Character
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Character : MonoBehaviour
+    public class Character : Base
     {
         [ReadOnly]
         public Damageable Target;
-
-        /// <summary>
-        /// Measured in radius.
-        /// </summary>
-        [Range(0f, 30f)]
-        public float ViewRange;
         public float BaseWalkSpeed;
         public float BonusWalkSpeed;
 
@@ -131,13 +127,16 @@ namespace Xiaohai.Character
             }
         }
 
-        public virtual void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _navMeshAgent = GetComponent<NavMeshAgent>();
 
             // Sync the range of the character with target selection's selection range
             TargetSelection = GetComponentInChildren<DamageableTargetSelection>();
-            TargetSelection.GetComponent<CapsuleCollider>().radius = ViewRange;
+            TargetSelection.GetComponent<CapsuleCollider>().radius = Statistics
+                .GetStat(StatType.ViewRange)
+                .ComputedValue;
         }
 
         public virtual void Update()

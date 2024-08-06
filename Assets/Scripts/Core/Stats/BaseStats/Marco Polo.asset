@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
-  m_Name: XiaoQiao BaseStats
+  m_Name: Marco Polo
   m_EditorClassIdentifier: 
-  keys: 0000000001000000020000000300000004000000050000000600000007000000
+  keys: 000000000100000002000000030000000400000005000000060000000700000009000000
   values:
   - 100
   - 50
@@ -22,3 +22,4 @@ MonoBehaviour:
   - 200
   - 0.7
   - 0
+  - 15

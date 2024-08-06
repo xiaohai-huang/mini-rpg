@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda2726516d5ed94781d5d188e5e88a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseStats: {fileID: 11400000, guid: f107b17b654490340b859663488eb62a, type: 2}
   Target: {fileID: 0}
-  ViewRange: 15
   BaseWalkSpeed: 5
   BonusWalkSpeed: 0
   Velocity: {x: 0, y: 0, z: 0}
