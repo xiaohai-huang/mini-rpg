@@ -9,5 +9,10 @@ namespace Core.Game.Entities
 
         [SerializeField]
         private BaseStats _baseStats;
+
+        public virtual void Awake()
+        {
+            Statistics = new StatSystem(_baseStats);
+        }
     }
 }

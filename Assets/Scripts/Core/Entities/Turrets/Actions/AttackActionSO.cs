@@ -3,7 +3,7 @@ using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
-namespace Xiaohai.Turret.Actions
+namespace Core.Game.Entities.Turrets.Actions
 {
     [CreateAssetMenu(
         fileName = "AttackAction",

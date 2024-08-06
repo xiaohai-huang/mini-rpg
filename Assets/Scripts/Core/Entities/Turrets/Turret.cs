@@ -1,13 +1,14 @@
 using Core.Game;
+using Core.Game.Entities;
 using Core.Game.Statistics;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Xiaohai.Character;
 using Xiaohai.Utilities;
 
-namespace Xiaohai.Turret
+namespace Core.Game.Entities.Turrets
 {
-    public class Turret : Entity
+    public class Turret : Base
     {
         [ReadOnly]
         public Damageable Target;
@@ -19,14 +20,10 @@ namespace Xiaohai.Turret
         public float AttackRange;
         public TurretProjectile BulletPrefab;
         public DamageableTargetSelection TargetSelection;
-        public StatSystem Statistics;
 
-        [SerializeField]
-        private BaseStats _baseStats;
-
-        void Awake()
+        public override void Awake()
         {
-            Statistics = new StatSystem(_baseStats);
+            base.Awake();
             AttackSpeed = Statistics.GetStat(StatType.AttackSpeed).ComputedValue;
             AttackRange = Statistics.GetStat(StatType.BasicAttackRange).ComputedValue;
             Init();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Xiaohai.Character;
 
-namespace Xiaohai.Turret
+namespace Core.Game.Entities.Turrets
 {
     public class TurretProjectile : MonoBehaviour
     {
@@ -12,6 +12,7 @@ namespace Xiaohai.Turret
         public float Threshold = 0.3f;
         public Vector3 Offset;
         private Damageable _target;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -34,7 +35,11 @@ namespace Xiaohai.Turret
                 else
                 {
                     transform.LookAt(_target.transform);
-                    transform.position = Vector3.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        destination,
+                        Speed * Time.deltaTime
+                    );
                 }
             }
         }

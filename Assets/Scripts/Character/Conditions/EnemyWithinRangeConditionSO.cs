@@ -1,29 +1,33 @@
 ﻿using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
-using Xiaohai.Utilities;
 
-namespace Xiaohai.Turret.Conditions
+namespace Core.Game.Entities.Turrets.Conditions
 {
-	[CreateAssetMenu(fileName = "EnemyWithinRangeCondition", menuName = "State Machines/Conditions/Turret/Enemy Within Range Condition")]
-	public class EnemyWithinRangeConditionSO : StateConditionSO
-	{
-		protected override Condition CreateCondition() => new EnemyWithinRangeCondition();
-	}
+    [CreateAssetMenu(
+        fileName = "EnemyWithinRangeCondition",
+        menuName = "State Machines/Conditions/Turret/Enemy Within Range Condition"
+    )]
+    public class EnemyWithinRangeConditionSO : StateConditionSO
+    {
+        protected override Condition CreateCondition() => new EnemyWithinRangeCondition();
+    }
 
-	public class EnemyWithinRangeCondition : Condition
-	{
-		private Turret _turret;
+    public class EnemyWithinRangeCondition : Condition
+    {
+        private Turret _turret;
 
-		protected new EnemyWithinRangeConditionSO OriginSO => (EnemyWithinRangeConditionSO)base.OriginSO;
-		public override void Awake(StateMachine stateMachine)
-		{
-			_turret = stateMachine.GetComponent<Turret>();
-		}
+        protected new EnemyWithinRangeConditionSO OriginSO =>
+            (EnemyWithinRangeConditionSO)base.OriginSO;
 
-		protected override bool Statement()
-		{
-			return _turret.Target != null;
-		}
-	}
+        public override void Awake(StateMachine stateMachine)
+        {
+            _turret = stateMachine.GetComponent<Turret>();
+        }
+
+        protected override bool Statement()
+        {
+            return _turret.Target != null;
+        }
+    }
 }
