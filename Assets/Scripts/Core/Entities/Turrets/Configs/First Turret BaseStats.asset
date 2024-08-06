@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
   m_Name: First Turret BaseStats
   m_EditorClassIdentifier: 
-  keys: 0000000002000000040000000500000006000000
+  keys: 000000000200000004000000050000000600000008000000
   values:
   - 2000
-  - 300
+  - 380
   - 250
   - 500
-  - 0.8
+  - 0.833
+  - 8

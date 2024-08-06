@@ -9,7 +9,8 @@ namespace Core.Game.Statistics
         Armor,
         MagicalResistance,
         AttackSpeed,
-        Tenacity
+        Tenacity,
+        BasicAttackRange
     }
 
     public enum ModifierType
