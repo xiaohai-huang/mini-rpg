@@ -12,6 +12,14 @@ namespace Core.Game.Statistics
             Init();
         }
 
+        public StatSystem(BaseStats baseStats)
+        {
+            foreach (var pair in baseStats)
+            {
+                Stats[pair.Key] = new Stat(pair.Value, this);
+            }
+        }
+
         private void Init()
         {
             foreach (StatType type in DotNetSystem.Enum.GetValues(typeof(StatType)))

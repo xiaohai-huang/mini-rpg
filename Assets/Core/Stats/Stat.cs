@@ -16,9 +16,14 @@ namespace Core.Game.Statistics
         public Stat(StatSystem system)
         {
             _system = system;
-            _modifiers[ModifierType.Float] = new HashSet<Modifier>();
-            _modifiers[ModifierType.Percentage] = new HashSet<Modifier>();
-            _modifiers[ModifierType.Special] = new HashSet<Modifier>();
+            InitializeModifiers();
+        }
+
+        public Stat(float baseValue, StatSystem system)
+        {
+            BaseValue = baseValue;
+            _system = system;
+            InitializeModifiers();
         }
 
         public bool AddModifier(Modifier modifier)
@@ -49,6 +54,13 @@ namespace Core.Game.Statistics
             {
                 value = modifier.Apply(value, _system);
             }
+        }
+
+        private void InitializeModifiers()
+        {
+            _modifiers.Add(ModifierType.Float, new HashSet<Modifier>());
+            _modifiers.Add(ModifierType.Percentage, new HashSet<Modifier>());
+            _modifiers.Add(ModifierType.Special, new HashSet<Modifier>());
         }
     }
 }
