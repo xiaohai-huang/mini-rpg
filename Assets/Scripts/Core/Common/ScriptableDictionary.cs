@@ -55,7 +55,7 @@ public class ScriptableDictionary<TKey, TValue>
         var pairs = new List<KeyValuePair<TKey, TValue>>(count);
         for (int i = 0; i < count; i++)
         {
-            pairs[i] = new KeyValuePair<TKey, TValue>(keys[i], values[i]);
+            pairs.Add(new KeyValuePair<TKey, TValue>(keys[i], values[i]));
         }
 
         return pairs.GetEnumerator();
