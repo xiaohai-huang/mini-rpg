@@ -30,7 +30,7 @@ namespace Core.Game.Statistics
             return Stats[modifier.TargetStatType].RemoveModifier(modifier);
         }
 
-        public void SetBaseValue(StatType type, float baseValue)
+        public void SetStatBaseValue(StatType type, float baseValue)
         {
             Stats[type].BaseValue = baseValue;
         }
