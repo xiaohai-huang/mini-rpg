@@ -11,6 +11,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  check_formatting:
+    runs-on: ubuntu-latest
+    name: Check Formatting
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          dotnet tool restore
+          dotnet csharpier --check .
+
   buildForWebGL:
     name: Build For WebGL Platform
     runs-on: ubuntu-latest
