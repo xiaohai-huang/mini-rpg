@@ -6,7 +6,16 @@ namespace Core.Game.Statistics
     public class Stat
     {
         private readonly Dictionary<ModifierType, HashSet<Modifier>> _modifiers = new();
-        public float BaseValue { get; set; }
+        private float _baseValue;
+        public float BaseValue
+        {
+            get => _baseValue;
+            set
+            {
+                _baseValue = value;
+                UpdateComputedValue();
+            }
+        }
         private float _prevComputedValue;
         public float ComputedValue { get; private set; }
 
