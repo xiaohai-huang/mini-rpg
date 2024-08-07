@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_formatting:
+  checkFormatting:
     runs-on: ubuntu-latest
     name: Check Formatting
     steps:
@@ -25,6 +25,7 @@ jobs:
   buildForWebGL:
     name: Build For WebGL Platform
     runs-on: ubuntu-latest
+    needs: checkFormatting
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -56,6 +57,7 @@ jobs:
   buildForAndroidPlatform:
     name: Build For Android Platform
     runs-on: ubuntu-latest
+    needs: checkFormatting
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -93,6 +95,7 @@ jobs:
   buildForWindowsPlatform:
     name: Build For Windows Platform
     runs-on: windows-2022
+    needs: checkFormatting
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
