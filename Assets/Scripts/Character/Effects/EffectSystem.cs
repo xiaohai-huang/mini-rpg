@@ -41,7 +41,6 @@ public class EffectSystem : MonoBehaviour
     public void RemoveEffect(Effect effect)
     {
         _effectsToRemove.Add(effect);
-        OnRemoveEffect?.Invoke(effect);
     }
 
     public void RemoveEffect(EffectSO effectSO)
