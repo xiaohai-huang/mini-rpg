@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
@@ -30,11 +31,12 @@ namespace Xiaohai.Character.Arthur
             _shields = shields;
         }
 
-        public override void OnApply(EffectSystem system)
+        public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);
             _shields.StartSpin(_damageAmount);
             _timerId = Timer.Instance.SetTimeout(() => Finished = true, CoolDownTime);
+            return null;
         }
 
         public override void OnRemove(EffectSystem system)

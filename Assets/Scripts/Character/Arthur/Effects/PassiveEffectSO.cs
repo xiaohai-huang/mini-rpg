@@ -1,3 +1,4 @@
+using System;
 using Core.Game.Entities;
 using Core.Game.Statistics;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace Xiaohai.Character.Arthur
         public new PassiveEffectSO OriginSO => (PassiveEffectSO)base.OriginSO;
         private int _timer;
 
-        public override void OnApply(EffectSystem system)
+        public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);
             var maxHealth = system.GetComponent<Base>().Statistics.GetStat(StatType.MaxHealth);
@@ -42,6 +43,7 @@ namespace Xiaohai.Character.Arthur
                 },
                 OriginSO.RecoverRate
             );
+            return null;
         }
 
         public override void OnRemove(EffectSystem system)

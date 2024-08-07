@@ -34,7 +34,7 @@ public class EffectSystem : MonoBehaviour
             }
         }
         _effects.Add(newEffect);
-        newEffect.OnApply(this);
+        newEffect.OnApplyWrapper(this);
         OnAddEffect?.Invoke(newEffect);
     }
 
