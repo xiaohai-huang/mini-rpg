@@ -3,9 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(AbilityButton))]
 public class OnScreenInputEmitter : MonoBehaviour
 {
-    [SerializeField] private OnScreenInputEventChannel _eventChannel;
-    [SerializeField] private OnScreenInputEventChannel.Input _inputType;
+    [SerializeField]
+    private OnScreenInputEventChannel _eventChannel;
+
+    [SerializeField]
+    private OnScreenInputEventChannel.Input _inputType;
     private AbilityButton _button;
+
     void Awake()
     {
         _button = GetComponent<AbilityButton>();

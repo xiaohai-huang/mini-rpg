@@ -8,7 +8,9 @@ namespace Xiaohai.UI
         [SerializeField]
         private EffectUI _effectUI;
         private EffectSystem _effectSys;
-        [SerializeField] private RuntimeCharacterAnchor _player;
+
+        [SerializeField]
+        private RuntimeCharacterAnchor _player;
         private List<EffectUI> _effectUIs = new();
 
         void OnEnable()
@@ -44,7 +46,8 @@ namespace Xiaohai.UI
             {
                 var effectToRemove = _effectUIs.Find(ui => ui.Name == effect.Name);
                 _effectUIs.Remove(effectToRemove);
-                if (effectToRemove != null) Destroy(effectToRemove.gameObject);
+                if (effectToRemove != null)
+                    Destroy(effectToRemove.gameObject);
             }
         }
     }

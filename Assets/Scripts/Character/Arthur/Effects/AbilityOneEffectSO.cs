@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-    [CreateAssetMenu(fileName = "Arthur Ability One Speed Up Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability One Speed Up Effect")]
+    [CreateAssetMenu(
+        fileName = "Arthur Ability One Speed Up Effect",
+        menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability One Speed Up Effect"
+    )]
     public class AbilityOneEffectSO : EffectSO<AbilityOneEffect>
     {
         public GameObject RangeIndicatorPrefab;
@@ -22,7 +25,7 @@ namespace Xiaohai.Character.Arthur
         private GameObject _indicator;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="speedUpPercentage"></param>
         /// <param name="duration">Duration of the effect in milliseconds.</param>
@@ -41,7 +44,11 @@ namespace Xiaohai.Character.Arthur
 
             // show the visual of enhanced basic attack range indicator
             _indicator = Object.Instantiate(OriginSO.RangeIndicatorPrefab, system.transform);
-            _indicator.transform.localScale = new Vector3(_enhancedBasicAttackRange * 2, _enhancedBasicAttackRange * 2, 1f);
+            _indicator.transform.localScale = new Vector3(
+                _enhancedBasicAttackRange * 2,
+                _enhancedBasicAttackRange * 2,
+                1f
+            );
             _indicator.transform.localPosition = Vector3.zero;
             _indicator.transform.localPosition += OriginSO.Offset;
             _indicator.SetActive(true);

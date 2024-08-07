@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class UIDefeatCount : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _blueTeamDefeatCountText;
-    [SerializeField] private TextMeshProUGUI _redTeamDefeatCountText;
+    [SerializeField]
+    private TextMeshProUGUI _blueTeamDefeatCountText;
+
+    [SerializeField]
+    private TextMeshProUGUI _redTeamDefeatCountText;
     private int _blueTeamDefeatCount;
     private int _redTeamDefeatCount;
+
     void Awake()
     {
         _blueTeamDefeatCountText.text = _blueTeamDefeatCount.ToString();

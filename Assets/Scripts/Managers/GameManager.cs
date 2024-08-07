@@ -4,17 +4,25 @@ using Xiaohai.Input;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
+    [SerializeField]
+    private InputReader _inputReader;
+
     [Header("Broadcasting on")]
-    [SerializeField] private VoidEventChannel _startGameEventChannel;
-    [SerializeField] private VoidEventChannel _playerResurrectEventChannel;
+    [SerializeField]
+    private VoidEventChannel _startGameEventChannel;
+
+    [SerializeField]
+    private VoidEventChannel _playerResurrectEventChannel;
 
     [Header("Listening To")]
-    [SerializeField] private VoidEventChannel _gameOverEventChannel;
-    [SerializeField] private VoidEventChannel _restartGameEventChannel;
+    [SerializeField]
+    private VoidEventChannel _gameOverEventChannel;
 
+    [SerializeField]
+    private VoidEventChannel _restartGameEventChannel;
 
     public static GameManager Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,7 +34,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     // Start is called before the first frame update
     void Start()

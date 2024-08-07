@@ -6,7 +6,8 @@ public class BoolEvent : UnityEvent<bool, GameObject> { }
 
 public class ZoneTrigger : MonoBehaviour
 {
-    [SerializeField] private BoolEvent _enterZone;
+    [SerializeField]
+    private BoolEvent _enterZone;
 
     private void OnTriggerEnter(Collider other)
     {

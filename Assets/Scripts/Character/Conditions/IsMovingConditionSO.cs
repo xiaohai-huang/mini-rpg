@@ -3,10 +3,14 @@ using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 using Xiaohai.Character;
 
-[CreateAssetMenu(fileName = "IsMovingCondition", menuName = "State Machines/Conditions/Is Moving Condition")]
+[CreateAssetMenu(
+    fileName = "IsMovingCondition",
+    menuName = "State Machines/Conditions/Is Moving Condition"
+)]
 public class IsMovingConditionSO : StateConditionSO
 {
     public float Threshold = 0.02f;
+
     protected override Condition CreateCondition() => new IsMovingCondition();
 }
 
@@ -25,11 +29,7 @@ public class IsMovingCondition : Condition
         return _character.HorizontalInput.sqrMagnitude > OriginSO.Threshold;
     }
 
-    public override void OnStateEnter()
-    {
-    }
+    public override void OnStateEnter() { }
 
-    public override void OnStateExit()
-    {
-    }
+    public override void OnStateExit() { }
 }

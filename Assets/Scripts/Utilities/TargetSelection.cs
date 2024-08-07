@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Xiaohai.Utilities
 {
-    public abstract class TargetSelection<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class TargetSelection<T> : MonoBehaviour
+        where T : MonoBehaviour
     {
         [SerializeField]
         private LayerMask _targetLayer;
@@ -17,12 +18,13 @@ namespace Xiaohai.Utilities
             {
                 if (other.TryGetComponent<T>(out var target))
                 {
-                    TargetInfo<T> info = new()
-                    {
-                        EnteredTime = Time.time,
-                        target = target,
-                        GO = other.gameObject
-                    };
+                    TargetInfo<T> info =
+                        new()
+                        {
+                            EnteredTime = Time.time,
+                            target = target,
+                            GO = other.gameObject
+                        };
                     Targets.Add(info);
 
                     target.destroyCancellationToken.Register(() =>
@@ -61,6 +63,7 @@ namespace Xiaohai.Utilities
 
         [SerializeField]
         private TargetInfo<T>[] TargetInfos = new TargetInfo<T>[12];
+
         void UpdateInspector()
         {
             Array.Clear(TargetInfos, 0, TargetInfos.Length);
@@ -70,13 +73,15 @@ namespace Xiaohai.Utilities
             }
             NumTargets = Targets.Count;
         }
-#endif    
+#endif
     }
+
     [System.Serializable]
     public struct TargetInfo<T>
     {
         public float EnteredTime;
         public T target;
+
         [HideInInspector]
         public GameObject GO;
     }

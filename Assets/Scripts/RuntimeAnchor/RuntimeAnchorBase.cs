@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RuntimeAnchorBase<T> : ScriptableObject where T : UnityEngine.Object
+public class RuntimeAnchorBase<T> : ScriptableObject
+    where T : UnityEngine.Object
 {
     public UnityAction<T> OnProvided;
     private Func<T> _getter;
@@ -17,12 +18,9 @@ public class RuntimeAnchorBase<T> : ScriptableObject where T : UnityEngine.Objec
             }
             return _value;
         }
-
-        private set
-        {
-            _value = value;
-        }
+        private set { _value = value; }
     }
+
     public void Provide(T value)
     {
         if (value == null)

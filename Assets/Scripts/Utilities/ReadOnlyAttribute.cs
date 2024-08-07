@@ -4,9 +4,6 @@ namespace Xiaohai.Utilities
 {
     public class ReadOnlyAttribute : PropertyAttribute
     {
-        public ReadOnlyAttribute()
-        {
-
-        }
+        public ReadOnlyAttribute() { }
     }
 }

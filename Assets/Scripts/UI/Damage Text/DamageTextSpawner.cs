@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class DamageTextSpawner : MonoBehaviour
 {
-    [SerializeField] private DamageText _damageTextPrefab;
-    [SerializeField] private Transform _left;
-    [SerializeField] private Transform _right;
+    [SerializeField]
+    private DamageText _damageTextPrefab;
+
+    [SerializeField]
+    private Transform _left;
+
+    [SerializeField]
+    private Transform _right;
 
     public void HandleDamage(int damageAmount)
     {

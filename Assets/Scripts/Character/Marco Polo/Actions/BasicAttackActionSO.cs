@@ -4,7 +4,10 @@ using UOP1.StateMachine.ScriptableObjects;
 
 namespace Xiaohai.Character.MarcoPolo
 {
-    [CreateAssetMenu(fileName = "Basic Attack Action", menuName = "State Machines/Actions/Marco Polo/Basic Attack Action")]
+    [CreateAssetMenu(
+        fileName = "Basic Attack Action",
+        menuName = "State Machines/Actions/Marco Polo/Basic Attack Action"
+    )]
     public class BasicAttackActionSO : StateActionSO
     {
         protected override StateAction CreateAction() => new BasicAttackAction();
@@ -22,9 +25,7 @@ namespace Xiaohai.Character.MarcoPolo
             _polo = stateMachine.GetComponent<MarcoPolo>();
         }
 
-        public override void OnUpdate()
-        {
-        }
+        public override void OnUpdate() { }
 
         public override void OnStateEnter()
         {

@@ -9,8 +9,8 @@ public class FaceCamera : MonoBehaviour
         CameraForward,
         CameraForwardInverted
     }
-    public Mode LookAtMode;
 
+    public Mode LookAtMode;
 
     // Update is called once per frame
     void LateUpdate()
@@ -21,7 +21,9 @@ public class FaceCamera : MonoBehaviour
                 transform.LookAt(Camera.main.transform);
                 break;
             case Mode.LookAtCameraInverted:
-                transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+                transform.rotation = Quaternion.LookRotation(
+                    transform.position - Camera.main.transform.position
+                );
                 break;
             case Mode.CameraForward:
                 transform.forward = Camera.main.transform.forward;

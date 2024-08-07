@@ -8,8 +8,10 @@ namespace Xiaohai.Character.Arthur
         public float Radius;
         public float DamageAmount;
         public float DamagePerSecond = 1f;
+
         [SerializeField]
         private Transform _sealMesh;
+
         [SerializeField]
         private LayerMask _layer;
 
@@ -25,7 +27,12 @@ namespace Xiaohai.Character.Arthur
 
         private void DealDamage()
         {
-            var colliders = Physics.OverlapCapsule(transform.position, transform.position + Vector3.up * 2, Radius, _layer);
+            var colliders = Physics.OverlapCapsule(
+                transform.position,
+                transform.position + Vector3.up * 2,
+                Radius,
+                _layer
+            );
 
             foreach (var collider in colliders)
             {
@@ -37,15 +44,20 @@ namespace Xiaohai.Character.Arthur
         }
 
         private int _repeatTimer;
+
         /// <summary>
         /// Start to deal the damage repeatedly.
         /// </summary>
         private void Init()
         {
-            _repeatTimer = Timer.Instance.SetInterval(() =>
-            {
-                DealDamage();
-            }, 1000f / DamagePerSecond, immediate: true);
+            _repeatTimer = Timer.Instance.SetInterval(
+                () =>
+                {
+                    DealDamage();
+                },
+                1000f / DamagePerSecond,
+                immediate: true
+            );
         }
 
         void OnDestroy()
@@ -61,7 +73,8 @@ namespace Xiaohai.Character.Arthur
 #if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {
-            if (_sealMesh == null) return;
+            if (_sealMesh == null)
+                return;
             UpdateMeshSize();
         }
 #endif

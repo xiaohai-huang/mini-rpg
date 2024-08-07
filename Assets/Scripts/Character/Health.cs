@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Xiaohai.UI;
 
 namespace Xiaohai.Character
 {
@@ -11,7 +10,8 @@ namespace Xiaohai.Character
 
         public void ReduceHealth(int healthAmount)
         {
-            if (CurrentHealth == 0) return;
+            if (CurrentHealth == 0)
+                return;
             CurrentHealth = Math.Max(CurrentHealth - healthAmount, 0);
         }
 

@@ -5,7 +5,9 @@ public class AttackState : State
     private readonly PlayerController _mono;
     private readonly AttackHandler _attackHandler;
     private StateMachine _sm;
-    public AttackState(PlayerController mono) : base(needsExitTime: false)
+
+    public AttackState(PlayerController mono)
+        : base(needsExitTime: false)
     {
         _mono = mono;
         _attackHandler = mono.GetComponent<AttackHandler>();

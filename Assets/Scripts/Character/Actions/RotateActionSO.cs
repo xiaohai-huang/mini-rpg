@@ -7,6 +7,7 @@ using Xiaohai.Character;
 public class RotateActionSO : StateActionSO
 {
     public float RotateSpeed = 8f;
+
     protected override StateAction CreateAction() => new RotateAction();
 }
 
@@ -24,18 +25,21 @@ public class RotateAction : StateAction
 
     public override void OnUpdate()
     {
-        var input = _character.IsAutoMove ? _character.HorizontalAutoInput : _character.HorizontalInput;
+        var input = _character.IsAutoMove
+            ? _character.HorizontalAutoInput
+            : _character.HorizontalInput;
         var inputDirection = new Vector3(input.x, 0, input.y);
-        if (inputDirection == Vector3.zero) return;
+        if (inputDirection == Vector3.zero)
+            return;
         Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
-        _tf.rotation = Quaternion.Slerp(_tf.rotation, targetRotation, OriginSO.RotateSpeed * Time.deltaTime);
+        _tf.rotation = Quaternion.Slerp(
+            _tf.rotation,
+            targetRotation,
+            OriginSO.RotateSpeed * Time.deltaTime
+        );
     }
 
-    public override void OnStateEnter()
-    {
-    }
+    public override void OnStateEnter() { }
 
-    public override void OnStateExit()
-    {
-    }
+    public override void OnStateExit() { }
 }

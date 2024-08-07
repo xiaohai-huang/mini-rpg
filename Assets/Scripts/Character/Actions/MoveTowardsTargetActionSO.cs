@@ -7,7 +7,10 @@ using UOP1.StateMachine.ScriptableObjects;
 
 namespace Xiaohai.Character.Arthur
 {
-    [CreateAssetMenu(fileName = "Move Towards Target", menuName = "State Machines/Actions/Move Towards Target Action")]
+    [CreateAssetMenu(
+        fileName = "Move Towards Target",
+        menuName = "State Machines/Actions/Move Towards Target Action"
+    )]
     public class MoveTowardsTargetActionSO : StateActionSO
     {
         protected override StateAction CreateAction() => new MoveTowardsTargetAction();
@@ -19,16 +22,16 @@ namespace Xiaohai.Character.Arthur
         private Character _character;
         CancellationTokenSource _cts;
 
-        protected new MoveTowardsTargetActionSO OriginSO => (MoveTowardsTargetActionSO)base.OriginSO;
+        protected new MoveTowardsTargetActionSO OriginSO =>
+            (MoveTowardsTargetActionSO)base.OriginSO;
+
         public override void Awake(StateMachine stateMachine)
         {
             _navMeshAgent = stateMachine.GetComponent<NavMeshAgent>();
             _character = stateMachine.GetComponent<Character>();
         }
-        public override void OnUpdate()
-        {
 
-        }
+        public override void OnUpdate() { }
 
         public override void OnStateEnter()
         {
@@ -51,7 +54,10 @@ namespace Xiaohai.Character.Arthur
 
         private async void MoveTowards(Transform targetTransform)
         {
-            while (!_cts.IsCancellationRequested && !_character.destroyCancellationToken.IsCancellationRequested)
+            while (
+                !_cts.IsCancellationRequested
+                && !_character.destroyCancellationToken.IsCancellationRequested
+            )
             {
                 _navMeshAgent.SetDestination(targetTransform.position);
                 var t = _navMeshAgent.steeringTarget;

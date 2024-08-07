@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-
     public class ArthurSword : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
@@ -12,6 +11,5 @@ namespace Xiaohai.Character.Arthur
                 damageable.TakeDamage(Random.Range(500, 800));
             }
         }
-
     }
 }

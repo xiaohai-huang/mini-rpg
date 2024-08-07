@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "On Screen Input Event Channel", menuName = "My Scriptable Objects/Event Channel/On Screen Input Event Channel")]
+[CreateAssetMenu(
+    fileName = "On Screen Input Event Channel",
+    menuName = "My Scriptable Objects/Event Channel/On Screen Input Event Channel"
+)]
 public class OnScreenInputEventChannel : ScriptableObject
 {
     public enum Input
@@ -14,6 +17,7 @@ public class OnScreenInputEventChannel : ScriptableObject
         ABILITY_FOUR,
         HEAL
     }
+
     public UnityAction<Input> OnBeginInteractionEventRaised;
     public UnityAction<Input> OnMovingEventRaised;
     public UnityAction<Input> OnReleasedEventRaised;

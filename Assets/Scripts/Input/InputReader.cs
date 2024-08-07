@@ -8,7 +8,10 @@ namespace Xiaohai.Input
     public class InputReader : ScriptableObject
     {
         private MyInputActions _inputActions;
-        public Vector2 Move { get => _inputActions.GamePlay.Move.ReadValue<Vector2>(); }
+        public Vector2 Move
+        {
+            get => _inputActions.GamePlay.Move.ReadValue<Vector2>();
+        }
         public event Action OnAttack;
         public event Action OnAttackCanceled;
         public event Action OnSpawnEnemy;
@@ -60,6 +63,5 @@ namespace Xiaohai.Input
         {
             OnAttackCanceled?.Invoke();
         }
-
     }
 }

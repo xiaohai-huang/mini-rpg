@@ -7,8 +7,10 @@ namespace Xiaohai.UI
     {
         [SerializeField]
         private RuntimeCharacterAnchor _player;
+
         [SerializeField]
         private GameObject _circle;
+
         [SerializeField]
         private Damageable _damageable;
 

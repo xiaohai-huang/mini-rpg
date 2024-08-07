@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class IntEventChannelListener : MonoBehaviour
 {
-    [SerializeField] private IntEventChannel EventChannel;
+    [SerializeField]
+    private IntEventChannel EventChannel;
     public UnityEvent<int> Response;
 
     void OnEnable()

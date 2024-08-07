@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField]
+    private TextMeshProUGUI _text;
     private Animator _animator;
     private static readonly int LEFT_TRIGGER = Animator.StringToHash("Left");
     private static readonly int RIGHT_TRIGGER = Animator.StringToHash("Right");
@@ -12,6 +13,7 @@ public class DamageText : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
+
     public void ShowLeft(int damageAmount)
     {
         SetDamage(damageAmount);

@@ -26,8 +26,6 @@ public class GenericListenerEditor : Editor
         EventPicker();
         EditorGUILayout.PropertyField(responseProperty);
 
-
-
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -40,7 +38,10 @@ public class GenericListenerEditor : Editor
             var eventNames = GetEventNames(target);
             if (eventNames.Length > 0)
             {
-                int selectedIndex = Mathf.Max(0, System.Array.IndexOf(eventNames, eventNameProperty.stringValue));
+                int selectedIndex = Mathf.Max(
+                    0,
+                    System.Array.IndexOf(eventNames, eventNameProperty.stringValue)
+                );
                 selectedIndex = EditorGUILayout.Popup("Event Name", selectedIndex, eventNames);
 
                 if (selectedIndex >= 0 && selectedIndex < eventNames.Length)
@@ -50,10 +51,12 @@ public class GenericListenerEditor : Editor
             }
             else
             {
-                EditorGUILayout.HelpBox("No events found on the Target object.", MessageType.Warning);
+                EditorGUILayout.HelpBox(
+                    "No events found on the Target object.",
+                    MessageType.Warning
+                );
             }
         }
-
     }
 
     private string[] GetEventNames(MonoBehaviour target)
@@ -61,7 +64,9 @@ public class GenericListenerEditor : Editor
         var targetType = target.GetType();
         var eventNames = new List<string>();
 
-        var fields = targetType.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        var fields = targetType.GetFields(
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+        );
         foreach (var field in fields)
         {
             if (field.FieldType == GetEventType())
@@ -79,5 +84,4 @@ public class GenericListenerEditor : Editor
         var eventType = listener.GetField("Response").FieldType;
         return eventType;
     }
-
 }

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class RestoreHealthSpawner : MonoBehaviour
 {
-    [SerializeField] private RestoreHealthText _restoreTextPrefab;
+    [SerializeField]
+    private RestoreHealthText _restoreTextPrefab;
 
     public void HandleRestoreHealth(int health)
     {

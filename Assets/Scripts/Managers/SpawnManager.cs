@@ -4,14 +4,20 @@ using Xiaohai.Input;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
+    [SerializeField]
+    private InputReader _inputReader;
     public GameObject EnemyPrefab;
     public Character PlayerPrefab;
     public Character ExistingPlayer;
     public Transform PlayerSpawnPoint;
     public Transform[] SpawnPoints;
-    [SerializeField] private TransformEventChannel _playerSpawnedEventChannel;
-    [SerializeField] private RuntimeCharacterAnchor _playerAnchor;
+
+    [SerializeField]
+    private TransformEventChannel _playerSpawnedEventChannel;
+
+    [SerializeField]
+    private RuntimeCharacterAnchor _playerAnchor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +41,11 @@ public class SpawnManager : MonoBehaviour
         Character player = ExistingPlayer;
         if (ExistingPlayer == null)
         {
-            player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerSpawnPoint.rotation);
+            player = Instantiate(
+                PlayerPrefab,
+                PlayerSpawnPoint.position,
+                PlayerSpawnPoint.rotation
+            );
         }
         player.gameObject.SetActive(true);
         _playerAnchor.Provide(player);

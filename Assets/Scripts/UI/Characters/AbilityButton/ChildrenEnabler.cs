@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class ChildrenEnabler : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _children;
+    [SerializeField]
+    private GameObject[] _children;
     public float Seconds = 0.5f;
+
     void Awake()
     {
         List<GameObject> children = new List<GameObject>();

@@ -4,10 +4,14 @@ using UOP1.StateMachine.ScriptableObjects;
 
 namespace Xiaohai.Character.MarcoPolo
 {
-    [CreateAssetMenu(fileName = "AbilityTwoAction", menuName = "State Machines/Actions/Marco Polo/Ability Two Action")]
+    [CreateAssetMenu(
+        fileName = "AbilityTwoAction",
+        menuName = "State Machines/Actions/Marco Polo/Ability Two Action"
+    )]
     public class AbilityTwoActionSO : StateActionSO
     {
         public float Distance = 3f;
+
         protected override StateAction CreateAction() => new AbilityTwoAction();
     }
 
@@ -22,12 +26,9 @@ namespace Xiaohai.Character.MarcoPolo
         {
             _character = stateMachine.GetComponent<Character>();
             _polo = stateMachine.GetComponent<MarcoPolo>();
-
         }
 
-        public override void OnUpdate()
-        {
-        }
+        public override void OnUpdate() { }
 
         public override void OnStateEnter()
         {
@@ -36,10 +37,6 @@ namespace Xiaohai.Character.MarcoPolo
             _character.AbilityTwoInput = false;
         }
 
-
-
-        public override void OnStateExit()
-        {
-        }
+        public override void OnStateExit() { }
     }
 }

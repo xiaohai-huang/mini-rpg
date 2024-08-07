@@ -3,6 +3,6 @@ using UnityEngine;
 
 namespace UOP1.StateMachine
 {
-	[AttributeUsage(AttributeTargets.Field)]
-	public class InitOnlyAttribute : PropertyAttribute { }
+    [AttributeUsage(AttributeTargets.Field)]
+    public class InitOnlyAttribute : PropertyAttribute { }
 }

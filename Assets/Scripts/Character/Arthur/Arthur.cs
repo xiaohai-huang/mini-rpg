@@ -13,6 +13,7 @@ namespace Xiaohai.Character.Arthur
         private PassiveEffectSO _passiveEffectSO;
         private CharacterController _characterController;
         private EffectSystem _effectSystem;
+
         public override void Awake()
         {
             base.Awake();
@@ -42,6 +43,7 @@ namespace Xiaohai.Character.Arthur
         /// The distance that the character should keep away from the enemy while leaping towards the enemy
         /// </summary>
         private const float ABILITY_THREE_CLOSE_RADIUS = 2f;
+
         private IEnumerator LeapTowardsEnemyCoroutine(GameObject target, Action callback)
         {
             // calculate direction towards the enemy
@@ -51,19 +53,31 @@ namespace Xiaohai.Character.Arthur
             while (!(Vector3.Dot(transform.forward, direction) > 0.99f))
             {
                 var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20f * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    20f * Time.deltaTime
+                );
                 yield return null;
             }
 
             // calculate the destination
-            Vector3 destination = CalculateAttackDestination(target.transform.position, ABILITY_THREE_CLOSE_RADIUS, direction);
+            Vector3 destination = CalculateAttackDestination(
+                target.transform.position,
+                ABILITY_THREE_CLOSE_RADIUS,
+                direction
+            );
 
             _characterController.enabled = false;
             // while the character is not at the destination
             while (transform.position != destination)
             {
                 // move the character towards the destination
-                transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * 10f);
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    destination,
+                    Time.deltaTime * 10f
+                );
 
                 // wait until the next frame
                 yield return null;
@@ -81,7 +95,11 @@ namespace Xiaohai.Character.Arthur
         /// <param name="radius">The radius of the circle.</param>
         /// <param name="direction">The direction vector of the line.</param>
         /// <returns>Intersection points.</returns>
-        private List<Vector2> CalculateIntersectionPoints(Vector2 center, float radius, Vector2 direction)
+        private List<Vector2> CalculateIntersectionPoints(
+            Vector2 center,
+            float radius,
+            Vector2 direction
+        )
         {
             // Formula inspired by https://math.stackexchange.com/a/228855
             List<Vector2> intersectionPoints = new List<Vector2>();
@@ -94,11 +112,16 @@ namespace Xiaohai.Character.Arthur
 
             var a = 1 + slope * slope;
             var b = 2 * (slope * yIntercept - slope * center.y - center.x);
-            var c = center.y * center.y - radius * radius + center.x * center.x - 2 * (yIntercept * center.y) + yIntercept * yIntercept;
+            var c =
+                center.y * center.y
+                - radius * radius
+                + center.x * center.x
+                - 2 * (yIntercept * center.y)
+                + yIntercept * yIntercept;
 
             var delta = b * b - 4 * a * c;
 
-            if (delta < 0) { }// no intersection
+            if (delta < 0) { } // no intersection
             else if (delta == 0) // 1 point
             {
                 var x = -b / (2 * a);
@@ -132,10 +155,12 @@ namespace Xiaohai.Character.Arthur
         private Vector3 CalculateAttackDestination(Vector3 target, float radius, Vector3 direction)
         {
             var destinations = CalculateIntersectionPoints(
-                                         new Vector2(target.x, target.z),
-                                         radius,
-                                         new Vector2(direction.x, direction.z)).
-                                     Select(intersection => new Vector3(intersection.x, target.y, intersection.y)).ToArray();
+                    new Vector2(target.x, target.z),
+                    radius,
+                    new Vector2(direction.x, direction.z)
+                )
+                .Select(intersection => new Vector3(intersection.x, target.y, intersection.y))
+                .ToArray();
 
             Vector3 destination = Vector3.zero;
             if (destinations.Length == 0)
@@ -149,8 +174,11 @@ namespace Xiaohai.Character.Arthur
             }
             else
             {
-                destination = Vector3.Distance(transform.position, destinations[0]) < Vector3.Distance(transform.position, destinations[1])
-                                  ? destinations[0] : destinations[1];
+                destination =
+                    Vector3.Distance(transform.position, destinations[0])
+                    < Vector3.Distance(transform.position, destinations[1])
+                        ? destinations[0]
+                        : destinations[1];
             }
 
             return destination;
