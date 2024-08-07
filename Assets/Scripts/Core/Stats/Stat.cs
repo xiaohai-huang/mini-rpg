@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Core.Game.Statistics
@@ -6,10 +7,10 @@ namespace Core.Game.Statistics
     {
         private readonly Dictionary<ModifierType, HashSet<Modifier>> _modifiers = new();
         public float BaseValue { get; set; }
-        public float ComputedValue
-        {
-            get => GetComputedValue();
-        }
+        private float _prevComputedValue;
+        public float ComputedValue { get; private set; }
+
+        public event Action<float> OnComputedValueChanged;
 
         private readonly StatSystem _system;
 
@@ -17,6 +18,7 @@ namespace Core.Game.Statistics
         {
             _system = system;
             InitializeModifiers();
+            UpdateComputedValue();
         }
 
         public Stat(float baseValue, StatSystem system)
@@ -24,16 +26,32 @@ namespace Core.Game.Statistics
             BaseValue = baseValue;
             _system = system;
             InitializeModifiers();
+            UpdateComputedValue();
         }
 
         public bool AddModifier(Modifier modifier)
         {
-            return _modifiers[modifier.Type].Add(modifier);
+            var success = _modifiers[modifier.Type].Add(modifier);
+            UpdateComputedValue();
+            return success;
         }
 
         public bool RemoveModifier(Modifier modifier)
         {
-            return _modifiers[modifier.Type].Remove(modifier);
+            var success = _modifiers[modifier.Type].Remove(modifier);
+            ComputedValue = GetComputedValue();
+            UpdateComputedValue();
+            return success;
+        }
+
+        void UpdateComputedValue()
+        {
+            ComputedValue = GetComputedValue();
+            if (_prevComputedValue != ComputedValue)
+            {
+                _prevComputedValue = ComputedValue;
+                OnComputedValueChanged?.Invoke(ComputedValue);
+            }
         }
 
         private float GetComputedValue()

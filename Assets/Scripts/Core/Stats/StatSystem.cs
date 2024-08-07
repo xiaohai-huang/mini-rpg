@@ -1,30 +1,36 @@
+using System;
 using System.Collections.Generic;
-using DotNetSystem = System;
 
 namespace Core.Game.Statistics
 {
     public class StatSystem
     {
         private readonly Dictionary<StatType, Stat> Stats = new();
+        public event Action<StatType, float> OnStatComputedValueChanged;
 
         public StatSystem()
         {
             Init();
         }
 
+        private void Init()
+        {
+            foreach (StatType type in Enum.GetValues(typeof(StatType)))
+            {
+                Stats[type] = new Stat(this);
+                Stats[type].OnComputedValueChanged += newValue =>
+                    OnStatComputedValueChanged?.Invoke(type, newValue);
+            }
+        }
+
         public StatSystem(BaseStats baseStats)
         {
             foreach (var pair in baseStats)
             {
-                Stats[pair.Key] = new Stat(pair.Value, this);
-            }
-        }
-
-        private void Init()
-        {
-            foreach (StatType type in DotNetSystem.Enum.GetValues(typeof(StatType)))
-            {
-                Stats[type] = new Stat(this);
+                StatType type = pair.Key;
+                Stats[type] = new Stat(pair.Value, this);
+                Stats[type].OnComputedValueChanged += newValue =>
+                    OnStatComputedValueChanged?.Invoke(type, newValue);
             }
         }
 
