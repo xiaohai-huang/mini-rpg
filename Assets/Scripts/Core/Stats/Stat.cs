@@ -25,16 +25,16 @@ namespace Core.Game.Statistics
 
         public Stat(StatSystem system)
         {
-            _system = system;
             InitializeModifiers();
+            _system = system;
             UpdateComputedValue();
         }
 
         public Stat(float baseValue, StatSystem system)
         {
+            InitializeModifiers();
             BaseValue = baseValue;
             _system = system;
-            InitializeModifiers();
             UpdateComputedValue();
         }
 
