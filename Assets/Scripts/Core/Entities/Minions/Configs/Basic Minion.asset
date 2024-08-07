@@ -9,7 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b13f3920fb9b81409ea58015af909d4, type: 3}
-  m_Name: XiaoQiao Health Config
+  m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
+  m_Name: Basic Minion
   m_EditorClassIdentifier: 
-  MaxHealth: 2000
+  keys: 0000000002000000030000000500000006000000070000000800000009000000
+  values:
+  - 1500
+  - 120
+  - 100
+  - 200
+  - 0.6
+  - 0
+  - 3
+  - 15

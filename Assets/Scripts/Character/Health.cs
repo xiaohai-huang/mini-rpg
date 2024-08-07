@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Xiaohai.UI;
 
 namespace Xiaohai.Character
 {

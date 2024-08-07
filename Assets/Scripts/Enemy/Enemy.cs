@@ -1,4 +1,5 @@
 using System.Collections;
+using Core.Game.Entities;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityHFSM;
@@ -8,7 +9,7 @@ using Xiaohai.Utilities;
 using UnityEditor;
 #endif
 
-public class Enemy : MonoBehaviour
+public class Enemy : Base
 {
     private StateMachine _fsm;
 
@@ -35,8 +36,9 @@ public class Enemy : MonoBehaviour
     private float _ccDuration;
     private Canvas ui;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         _agent = GetComponent<NavMeshAgent>();
         _damageable = GetComponent<Damageable>();
         _attackHandler = GetComponent<AttackHandler>();

@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93a79bd04deeb84aba74132f8d051c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthConfig: {fileID: 11400000, guid: 25ff58d8666223e4e83f552d8ed63041, type: 2}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
@@ -258,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0670bf58166fe7c4d92dae97ca973ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseStats: {fileID: 11400000, guid: c6121fed01df8654a9cb446b61012916, type: 2}
+  _static: 0
   CurrentState: 
   _target: {fileID: 0}
   DetectRange: 30

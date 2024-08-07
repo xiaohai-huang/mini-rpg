@@ -1,11 +1,13 @@
+using Core.Game.Entities;
+using Core.Game.Statistics;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Xiaohai.Character
 {
+    [RequireComponent(typeof(Base))]
     public class Damageable : MonoBehaviour
     {
-        [SerializeField] private HealthConfig _healthConfig;
         private Health _health;
         public int CurrentHealth => _health.CurrentHealth;
         public int MaxHealth => _health.MaxHealth;
@@ -17,19 +19,33 @@ namespace Xiaohai.Character
         public UnityEvent OnDie;
 
         public bool IsDead;
-        void Awake()
-        {
-            if (!TryGetComponent(out _health))
-            {
-                _health = gameObject.AddComponent<Health>();
-                _health.MaxHealth = _healthConfig.MaxHealth;
-                _health.CurrentHealth = _healthConfig.MaxHealth;
-            }
-        }
+        private Stat _maxHealthStat;
 
         void Start()
         {
+            _maxHealthStat = GetComponent<Base>().Statistics.GetStat(StatType.MaxHealth);
+            if (!TryGetComponent(out _health))
+            {
+                _health = gameObject.AddComponent<Health>();
+                _health.MaxHealth = (int)_maxHealthStat.ComputedValue;
+                _health.CurrentHealth = (int)_maxHealthStat.ComputedValue;
+            }
             FireOnHealthChangedEvent();
+        }
+
+        void OnEnable()
+        {
+            _maxHealthStat.OnComputedValueChanged += OnMaxHealthChanged;
+        }
+
+        void OnDisable()
+        {
+            _maxHealthStat.OnComputedValueChanged -= OnMaxHealthChanged;
+        }
+
+        private void OnMaxHealthChanged(float newValue)
+        {
+            _health.MaxHealth = (int)newValue;
         }
 
         void FireOnHealthChangedEvent()
@@ -39,7 +55,8 @@ namespace Xiaohai.Character
 
         public void TakeDamage(int amount)
         {
-            if (IsDead) return;
+            if (IsDead)
+                return;
             _health.ReduceHealth(amount);
 
             FireOnHealthChangedEvent();
@@ -54,7 +71,8 @@ namespace Xiaohai.Character
 
         public void RestoreHealth(int healthToAdd)
         {
-            if (IsDead) return;
+            if (IsDead)
+                return;
 
             _health.IncreaseHealth(healthToAdd);
 
