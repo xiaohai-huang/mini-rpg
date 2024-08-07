@@ -1,3 +1,5 @@
+using System;
+using Core.Game.Statistics;
 using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
@@ -21,8 +23,6 @@ namespace Xiaohai.Character.Arthur
         private float _speedPercentage;
         private float _enhancedBasicAttackRange;
         private Character _character;
-        private int _timerId;
-        private GameObject _indicator;
 
         /// <summary>
         ///
@@ -36,31 +36,34 @@ namespace Xiaohai.Character.Arthur
             CoolDownTime = duration;
         }
 
-        public override void OnApply(EffectSystem system)
+        public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);
             _character = system.GetComponent<Character>();
-            _character.BonusWalkSpeed += _speedPercentage * _character.BaseWalkSpeed;
+            var speedUpModifier = new PercentageModifier(StatType.MovementSpeed, _speedPercentage);
+            _character.Statistics.AddModifier(speedUpModifier);
 
             // show the visual of enhanced basic attack range indicator
-            _indicator = Object.Instantiate(OriginSO.RangeIndicatorPrefab, system.transform);
-            _indicator.transform.localScale = new Vector3(
+            GameObject indicator = UnityEngine.Object.Instantiate(
+                OriginSO.RangeIndicatorPrefab,
+                system.transform
+            );
+            indicator.transform.localScale = new Vector3(
                 _enhancedBasicAttackRange * 2,
                 _enhancedBasicAttackRange * 2,
                 1f
             );
-            _indicator.transform.localPosition = Vector3.zero;
-            _indicator.transform.localPosition += OriginSO.Offset;
-            _indicator.SetActive(true);
-            _timerId = Timer.Instance.SetTimeout(() => Finished = true, CoolDownTime);
-        }
+            indicator.transform.localPosition = Vector3.zero;
+            indicator.transform.localPosition += OriginSO.Offset;
+            indicator.SetActive(true);
+            int timerId = Timer.Instance.SetTimeout(() => Finished = true, CoolDownTime);
 
-        public override void OnRemove(EffectSystem system)
-        {
-            base.OnRemove(system);
-            Object.Destroy(_indicator);
-            _character.BonusWalkSpeed -= _speedPercentage * _character.BaseWalkSpeed;
-            Timer.Instance.ClearTimeout(_timerId);
+            return () =>
+            {
+                _character.Statistics.RemoveModifier(speedUpModifier);
+                UnityEngine.Object.Destroy(indicator);
+                Timer.Instance.ClearTimeout(timerId);
+            };
         }
     }
 }

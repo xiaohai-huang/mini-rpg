@@ -27,7 +27,7 @@ public class HorizontalMoveAction : StateAction
         var input = _character.IsAutoMove
             ? _character.HorizontalAutoInput
             : _character.HorizontalInput;
-        _character.Velocity.x = _character.WalkSpeed * input.x;
-        _character.Velocity.z = _character.WalkSpeed * input.y;
+        _character.Velocity.x = _character.MaxMoveSpeed * input.x;
+        _character.Velocity.z = _character.MaxMoveSpeed * input.y;
     }
 }
