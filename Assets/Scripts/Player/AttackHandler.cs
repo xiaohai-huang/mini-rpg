@@ -12,6 +12,9 @@ public class AttackHandler : MonoBehaviour
         var goForward = go.GetComponent<GoForward>();
         goForward.Speed = 10f;
         goForward.DamageAmount = Random.Range(100, MaxDamageAmount);
-        go.transform.SetPositionAndRotation(FirePoint.transform.position, FirePoint.transform.rotation);
+        go.transform.SetPositionAndRotation(
+            FirePoint.transform.position,
+            FirePoint.transform.rotation
+        );
     }
 }

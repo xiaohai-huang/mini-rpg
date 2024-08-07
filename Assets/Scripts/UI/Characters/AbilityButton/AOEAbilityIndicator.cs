@@ -28,11 +28,11 @@ namespace Xiaohai.UI
         private float _AOE_Radius;
 
         [SerializeField]
-        [ColorUsage(true,true)]
+        [ColorUsage(true, true)]
         private Color _activeColor;
 
         [SerializeField]
-        [ColorUsage(true,true)]
+        [ColorUsage(true, true)]
         private Color _cancelColor;
 
         private Material _rangeIndicatorMaterial;

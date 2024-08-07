@@ -4,7 +4,10 @@ using UOP1.StateMachine.ScriptableObjects;
 
 namespace Xiaohai.Character.MarcoPolo
 {
-    [CreateAssetMenu(fileName = "AbilityThreeAction", menuName = "State Machines/Actions/Marco Polo/Ability Three Action")]
+    [CreateAssetMenu(
+        fileName = "AbilityThreeAction",
+        menuName = "State Machines/Actions/Marco Polo/Ability Three Action"
+    )]
     public class AbilityThreeActionSO : StateActionSO
     {
         protected override StateAction CreateAction() => new AbilityThreeAction();
@@ -22,9 +25,7 @@ namespace Xiaohai.Character.MarcoPolo
             _polo = stateMachine.GetComponent<MarcoPolo>();
         }
 
-        public override void OnUpdate()
-        {
-        }
+        public override void OnUpdate() { }
 
         public override void OnStateEnter()
         {

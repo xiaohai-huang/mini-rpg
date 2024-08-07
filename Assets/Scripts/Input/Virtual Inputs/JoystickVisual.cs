@@ -5,8 +5,11 @@ namespace Xiaohai.Input
 {
     public class JoystickVisual : MonoBehaviour
     {
-        [SerializeField] private Image _backgroundRing;
-        [SerializeField] private Image _dot;
+        [SerializeField]
+        private Image _backgroundRing;
+
+        [SerializeField]
+        private Image _dot;
         public float Size = 300f;
         private float _halfSize;
         private OnScreenJoystick _joystick;

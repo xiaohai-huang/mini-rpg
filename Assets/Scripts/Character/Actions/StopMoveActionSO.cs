@@ -24,11 +24,7 @@ public class StopMoveAction : StateAction
         _character.Velocity = Vector3.zero;
     }
 
-    public override void OnStateEnter()
-    {
-    }
+    public override void OnStateEnter() { }
 
-    public override void OnStateExit()
-    {
-    }
+    public override void OnStateExit() { }
 }

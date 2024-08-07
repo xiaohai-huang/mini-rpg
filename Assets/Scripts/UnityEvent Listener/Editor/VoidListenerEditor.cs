@@ -1,7 +1,4 @@
 using UnityEditor;
 
 [CustomEditor(typeof(VoidListener))]
-public class VoidListenerEditor : GenericListenerEditor
-{
-
-}
+public class VoidListenerEditor : GenericListenerEditor { }

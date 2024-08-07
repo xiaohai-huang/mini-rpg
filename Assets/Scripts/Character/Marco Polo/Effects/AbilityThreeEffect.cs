@@ -15,7 +15,14 @@ namespace Xiaohai.Character.MarcoPolo
         private Character _character;
         private GameObject _circle;
         private LayerMask _targetMask = LayerMask.GetMask("Enemy");
-        public AbilityThreeEffect(int damage, float radius, float duration, float attackRate, GameObject effectPrefab)
+
+        public AbilityThreeEffect(
+            int damage,
+            float radius,
+            float duration,
+            float attackRate,
+            GameObject effectPrefab
+        )
         {
             Name = "Marco Polo Ability Three";
             _damage = damage;
@@ -29,8 +36,17 @@ namespace Xiaohai.Character.MarcoPolo
         {
             base.OnApply(system);
             _character = system.GetComponent<Character>();
-            _circle = UnityEngine.Object.Instantiate(_circlePrefab, system.transform.position, Quaternion.identity, system.transform);
-            _circle.transform.localScale = new Vector3(_radius * 2, _circle.transform.localScale.y, _radius * 2);
+            _circle = UnityEngine.Object.Instantiate(
+                _circlePrefab,
+                system.transform.position,
+                Quaternion.identity,
+                system.transform
+            );
+            _circle.transform.localScale = new Vector3(
+                _radius * 2,
+                _circle.transform.localScale.y,
+                _radius * 2
+            );
             _circle.SetActive(true);
         }
 
@@ -59,5 +75,4 @@ namespace Xiaohai.Character.MarcoPolo
             UnityEngine.Object.Destroy(_circle);
         }
     }
-
 }

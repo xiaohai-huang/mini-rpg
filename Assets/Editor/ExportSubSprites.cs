@@ -1,21 +1,24 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 public class ExportSubSprites : Editor
 {
-
     [MenuItem("Assets/Export Sub-Sprites")]
     public static void DoExportSubSprites()
     {
-        var folder = EditorUtility.OpenFolderPanel("Export subsprites into what folder?", "Assets", "");
+        var folder = EditorUtility.OpenFolderPanel(
+            "Export subsprites into what folder?",
+            "Assets",
+            ""
+        );
         foreach (var obj in Selection.objects)
         {
             var sprite = obj as Sprite;
-            if (sprite == null) continue;
+            if (sprite == null)
+                continue;
             var extracted = ExtractAndName(sprite);
             SaveSubSprite(extracted, folder);
         }
-
     }
 
     [MenuItem("Assets/Export Sub-Sprites", true)]
@@ -38,7 +41,8 @@ public class ExportSubSprites : Editor
 
     private static void SaveSubSprite(Texture2D tex, string saveToDirectory)
     {
-        if (!System.IO.Directory.Exists(saveToDirectory)) System.IO.Directory.CreateDirectory(saveToDirectory);
+        if (!System.IO.Directory.Exists(saveToDirectory))
+            System.IO.Directory.CreateDirectory(saveToDirectory);
         var path = System.IO.Path.Combine(saveToDirectory, tex.name + ".png");
         System.IO.File.WriteAllBytes(path, tex.EncodeToPNG());
         Debug.Log($"Saved the sprite to {path}");

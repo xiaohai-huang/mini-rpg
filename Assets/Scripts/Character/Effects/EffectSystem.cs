@@ -20,6 +20,7 @@ public class EffectSystem : MonoBehaviour
     private readonly List<Effect> _effectsToRemove = new();
 
     private Damageable _damageable;
+
     public void AddEffect(Effect newEffect)
     {
         if (Contains(newEffect))

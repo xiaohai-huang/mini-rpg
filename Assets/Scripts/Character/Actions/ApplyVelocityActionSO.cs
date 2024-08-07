@@ -3,7 +3,10 @@ using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 using Xiaohai.Character;
 
-[CreateAssetMenu(fileName = "ApplyVelocityAction", menuName = "State Machines/Actions/Apply Velocity Action")]
+[CreateAssetMenu(
+    fileName = "ApplyVelocityAction",
+    menuName = "State Machines/Actions/Apply Velocity Action"
+)]
 public class ApplyVelocityActionSO : StateActionSO
 {
     protected override StateAction CreateAction() => new ApplyVelocityAction();
@@ -30,11 +33,7 @@ public class ApplyVelocityAction : StateAction
         _character.Velocity = _characterController.velocity;
     }
 
-    public override void OnStateEnter()
-    {
-    }
+    public override void OnStateEnter() { }
 
-    public override void OnStateExit()
-    {
-    }
+    public override void OnStateExit() { }
 }

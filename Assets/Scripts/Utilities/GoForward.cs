@@ -5,10 +5,12 @@ public class GoForward : MonoBehaviour
 {
     public float Speed;
     public int DamageAmount = 10;
+
     void Start()
     {
         Destroy(gameObject, 10f);
     }
+
     // Update is called once per frame
     void Update()
     {

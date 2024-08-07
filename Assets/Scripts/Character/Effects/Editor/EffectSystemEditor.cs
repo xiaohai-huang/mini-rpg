@@ -5,16 +5,14 @@ using UnityEngine;
 public class EffectSystemEditor : Editor
 {
     private EffectSystem _system;
-    private void OnEnable()
-    {
-    }
+
+    private void OnEnable() { }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
         serializedObject.Update();
-
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Effects", EditorStyles.boldLabel);

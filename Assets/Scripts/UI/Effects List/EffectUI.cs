@@ -8,6 +8,7 @@ namespace Xiaohai.UI
         [Header("Public")]
         public string Name;
         public Sprite Icon;
+
         /// <summary>
         /// CoolDown Time in ms
         /// </summary>
@@ -17,9 +18,9 @@ namespace Xiaohai.UI
         [Header("Private")]
         [SerializeField]
         private Image _image;
+
         [SerializeField]
         private Image _coolDown;
-
 
         // Update is called once per frame
         void Update()

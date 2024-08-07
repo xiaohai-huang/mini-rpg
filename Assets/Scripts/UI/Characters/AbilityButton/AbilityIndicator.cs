@@ -4,8 +4,11 @@ namespace Xiaohai.UI
 {
     public abstract class AbilityIndicator : MonoBehaviour
     {
-        [SerializeField] private OnScreenInputEventChannel _onScreenInputEventChannel;
-        [SerializeField] private OnScreenInputEventChannel.Input _inputType;
+        [SerializeField]
+        private OnScreenInputEventChannel _onScreenInputEventChannel;
+
+        [SerializeField]
+        private OnScreenInputEventChannel.Input _inputType;
 
         protected AbilityButton _button;
 
@@ -26,24 +29,12 @@ namespace Xiaohai.UI
             _button.OnCancellingChanged -= OnCancellingChanged;
         }
 
-        protected virtual void OnMoving()
-        {
+        protected virtual void OnMoving() { }
 
-        }
+        protected virtual void OnReleased(bool released) { }
 
-        protected virtual void OnReleased(bool released)
-        {
+        protected virtual void OnBeginInteraction() { }
 
-        }
-
-        protected virtual void OnBeginInteraction()
-        {
-
-        }
-
-        protected virtual void OnCancellingChanged(bool cancelling)
-        {
-
-        }
+        protected virtual void OnCancellingChanged(bool cancelling) { }
     }
 }

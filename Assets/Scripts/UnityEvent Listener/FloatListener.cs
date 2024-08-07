@@ -1,4 +1,1 @@
-public class FloatListener : GenericListener<float>
-{
-
-}
+public class FloatListener : GenericListener<float> { }

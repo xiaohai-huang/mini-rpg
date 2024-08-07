@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField]
+    private GameObject _gameOverUI;
 
     public void Show()
     {

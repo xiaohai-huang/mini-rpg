@@ -8,10 +8,13 @@ namespace Xiaohai.Character.Arthur
         public float Radius = 1.5f;
         public float RotateSpeed = 10f;
         public float DamageAmount;
+
         [SerializeField]
         private RuntimeTransformAnchor _transformAnchor;
+
         [SerializeField]
         private Transform _container;
+
         [SerializeField]
         private Shield[] _shields;
         public bool Spinning;
@@ -45,7 +48,6 @@ namespace Xiaohai.Character.Arthur
             Spinning = false;
         }
 
-
         /// <summary>
         /// Gets the coordinates of `numShields` shields evenly distributed around the origin on a circle with radius `radius`.
         /// </summary>
@@ -58,7 +60,11 @@ namespace Xiaohai.Character.Arthur
             float anglePerShield = 2.0f * Mathf.PI / numShields;
             for (int i = 0; i < numShields; i++)
             {
-                coordinates[i] = new Vector3(radius * Mathf.Sin(anglePerShield * i), 0, radius * Mathf.Cos(anglePerShield * i));
+                coordinates[i] = new Vector3(
+                    radius * Mathf.Sin(anglePerShield * i),
+                    0,
+                    radius * Mathf.Cos(anglePerShield * i)
+                );
             }
 
             return coordinates;
@@ -74,6 +80,7 @@ namespace Xiaohai.Character.Arthur
                 shield.transform.LookAt(transform.position);
             }
         }
+
 #if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {

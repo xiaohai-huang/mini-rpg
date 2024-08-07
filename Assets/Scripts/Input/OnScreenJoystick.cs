@@ -1,15 +1,13 @@
-
 using System;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.InputSystem.Layouts;
-using UnityEngine.InputSystem.Utilities;
-using UnityEngine.UI;
-using UnityEngine.InputSystem.OnScreen;
-using UnityEngine.InputSystem;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Layouts;
+using UnityEngine.InputSystem.OnScreen;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.AnimatedValues;
@@ -33,15 +31,27 @@ namespace Xiaohai.Input
     /// To avoid this situation, set the <see cref="useIsolatedInputActions"/> property to true. This will create a set of local
     /// Input Actions to drive the stick that are not cancelled when device switching occurs.
     /// </remarks>
-    public class OnScreenJoystick : OnScreenControl, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public class OnScreenJoystick
+        : OnScreenControl,
+            IPointerDownHandler,
+            IPointerUpHandler,
+            IDragHandler
     {
         private const string kDynamicOriginClickable = "DynamicOriginClickable";
 
-        public Vector2 PointerDownPosition { get => m_PointerDownPos; }
+        public Vector2 PointerDownPosition
+        {
+            get => m_PointerDownPos;
+        }
+
         /// <summary>
         /// Clammped Pointer Position within the Movement Range
         /// </summary>
-        public Vector2 PointerPosition { get => ((RectTransform)transform).anchoredPosition; }
+        public Vector2 PointerPosition
+        {
+            get => ((RectTransform)transform).anchoredPosition;
+        }
+
         /// <summary>
         /// The position of the pointer without any restriction. It reset to original position when the pointer is released
         /// </summary>
@@ -125,7 +135,8 @@ namespace Xiaohai.Input
 
             m_StartPos = ((RectTransform)transform).anchoredPosition;
 
-            if (m_Behaviour != Behaviour.ExactPositionWithDynamicOrigin) return;
+            if (m_Behaviour != Behaviour.ExactPositionWithDynamicOrigin)
+                return;
             m_PointerDownPos = m_StartPos;
 
             var dynamicOrigin = new GameObject(kDynamicOriginClickable, typeof(Image));
@@ -133,7 +144,10 @@ namespace Xiaohai.Input
             var image = dynamicOrigin.GetComponent<Image>();
             image.color = new Color(1, 1, 1, 0);
             var rectTransform = (RectTransform)dynamicOrigin.transform;
-            rectTransform.sizeDelta = new Vector2(m_DynamicOriginRange * 2, m_DynamicOriginRange * 2);
+            rectTransform.sizeDelta = new Vector2(
+                m_DynamicOriginRange * 2,
+                m_DynamicOriginRange * 2
+            );
             rectTransform.localScale = new Vector3(1, 1, 0);
             rectTransform.anchoredPosition3D = Vector3.zero;
 
@@ -146,21 +160,38 @@ namespace Xiaohai.Input
             var canvasRect = transform.parent?.GetComponentInParent<RectTransform>();
             if (canvasRect == null)
             {
-                Debug.LogError("OnScreenJoystick needs to be attached as a child to a UI Canvas to function properly.");
+                Debug.LogError(
+                    "OnScreenJoystick needs to be attached as a child to a UI Canvas to function properly."
+                );
                 return;
             }
 
             switch (m_Behaviour)
             {
                 case Behaviour.RelativePositionWithStaticOrigin:
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, pointerPosition, uiCamera, out m_PointerDownPos);
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvasRect,
+                        pointerPosition,
+                        uiCamera,
+                        out m_PointerDownPos
+                    );
                     break;
                 case Behaviour.ExactPositionWithStaticOrigin:
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, pointerPosition, uiCamera, out m_PointerDownPos);
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvasRect,
+                        pointerPosition,
+                        uiCamera,
+                        out m_PointerDownPos
+                    );
                     MoveStick(pointerPosition, uiCamera);
                     break;
                 case Behaviour.ExactPositionWithDynamicOrigin:
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, pointerPosition, uiCamera, out var pointerDown);
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvasRect,
+                        pointerPosition,
+                        uiCamera,
+                        out var pointerDown
+                    );
                     m_PointerDownPos = ((RectTransform)transform).anchoredPosition = pointerDown;
                     break;
             }
@@ -172,10 +203,17 @@ namespace Xiaohai.Input
             var canvasRect = transform.parent?.GetComponentInParent<RectTransform>();
             if (canvasRect == null)
             {
-                Debug.LogError("OnScreenJoystick needs to be attached as a child to a UI Canvas to function properly.");
+                Debug.LogError(
+                    "OnScreenJoystick needs to be attached as a child to a UI Canvas to function properly."
+                );
                 return;
             }
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, pointerPosition, uiCamera, out var position);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRect,
+                pointerPosition,
+                uiCamera,
+                out var position
+            );
             var delta = position - m_PointerDownPos;
 
             switch (m_Behaviour)
@@ -225,7 +263,8 @@ namespace Xiaohai.Input
             var stickSelected = false;
             foreach (var result in m_RaycastResults)
             {
-                if (result.gameObject != gameObject) continue;
+                if (result.gameObject != gameObject)
+                    continue;
 
                 stickSelected = true;
                 break;
@@ -258,8 +297,10 @@ namespace Xiaohai.Input
         {
             var canvas = GetComponentInParent<Canvas>();
             var renderMode = canvas?.renderMode;
-            if (renderMode == RenderMode.ScreenSpaceOverlay
-                || (renderMode == RenderMode.ScreenSpaceCamera && canvas?.worldCamera == null))
+            if (
+                renderMode == RenderMode.ScreenSpaceOverlay
+                || (renderMode == RenderMode.ScreenSpaceCamera && canvas?.worldCamera == null)
+            )
                 return null;
 
             return canvas?.worldCamera ?? Camera.main;
@@ -281,7 +322,8 @@ namespace Xiaohai.Input
 
             DrawGizmoCircle(center, m_MovementRange);
 
-            if (m_Behaviour != Behaviour.ExactPositionWithDynamicOrigin) return;
+            if (m_Behaviour != Behaviour.ExactPositionWithDynamicOrigin)
+                return;
 
             Gizmos.color = new Color32(158, 84, 219, 255);
             DrawGizmoCircle(startPos, m_DynamicOriginRange);
@@ -294,8 +336,17 @@ namespace Xiaohai.Input
                 var radians = i / 32f * Mathf.PI * 2;
                 var nextRadian = (i + 1) / 32f * Mathf.PI * 2;
                 Gizmos.DrawLine(
-                    new Vector3(center.x + Mathf.Cos(radians) * radius, center.y + Mathf.Sin(radians) * radius, 0),
-                    new Vector3(center.x + Mathf.Cos(nextRadian) * radius, center.y + Mathf.Sin(nextRadian) * radius, 0));
+                    new Vector3(
+                        center.x + Mathf.Cos(radians) * radius,
+                        center.y + Mathf.Sin(radians) * radius,
+                        0
+                    ),
+                    new Vector3(
+                        center.x + Mathf.Cos(nextRadian) * radius,
+                        center.y + Mathf.Sin(nextRadian) * radius,
+                        0
+                    )
+                );
             }
         }
 
@@ -305,7 +356,10 @@ namespace Xiaohai.Input
             if (dynamicOriginTransform)
             {
                 var rectTransform = (RectTransform)dynamicOriginTransform;
-                rectTransform.sizeDelta = new Vector2(m_DynamicOriginRange * 2, m_DynamicOriginRange * 2);
+                rectTransform.sizeDelta = new Vector2(
+                    m_DynamicOriginRange * 2,
+                    m_DynamicOriginRange * 2
+                );
             }
         }
 
@@ -369,7 +423,9 @@ namespace Xiaohai.Input
         private float m_MovementRange = 50;
 
         [SerializeField]
-        [Tooltip("Defines the circular region where the onscreen control may have it's origin placed.")]
+        [Tooltip(
+            "Defines the circular region where the onscreen control may have it's origin placed."
+        )]
         [Min(0)]
         private float m_DynamicOriginRange = 100;
 
@@ -378,28 +434,36 @@ namespace Xiaohai.Input
         private string m_ControlPath;
 
         [SerializeField]
-        [Tooltip("Choose how the onscreen stick will move relative to it's origin and the press position.\n\n" +
-            "RelativePositionWithStaticOrigin: The control's center of origin is fixed. " +
-            "The control will begin un-actuated at it's centered position and then move relative to the pointer or finger motion.\n\n" +
-            "ExactPositionWithStaticOrigin: The control's center of origin is fixed. The stick will immediately jump to the " +
-            "exact position of the click or touch and begin tracking motion from there.\n\n" +
-            "ExactPositionWithDynamicOrigin: The control's center of origin is determined by the initial press position. " +
-            "The stick will begin un-actuated at this center position and then track the current pointer or finger position.")]
+        [Tooltip(
+            "Choose how the onscreen stick will move relative to it's origin and the press position.\n\n"
+                + "RelativePositionWithStaticOrigin: The control's center of origin is fixed. "
+                + "The control will begin un-actuated at it's centered position and then move relative to the pointer or finger motion.\n\n"
+                + "ExactPositionWithStaticOrigin: The control's center of origin is fixed. The stick will immediately jump to the "
+                + "exact position of the click or touch and begin tracking motion from there.\n\n"
+                + "ExactPositionWithDynamicOrigin: The control's center of origin is determined by the initial press position. "
+                + "The stick will begin un-actuated at this center position and then track the current pointer or finger position."
+        )]
         private Behaviour m_Behaviour;
 
         [SerializeField]
-        [Tooltip("Set this to true to prevent cancellation of pointer events due to device switching. Cancellation " +
-            "will appear as the stick jumping back and forth between the pointer position and the stick center.")]
+        [Tooltip(
+            "Set this to true to prevent cancellation of pointer events due to device switching. Cancellation "
+                + "will appear as the stick jumping back and forth between the pointer position and the stick center."
+        )]
         private bool m_UseIsolatedInputActions;
 
         [SerializeField]
-        [Tooltip("The action that will be used to detect pointer down events on the stick control. Note that if no bindings " +
-            "are set, default ones will be provided.")]
+        [Tooltip(
+            "The action that will be used to detect pointer down events on the stick control. Note that if no bindings "
+                + "are set, default ones will be provided."
+        )]
         private InputAction m_PointerDownAction;
 
         [SerializeField]
-        [Tooltip("The action that will be used to detect pointer movement on the stick control. Note that if no bindings " +
-            "are set, default ones will be provided.")]
+        [Tooltip(
+            "The action that will be used to detect pointer movement on the stick control. Note that if no bindings "
+                + "are set, default ones will be provided."
+        )]
         private InputAction m_PointerMoveAction;
 
         private Vector3 m_StartPos;
@@ -407,6 +471,7 @@ namespace Xiaohai.Input
 
         [NonSerialized]
         private List<RaycastResult> m_RaycastResults;
+
         [NonSerialized]
         private PointerEventData m_PointerEventData;
 
@@ -459,14 +524,26 @@ namespace Xiaohai.Input
                 m_ShowDynamicOriginOptions = new AnimBool(false);
                 m_ShowIsolatedInputActions = new AnimBool(false);
 
-                m_UseIsolatedInputActions = serializedObject.FindProperty(nameof(OnScreenJoystick.m_UseIsolatedInputActions));
+                m_UseIsolatedInputActions = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_UseIsolatedInputActions)
+                );
 
                 m_Behaviour = serializedObject.FindProperty(nameof(OnScreenJoystick.m_Behaviour));
-                m_ControlPathInternal = serializedObject.FindProperty(nameof(OnScreenJoystick.m_ControlPath));
-                m_MovementRange = serializedObject.FindProperty(nameof(OnScreenJoystick.m_MovementRange));
-                m_DynamicOriginRange = serializedObject.FindProperty(nameof(OnScreenJoystick.m_DynamicOriginRange));
-                m_PointerDownAction = serializedObject.FindProperty(nameof(OnScreenJoystick.m_PointerDownAction));
-                m_PointerMoveAction = serializedObject.FindProperty(nameof(OnScreenJoystick.m_PointerMoveAction));
+                m_ControlPathInternal = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_ControlPath)
+                );
+                m_MovementRange = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_MovementRange)
+                );
+                m_DynamicOriginRange = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_DynamicOriginRange)
+                );
+                m_PointerDownAction = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_PointerDownAction)
+                );
+                m_PointerMoveAction = serializedObject.FindProperty(
+                    nameof(OnScreenJoystick.m_PointerMoveAction)
+                );
             }
 
             public override void OnInspectorGUI()
@@ -475,8 +552,9 @@ namespace Xiaohai.Input
                 EditorGUILayout.PropertyField(m_ControlPathInternal);
                 EditorGUILayout.PropertyField(m_Behaviour);
 
-                m_ShowDynamicOriginOptions.target = ((OnScreenJoystick)target).behaviour ==
-                    Behaviour.ExactPositionWithDynamicOrigin;
+                m_ShowDynamicOriginOptions.target =
+                    ((OnScreenJoystick)target).behaviour
+                    == Behaviour.ExactPositionWithDynamicOrigin;
                 if (EditorGUILayout.BeginFadeGroup(m_ShowDynamicOriginOptions.faded))
                 {
                     EditorGUI.indentLevel++;

@@ -3,10 +3,14 @@ using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 using Xiaohai.Character;
 
-[CreateAssetMenu(fileName = "ApplyGravityAction", menuName = "State Machines/Actions/Apply Gravity Action")]
+[CreateAssetMenu(
+    fileName = "ApplyGravityAction",
+    menuName = "State Machines/Actions/Apply Gravity Action"
+)]
 public class ApplyGravityActionSO : StateActionSO
 {
     public float Gravity = -9.81f;
+
     protected override StateAction CreateAction() => new ApplyGravityAction();
 }
 
@@ -25,11 +29,7 @@ public class ApplyGravityAction : StateAction
         _character.Velocity.y = OriginSO.Gravity;
     }
 
-    public override void OnStateEnter()
-    {
-    }
+    public override void OnStateEnter() { }
 
-    public override void OnStateExit()
-    {
-    }
+    public override void OnStateExit() { }
 }

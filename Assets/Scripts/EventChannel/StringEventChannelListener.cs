@@ -3,8 +3,11 @@ using UnityEngine.Events;
 
 public class StringEventChannelListener : MonoBehaviour
 {
-    [SerializeField] private StringEventChannel EventChannel;
-    [SerializeField] private UnityEvent<string> Response;
+    [SerializeField]
+    private StringEventChannel EventChannel;
+
+    [SerializeField]
+    private UnityEvent<string> Response;
 
     void OnEnable()
     {

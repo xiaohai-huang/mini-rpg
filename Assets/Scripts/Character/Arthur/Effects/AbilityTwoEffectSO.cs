@@ -2,10 +2,11 @@ using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-    [CreateAssetMenu(fileName = "Arthur Ability Two Shields Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability Two Shields Effect")]
-    public class AbilityTwoEffectSO : EffectSO<AbilityTwoEffect>
-    {
-    }
+    [CreateAssetMenu(
+        fileName = "Arthur Ability Two Shields Effect",
+        menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability Two Shields Effect"
+    )]
+    public class AbilityTwoEffectSO : EffectSO<AbilityTwoEffect> { }
 
     /// <summary>
     /// Summons 3 shields that circle around him. Shields last for x seconds.
@@ -18,7 +19,7 @@ namespace Xiaohai.Character.Arthur
         private int _timerId;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="damageAmount"></param>
         /// <param name="duration">Duration of the effect in milliseconds.</param>

@@ -4,18 +4,23 @@ namespace Xiaohai.UI
 {
     public class NonDirectionalAbilityIndicator : AbilityIndicator
     {
-        [SerializeField] private Transform _indicator;
+        [SerializeField]
+        private Transform _indicator;
 
         [SerializeField]
         [Range(0.5f, 30f)]
         private float _radius;
-        [ColorUsage(true, true)]
-        [SerializeField] private Color _activeColor;
 
         [ColorUsage(true, true)]
-        [SerializeField] private Color _cancelColor;
+        [SerializeField]
+        private Color _activeColor;
+
+        [ColorUsage(true, true)]
+        [SerializeField]
+        private Color _cancelColor;
 
         private Material _indicatorMaterial;
+
         void Awake()
         {
             _indicator.gameObject.SetActive(false);

@@ -7,9 +7,14 @@ namespace Xiaohai.UI
 {
     public class ProgressBar : MonoBehaviour
     {
-        [SerializeField] private Image _content;
-        [SerializeField] private Image _divider;
-        [SerializeField] private Color _barColor;
+        [SerializeField]
+        private Image _content;
+
+        [SerializeField]
+        private Image _divider;
+
+        [SerializeField]
+        private Color _barColor;
         public Color BarColor
         {
             get => _barColor;
@@ -24,13 +29,12 @@ namespace Xiaohai.UI
         public int CurrentValue
         {
             get => _currentValue;
-            set
-            {
-                _currentValue = Math.Clamp(value, 0, MaxValue);
-            }
+            set { _currentValue = Math.Clamp(value, 0, MaxValue); }
         }
         public int DividerAmount = 1000;
-        [SerializeField] private float _speed;
+
+        [SerializeField]
+        private float _speed;
 
         private readonly List<GameObject> _dividers = new List<GameObject>();
 
@@ -39,11 +43,14 @@ namespace Xiaohai.UI
             SetupDivider();
         }
 
-
         // Update is called once per frame
         void Update()
         {
-            _content.fillAmount = Mathf.Lerp(_content.fillAmount, (float)_currentValue / MaxValue, _speed * Time.deltaTime);
+            _content.fillAmount = Mathf.Lerp(
+                _content.fillAmount,
+                (float)_currentValue / MaxValue,
+                _speed * Time.deltaTime
+            );
         }
 
         void SetupDivider()
@@ -55,8 +62,14 @@ namespace Xiaohai.UI
                 var divider = Instantiate(_divider, _content.transform);
                 divider.gameObject.SetActive(true);
 
-                divider.rectTransform.sizeDelta = new Vector2(divider.rectTransform.rect.width, size.height / 2);
-                divider.rectTransform.anchoredPosition = new Vector2(-(i + 1) * (size.width * DividerAmount) / MaxValue, 0f);
+                divider.rectTransform.sizeDelta = new Vector2(
+                    divider.rectTransform.rect.width,
+                    size.height / 2
+                );
+                divider.rectTransform.anchoredPosition = new Vector2(
+                    -(i + 1) * (size.width * DividerAmount) / MaxValue,
+                    0f
+                );
                 _dividers.Add(divider.gameObject);
             }
         }

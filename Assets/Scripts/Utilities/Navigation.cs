@@ -7,7 +7,7 @@ namespace Xiaohai.Utilities
     public static class Navigation
     {
         /// <summary>
-        /// Find the location of target with a offset of `radius`. 
+        /// Find the location of target with a offset of `radius`.
         /// This can prevent the character from colliding with the target.
         /// </summary>
         /// <param name="target"></param>
@@ -19,10 +19,12 @@ namespace Xiaohai.Utilities
             Vector3 direction = (target - origin).normalized;
 
             var destinations = CalculateIntersectionPoints(
-                                         new Vector2(target.x, target.z),
-                                         radius,
-                                         new Vector2(direction.x, direction.z)).
-                                     Select(intersection => new Vector3(intersection.x, target.y, intersection.y)).ToArray();
+                    new Vector2(target.x, target.z),
+                    radius,
+                    new Vector2(direction.x, direction.z)
+                )
+                .Select(intersection => new Vector3(intersection.x, target.y, intersection.y))
+                .ToArray();
 
             Vector3 destination = Vector3.zero;
             if (destinations.Length == 0)
@@ -37,8 +39,11 @@ namespace Xiaohai.Utilities
             else
             {
                 // pick the one that is close to the origin
-                destination = Vector3.Distance(origin, destinations[0]) < Vector3.Distance(origin, destinations[1])
-                                  ? destinations[0] : destinations[1];
+                destination =
+                    Vector3.Distance(origin, destinations[0])
+                    < Vector3.Distance(origin, destinations[1])
+                        ? destinations[0]
+                        : destinations[1];
             }
 
             return destination;
@@ -51,7 +56,11 @@ namespace Xiaohai.Utilities
         /// <param name="radius">The radius of the circle.</param>
         /// <param name="direction">The direction vector of the line.</param>
         /// <returns>Intersection points.</returns>
-        private static List<Vector2> CalculateIntersectionPoints(Vector2 center, float radius, Vector2 direction)
+        private static List<Vector2> CalculateIntersectionPoints(
+            Vector2 center,
+            float radius,
+            Vector2 direction
+        )
         {
             // Formula inspired by https://math.stackexchange.com/a/228855
             List<Vector2> intersectionPoints = new List<Vector2>();
@@ -64,11 +73,16 @@ namespace Xiaohai.Utilities
 
             var a = 1 + slope * slope;
             var b = 2 * (slope * yIntercept - slope * center.y - center.x);
-            var c = center.y * center.y - radius * radius + center.x * center.x - 2 * (yIntercept * center.y) + yIntercept * yIntercept;
+            var c =
+                center.y * center.y
+                - radius * radius
+                + center.x * center.x
+                - 2 * (yIntercept * center.y)
+                + yIntercept * yIntercept;
 
             var delta = b * b - 4 * a * c;
 
-            if (delta < 0) { }// no intersection
+            if (delta < 0) { } // no intersection
             else if (delta == 0) // 1 point
             {
                 var x = -b / (2 * a);
@@ -98,6 +112,5 @@ namespace Xiaohai.Utilities
 #endif
             return intersectionPoints;
         }
-
     }
 }
