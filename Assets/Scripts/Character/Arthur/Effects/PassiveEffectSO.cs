@@ -1,8 +1,13 @@
+using Core.Game.Entities;
+using Core.Game.Statistics;
 using UnityEngine;
 
 namespace Xiaohai.Character.Arthur
 {
-    [CreateAssetMenu(fileName = "Arthur Passive Effect", menuName = "My Scriptable Objects/Effects/Character/Arthur/Passive Effect")]
+    [CreateAssetMenu(
+        fileName = "Arthur Passive Effect",
+        menuName = "My Scriptable Objects/Effects/Character/Arthur/Passive Effect"
+    )]
     public class PassiveEffectSO : EffectSO<PassiveEffect>
     {
         /// <summary>
@@ -23,14 +28,20 @@ namespace Xiaohai.Character.Arthur
     {
         public new PassiveEffectSO OriginSO => (PassiveEffectSO)base.OriginSO;
         private int _timer;
+
         public override void OnApply(EffectSystem system)
         {
             base.OnApply(system);
-            var hp = system.GetComponent<Health>();
-            _timer = Timer.Instance.SetInterval(() =>
-            {
-                system.RestoreHealth((int)(hp.MaxHealth * OriginSO.RecoverPercentage));
-            }, OriginSO.RecoverRate);
+            var maxHealth = system.GetComponent<Base>().Statistics.GetStat(StatType.MaxHealth);
+            _timer = Timer.Instance.SetInterval(
+                () =>
+                {
+                    system.RestoreHealth(
+                        (int)(maxHealth.ComputedValue * OriginSO.RecoverPercentage)
+                    );
+                },
+                OriginSO.RecoverRate
+            );
         }
 
         public override void OnRemove(EffectSystem system)

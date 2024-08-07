@@ -1,3 +1,4 @@
+using System;
 using Core.Game.Entities;
 using Core.Game.Statistics;
 using UnityEngine;
@@ -8,9 +9,8 @@ namespace Xiaohai.Character
     [RequireComponent(typeof(Base))]
     public class Damageable : MonoBehaviour
     {
-        private Health _health;
-        public int CurrentHealth => _health.CurrentHealth;
-        public int MaxHealth => _health.MaxHealth;
+        public int CurrentHealth { get; private set; }
+        public int MaxHealth { get; private set; }
 
         [Header("Broadcasting On")]
         public UnityEvent<int, int> OnHealthChanged;
@@ -20,49 +20,69 @@ namespace Xiaohai.Character
 
         public bool IsDead;
         private Stat _maxHealthStat;
+        private Base _base;
+
+        void Awake()
+        {
+            _base = GetComponent<Base>();
+        }
+
+        bool _started = false;
 
         void Start()
         {
-            _maxHealthStat = GetComponent<Base>().Statistics.GetStat(StatType.MaxHealth);
-            if (!TryGetComponent(out _health))
-            {
-                _health = gameObject.AddComponent<Health>();
-                _health.MaxHealth = (int)_maxHealthStat.ComputedValue;
-                _health.CurrentHealth = (int)_maxHealthStat.ComputedValue;
-            }
+            _maxHealthStat = _base.Statistics.GetStat(StatType.MaxHealth);
+
+            MaxHealth = (int)_maxHealthStat.ComputedValue;
+            CurrentHealth = (int)_maxHealthStat.ComputedValue;
             FireOnHealthChangedEvent();
+            RegisterCallbacks();
+            _started = true;
         }
 
-        void OnEnable()
+        void RegisterCallbacks()
         {
             _maxHealthStat.OnComputedValueChanged += OnMaxHealthChanged;
         }
 
-        void OnDisable()
+        void UnregisterCallbacks()
         {
             _maxHealthStat.OnComputedValueChanged -= OnMaxHealthChanged;
         }
 
+        void OnEnable()
+        {
+            if (_started)
+            {
+                RegisterCallbacks();
+            }
+        }
+
+        void OnDisable()
+        {
+            UnregisterCallbacks();
+        }
+
         private void OnMaxHealthChanged(float newValue)
         {
-            _health.MaxHealth = (int)newValue;
+            MaxHealth = (int)newValue;
         }
 
         void FireOnHealthChangedEvent()
         {
-            OnHealthChanged?.Invoke(_health.CurrentHealth, _health.MaxHealth);
+            OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
         }
 
         public void TakeDamage(int amount)
         {
             if (IsDead)
                 return;
-            _health.ReduceHealth(amount);
+            ReduceHealth(amount);
 
             FireOnHealthChangedEvent();
             OnTakenDamage?.Invoke(amount);
 
-            if (_health.CurrentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 IsDead = true;
                 OnDie?.Invoke();
@@ -74,7 +94,7 @@ namespace Xiaohai.Character
             if (IsDead)
                 return;
 
-            _health.IncreaseHealth(healthToAdd);
+            IncreaseHealth(healthToAdd);
 
             FireOnHealthChangedEvent();
             OnRestoreHealth?.Invoke(healthToAdd);
@@ -82,13 +102,25 @@ namespace Xiaohai.Character
 
         public void Kill()
         {
-            TakeDamage(_health.CurrentHealth);
+            TakeDamage(CurrentHealth);
         }
 
         public void Resurrect()
         {
             IsDead = false;
-            RestoreHealth(_health.MaxHealth);
+            RestoreHealth(MaxHealth);
+        }
+
+        public void ReduceHealth(int healthAmount)
+        {
+            if (CurrentHealth == 0)
+                return;
+            CurrentHealth = Math.Max(CurrentHealth - healthAmount, 0);
+        }
+
+        public void IncreaseHealth(int healthAmount)
+        {
+            CurrentHealth = Math.Clamp(CurrentHealth + healthAmount, 0, MaxHealth);
         }
     }
 }
