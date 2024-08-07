@@ -12,6 +12,9 @@ on:
 
 jobs:
   test:
+    permissions:
+      contents: write
+      checks: write
     name: Test project 🧪
     runs-on: ubuntu-latest
     steps:
