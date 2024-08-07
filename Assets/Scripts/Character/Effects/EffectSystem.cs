@@ -34,14 +34,13 @@ public class EffectSystem : MonoBehaviour
             }
         }
         _effects.Add(newEffect);
-        newEffect.OnApply(this);
+        newEffect.OnApplyWrapper(this);
         OnAddEffect?.Invoke(newEffect);
     }
 
     public void RemoveEffect(Effect effect)
     {
         _effectsToRemove.Add(effect);
-        OnRemoveEffect?.Invoke(effect);
     }
 
     public void RemoveEffect(EffectSO effectSO)

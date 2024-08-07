@@ -60,6 +60,8 @@ namespace Xiaohai.Character.Arthur
 
         public override void OnStateEnter()
         {
+            Timer.Instance.ClearTimeout(_speedUpTimer);
+
             var effect = OriginSO.AbilityOneEffectSO.CreateEffect();
             effect.Init(
                 OriginSO.SpeedUpPercentage,
@@ -79,6 +81,9 @@ namespace Xiaohai.Character.Arthur
             _character.AbilityOneInput = false;
         }
 
-        public override void OnStateExit() { }
+        public override void OnStateExit()
+        {
+            _animator.ResetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
+        }
     }
 }

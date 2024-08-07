@@ -13,13 +13,11 @@ namespace Xiaohai.Character
     {
         [ReadOnly]
         public Damageable Target;
-        public float BaseWalkSpeed;
-        public float BonusWalkSpeed;
 
         /// <summary>
-        /// Final walk speed. BaseWalkSpeed + BonusWalkSpeed
+        /// Final walk speed.
         /// </summary>
-        public float WalkSpeed => BaseWalkSpeed + BonusWalkSpeed;
+        public float MaxMoveSpeed => Statistics.GetStat(StatType.MovementSpeed).ComputedValue;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         public Vector2 HorizontalAutoInput;
@@ -141,7 +139,7 @@ namespace Xiaohai.Character
 
         public virtual void Update()
         {
-            _navMeshAgent.speed = WalkSpeed;
+            _navMeshAgent.speed = MaxMoveSpeed;
             Target = TargetSelection.GetTarget(DamageableTargetSelection.SelectionStrategy.Closest);
         }
 

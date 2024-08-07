@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Xiaohai.Character.MarcoPolo
@@ -17,10 +18,11 @@ namespace Xiaohai.Character.MarcoPolo
             _bulletSpawnSpeed = bulletSpawnSpeed;
         }
 
-        public override void OnApply(EffectSystem system)
+        public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);
             _polo = system.GetComponent<MarcoPolo>();
+            return null;
         }
 
         public override void OnUpdate(EffectSystem system)

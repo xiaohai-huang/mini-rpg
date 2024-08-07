@@ -21,10 +21,25 @@ public abstract class Effect
     public Action OnApplyCallback;
     public Action OnUpdateCallback;
     public Action OnRemoveCallback;
+    private Action _CleanUps;
 
-    public virtual void OnApply(EffectSystem system)
+    /// <summary>
+    /// Should only be invoked by EffectSystem
+    /// </summary>
+    /// <param name="system"></param>
+    public void OnApplyWrapper(EffectSystem system)
+    {
+        var cleanup = OnApply(system);
+        if (cleanup != null)
+        {
+            _CleanUps += cleanup;
+        }
+    }
+
+    public virtual Action OnApply(EffectSystem system)
     {
         OnApplyCallback?.Invoke();
+        return null;
     }
 
     public virtual void OnUpdate(EffectSystem system)
@@ -35,6 +50,7 @@ public abstract class Effect
     public virtual void OnRemove(EffectSystem system)
     {
         OnRemoveCallback?.Invoke();
+        _CleanUps?.Invoke();
     }
 
     public override bool Equals(object obj)

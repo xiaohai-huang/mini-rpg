@@ -1,3 +1,5 @@
+using System;
+
 public class HealEffect : Effect
 {
     private readonly int _healAmount;
@@ -8,9 +10,10 @@ public class HealEffect : Effect
         _healAmount = healAmount;
     }
 
-    public override void OnApply(EffectSystem system)
+    public override Action OnApply(EffectSystem system)
     {
         system.RestoreHealth(_healAmount);
         Finished = true;
+        return null;
     }
 }

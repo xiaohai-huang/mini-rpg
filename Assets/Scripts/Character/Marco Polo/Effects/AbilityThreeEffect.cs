@@ -32,7 +32,7 @@ namespace Xiaohai.Character.MarcoPolo
             _circlePrefab = effectPrefab;
         }
 
-        public override void OnApply(EffectSystem system)
+        public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);
             _character = system.GetComponent<Character>();
@@ -48,6 +48,7 @@ namespace Xiaohai.Character.MarcoPolo
                 _radius * 2
             );
             _circle.SetActive(true);
+            return null;
         }
 
         public override void OnUpdate(EffectSystem system)
