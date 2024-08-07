@@ -101,6 +101,8 @@ public class Enemy : Base
                     var collider = GetComponent<CapsuleCollider>();
                     collider.enabled = true;
 
+                    _damageable.enabled = false;
+
                     _agent.enabled = false;
                     StopCoroutine(_updateNearbyTargetCoroutine);
                     Destroy(gameObject, 10);
