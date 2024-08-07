@@ -94,10 +94,12 @@ namespace Xiaohai.Character
             if (IsDead)
                 return;
 
-            IncreaseHealth(healthToAdd);
+            int increasedHealth = IncreaseHealth(healthToAdd);
+            if (increasedHealth == 0)
+                return;
 
             FireOnHealthChangedEvent();
-            OnRestoreHealth?.Invoke(healthToAdd);
+            OnRestoreHealth?.Invoke(increasedHealth);
         }
 
         public void Kill()
@@ -111,16 +113,25 @@ namespace Xiaohai.Character
             RestoreHealth(MaxHealth);
         }
 
-        public void ReduceHealth(int healthAmount)
+        private void ReduceHealth(int healthAmount)
         {
             if (CurrentHealth == 0)
                 return;
             CurrentHealth = Math.Max(CurrentHealth - healthAmount, 0);
         }
 
-        public void IncreaseHealth(int healthAmount)
+        /// <summary>
+        /// Increase the current health.
+        /// </summary>
+        /// <param name="healthAmount"></param>
+        /// <returns>The amount of hp that is being increased.</returns>
+        private int IncreaseHealth(int healthAmount)
         {
+            int originalHealth = CurrentHealth;
             CurrentHealth = Math.Clamp(CurrentHealth + healthAmount, 0, MaxHealth);
+            int diff = CurrentHealth - originalHealth;
+
+            return diff;
         }
     }
 }
