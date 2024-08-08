@@ -80,10 +80,5 @@ namespace Xiaohai.Character.Arthur
             );
             _character.AbilityOneInput = false;
         }
-
-        public override void OnStateExit()
-        {
-            _animator.ResetTrigger(ABILITY_ONE_PREPARE_ANIMATION_ID);
-        }
     }
 }
