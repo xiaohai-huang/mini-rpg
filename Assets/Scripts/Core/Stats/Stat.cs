@@ -17,17 +17,18 @@ namespace Core.Game.Statistics
             }
         }
         private float _prevComputedValue;
-        public float ComputedValue { get; private set; }
+        public float ComputedValue { get; protected set; }
+        public float ModifiersEffect => ComputedValue - BaseValue;
 
         public event Action<float> OnComputedValueChanged;
 
-        private readonly StatSystem _system;
+        protected readonly StatSystem _system;
 
         public Stat(StatSystem system)
         {
             InitializeModifiers();
             _system = system;
-            UpdateComputedValue();
+            OnAfterInit();
         }
 
         public Stat(float baseValue, StatSystem system)
@@ -35,17 +36,22 @@ namespace Core.Game.Statistics
             InitializeModifiers();
             BaseValue = baseValue;
             _system = system;
+            OnAfterInit();
+        }
+
+        protected virtual void OnAfterInit()
+        {
             UpdateComputedValue();
         }
 
-        public bool AddModifier(Modifier modifier)
+        public virtual bool AddModifier(Modifier modifier)
         {
             var success = _modifiers[modifier.Type].Add(modifier);
             UpdateComputedValue();
             return success;
         }
 
-        public bool RemoveModifier(Modifier modifier)
+        public virtual bool RemoveModifier(Modifier modifier)
         {
             var success = _modifiers[modifier.Type].Remove(modifier);
             ComputedValue = GetComputedValue();
@@ -53,7 +59,7 @@ namespace Core.Game.Statistics
             return success;
         }
 
-        void UpdateComputedValue()
+        public void UpdateComputedValue()
         {
             ComputedValue = GetComputedValue();
             if (_prevComputedValue != ComputedValue)
@@ -63,7 +69,7 @@ namespace Core.Game.Statistics
             }
         }
 
-        private float GetComputedValue()
+        protected virtual float GetComputedValue()
         {
             // BaseValue -> float modifiers -> percentage modifiers -> special modifiers
             float computed = BaseValue;

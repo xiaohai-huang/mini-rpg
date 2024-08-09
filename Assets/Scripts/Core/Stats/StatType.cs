@@ -6,11 +6,21 @@ namespace Core.Game.Statistics
         MovementSpeed,
         PhysicalDamage,
         MagicalDamage,
-        Armor,
+        PhysicalResistance,
         MagicalResistance,
         AttackSpeed,
         Tenacity,
         BasicAttackRange,
-        ViewRange
+        ViewRange,
+        FlatPhysicalResistancePenetration,
+        FlatMagicalResistancePenetration,
+        PercentagePhysicalResistancePenetration,
+        PercentageMagicalResistancePenetration,
+
+        // Derived stat
+        PercentagePhysicalResistance,
+
+        // Derived stat
+        PercentageMagicalResistance
     }
 }
