@@ -29,6 +29,16 @@ namespace Core.Game.Statistics
                 float baseValue = pair.Value;
                 Stats[type] = CreateStat(type, baseValue);
             }
+            // Add derived stats
+            var derivedStats = new[]
+            {
+                StatType.PercentageMagicalResistance,
+                StatType.PercentagePhysicalResistance
+            };
+            foreach (var type in derivedStats)
+            {
+                Stats[type] = CreateStat(type);
+            }
         }
 
         public bool AddModifier(Modifier modifier)
