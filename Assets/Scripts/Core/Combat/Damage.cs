@@ -1,27 +1,43 @@
 using System;
 using Core.Game.Common;
+using Core.Game.Entities;
 using Core.Game.Statistics;
 
 namespace Core.Game.Combat
 {
-    public static class Calculator
+    public class Damage
     {
-        /// <summary>
-        /// Final Damage = initial damage X (1 - Reduction Rate)
-        /// </summary>
-        /// <param name="initialDamageAmount"></param>
-        /// <param name="sender">Attacker</param>
-        /// <param name="receiver">Victim</param>
-        /// <returns>The actual damage that should apply on the victim</returns>
-        public static float GetDamageAmount(
-            float initialDamageAmount,
-            DamageType damageType,
+        private readonly StatSystem _sender;
+        private readonly StatSystem _receiver;
+        private readonly DamageType _type;
+        private readonly float _baseDamageAmount;
+        public float ComputedValue => GetDamageAmount();
+
+        public Damage(Base sender, Base receiver, DamageType type, float baseDamageAmount)
+        {
+            _sender = sender.Statistics;
+            _receiver = receiver.Statistics;
+            _type = type;
+            _baseDamageAmount = baseDamageAmount;
+        }
+
+        public Damage(
             StatSystem sender,
-            StatSystem receiver
+            StatSystem receiver,
+            DamageType type,
+            float baseDamageAmount
         )
         {
-            float reductionRate = GetReductionRate(damageType, sender, receiver);
-            float finalDamageAmount = initialDamageAmount * (1 - reductionRate);
+            _sender = sender;
+            _receiver = receiver;
+            _type = type;
+            _baseDamageAmount = baseDamageAmount;
+        }
+
+        private float GetDamageAmount()
+        {
+            float reductionRate = GetReductionRate(_type, _sender, _receiver);
+            float finalDamageAmount = _baseDamageAmount * (1 - reductionRate);
             return finalDamageAmount;
         }
 

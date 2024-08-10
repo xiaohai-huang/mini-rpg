@@ -1,9 +1,8 @@
 using Core.Game.Combat;
-using Core.Game.Common;
 using Core.Game.Statistics;
 using NUnit.Framework;
 
-public class CalculatorTests
+public class DamageTests
 {
     private static StatSystem CreateHanXinDoll()
     {
@@ -25,9 +24,10 @@ public class CalculatorTests
         A.AddModifier(new FloatModifier(StatType.FlatPhysicalResistancePenetration, 50f));
         A.AddModifier(new FloatModifier(StatType.PercentagePhysicalResistancePenetration, 0.2f));
 
-        int finalDamageAmount = (int)Calculator.GetDamageAmount(600f, DamageType.Physical, A, B);
-
-        Assert.That(finalDamageAmount, Is.EqualTo(409).Within(Constants.TOLERANCE));
+        Assert.That(
+            (int)new Damage(A, B, DamageType.Physical, 600f).ComputedValue,
+            Is.EqualTo(409)
+        );
     }
 
     [Test]
@@ -48,12 +48,7 @@ public class CalculatorTests
 
         int getAbilityTwoDamage() =>
             (int)
-                Calculator.GetDamageAmount(
-                    300 + (0.5f * md.ComputedValue),
-                    DamageType.Magical,
-                    A,
-                    B
-                );
+                new Damage(A, B, DamageType.Magical, 300 + (0.5f * md.ComputedValue)).ComputedValue;
 
         // XiaoQiao ability 2 deals 300 magical damage
         Assert.That(getAbilityTwoDamage(), Is.EqualTo(225));
@@ -108,12 +103,12 @@ public class CalculatorTests
         A.AddModifier(new FloatModifier(StatType.FlatPhysicalResistancePenetration, 64));
         int getAbilityThreeDamage() =>
             (int)
-                Calculator.GetDamageAmount(
-                    700 + (0.9f * pd.ComputedValue),
-                    DamageType.Physical,
+                new Damage(
                     A,
-                    B
-                );
+                    B,
+                    DamageType.Physical,
+                    700 + (0.9f * pd.ComputedValue)
+                ).ComputedValue;
 
         // No items
         Assert.That((int)pd.ComputedValue, Is.EqualTo(216));
