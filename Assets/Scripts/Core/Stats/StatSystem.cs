@@ -17,9 +17,7 @@ namespace Core.Game.Statistics
         {
             foreach (StatType type in Enum.GetValues(typeof(StatType)))
             {
-                Stats[type] = new Stat(this);
-                Stats[type].OnComputedValueChanged += newValue =>
-                    OnStatComputedValueChanged?.Invoke(type, newValue);
+                Stats[type] = CreateStat(type);
             }
         }
 
@@ -28,9 +26,18 @@ namespace Core.Game.Statistics
             foreach (var pair in baseStats)
             {
                 StatType type = pair.Key;
-                Stats[type] = new Stat(pair.Value, this);
-                Stats[type].OnComputedValueChanged += newValue =>
-                    OnStatComputedValueChanged?.Invoke(type, newValue);
+                float baseValue = pair.Value;
+                Stats[type] = CreateStat(type, baseValue);
+            }
+            // Add derived stats
+            var derivedStats = new[]
+            {
+                StatType.PercentageMagicalResistance,
+                StatType.PercentagePhysicalResistance
+            };
+            foreach (var type in derivedStats)
+            {
+                Stats[type] = CreateStat(type);
             }
         }
 
@@ -52,6 +59,26 @@ namespace Core.Game.Statistics
         public Stat GetStat(StatType statType)
         {
             return Stats[statType];
+        }
+
+        private Stat CreateStat(StatType type)
+        {
+            Stat newStat = type switch
+            {
+                StatType.PercentagePhysicalResistance => new PercentagePhysicalResistance(this),
+                StatType.PercentageMagicalResistance => new PercentageMagicalResistance(this),
+                _ => new Stat(this),
+            };
+            newStat.OnComputedValueChanged += newValue =>
+                OnStatComputedValueChanged?.Invoke(type, newValue);
+            return newStat;
+        }
+
+        private Stat CreateStat(StatType type, float baseValue)
+        {
+            Stat newStat = CreateStat(type);
+            newStat.BaseValue = baseValue;
+            return newStat;
         }
     }
 }

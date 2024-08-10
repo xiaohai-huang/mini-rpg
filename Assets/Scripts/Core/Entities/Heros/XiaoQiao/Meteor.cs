@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Xiaohai.Character.XiaoQiao
@@ -7,12 +8,11 @@ namespace Xiaohai.Character.XiaoQiao
         [SerializeField]
         private float _speed;
         private Damageable _target;
-        private int _damageAmount;
+        public Action OnHit;
 
-        public void Attack(Damageable target, int damageAmount)
+        public void FlyTowards(Damageable target)
         {
             _target = target;
-            _damageAmount = damageAmount;
         }
 
         void Update()
@@ -29,8 +29,7 @@ namespace Xiaohai.Character.XiaoQiao
 
             if (Vector3.Distance(transform.position, _target.transform.position) < 0.3f)
             {
-                // Apply damage to the target
-                _target.TakeDamage(_damageAmount);
+                OnHit?.Invoke();
                 Destroy(gameObject);
             }
         }

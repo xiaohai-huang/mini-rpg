@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
   m_Name: Basic Minion
   m_EditorClassIdentifier: 
-  keys: 0000000002000000030000000500000006000000070000000800000009000000
+  keys: 000000000200000003000000050000000600000007000000080000000900000004000000
   values:
   - 1500
   - 120
@@ -21,4 +21,5 @@ MonoBehaviour:
   - 0.6
   - 0
   - 3
+  - 15
   - 15

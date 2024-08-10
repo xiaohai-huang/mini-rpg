@@ -27,7 +27,6 @@ public class Enemy : Base
     public float AttackRange = 1.5f;
     public float AttackDegrees = 30f;
     private NavMeshAgent _agent;
-    private Damageable _damageable;
     private Rigidbody _rigidbody;
     private AttackHandler _attackHandler;
     private Coroutine _updateNearbyTargetCoroutine;
@@ -42,7 +41,6 @@ public class Enemy : Base
     {
         base.Awake();
         _agent = GetComponent<NavMeshAgent>();
-        _damageable = GetComponent<Damageable>();
         _attackHandler = GetComponent<AttackHandler>();
         _rigidbody = GetComponent<Rigidbody>();
         ui = GetComponentInChildren<Canvas>();
@@ -62,6 +60,9 @@ public class Enemy : Base
             },
             onExit: (s) => _agent.enabled = true
         );
+
+        _fsm.AddTransition("CrowdControl", "Idle", t => _ccDuration <= 0);
+
         if (!_static)
         {
             _fsm.AddState(
@@ -101,7 +102,7 @@ public class Enemy : Base
                     var collider = GetComponent<CapsuleCollider>();
                     collider.enabled = true;
 
-                    _damageable.enabled = false;
+                    Damageable.enabled = false;
 
                     _agent.enabled = false;
                     StopCoroutine(_updateNearbyTargetCoroutine);
@@ -110,7 +111,7 @@ public class Enemy : Base
             );
 
             _fsm.AddTransitionFromAny(
-                new Transition("", "Defeat", (transition) => _damageable.IsDead)
+                new Transition("", "Defeat", (transition) => Damageable.IsDead)
             );
             _fsm.AddTransition(
                 "Idle",
@@ -147,8 +148,7 @@ public class Enemy : Base
                 "FollowPlayer",
                 (transition) => DistanceToPlayer() > AttackRange || !IsPlayerVisible()
             );
-            _fsm.AddTransition("CrowdControl", "Idle", t => _ccDuration <= 0);
-            _fsm.AddTransitionFromAny("Idle", t => !_damageable.IsDead && !IsPlayerAlive());
+            _fsm.AddTransitionFromAny("Idle", t => !Damageable.IsDead && !IsPlayerAlive());
         }
 
         _fsm.SetStartState("Idle");

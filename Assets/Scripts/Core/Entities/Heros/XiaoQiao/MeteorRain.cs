@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Core.Game.Entities;
 using UnityEngine;
 using Xiaohai.Utilities;
 
@@ -8,9 +10,6 @@ namespace Xiaohai.Character.XiaoQiao
     {
         [SerializeField]
         private DamageableTargetSelection _targetSelection;
-
-        [SerializeField]
-        private int _damageAmount;
 
         [SerializeField]
         private float _duration;
@@ -37,9 +36,19 @@ namespace Xiaohai.Character.XiaoQiao
         // Attack cool down
         float _timer;
 
+        public Action<Base, float> OnHit;
+        public Action OnFinished;
+
         void Start()
         {
-            Destroy(gameObject, _duration);
+            Timer.Instance.SetTimeout(
+                () =>
+                {
+                    OnFinished?.Invoke();
+                    Destroy(gameObject);
+                },
+                _duration * 1000f
+            );
         }
 
         // Update is called once per frame
@@ -63,13 +72,6 @@ namespace Xiaohai.Character.XiaoQiao
             }
         }
 
-        public void Init(int damageAmount, float duration, float radius)
-        {
-            _damageAmount = damageAmount;
-            _duration = duration;
-            _radius = radius;
-        }
-
         void UpdateSize()
         {
             var newLocalScale = _circle.localScale;
@@ -79,14 +81,15 @@ namespace Xiaohai.Character.XiaoQiao
             _circle.localScale = newLocalScale;
         }
 
-        void CreateMeteor(Damageable target, int damage)
+        Meteor CreateMeteor(Damageable target)
         {
             var meteor = Instantiate(
                 _meteor,
                 target.transform.position + Vector3.up * 15f,
                 Quaternion.identity
             );
-            meteor.Attack(target, damage);
+
+            return meteor;
         }
 
         bool Attack(Damageable enemy)
@@ -97,9 +100,12 @@ namespace Xiaohai.Character.XiaoQiao
                     return false;
             }
 
-            // Calculate damage, the attacks after the first attack deals 50% of the damage
-            int damage = (int)(_damageAmount * (numAttacks == 0 ? 1 : 0.5f));
-            CreateMeteor(enemy, damage);
+            var meteor = CreateMeteor(enemy);
+            meteor.OnHit += () =>
+            {
+                OnHit?.Invoke(enemy.GetComponent<Base>(), numAttacks == 0 ? 1 : 0.5f);
+            };
+            meteor.FlyTowards(enemy);
             _victims[enemy] = numAttacks + 1;
             return true;
         }

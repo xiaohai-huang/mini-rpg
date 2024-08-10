@@ -1,4 +1,5 @@
 using System;
+using Core.Game.Combat;
 using Core.Game.Entities;
 using Core.Game.Statistics;
 using UnityEngine;
@@ -87,6 +88,11 @@ namespace Xiaohai.Character
                 IsDead = true;
                 OnDie?.Invoke();
             }
+        }
+
+        public void TakeDamage(Damage damage)
+        {
+            TakeDamage((int)damage.ComputedValue);
         }
 
         public void RestoreHealth(int healthToAdd)

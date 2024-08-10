@@ -1,8 +1,6 @@
-using System.Collections;
+using Core.Game.Common;
 using Core.Game.Statistics;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 public class StatSystemTests
 {
@@ -160,5 +158,160 @@ public class StatSystemTests
 
         Assert.That(system.GetStat(StatType.MaxHealth).BaseValue, Is.EqualTo(100));
         Assert.That(system.GetStat(StatType.PhysicalDamage).BaseValue, Is.EqualTo(10));
+    }
+
+    [Test]
+    public void PhysicalResistance_ShouldCalculateCorrectPercentage()
+    {
+        var system = new StatSystem();
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+
+        var result = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(result, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void PhysicalResistance_WithModifier_ShouldUpdatePercentage()
+    {
+        var system = new StatSystem();
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+        var initialResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(initialResult, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+
+        var add90 = new FloatModifier(StatType.PhysicalResistance, 90);
+        system.AddModifier(add90);
+        var updatedResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(updatedResult, Is.EqualTo(0.285f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void PhysicalResistance_WithModifier_ThenRemoval_ShouldRevertToOriginalPercentage()
+    {
+        var system = new StatSystem();
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+
+        var initialResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(initialResult, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+
+        var add90 = new FloatModifier(StatType.PhysicalResistance, 90);
+        system.AddModifier(add90);
+        var modifiedResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(modifiedResult, Is.EqualTo(0.285f).Within(Constants.TOLERANCE));
+
+        system.RemoveModifier(add90);
+        var revertedResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(revertedResult, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void PuttingOnPhysicalShoes_ShouldUpdateResistance()
+    {
+        var system = new StatSystem();
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+        var initialResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(initialResult, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+
+        var add120 = new FloatModifier(StatType.PhysicalResistance, 120);
+        system.AddModifier(add120);
+        var updatedResult = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(updatedResult, Is.EqualTo(0.31f).Within(Constants.TOLERANCE));
+
+        Assert.That(
+            system.GetStat(StatType.PhysicalResistance).ModifiersEffect,
+            Is.EqualTo(120f).Within(Constants.TOLERANCE)
+        );
+    }
+
+    [Test]
+    public void InitialStat_ShouldHaveNoModifiers()
+    {
+        var system = new StatSystem();
+
+        system.SetStatBaseValue(StatType.PhysicalResistance, 100);
+        var stat = system.GetStat(StatType.PhysicalResistance);
+        Assert.That(stat.ModifiersEffect, Is.EqualTo(0f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void AddingMultipleModifiers_ShouldCalculateCorrectPercentage()
+    {
+        var system = new StatSystem();
+
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+        var add120 = new FloatModifier(StatType.PhysicalResistance, 120);
+        var add90 = new FloatModifier(StatType.PhysicalResistance, 90);
+        system.AddModifier(add120);
+        system.AddModifier(add90);
+        var percentStat = system.GetStat(StatType.PercentagePhysicalResistance);
+
+        Assert.That(percentStat.ComputedValue, Is.EqualTo(0.375f).Within(Constants.TOLERANCE));
+        Assert.That(
+            system.GetStat(StatType.PhysicalResistance).ModifiersEffect,
+            Is.EqualTo(210f).Within(Constants.TOLERANCE)
+        );
+    }
+
+    [Test]
+    public void RemovingAllModifiers_ShouldRevertToBasePercentage()
+    {
+        var system = new StatSystem();
+
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+        var add50 = new FloatModifier(StatType.PhysicalResistance, 50);
+        var add30 = new FloatModifier(StatType.PhysicalResistance, 30);
+        system.AddModifier(add50);
+        system.AddModifier(add30);
+        system.RemoveModifier(add50);
+        system.RemoveModifier(add30);
+        var result = system.GetStat(StatType.PercentagePhysicalResistance).ComputedValue;
+        Assert.That(result, Is.EqualTo(0.2f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void MagicalResistance_ShouldCalculateCorrectPercentage()
+    {
+        var system = new StatSystem();
+
+        system.SetStatBaseValue(StatType.MagicalResistance, 75);
+        var result = system.GetStat(StatType.PercentageMagicalResistance).ComputedValue;
+        Assert.That(result, Is.EqualTo(0.111f).Within(Constants.TOLERANCE));
+    }
+
+    [Test]
+    public void MixResistances_90MR_210PR()
+    {
+        var system = new StatSystem();
+
+        system.SetStatBaseValue(StatType.MagicalResistance, 75);
+        system.SetStatBaseValue(StatType.PhysicalResistance, 150);
+
+        var PR = system.GetStat(StatType.PhysicalResistance);
+        var p_PR = system.GetStat(StatType.PercentagePhysicalResistance);
+        var MR = system.GetStat(StatType.MagicalResistance);
+        var p_MR = system.GetStat(StatType.PercentageMagicalResistance);
+
+        var add90_MR = new FloatModifier(StatType.MagicalResistance, 90);
+        var add120_PR = new FloatModifier(StatType.PhysicalResistance, 120);
+        var add90_PR = new FloatModifier(StatType.PhysicalResistance, 90);
+        system.AddModifier(add90_MR);
+        system.AddModifier(add120_PR);
+        system.AddModifier(add90_PR);
+
+        Assert.That(p_MR.ComputedValue, Is.EqualTo(0.215f).Within(Constants.TOLERANCE));
+        Assert.That(MR.ModifiersEffect, Is.EqualTo(90).Within(Constants.TOLERANCE));
+
+        Assert.That(p_PR.ComputedValue, Is.EqualTo(0.375f).Within(Constants.TOLERANCE));
+        Assert.That(PR.ModifiersEffect, Is.EqualTo(210).Within(Constants.TOLERANCE));
+
+        system.RemoveModifier(add90_MR);
+        Assert.That(p_MR.ComputedValue, Is.EqualTo(0.111f).Within(Constants.TOLERANCE));
+        Assert.That(MR.ModifiersEffect, Is.EqualTo(0).Within(Constants.TOLERANCE));
+
+        system.RemoveModifier(add90_PR);
+        Assert.That(p_PR.ComputedValue, Is.EqualTo(0.31f).Within(Constants.TOLERANCE));
+        Assert.That(PR.ModifiersEffect, Is.EqualTo(120).Within(Constants.TOLERANCE));
+
+        Assert.That(p_MR.ComputedValue, Is.EqualTo(0.111f).Within(Constants.TOLERANCE));
+        Assert.That(MR.ModifiersEffect, Is.EqualTo(0).Within(Constants.TOLERANCE));
     }
 }

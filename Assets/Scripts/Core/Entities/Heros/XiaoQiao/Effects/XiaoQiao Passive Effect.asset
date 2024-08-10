@@ -9,19 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
-  m_Name: XiaoQiao
+  m_Script: {fileID: 11500000, guid: 1882a9d3c45d1494e9c88ba9752cbc73, type: 3}
+  m_Name: XiaoQiao Passive Effect
   m_EditorClassIdentifier: 
-  keys: 0000000001000000020000000300000004000000050000000600000007000000090000000b0000000d000000
-  values:
-  - 3200
-  - 3.65
-  - 163
-  - 0
-  - 150
-  - 75
-  - 0.95
-  - 0
-  - 120
-  - 0
-  - 0
+  Name: "\u6CBB\u6108\u5FAE\u7B11"
+  ShowInListUI: 1
+  CoolDownTime: 2000
+  Icon: {fileID: 21300000, guid: 40b48e17ac7a8214182731f2196c4a1f, type: 3}
+  SpeedUpPercentage: 0.25
