@@ -2488,7 +2488,7 @@ PrefabInstance:
     - target: {fileID: 7878016738697412835, guid: 89601c62d7eedeb46b28802dcfe21399,
         type: 3}
       propertyPath: m_Name
-      value: CinemachineCamera
+      value: FollowCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2567,11 +2567,11 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 7134473266364712477}
   - {fileID: 2735608203155866890}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 739945099}
-  - {fileID: 7134473266364712477}
   - {fileID: 2783714942962820283}
   - {fileID: 3503016407792677204}
   - {fileID: 2726069497363424744}
