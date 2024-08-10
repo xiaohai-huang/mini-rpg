@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf6315d62bbc0f4c8de984d1ea0a1be, type: 3}
-  m_Name: Basic Minion
+  m_Name: HanXin Doll
   m_EditorClassIdentifier: 
-  keys: 000000000200000003000000050000000600000007000000080000000900000004000000
+  keys: 00000000020000000300000005000000070000000900000004000000
   values:
-  - 1500
-  - 120
-  - 100
-  - 200
-  - 0.6
+  - 15000
   - 0
-  - 3
+  - 0
+  - 200
+  - 0
   - 15
-  - 15
+  - 400
