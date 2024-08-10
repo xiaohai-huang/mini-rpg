@@ -38,6 +38,7 @@ public abstract class Effect
 
     public virtual Action OnApply(EffectSystem system)
     {
+        Finished = false;
         OnApplyCallback?.Invoke();
         return null;
     }
@@ -51,6 +52,7 @@ public abstract class Effect
     {
         OnRemoveCallback?.Invoke();
         _CleanUps?.Invoke();
+        _CleanUps = null;
     }
 
     public override bool Equals(object obj)
