@@ -37,10 +37,18 @@ namespace Xiaohai.Character.XiaoQiao
         float _timer;
 
         public Action<Base, float> OnHit;
+        public Action OnFinished;
 
         void Start()
         {
-            Destroy(gameObject, _duration);
+            Timer.Instance.SetTimeout(
+                () =>
+                {
+                    OnFinished?.Invoke();
+                    Destroy(gameObject);
+                },
+                _duration * 1000f
+            );
         }
 
         // Update is called once per frame
