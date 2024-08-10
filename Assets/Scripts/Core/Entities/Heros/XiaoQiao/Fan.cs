@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Core.Game.Entities;
 using UnityEngine;
 using UnityHFSM;
 
@@ -7,31 +9,29 @@ namespace Xiaohai.Character.XiaoQiao
     public class Fan : MonoBehaviour
     {
         public float Distance = 10f;
-        public float DamageAmount = 200f;
 
         /// <summary>
         /// Fan flying speed
         /// </summary>
         public float Speed = 2f;
-
-        private Transform _receiver;
+        private Base _receiver;
         private Vector3 _destination;
         StateMachine sm;
         const float TOLERANCE = 0.5F;
         readonly HashSet<Collider> _victims = new();
         private int _hits = 0;
-        private int _damage;
         private const float DAMAGE_DECAY_RATE = 0.2F;
         private const float MIN_DAMAGE_REDUCTION_RATE = 0.5F;
 
-        public void SetReceiver(Transform receiver)
+        public Action<Base, float> OnHit;
+
+        public void SetReceiver(Base receiver)
         {
             _receiver = receiver;
         }
 
-        public void Throw(int damage)
+        public void Throw()
         {
-            _damage = damage;
             // calculate the destination
             _destination = transform.position + transform.forward * Distance;
             sm.RequestStateChange("FlyingForwards");
@@ -73,11 +73,14 @@ namespace Xiaohai.Character.XiaoQiao
                 {
                     transform.position = Vector3.Lerp(
                         transform.position,
-                        _receiver.position,
+                        _receiver.transform.position,
                         1.5f * Speed * Time.deltaTime
                     );
 
-                    if (Vector3.Distance(transform.position, _receiver.position) < TOLERANCE * 3)
+                    if (
+                        Vector3.Distance(transform.position, _receiver.transform.position)
+                        < TOLERANCE * 3
+                    )
                     {
                         sm.RequestStateChange("Destroyed");
                     }
@@ -111,15 +114,14 @@ namespace Xiaohai.Character.XiaoQiao
             if (!_victims.Contains(other))
             {
                 // Apply damage
-                if (other.TryGetComponent<Damageable>(out var enemy))
+                if (other.TryGetComponent<Base>(out var enemy))
                 {
                     // Calculate damage
                     float reductionAmount = Mathf.Max(
                         MIN_DAMAGE_REDUCTION_RATE,
                         1f - (_hits * DAMAGE_DECAY_RATE)
                     );
-
-                    enemy.TakeDamage((int)(_damage * reductionAmount));
+                    OnHit?.Invoke(enemy, reductionAmount);
                 }
 
                 _hits++;

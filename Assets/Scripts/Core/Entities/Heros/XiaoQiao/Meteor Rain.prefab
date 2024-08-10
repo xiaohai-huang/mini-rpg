@@ -51,7 +51,7 @@ MonoBehaviour:
   _targetSelection: {fileID: 7879844251573554463}
   _damageAmount: 400
   _duration: 6
-  _attackInterval: 1.5
+  _attackInterval: 0.6
   _maxAttacksPerEntity: 4
   _radius: 10
   _circle: {fileID: 6103857967422287202}
