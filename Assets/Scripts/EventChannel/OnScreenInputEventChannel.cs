@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(
     fileName = "On Screen Input Event Channel",
@@ -15,11 +16,12 @@ public class OnScreenInputEventChannel : ScriptableObject
         ABILITY_TWO,
         ABILITY_THREE,
         ABILITY_FOUR,
-        HEAL
+        HEAL,
+        VIEW_MOVE
     }
 
     public UnityAction<Input> OnBeginInteractionEventRaised;
-    public UnityAction<Input> OnMovingEventRaised;
+    public UnityAction<Input, PointerEventData> OnMovingEventRaised;
     public UnityAction<Input> OnReleasedEventRaised;
     public UnityAction<Input, bool> OnCancellingChangedEventRaised;
     public UnityAction<Input, Vector2> OnClickEventRaised;
@@ -35,9 +37,9 @@ public class OnScreenInputEventChannel : ScriptableObject
         OnBeginInteractionEventRaised?.Invoke(inputType);
     }
 
-    public void RaiseOnMovingEvent(Input inputType)
+    public void RaiseOnMovingEvent(Input inputType, PointerEventData eventData)
     {
-        OnMovingEventRaised?.Invoke(inputType);
+        OnMovingEventRaised?.Invoke(inputType, eventData);
     }
 
     public void RaiseReleaseEvent(Input inputType)
