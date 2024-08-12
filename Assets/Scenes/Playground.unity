@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 205694131}
   - component: {fileID: 205694130}
   m_Layer: 5
-  m_Name: Image
+  m_Name: outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,7 +1003,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874059086}
-  - component: {fileID: 874059087}
   m_Layer: 5
   m_Name: View Mover
   m_TagString: Untagged
@@ -1031,41 +1030,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &874059087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874059085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f946d6a4e0c19b42a796b787d3f3dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 400
-  m_DynamicOriginRange: 100
-  m_ControlPath: <Gamepad>/rightStick
-  m_Behaviour: 0
-  m_UseIsolatedInputActions: 0
-  m_PointerDownAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1362bccb-7c8c-49ef-b300-efd2103ebab7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_PointerMoveAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 89759aec-c527-475c-bf58-9435eab08bbc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!1 &885352360
 GameObject:
   m_ObjectHideFlags: 0
