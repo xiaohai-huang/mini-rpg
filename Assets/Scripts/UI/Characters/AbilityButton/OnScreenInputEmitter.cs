@@ -49,7 +49,7 @@ public class OnScreenInputEmitter : MonoBehaviour
     private void HandleOnMoving()
     {
         if (_eventChannel != null)
-            _eventChannel.RaiseOnMovingEvent(_inputType);
+            _eventChannel.RaiseOnMovingEvent(_inputType, null);
     }
 
     private void HandleOnRelease(bool success)
