@@ -52,6 +52,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewBox: {fileID: 4425159114386815913}
   _inputEventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f, type: 2}
+  _viewBoxPositionEventChannel: {fileID: 11400000, guid: b46f8d25f8b5e49449b0705f8eb99580,
+    type: 2}
+  _startMoveViewBoxEventChannel: {fileID: 11400000, guid: 71525e7d349bf2d44add831edce63309,
+    type: 2}
+  _endMoveViewBoxEventChannel: {fileID: 11400000, guid: 164451d6f458ce74085481e3a24b77c5,
+    type: 2}
+  _player: {fileID: 11400000, guid: daab3df93d4156b429887fa2e34c165b, type: 2}
   MoveSpeed: 0.7
 --- !u!1 &7548379289733703561
 GameObject:
