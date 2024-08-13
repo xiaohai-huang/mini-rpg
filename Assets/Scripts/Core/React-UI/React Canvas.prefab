@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4220372239969308510}
   - component: {fileID: 263323456336458195}
   - component: {fileID: 7485692668213135055}
+  - component: {fileID: 7973398517888269252}
+  - component: {fileID: 6401847847920494352}
   m_Layer: 5
   m_Name: React Canvas
   m_TagString: Untagged
@@ -77,7 +79,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -126,7 +128,9 @@ MonoBehaviour:
     DevServer: http://localhost:3000
   EngineType: 3
   globals:
-    Entries: []
+    Entries:
+    - Key: EventChannel
+      Value: {fileID: 6401847847920494352}
   AdvancedOptions:
     Pooling: 1
     MediaUpdateInterval: 0.5
@@ -143,3 +147,29 @@ MonoBehaviour:
   CursorSet: {fileID: 11400000, guid: 4169d60088612bd47b2c2a0a907960fa, type: 2}
   DefaultIconSet: {fileID: 11400000, guid: 0a33900e1e17fad43a43d252d61c79ba, type: 2}
   IconSets: []
+--- !u!114 &7973398517888269252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457256177553197212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54000feda29e8c44eabd9b91873605a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6401847847920494352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457256177553197212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b450752a53589ae459f426b2f6a3cb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startGameEventChannel: {fileID: 11400000, guid: c8739929642e15543bceaf706ebdf2b0,
+    type: 2}

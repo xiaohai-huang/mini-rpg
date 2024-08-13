@@ -17,7 +17,7 @@ namespace Xiaohai.UI
         // Update is called once per frame
         void Update()
         {
-            if (_player.Value.Target == _damageable)
+            if (_player.Value?.Target == _damageable)
             {
                 _circle.SetActive(true);
             }

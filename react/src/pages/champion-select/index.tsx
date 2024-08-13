@@ -10,6 +10,7 @@ import Scroll from "src/components/Scroll";
 import ChampionSelect from "src/components/Champion/ChampionSelect";
 import styles from "./index.module.scss";
 import Delay from "src/components/Delay";
+import useEffectEvent from "src/hooks/useEffectEvent";
 
 function Page() {
   const navigate = useNavigate();
@@ -262,6 +263,28 @@ function Page() {
       {Right}
 
       {ChampionLargeSelect}
+      {confirmed && (
+        <Countdown
+          start={3}
+          onFinish={() => {
+            const data = {
+              championId: selectedChampionId,
+              skinId: selectedSkinId,
+            };
+            console.log(JSON.stringify(data));
+            Interop.UnityEngine.SceneManagement.SceneManager.LoadScene(
+              "Playground"
+            );
+            navigate("/summoners-rift");
+            setTimeout(() => {
+              Globals.EventChannel.StartGame(
+                selectedChampionId,
+                selectedSkinId
+              );
+            }, 1000);
+          }}
+        />
+      )}
     </Delay>
   );
 }
@@ -276,6 +299,58 @@ function groupBySize<T>(array: T[], size: number): T[][] {
 
     return resultArray;
   }, []);
+}
+
+function Countdown({ start = 10, onFinish = () => {} }) {
+  const [num, setNum] = useState(start);
+  const onFinishCallback = useEffectEvent(onFinish);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNum((prev) => {
+        const newNum = prev - 1;
+        if (newNum <= 0) {
+          clearTimeout(timer);
+        }
+        return newNum;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (num === 0) {
+      onFinishCallback();
+    }
+  }, [num]);
+
+  return (
+    <view
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        pointerEvents: "none",
+      }}
+    >
+      <text
+        style={{
+          backgroundColor: "rgba(0,0,0,0.3)",
+          fontSize: "100px",
+          width: "130px",
+          height: "130px",
+          textAlign: "center",
+          verticalAlign: "middle",
+        }}
+      >
+        {num.toString()}
+      </text>
+    </view>
+  );
 }
 
 export default Page;

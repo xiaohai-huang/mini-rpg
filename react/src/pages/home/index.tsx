@@ -9,7 +9,6 @@ import Image from "src/components/Image";
 
 import defaultAvatar from "../../assets/images/default-avatar.jpg";
 import bgImage from "src/assets/images/backgrounds/bg-00.jpg";
-import GradientTexture from "src/assets/images/backgrounds/gradient.png";
 
 // Entries
 import BattleIcon from "src/assets/images/icons/battle.png";

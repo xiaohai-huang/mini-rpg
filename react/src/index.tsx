@@ -7,6 +7,7 @@ import ChampionSelect from "./pages/champion-select";
 import Ranking from "./pages/ranking";
 import TestPage from "./pages/test";
 import SettingsPage from "./pages/settings";
+import SummonersRiftPage from "./pages/summoners-rift";
 
 import "./index.scss";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/summoners-rift" element={<SummonersRiftPage />} />
       </MiniRouter>
     </view>
   );
