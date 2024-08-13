@@ -1,0 +1,53 @@
+.container {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  .item {
+    display: flex;
+    flex-direction: row;
+    .label {
+      color: var(--label-color);
+      margin-right: 3rem;
+    }
+    .content {
+      flex: 1;
+    }
+  }
+  .bottom {
+    margin-top: auto;
+    .sourcePath {
+      &:hover {
+        background-color: lightblue;
+      }
+    }
+  }
+  .restart {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .btn {
+      border-radius: 20%;
+    }
+  }
+
+  .scriptSource {
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 400px;
+      .select {
+        flex-shrink: 0;
+        width: 20%;
+      }
+      .input {
+        flex: 1;
+        margin: 0;
+        margin-left: 1rem;
+        flex-basis: 0;
+        font-size: 12px;
+      }
+    }
+  }
+}
