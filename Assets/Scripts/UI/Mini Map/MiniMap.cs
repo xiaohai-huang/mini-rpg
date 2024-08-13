@@ -66,7 +66,7 @@ namespace Core.Game.UI
 
         void HandleOnBeginInteraction(OnScreenInputEventChannel.Input type)
         {
-            if (!CheckInputType(type))
+            if (!CheckInputType(type) || MoveSpeed == 0)
                 return;
             // place at the player's position
             var playerPosition = MapPlayerPositionToMiniMapPosition();
@@ -79,7 +79,7 @@ namespace Core.Game.UI
 
         void HandleOnMoving(OnScreenInputEventChannel.Input type, PointerEventData eventData)
         {
-            if (!CheckInputType(type))
+            if (!CheckInputType(type) || MoveSpeed == 0)
                 return;
             var delta = eventData.delta;
             Vector2 dest = _viewBox.anchoredPosition + delta * MoveSpeed;
@@ -98,7 +98,7 @@ namespace Core.Game.UI
 
         void HandleOnReleased(OnScreenInputEventChannel.Input type)
         {
-            if (!CheckInputType(type))
+            if (!CheckInputType(type) || MoveSpeed == 0)
                 return;
             _viewBox.anchoredPosition = Vector2.zero;
             _viewBox.gameObject.SetActive(false);

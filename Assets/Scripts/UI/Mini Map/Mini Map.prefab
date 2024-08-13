@@ -59,7 +59,7 @@ MonoBehaviour:
   _endMoveViewBoxEventChannel: {fileID: 11400000, guid: 164451d6f458ce74085481e3a24b77c5,
     type: 2}
   _player: {fileID: 11400000, guid: daab3df93d4156b429887fa2e34c165b, type: 2}
-  MoveSpeed: 0.7
+  MoveSpeed: 0.3
 --- !u!1 &7548379289733703561
 GameObject:
   m_ObjectHideFlags: 0
