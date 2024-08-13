@@ -29,8 +29,8 @@
     width: 20%;
     .tab {
       height: 2rem;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
+      vertical-align: middle;
       color: #82a9e0;
       &.active {
         color: #f8fbff;
