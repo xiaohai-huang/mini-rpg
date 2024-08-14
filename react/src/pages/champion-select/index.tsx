@@ -11,6 +11,7 @@ import ChampionSelect from "src/components/Champion/ChampionSelect";
 import styles from "./index.module.scss";
 import Delay from "src/components/Delay";
 import useEffectEvent from "src/hooks/useEffectEvent";
+import { Bridge, SceneManager } from "src/lib/unity-objects";
 
 function Page() {
   const navigate = useNavigate();
@@ -267,21 +268,9 @@ function Page() {
         <Countdown
           start={3}
           onFinish={() => {
-            const data = {
-              championId: selectedChampionId,
-              skinId: selectedSkinId,
-            };
-            console.log(JSON.stringify(data));
-            Interop.UnityEngine.SceneManagement.SceneManager.LoadScene(
-              "Playground"
-            );
-            navigate("/summoners-rift");
-            setTimeout(() => {
-              Globals.EventChannel.StartGame(
-                selectedChampionId,
-                selectedSkinId
-              );
-            }, 1000);
+            SceneManager.LoadSceneAdditive("Summoner's-Rift", () => {
+              Bridge.StartGame(selectedChampionId, selectedSkinId);
+            });
           }}
         />
       )}

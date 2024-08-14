@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext } from "react";
+import { useReactiveValue } from "@reactunity/renderer";
+import React, { createContext, useContext } from "react";
+import { Bridge } from "src/lib/unity-objects";
 
 const RouterContext = createContext({
   url: "/",
@@ -10,10 +12,12 @@ type MiniRouterProps = {
 };
 
 function MiniRouter({ children }: MiniRouterProps) {
-  const [url, setUrl] = useState("/");
+  const url = useReactiveValue(Bridge.Url);
+  console.log(JSON.stringify({ url }));
   const navigate = (newUrl: string) => {
-    setUrl(newUrl);
+    Bridge.Navigate(newUrl);
   };
+
   return (
     <RouterContext.Provider value={{ url, navigate }}>
       {children}

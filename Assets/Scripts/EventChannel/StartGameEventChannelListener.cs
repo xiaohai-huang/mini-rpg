@@ -9,6 +9,13 @@ public class StartGameEventChannelListener : MonoBehaviour
     [SerializeField]
     private UnityEvent<int, int> Response;
 
+    bool _awaked = false;
+
+    void Awake()
+    {
+        _awaked = true;
+    }
+
     void OnEnable()
     {
         if (EventChannel != null)
