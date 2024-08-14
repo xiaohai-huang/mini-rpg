@@ -1,12 +1,16 @@
 using Core.Game.SpawnSystem;
 using UnityEngine;
 using UnityHFSM;
+using Xiaohai.Input;
 
 namespace Core.Game.Flow
 {
     public class BasicGameFlow : MonoBehaviour
     {
         private StateMachine _fsm;
+
+        [SerializeField]
+        private InputReader _inputReader;
 
         [SerializeField]
         private HeroSpawnManager _heroSpawnManager;
@@ -18,16 +22,18 @@ namespace Core.Game.Flow
         private int _heroId;
         private int _skinId;
 
+        private bool _ready;
+
         void Start()
         {
             _fsm = new StateMachine();
-            _fsm.AddState("Start");
             _fsm.AddState(
                 "Initialization",
                 onEnter: (_) =>
                 {
                     // Create the chosen hero for the player
                     _heroSpawnManager.SpawnPlayer(_heroId, _skinId, Vector3.zero);
+                    _inputReader.Enable();
                 }
             );
 
@@ -43,16 +49,18 @@ namespace Core.Game.Flow
 
             _fsm.AddState(
                 "GameOver",
-                onEnter: (_) => {
+                onEnter: (_) =>
+                {
                     // Play crystal blow up animation
+                    _inputReader.Disable();
                 },
                 onExit: (_) => {
                     // Navigate to Post game summary page
                 }
             );
-
-            _fsm.AddTriggerTransition("StartInit", new Transition("Start", "Initialization"));
-            _fsm.SetStartState("Start");
+            _fsm.AddState("Ghost");
+            _fsm.AddTransition(new Transition("Ghost", "Initialization", (_) => _ready));
+            _fsm.SetStartState("Ghost");
             _fsm.Init();
         }
 
@@ -65,7 +73,8 @@ namespace Core.Game.Flow
         {
             _heroId = heroId;
             _skinId = skinId;
-            _fsm.Trigger("StartInit");
+
+            _ready = true;
         }
     }
 }

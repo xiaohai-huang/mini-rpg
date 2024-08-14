@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2feb6840634686e47897efd3f2e63c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 5b85631b970650c48a3268d24eba7712, type: 2}
   _heroSpawnManager: {fileID: 0}
 --- !u!114 &4071353860483646945
 MonoBehaviour:
