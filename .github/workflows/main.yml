@@ -46,6 +46,33 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
+  buildReact:
+    name: Build React UI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./react
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          sparse-checkout: react
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'react/.nvmrc'
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-React
+          path: react/build
+          retention-days: 14
+
   buildForWebGL:
     name: Build For WebGL Platform
     runs-on: ubuntu-latest
@@ -62,6 +89,11 @@ jobs:
             Library-WebGL-
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
+      - name: Download React UI Build Output
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-React
+          path: Assets/Resources/react
       - name: Build WebGL
         uses: game-ci/unity-builder@v4
         env:
@@ -92,6 +124,11 @@ jobs:
             Library-Android-
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
+      - name: Download React UI Build Output
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-React
+          path: Assets/Resources/react      
       - name: Build Android APK
         uses: game-ci/unity-builder@v4
         env:
@@ -126,6 +163,11 @@ jobs:
           key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-Windows-
+      - name: Download React UI Build Output
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-React
+          path: Assets/Resources/react
       - name: Build Windows
         id: build
         continue-on-error: true
