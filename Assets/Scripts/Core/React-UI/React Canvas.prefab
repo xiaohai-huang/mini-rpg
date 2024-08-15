@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 263323456336458195}
   - component: {fileID: 7485692668213135055}
   - component: {fileID: 6401847847920494352}
+  - component: {fileID: 5360968911978022723}
+  - component: {fileID: 4184300005639281526}
   m_Layer: 5
   m_Name: React Canvas
   m_TagString: Untagged
@@ -30,7 +32,7 @@ RectTransform:
   m_GameObject: {fileID: 8457256177553197212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.0625, y: 2.0625, z: 2.0625}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -39,7 +41,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &829787447987112717
 Canvas:
   m_ObjectHideFlags: 0
@@ -128,8 +130,10 @@ MonoBehaviour:
   EngineType: 3
   globals:
     Entries:
-    - Key: EventChannel
+    - Key: Bridge
       Value: {fileID: 6401847847920494352}
+    - Key: SceneManager
+      Value: {fileID: 5360968911978022723}
   AdvancedOptions:
     Pooling: 1
     MediaUpdateInterval: 0.5
@@ -160,3 +164,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startGameEventChannel: {fileID: 11400000, guid: c8739929642e15543bceaf706ebdf2b0,
     type: 2}
+--- !u!114 &5360968911978022723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457256177553197212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47cf16ee5911d71469b222729a9ef214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4184300005639281526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457256177553197212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3700e64bd3ed89240a307b335eb80410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventChannel: {fileID: 11400000, guid: fffdc2e5da5c66e41b60fee77c089072, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6401847847920494352}
+        m_TargetAssemblyTypeName: Core.Game.UI.ReactEventChannel, Main
+        m_MethodName: Navigate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
