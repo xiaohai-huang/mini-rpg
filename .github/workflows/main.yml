@@ -8,6 +8,7 @@ on:
       - "Assets/**"
       - "Packages/**"
       - "ProjectSettings/**"
+      - "react/**"
   workflow_dispatch:
 
 jobs:
@@ -63,7 +64,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: 'react/.nvmrc'
+          node-version-file: "react/.nvmrc"
       - run: npm ci
       - run: npm run build
 
@@ -128,7 +129,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: Build-React
-          path: Assets/Resources/react      
+          path: Assets/Resources/react
       - name: Build Android APK
         uses: game-ci/unity-builder@v4
         env:
