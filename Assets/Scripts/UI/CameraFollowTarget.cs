@@ -19,6 +19,8 @@ namespace Core.Game.UI
 
         public void FollowPlayer()
         {
+            if (_player.Value == null)
+                return;
             transform.SetParent(_player.Value.transform);
             transform.localPosition = Vector3.zero;
             _movedByPlayerPosition = true;

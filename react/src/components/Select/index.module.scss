@@ -1,0 +1,14 @@
+.container {
+  .options {
+    left: 0;
+    top: 100%;
+    position: absolute;
+    .option {
+      padding: 0.5rem;
+
+      &.selected {
+        background-color: lightblue;
+      }
+    }
+  }
+}

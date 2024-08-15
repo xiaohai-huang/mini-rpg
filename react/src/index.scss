@@ -1,0 +1,14 @@
+.app-container {
+  width: 100%;
+  height: 100%;
+  // background-color: #23334c;
+}
+
+@font-face {
+  font-family: "My Custom Font";
+  src: resource("CustomFonts/NotoSansSC-Regular-SDF");
+}
+
+:root {
+  font-family: "My Custom Font";
+}

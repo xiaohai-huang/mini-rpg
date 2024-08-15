@@ -1,0 +1,13 @@
+.container {
+  height: 100%;
+  .list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    & > * {
+      margin: 0.4rem 0.5rem;
+    }
+  }
+}

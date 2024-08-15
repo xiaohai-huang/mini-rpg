@@ -66,7 +66,7 @@ namespace Core.Game.UI
 
         void HandleOnBeginInteraction(OnScreenInputEventChannel.Input type)
         {
-            if (!CheckInputType(type) || MoveSpeed == 0)
+            if (!CheckInputType(type) || MoveSpeed == 0 || _player.Value == null)
                 return;
             // place at the player's position
             var playerPosition = MapPlayerPositionToMiniMapPosition();
@@ -100,7 +100,7 @@ namespace Core.Game.UI
         {
             if (!CheckInputType(type) || MoveSpeed == 0)
                 return;
-            _viewBox.anchoredPosition = Vector2.zero;
+            // _viewBox.anchoredPosition = Vector2.zero;
             _viewBox.gameObject.SetActive(false);
             UpdateNormalizedPosition();
             _endMoveViewBoxEventChannel.RaiseEvent();
