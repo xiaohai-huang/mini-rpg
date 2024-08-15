@@ -1,6 +1,4 @@
-import { useEffect, useRef } from "react";
 import classNames from "classnames";
-import type { ReactUnity } from "@reactunity/renderer";
 
 import { ChampionData } from "src/api/hok";
 import Scroll from "../Scroll";
@@ -14,8 +12,6 @@ type ChampionListProps = {
   disabled?: boolean;
   onClick?: (id: number) => void;
 };
-
-const DEFAULT_SMOOTHNESS = 0.05;
 
 function ChampionList({
   className = "",

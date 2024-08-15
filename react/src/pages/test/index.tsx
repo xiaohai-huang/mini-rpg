@@ -1,14 +1,11 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "src/components/MiniRouter";
-import Image from "src/components/Image";
 
 import styles from "./index.module.scss";
-import type { ReactUnity } from "@reactunity/renderer";
 import GradientTexture from "src/assets/images/backgrounds/gradient-texture.png";
 
 function Page() {
   const navigate = useNavigate();
-  const [type, setType] = useState("contain");
   const inputRef = useRef(null);
   const [show, setShow] = useState(false);
   return (

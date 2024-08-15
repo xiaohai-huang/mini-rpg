@@ -313,6 +313,7 @@ function Countdown({ start = 10, onFinish = () => {} }) {
     if (num === 0) {
       onFinishCallback();
     }
+    // eslint-disable-next-line
   }, [num]);
 
   return (
