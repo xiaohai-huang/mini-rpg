@@ -8,6 +8,8 @@
 
   .tabs {
     background-color: #1c2f4d;
+    width: 20%;
+
     .backButton {
       margin: 0;
       padding: 0.5rem 0;
@@ -26,7 +28,6 @@
         object-fit: contain;
       }
     }
-    width: 20%;
     .tab {
       height: 2rem;
       text-align: center;

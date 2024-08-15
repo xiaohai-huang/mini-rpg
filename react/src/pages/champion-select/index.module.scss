@@ -115,14 +115,14 @@
     }
   }
   .championLargeSelectWrapper {
-    .select {
-      padding-left: var(--safe-left);
-    }
     position: absolute;
     left: 0;
     top: 0;
     width: calc(100vw - var(--right-section-width));
     height: 100%;
+    .select {
+      padding-left: var(--safe-left);
+    }
   }
   .expandButton {
     width: 40px;
