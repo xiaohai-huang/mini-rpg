@@ -46,6 +46,7 @@
   "cSpell.words": [
     "Behaviour",
     "Damageables",
+    "Dont",
     "HFSM",
     "Keyalias",
     "Lerp",
@@ -61,5 +62,10 @@
   "[csharp]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
-  }
+  },
+  "eslint.workingDirectories": [
+    {
+      "directory": "react"
+    }
+  ]
 }
