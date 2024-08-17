@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Summoner's-Rift.unity
     guid: 8dec8b6916895e74f9e6c69a2eec5d39
+  - enabled: 1
+    path: Assets/Scenes/Playground.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
