@@ -19,6 +19,8 @@ jobs:
     name: Test project 🧪
     runs-on: ubuntu-latest
     steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
