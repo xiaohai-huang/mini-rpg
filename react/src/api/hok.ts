@@ -46,6 +46,9 @@ export const CHAMPION_CLASS_TO_CHINESE: { [key in ChampionClass]: string } = {
   SUPPORT: "辅助",
 };
 
+const IMAGE_PREFIX =
+  "https://staging-supabase.zhengxing.asia/storage/v1/object/public/photos/hok";
+
 export async function getChampions(): Promise<ChampionData[]> {
   const data = herosData;
 
@@ -57,15 +60,12 @@ export async function getChampions(): Promise<ChampionData[]> {
         : (item.skin_name.split("|") as string[]);
     const championId = item.ename;
     const skins: ChampionSkinData[] = names.map((name, i) => {
+      const id = i + 1;
       return {
-        id: i + 1,
+        id,
         name,
-        smallImage: `https://game.gtimg.cn/images/yxzj/img201606/heroimg/${championId}/${championId}-smallskin-${
-          i + 1
-        }.jpg`,
-        largeImage: `https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/${championId}/${championId}-bigskin-${
-          i + 1
-        }.jpg`,
+        smallImage: `image/skin/small/${championId}/${id}.jpg`,
+        largeImage: `${IMAGE_PREFIX}/skin/large/${championId}/${id}.jpg`,
       };
     });
     skinData[championId] = skins;
@@ -77,7 +77,7 @@ export async function getChampions(): Promise<ChampionData[]> {
       id,
       name: item.yzzyxm_4588,
       alias: item.yzzyxc_4613,
-      img: `https://game.gtimg.cn/images/yxzj/img201606/heroimg/${id}/${id}.jpg`,
+      img: `image/skin/small/${id}/1.jpg`,
       region: item.yxqy_9100,
       pinyin: item.yxpy_7753,
       classes: item.yzzyxz_1918,

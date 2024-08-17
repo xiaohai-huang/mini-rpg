@@ -78,3 +78,5 @@ build/
 # For zero installs:
 # !.yarn/cache
 # !.pnp.*
+
+public/image/skin/large/*
