@@ -127,14 +127,16 @@ function Page() {
         >
           <Scroll direction="vertical">
             <view className={styles.list}>
-              {groupBySize(champion?.skins ?? [], 2).map((row, i) => {
+              {groupBySize(champion?.skins ?? [], 2).map((row, rowIndex) => {
                 return (
-                  <view key={i} className={styles.row}>
-                    {row.map((skin, i) => (
+                  <view key={rowIndex} className={styles.row}>
+                    {row.map((skin, colIndex) => (
                       <ChampionIcon
                         key={skin.id}
                         id={skin.id}
-                        name={i === 0 ? "经典" : skin.name}
+                        name={
+                          rowIndex === 0 && colIndex === 0 ? "经典" : skin.name
+                        }
                         img={skin.smallImage}
                         size={80}
                         selected={skin.id === selectedSkinId}
