@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classNames from "classnames";
 import { useNavigate } from "src/components/MiniRouter/index";
 
@@ -181,24 +180,17 @@ type RankingBadgeProps = {
 };
 
 function RankingBadge({ num, onClick = () => {} }: RankingBadgeProps) {
-  const [show, setShow] = useState(false);
   return (
     <view className={styles.badge} onClick={onClick}>
       {/* Badge */}
-      <Image
-        className={styles.image}
-        src={RankingBadgeIcon}
-        onLoad={() => setShow(true)}
-      />
+      <Image className={styles.image} src={RankingBadgeIcon} />
       {/* Badge Number */}
-      {show && (
-        <view
-          className={styles["number-circle"]}
-          style={{ backgroundImage: `url(${RankingBadgeCircleIcon})` }}
-        >
-          <text className={styles.number}>{num}</text>
-        </view>
-      )}
+      <view
+        className={styles["number-circle"]}
+        style={{ backgroundImage: `url(${RankingBadgeCircleIcon})` }}
+      >
+        <text className={styles.number}>{num}</text>
+      </view>
     </view>
   );
 }
