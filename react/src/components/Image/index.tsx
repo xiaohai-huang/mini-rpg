@@ -8,16 +8,16 @@ type ImageProps = {
   src: string;
   onLoad?: (event: { type: string }) => void;
   onClick?: () => void;
-  keepAspectRatio?: boolean;
+  preserveAspect?: boolean;
 };
 
-function Image({ keepAspectRatio = true, ...rest }: ImageProps) {
+function Image({ preserveAspect = false, ...rest }: ImageProps) {
   const ref = useRef<ReactUnity.UGUI.ImageComponent>();
   useLayoutEffect(() => {
     if (ref.current) {
-      ref.current.Image.preserveAspect = keepAspectRatio;
+      ref.current.Image.preserveAspect = preserveAspect;
     }
-  }, [keepAspectRatio]);
+  }, [preserveAspect]);
 
   return <image ref={ref} {...rest} />;
 }

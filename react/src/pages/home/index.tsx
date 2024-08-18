@@ -160,13 +160,11 @@ function Entries() {
   return (
     <view className={styles.entries}>
       <Image
-        keepAspectRatio={false}
         className={styles.button}
         src={BattleIcon}
         onClick={() => navigate("/champion-select")}
       />
       <Image
-        keepAspectRatio={false}
         className={styles.button}
         src={RankingIcon}
         onClick={() => navigate("/ranking")}
