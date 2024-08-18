@@ -6,7 +6,7 @@ import Avatar from "src/components/Avatar";
 import Scroll from "src/components/Scroll";
 import Image from "src/components/Image";
 
-import defaultAvatar from "../../assets/images/default-avatar.jpg";
+import xiaodanAvatar from "src/assets/images/xiaodan-avatar.jpg";
 import bgImage from "src/assets/images/backgrounds/bg-00.jpg";
 
 // Entries
@@ -106,7 +106,7 @@ function Top() {
   const user = {
     name: "巅峰小蛋",
     level: 30,
-    avatar: defaultAvatar,
+    avatar: xiaodanAvatar,
   };
   const navigate = useNavigate();
   return (
