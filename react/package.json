@@ -16,6 +16,9 @@
   },
   "devDependencies": {
     "@reactunity/scripts": "^0.18.3",
-    "typescript": "^5.4.4"
+    "image-minimizer-webpack-plugin": "^4.1.0",
+    "sharp": "^0.33.5",
+    "typescript": "^5.4.4",
+    "webpack-merge": "^6.0.1"
   }
 }
