@@ -29,7 +29,7 @@ function App() {
       }}
     >
       <MiniRouter>
-        <Route path="/" keepAlive element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/champion-select" element={<ChampionSelect />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/settings" element={<SettingsPage />} />
