@@ -21,7 +21,7 @@ namespace Core.Game.Statistics
             }
         }
 
-        public StatSystem(BaseStats baseStats)
+        public StatSystem(BaseStatsSO baseStats)
         {
             foreach (var pair in baseStats)
             {
