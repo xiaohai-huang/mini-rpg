@@ -41,5 +41,14 @@ namespace Core.Game.SpawnSystem
             _playerSpawnedEventChannel.RaiseEvent(player.transform);
             return player;
         }
+
+        public Character SpawnPlayer(Character existingPlayer, Vector3 spawnPoint)
+        {
+            existingPlayer.transform.position = spawnPoint;
+            existingPlayer.gameObject.SetActive(true);
+            _playerAnchor.Provide(existingPlayer);
+            _playerSpawnedEventChannel.RaiseEvent(existingPlayer.transform);
+            return existingPlayer;
+        }
     }
 }

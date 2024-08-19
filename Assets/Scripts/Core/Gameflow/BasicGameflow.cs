@@ -1,6 +1,7 @@
 using Core.Game.SpawnSystem;
 using UnityEngine;
 using UnityHFSM;
+using Xiaohai.Character;
 using Xiaohai.Input;
 
 namespace Core.Game.Flow
@@ -31,8 +32,6 @@ namespace Core.Game.Flow
                 "Initialization",
                 onEnter: (_) =>
                 {
-                    // Create the chosen hero for the player
-                    _heroSpawnManager.SpawnPlayer(_heroId, _skinId, Vector3.zero);
                     _inputReader.Enable();
                 }
             );
@@ -73,7 +72,14 @@ namespace Core.Game.Flow
         {
             _heroId = heroId;
             _skinId = skinId;
+            _heroSpawnManager.SpawnPlayer(_heroId, _skinId, Vector3.zero);
 
+            _ready = true;
+        }
+
+        public void InitGame(Character existingCharacter)
+        {
+            _heroSpawnManager.SpawnPlayer(existingCharacter, Vector3.zero);
             _ready = true;
         }
     }
