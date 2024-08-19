@@ -1,6 +1,13 @@
 name: Build project
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "Assets/**"
+      - "Packages/**"
+      - "ProjectSettings/**"
+      - "react/**"
   push:
     branches:
       - master
@@ -69,6 +76,8 @@ jobs:
           node-version-file: "react/.nvmrc"
       - run: npm ci
       - run: npm run build
+        env:
+          BUILD_PATH: ./build
 
       - uses: actions/upload-artifact@v4
         with:
@@ -211,11 +220,19 @@ jobs:
     name: Upload WebGL to MinIO
     needs: buildForWebGL
     runs-on: ubuntu-latest
+    env:
+      TARGET_DIR: ${{ secrets.MINIO_DEPLOY_PATH }}/master # Default value
+
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: Build-WebGL
           path: build/WebGL
+
+      - name: Set Target Directory (if PR)
+        if: github.event_name == 'pull_request' && github.ref_name != 'master'
+        run: echo "TARGET_DIR=${{ secrets.MINIO_DEPLOY_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
+
       - name: MinIO Deploy
         uses: hkdobrev/minio-deploy-action@v1
         with:
@@ -224,4 +241,4 @@ jobs:
           secret_key: ${{ secrets.MINIO_SECRET_KEY }}
           bucket: ${{ secrets.MINIO_DEPLOY_BUCKET }}
           source_dir: build/WebGL
-          target_dir: ${{ secrets.MINIO_DEPLOY_PATH }}
+          target_dir: ${{ env.TARGET_DIR }}
