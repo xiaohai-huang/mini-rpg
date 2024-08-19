@@ -219,7 +219,7 @@ jobs:
     needs: buildForWebGL
     runs-on: ubuntu-latest
     env:
-      TARGET_DIR: ${{ secrets.MINIO_DEPLOY_PATH }}/main # Default value
+      TARGET_DIR: ${{ secrets.MINIO_DEPLOY_PATH }}/master # Default value
 
     steps:
       - uses: actions/download-artifact@v4
@@ -228,7 +228,7 @@ jobs:
           path: build/WebGL
 
       - name: Set Target Directory (if PR)
-        if: github.event_name == 'pull_request' && github.ref_name != 'main'
+        if: github.event_name == 'pull_request' && github.ref_name != 'master'
         run: echo "TARGET_DIR=${{ secrets.MINIO_DEPLOY_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
 
       - name: MinIO Deploy
