@@ -227,7 +227,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: Build-WebGL
-          path: build/WebGL
+          path: build
 
       - name: Set Target Directory (if PR)
         if: github.event_name == 'pull_request' && github.ref_name != 'master'
