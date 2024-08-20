@@ -32,6 +32,7 @@ namespace Xiaohai.UI
             set { _currentValue = Math.Clamp(value, 0, MaxValue); }
         }
         public int DividerAmount = 1000;
+        public bool ShowDivider = true;
 
         [SerializeField]
         private float _speed;
@@ -40,7 +41,8 @@ namespace Xiaohai.UI
 
         void Awake()
         {
-            SetupDivider();
+            if (ShowDivider)
+                SetupDivider();
         }
 
         // Update is called once per frame
@@ -79,8 +81,11 @@ namespace Xiaohai.UI
             if (MaxValue != maxValue)
             {
                 MaxValue = maxValue;
-                _dividers.ForEach(divider => Destroy(divider));
-                SetupDivider();
+                if (ShowDivider)
+                {
+                    _dividers.ForEach(divider => Destroy(divider));
+                    SetupDivider();
+                }
             }
             CurrentValue = currentValue;
         }
