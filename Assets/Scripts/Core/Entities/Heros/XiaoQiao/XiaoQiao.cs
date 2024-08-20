@@ -1,4 +1,5 @@
 using Core.Game.Combat;
+using Core.Game.Effects;
 using Core.Game.Heros.XiaoQiao;
 using Core.Game.Mana;
 using Core.Game.Statistics;
@@ -72,6 +73,8 @@ namespace Xiaohai.Character.XiaoQiao
         void Start()
         {
             _md = Statistics.GetStat(StatType.MagicalDamage);
+            // Add Regenerate effect
+            _effectSystem.AddEffect(new RegenerateEffect());
         }
 
         public override void Update()
