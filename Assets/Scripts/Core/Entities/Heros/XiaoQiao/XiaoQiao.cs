@@ -10,8 +10,7 @@ namespace Xiaohai.Character.XiaoQiao
     public class XiaoQiao : Character
     {
         [Header("XiaoQiao")]
-        [SerializeField]
-        private float _rotationSpeed;
+       
 
         [Header("Ability One")]
         [SerializeField]
@@ -111,27 +110,6 @@ namespace Xiaohai.Character.XiaoQiao
             };
             fan.Throw();
             _abilityOneCompletionSource.SetResult();
-        }
-
-        private async Awaitable RotateTowards(Vector3 targetDirection)
-        {
-            // Rotate towards the direction
-            if (targetDirection != Vector3.zero)
-            {
-                var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-                float angles = Vector3.Angle(transform.forward, targetDirection);
-                while (angles > 1f)
-                {
-                    transform.rotation = Quaternion.Slerp(
-                        transform.rotation,
-                        targetRotation,
-                        Time.deltaTime * _rotationSpeed
-                    );
-
-                    angles = Vector3.Angle(transform.forward, targetDirection);
-                    await Awaitable.NextFrameAsync();
-                }
-            }
         }
 
         public async Awaitable PerformAbilityTwo()
