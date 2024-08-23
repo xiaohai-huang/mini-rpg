@@ -10,15 +10,6 @@ namespace Xiaohai.Character.XiaoQiao
     public class XiaoQiao : Character
     {
         [Header("XiaoQiao")]
-       
-
-        [Header("Ability One")]
-        [SerializeField]
-        private Fan _fanPrefab;
-
-        [SerializeField]
-        private Transform _fanThrowPoint;
-
         [Header("Ability Two")]
         [SerializeField]
         private Wind _wind;
@@ -48,9 +39,6 @@ namespace Xiaohai.Character.XiaoQiao
         [SerializeField]
         private PassiveEffectSO _passiveEffectSO;
 
-        private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
-        private Animator _animator;
-
         /// <summary>
         /// Magical Damage
         /// </summary>
@@ -63,7 +51,6 @@ namespace Xiaohai.Character.XiaoQiao
         public override void Awake()
         {
             base.Awake();
-            _animator = GetComponent<Animator>();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
             _manaSystem = GetComponent<ManaSystem>();
@@ -79,37 +66,6 @@ namespace Xiaohai.Character.XiaoQiao
         public override void Update()
         {
             base.Update();
-        }
-
-        private readonly AwaitableCompletionSource _abilityOneCompletionSource = new();
-
-        public async Awaitable PerformAbilityOne()
-        {
-            _manaSystem.Consume(45);
-            _abilityOneCompletionSource.Reset();
-            // 小乔向指定方向扔出一把回旋飞行的扇子，
-            // 会对第一个命中的敌人造成585/635/685/735/785/835（+80％法术加成）点法术伤害，
-            // 每次命中后伤害都会衰减20％，最低衰减至初始伤害的50％。
-            // Rotate towards the direction specified by the ab one input
-            await RotateTowards(new Vector3(AbilityOneDirection.x, 0, AbilityOneDirection.y));
-            // Throw a fan
-            _animator.SetTrigger(ABILITY_ONE);
-            await _abilityOneCompletionSource.Awaitable;
-        }
-
-        public void ThrowFan()
-        {
-            Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
-            fan.SetReceiver(this);
-            fan.OnHit += (enemy, reductionRate) =>
-            {
-                float baseDamageAmount = (585f + (0.8f * _md.ComputedValue)) * reductionRate;
-                var damage = new Damage(this, enemy, DamageType.Magical, baseDamageAmount);
-                enemy.Damageable.TakeDamage(damage);
-                _effectSystem.AddEffect(_passiveEffect);
-            };
-            fan.Throw();
-            _abilityOneCompletionSource.SetResult();
         }
 
         public async Awaitable PerformAbilityTwo()

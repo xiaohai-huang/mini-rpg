@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Game.Entities.Heros.XiaoQiao;
+using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 
@@ -17,11 +18,13 @@ namespace Xiaohai.Character.XiaoQiao
     {
         protected new AbilityOneActionSO OriginSO => (AbilityOneActionSO)base.OriginSO;
 
-        private XiaoQiao _character;
+        private Character _character;
+        private AbilityOne _abilityOne;
 
         public override void Awake(StateMachine stateMachine)
         {
-            _character = stateMachine.GetComponent<XiaoQiao>();
+            _character = stateMachine.GetComponent<Character>();
+            _abilityOne = stateMachine.GetComponent<AbilityOne>();
         }
 
         public override void OnUpdate() { }
@@ -29,9 +32,7 @@ namespace Xiaohai.Character.XiaoQiao
         public override async void OnStateEnter()
         {
             _character.SetAbilityInput(Character.Ability.One, false);
-            _character.PerformingAbilityOne = true;
-            await _character.PerformAbilityOne();
-            _character.PerformingAbilityOne = false;
+            await _abilityOne.Perform();
         }
 
         public override void OnStateExit() { }
