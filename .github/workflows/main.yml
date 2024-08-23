@@ -26,11 +26,26 @@ jobs:
     name: Test project 🧪
     runs-on: ubuntu-latest
     steps:
-      # Checkout
+      # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
         with:
-          lfs: true
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
 
       # Cache
       - uses: actions/cache@v4
@@ -89,16 +104,35 @@ jobs:
     name: Build For WebGL Platform
     runs-on: ubuntu-latest
     steps:
+      # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
         with:
-          lfs: true
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-WebGL-
+            Library-
+
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
       - name: Download React UI Build Output
@@ -124,16 +158,35 @@ jobs:
     name: Build For Android Platform
     runs-on: ubuntu-latest
     steps:
+      # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
         with:
-          lfs: true
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-Android-
+            Library-
+
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
       - name: Download React UI Build Output
@@ -165,16 +218,35 @@ jobs:
     name: Build For Windows Platform
     runs-on: windows-2022
     steps:
+      # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
         with:
-          lfs: true
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-Windows-
+            Library-
+
       - name: Download React UI Build Output
         uses: actions/download-artifact@v4
         with:
