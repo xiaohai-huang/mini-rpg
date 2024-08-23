@@ -6,5 +6,5 @@ namespace Core.Game.Statistics
         fileName = "BaseStats",
         menuName = "My Scriptable Objects/Statistics/BaseStats"
     )]
-    public class BaseStats : ScriptableDictionary<StatType, float> { }
+    public class BaseStatsSO : ScriptableDictionary<StatType, float> { }
 }

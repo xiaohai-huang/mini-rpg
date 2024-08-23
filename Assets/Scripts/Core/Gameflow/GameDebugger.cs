@@ -1,4 +1,5 @@
 using UnityEngine;
+using Xiaohai.Character;
 
 namespace Core.Game.Flow
 {
@@ -8,6 +9,8 @@ namespace Core.Game.Flow
         private StartGameEventChannel _startGameEventChannel;
         public int HeroId;
         public int SkinId;
+        public Character _character;
+        public bool UseExistingCharacter;
 
         void Start()
         {
@@ -16,7 +19,15 @@ namespace Core.Game.Flow
 
         void StartGame()
         {
-            _startGameEventChannel.RaiseEvent(HeroId, SkinId);
+            if (UseExistingCharacter)
+            {
+                FindObjectsByType<BasicGameFlow>(FindObjectsSortMode.InstanceID)[0]
+                    .InitGame(_character);
+            }
+            else
+            {
+                _startGameEventChannel.RaiseEvent(HeroId, SkinId);
+            }
         }
     }
 }

@@ -21,6 +21,9 @@ namespace Core.Game.Statistics
         PercentagePhysicalResistance,
 
         // Derived stat
-        PercentageMagicalResistance
+        PercentageMagicalResistance,
+        MaxMana,
+        ManaRecoveredPerSecond,
+        HealthRecoveredPerSecond
     }
 }

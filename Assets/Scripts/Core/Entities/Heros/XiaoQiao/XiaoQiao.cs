@@ -1,5 +1,7 @@
 using Core.Game.Combat;
+using Core.Game.Effects;
 using Core.Game.Heros.XiaoQiao;
+using Core.Game.Mana;
 using Core.Game.Statistics;
 using UnityEngine;
 
@@ -57,6 +59,7 @@ namespace Xiaohai.Character.XiaoQiao
 
         private EffectSystem _effectSystem;
         private PassiveEffect _passiveEffect;
+        private ManaSystem _manaSystem;
 
         public override void Awake()
         {
@@ -64,11 +67,14 @@ namespace Xiaohai.Character.XiaoQiao
             _animator = GetComponent<Animator>();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
+            _manaSystem = GetComponent<ManaSystem>();
         }
 
         void Start()
         {
             _md = Statistics.GetStat(StatType.MagicalDamage);
+            // Add Regenerate effect
+            _effectSystem.AddEffect(new RegenerateEffect());
         }
 
         public override void Update()
@@ -80,6 +86,7 @@ namespace Xiaohai.Character.XiaoQiao
 
         public async Awaitable PerformAbilityOne()
         {
+            _manaSystem.Consume(45);
             _abilityOneCompletionSource.Reset();
             // 小乔向指定方向扔出一把回旋飞行的扇子，
             // 会对第一个命中的敌人造成585/635/685/735/785/835（+80％法术加成）点法术伤害，
@@ -131,6 +138,8 @@ namespace Xiaohai.Character.XiaoQiao
         {
             // 小乔在指定区域召唤出一道旋风，
             // 对区域内敌人造成300/340/380/420/460/500（+50％法术加成）点法术伤害并击飞1.5秒，攻击盒半径240
+            _manaSystem.Consume(70);
+
             // Get the world position of the attack area
             var offset = _windMaxRange * AbilityTwoPosition;
             var attackPosition = transform.position + new Vector3(offset.x, 0, offset.y);
@@ -160,6 +169,8 @@ namespace Xiaohai.Character.XiaoQiao
             // 每个敌人最多承受4次攻击，
             // 当多颗流星命中同一目标时，从第二颗流星开始将只造成50％伤害。
             // 释放期间持续获得被动加速效果。
+            _manaSystem.Consume(140);
+
             float ONE_SECOND = 1000f;
             int timerId = Timer.Instance.SetInterval(
                 () =>

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Core.Game.Entities;
+using Core.Game.Mana;
 using UnityEngine;
 using Xiaohai.Character;
 
@@ -20,6 +22,15 @@ public class EffectSystem : MonoBehaviour
     private readonly List<Effect> _effectsToRemove = new();
 
     private Damageable _damageable;
+    private ManaSystem _manaSystem;
+    public Base Entity;
+
+    void Awake()
+    {
+        _damageable = GetComponent<Damageable>();
+        _manaSystem = GetComponent<ManaSystem>();
+        Entity = GetComponent<Base>();
+    }
 
     public void AddEffect(Effect newEffect)
     {
@@ -85,9 +96,14 @@ public class EffectSystem : MonoBehaviour
         _damageable.TakeDamage(damageAmount);
     }
 
-    void Awake()
+    public void RecoverMana(int manaToAdd)
     {
-        _damageable = GetComponent<Damageable>();
+        _manaSystem.RecoverMana(manaToAdd);
+    }
+
+    public void ConsumeMana(int amount)
+    {
+        _manaSystem.Consume(amount);
     }
 
     // Update is called once per frame

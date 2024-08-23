@@ -10,7 +10,7 @@ namespace Core.Game.Entities
         public StatSystem Statistics;
 
         [SerializeField]
-        private BaseStats _baseStats;
+        private BaseStatsSO _baseStats;
         private Damageable _damageable;
         public Damageable Damageable => _damageable;
 
