@@ -14,10 +14,10 @@ namespace Core.Game.Effects
             base.OnApply(system);
             // regenerate health, mana
             float manaRecoveredPerSecond = system
-                .Entity.Statistics.GetStat(Statistics.StatType.ManaRecoveredPerSecond)
+                .Host.Statistics.GetStat(Statistics.StatType.ManaRecoveredPerSecond)
                 .ComputedValue;
             float healthRecoveredPerSecond = system
-                .Entity.Statistics.GetStat(Statistics.StatType.HealthRecoveredPerSecond)
+                .Host.Statistics.GetStat(Statistics.StatType.HealthRecoveredPerSecond)
                 .ComputedValue;
             int timerId = Timer.Instance.SetInterval(
                 () =>
