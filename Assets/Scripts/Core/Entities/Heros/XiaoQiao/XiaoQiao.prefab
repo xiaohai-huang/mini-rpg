@@ -266,6 +266,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791383263296508626, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
+      propertyPath: _baseStats
+      value: 
+      objectReference: {fileID: 11400000, guid: aebcea5e7585bdc4ba9d98fb7d6b4d5e,
+        type: 2}
+    - target: {fileID: 8791383263296508626, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
       propertyPath: BaseWalkSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -312,10 +318,6 @@ PrefabInstance:
         type: 3}
       insertIndex: 8
       addedObject: {fileID: 4356155925039159200}
-    - targetCorrespondingSourceObject: {fileID: 2695485531350049118, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2092923684838096091}
     - targetCorrespondingSourceObject: {fileID: 2695485531350049118, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
         type: 3}
       insertIndex: -1
@@ -374,41 +376,6 @@ MonoBehaviour:
   OnRestore:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2092923684838096091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2695194293289820394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4d2e05b94ce3ff46a7cd0283ffb3c3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: 
-  _baseStats: {fileID: 11400000, guid: aebcea5e7585bdc4ba9d98fb7d6b4d5e, type: 2}
-  Target: {fileID: 0}
-  RotationSpeed: 12
-  Velocity: {x: 0, y: 0, z: 0}
-  HorizontalInput: {x: 0, y: 0}
-  HorizontalAutoInput: {x: 0, y: 0}
-  IsAutoMove: 0
-  BasicAttackInput: 0
-  _performingBasicAttack: 0
-  AbilityOneInput: 0
-  PerformingAbilityOne: 0
-  AbilityOnePosition: {x: 0, y: 0}
-  AbilityOneDirection: {x: 0, y: 0}
-  AbilityTwoInput: 0
-  PerformingAbilityTwo: 0
-  AbilityTwoPosition: {x: 0, y: 0}
-  AbilityTwoDirection: {x: 0, y: 0}
-  AbilityThreeInput: 0
-  PerformingAbilityThree: 0
-  AbilityThreePosition: {x: 0, y: 0}
-  AbilityThreeDirection: {x: 0, y: 0}
-  _passiveEffectSO: {fileID: 11400000, guid: 24e81c10500e67d4fa0d74356162519d, type: 2}
 --- !u!114 &6646356669930731563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,8 +425,8 @@ MonoBehaviour:
   _meteorRain: {fileID: 1915928061745365996, guid: d24339a4f123c7748a735000153c11e1,
     type: 3}
   _meteorRainRange: 10
-  _data: {fileID: 11400000, guid: 827073e52089b8845888e2d531439208, type: 2}
   _passiveEffectSO: {fileID: 11400000, guid: 24e81c10500e67d4fa0d74356162519d, type: 2}
+  _data: {fileID: 11400000, guid: 827073e52089b8845888e2d531439208, type: 2}
 --- !u!4 &6710836274454276860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6714487884994784072, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
