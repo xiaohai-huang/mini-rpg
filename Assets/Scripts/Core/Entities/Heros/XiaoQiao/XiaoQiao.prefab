@@ -324,6 +324,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3852887895432615754}
+    - targetCorrespondingSourceObject: {fileID: 2695485531350049118, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1242041335246991453}
   m_SourcePrefab: {fileID: 100100000, guid: 2ecaf5a4f1a11e74db03f10b07e0a520, type: 3}
 --- !u!224 &1705322858555071455 stripped
 RectTransform:
@@ -404,9 +408,6 @@ MonoBehaviour:
   PerformingAbilityThree: 0
   AbilityThreePosition: {x: 0, y: 0}
   AbilityThreeDirection: {x: 0, y: 0}
-  _meteorRain: {fileID: 1915928061745365996, guid: d24339a4f123c7748a735000153c11e1,
-    type: 3}
-  _meteorRainRange: 10
   _passiveEffectSO: {fileID: 11400000, guid: 24e81c10500e67d4fa0d74356162519d, type: 2}
 --- !u!114 &6646356669930731563
 MonoBehaviour:
@@ -442,6 +443,23 @@ MonoBehaviour:
   _windSize: 2.4
   _passiveEffectSO: {fileID: 11400000, guid: 24e81c10500e67d4fa0d74356162519d, type: 2}
   _data: {fileID: 11400000, guid: 7d45a7ffda4750b41a9c9fa905ad86d8, type: 2}
+--- !u!114 &1242041335246991453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695194293289820394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a05cf2f3d4f6148bd276a00d8280d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meteorRain: {fileID: 1915928061745365996, guid: d24339a4f123c7748a735000153c11e1,
+    type: 3}
+  _meteorRainRange: 10
+  _data: {fileID: 11400000, guid: 827073e52089b8845888e2d531439208, type: 2}
+  _passiveEffectSO: {fileID: 11400000, guid: 24e81c10500e67d4fa0d74356162519d, type: 2}
 --- !u!4 &6710836274454276860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6714487884994784072, guid: 2ecaf5a4f1a11e74db03f10b07e0a520,

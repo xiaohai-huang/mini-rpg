@@ -50,7 +50,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 
         protected override async Awaitable PerformAction()
         {
-            _manaSystem.Consume(ManaCost);
+            ManaSystem.Consume(ManaCost);
             _abilityOneCompletionSource.Reset();
             // 小乔向指定方向扔出一把回旋飞行的扇子，
             // 会对第一个命中的敌人造成585/635/685/735/785/835（+80％法术加成）点法术伤害，

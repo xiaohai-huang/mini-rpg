@@ -11,17 +11,17 @@ namespace Core.Game.Combat
         public abstract Character.Ability Type { get; }
         public int MaxLevel { get; protected set; }
         public int CurrentLevel { get; private set; } = 0;
-        public bool HasEnoughMana => _manaSystem.CurrentMana >= ManaCost;
+        public bool HasEnoughMana => ManaSystem.CurrentMana >= ManaCost;
         public abstract int ManaCost { get; }
         public event Action<bool> OnPerformingChange;
         public bool Performing { get; private set; }
         public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0;
-        protected ManaSystem _manaSystem;
+        protected ManaSystem ManaSystem;
         protected Character Host { get; private set; }
 
         public virtual void Awake()
         {
-            _manaSystem = GetComponent<ManaSystem>();
+            ManaSystem = GetComponent<ManaSystem>();
             Host = GetComponent<Character>();
         }
 
