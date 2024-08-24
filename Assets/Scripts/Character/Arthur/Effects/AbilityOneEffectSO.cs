@@ -12,6 +12,8 @@ namespace Xiaohai.Character.Arthur
     {
         public GameObject RangeIndicatorPrefab;
         public Vector3 Offset;
+
+        public new AbilityOneEffect CreateEffect() => (AbilityOneEffect)base.CreateEffect();
     }
 
     /// <summary>

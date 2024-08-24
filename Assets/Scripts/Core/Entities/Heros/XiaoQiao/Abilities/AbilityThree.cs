@@ -32,7 +32,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         private Stat _md;
 
         private EffectSystem _effectSystem;
-        private PassiveEffect _passiveEffect;
+        private Effect _passiveEffect;
 
         public override void Awake()
         {

@@ -28,7 +28,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
         private Animator _animator;
         private EffectSystem _effectSystem;
-        private PassiveEffect _passiveEffect;
+        private Effect _passiveEffect;
         private Stat _md;
 
         public override void Awake()

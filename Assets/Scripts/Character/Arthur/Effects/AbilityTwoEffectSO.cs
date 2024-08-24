@@ -7,7 +7,10 @@ namespace Xiaohai.Character.Arthur
         fileName = "Arthur Ability Two Shields Effect",
         menuName = "My Scriptable Objects/Effects/Character/Arthur/Ability Two Shields Effect"
     )]
-    public class AbilityTwoEffectSO : EffectSO<AbilityTwoEffect> { }
+    public class AbilityTwoEffectSO : EffectSO<AbilityTwoEffect>
+    {
+        public new AbilityTwoEffect CreateEffect() => (AbilityTwoEffect)base.CreateEffect();
+    }
 
     /// <summary>
     /// Summons 3 shields that circle around him. Shields last for x seconds.

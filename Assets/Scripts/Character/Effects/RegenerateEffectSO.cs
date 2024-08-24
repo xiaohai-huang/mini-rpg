@@ -1,14 +1,16 @@
 using System;
+using UnityEngine;
 
 namespace Core.Game.Effects
 {
+    [CreateAssetMenu(
+        fileName = "Regenerate Effect",
+        menuName = "My Scriptable Objects/Effects/Regenerate"
+    )]
+    public class RegenerateEffectSO : EffectSO<RegenerateEffect> { }
+
     public class RegenerateEffect : Effect
     {
-        public RegenerateEffect()
-        {
-            Name = "Regenerate Effect";
-        }
-
         public override Action OnApply(EffectSystem system)
         {
             base.OnApply(system);

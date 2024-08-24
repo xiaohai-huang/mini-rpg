@@ -37,7 +37,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         private readonly float _flyingDuration = 1.5f;
 
         private EffectSystem _effectSystem;
-        private PassiveEffect _passiveEffect;
+        private Effect _passiveEffect;
         private Stat _md;
 
         public override void Awake()
