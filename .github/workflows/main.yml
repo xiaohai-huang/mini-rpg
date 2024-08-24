@@ -80,11 +80,26 @@ jobs:
         working-directory: ./react
 
     steps:
+      # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
         with:
-          lfs: true
-          sparse-checkout: react
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
 
       - uses: actions/setup-node@v4
         with:
