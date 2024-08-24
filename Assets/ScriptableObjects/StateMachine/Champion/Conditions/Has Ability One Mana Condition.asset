@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ed91a8f18c4904f8616c3379aba603, type: 3}
-  m_Name: Has Ability Two Mana Condition
+  m_Name: Has Ability One Mana Condition
   m_EditorClassIdentifier: 
-  Mana: 70
+  Type: 1

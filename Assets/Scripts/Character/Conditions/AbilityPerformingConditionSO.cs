@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Game.Combat;
+using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
 using Xiaohai.Character;
@@ -9,7 +10,7 @@ using Xiaohai.Character;
 )]
 public class AbilityPerformingConditionSO : StateConditionSO
 {
-    public Character.Ability Ability;
+    public Character.Ability Type;
 
     protected override Condition CreateCondition() => new AbilityPerformingCondition();
 }
@@ -18,19 +19,22 @@ public class AbilityPerformingCondition : Condition
 {
     protected new AbilityPerformingConditionSO OriginSO =>
         (AbilityPerformingConditionSO)base.OriginSO;
-    private Character _character;
+    private AbilityBase _ability;
 
     public override void Awake(StateMachine stateMachine)
     {
-        _character = stateMachine.GetComponent<Character>();
+        var abilities = stateMachine.GetComponents<AbilityBase>();
+        foreach (var ability in abilities)
+        {
+            if (ability.Type == OriginSO.Type)
+            {
+                _ability = ability;
+            }
+        }
     }
 
     protected override bool Statement()
     {
-        return _character.IsAbilityPerforming(OriginSO.Ability);
+        return _ability.Performing;
     }
-
-    public override void OnStateEnter() { }
-
-    public override void OnStateExit() { }
 }

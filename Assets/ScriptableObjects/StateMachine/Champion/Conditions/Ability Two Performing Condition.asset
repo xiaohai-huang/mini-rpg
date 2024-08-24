@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729ea7b8d5d254e4db4f4cc23420177c, type: 3}
   m_Name: Ability Two Performing Condition
   m_EditorClassIdentifier: 
-  Ability: 2
+  Type: 2

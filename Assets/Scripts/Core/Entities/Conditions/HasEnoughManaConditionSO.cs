@@ -1,7 +1,8 @@
-using Core.Game.Mana;
+using Core.Game.Combat;
 using UnityEngine;
 using UOP1.StateMachine;
 using UOP1.StateMachine.ScriptableObjects;
+using Xiaohai.Character;
 
 namespace Core.Game.Entities.Conditions
 {
@@ -11,24 +12,32 @@ namespace Core.Game.Entities.Conditions
     )]
     public class HasEnoughManaConditionSO : StateConditionSO
     {
-        public int Mana;
+        public Character.Ability Type;
 
         protected override Condition CreateCondition() => new HasEnoughManaCondition();
     }
 
     public class HasEnoughManaCondition : Condition
     {
-        private ManaSystem _manaSystem;
+        private AbilityBase _ability;
+
         protected new HasEnoughManaConditionSO OriginSO => (HasEnoughManaConditionSO)base.OriginSO;
 
         public override void Awake(StateMachine stateMachine)
         {
-            _manaSystem = stateMachine.GetComponent<ManaSystem>();
+            var abilities = stateMachine.GetComponents<AbilityBase>();
+            foreach (var ability in abilities)
+            {
+                if (ability.Type == OriginSO.Type)
+                {
+                    _ability = ability;
+                }
+            }
         }
 
         protected override bool Statement()
         {
-            return _manaSystem.CurrentMana >= OriginSO.Mana;
+            return _ability.HasEnoughMana;
         }
     }
 }
