@@ -102,6 +102,7 @@ jobs:
 
   buildForWebGL:
     name: Build For WebGL Platform
+    needs: buildReact
     runs-on: ubuntu-latest
     steps:
       # Checkout (without LFS)
@@ -156,6 +157,7 @@ jobs:
 
   buildForAndroidPlatform:
     name: Build For Android Platform
+    needs: buildReact
     runs-on: ubuntu-latest
     steps:
       # Checkout (without LFS)
@@ -216,6 +218,7 @@ jobs:
 
   buildForWindowsPlatform:
     name: Build For Windows Platform
+    needs: buildReact
     runs-on: windows-2022
     steps:
       # Checkout (without LFS)
