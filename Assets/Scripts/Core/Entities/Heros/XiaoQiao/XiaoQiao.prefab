@@ -381,7 +381,7 @@ MonoBehaviour:
   Id: 
   _baseStats: {fileID: 11400000, guid: aebcea5e7585bdc4ba9d98fb7d6b4d5e, type: 2}
   Target: {fileID: 0}
-  RotationSpeed: 0
+  RotationSpeed: 12
   Velocity: {x: 0, y: 0, z: 0}
   HorizontalInput: {x: 0, y: 0}
   HorizontalAutoInput: {x: 0, y: 0}

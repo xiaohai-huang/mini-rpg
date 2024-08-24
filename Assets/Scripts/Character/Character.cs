@@ -19,7 +19,7 @@ namespace Xiaohai.Character
         /// </summary>
         public float MaxMoveSpeed => Statistics.GetStat(StatType.MovementSpeed).ComputedValue;
 
-        public float RotationSpeed;
+        public float RotationSpeed = 12;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         public Vector2 HorizontalAutoInput;
