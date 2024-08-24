@@ -17,10 +17,12 @@ namespace Core.Game.Combat
         public bool Performing { get; private set; }
         public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0;
         protected ManaSystem _manaSystem;
+        protected Character Host { get; private set; }
 
         public virtual void Awake()
         {
             _manaSystem = GetComponent<ManaSystem>();
+            Host = GetComponent<Character>();
         }
 
         protected abstract Awaitable PerformAction();

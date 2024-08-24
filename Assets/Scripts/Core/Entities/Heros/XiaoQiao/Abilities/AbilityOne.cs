@@ -9,7 +9,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 {
     public class AbilityOne : AbilityBase
     {
-        public override string Name => "无敌扇子";
+        public override string Name => "绽放之舞";
         public override Character.Ability Type => Character.Ability.One;
 
         [SerializeField]
@@ -22,12 +22,11 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         private PassiveEffectSO _passiveEffectSO;
 
         [SerializeField]
-        private AbilityOneSO _data;
+        private AbilityOneInfoSO _data;
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
 
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
         private Animator _animator;
-        private Character _host;
         private EffectSystem _effectSystem;
         private PassiveEffect _passiveEffect;
         private Stat _md;
@@ -35,7 +34,6 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public override void Awake()
         {
             base.Awake();
-            _host = GetComponent<Character>();
             _animator = GetComponent<Animator>();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
@@ -45,7 +43,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 
         void Start()
         {
-            _md = _host.Statistics.GetStat(StatType.MagicalDamage);
+            _md = Host.Statistics.GetStat(StatType.MagicalDamage);
         }
 
         private readonly AwaitableCompletionSource _abilityOneCompletionSource = new();
@@ -58,8 +56,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             // 会对第一个命中的敌人造成585/635/685/735/785/835（+80％法术加成）点法术伤害，
             // 每次命中后伤害都会衰减20％，最低衰减至初始伤害的50％。
             // Rotate towards the direction specified by the ab one input
-            await _host.RotateTowards(
-                new Vector3(_host.AbilityOneDirection.x, 0, _host.AbilityOneDirection.y)
+            await Host.RotateTowards(
+                new Vector3(Host.AbilityOneDirection.x, 0, Host.AbilityOneDirection.y)
             );
 
             // Throw a fan
@@ -70,12 +68,12 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public void ThrowFan()
         {
             Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
-            fan.SetReceiver(_host);
+            fan.SetReceiver(Host);
             fan.OnHit += (enemy, reductionRate) =>
             {
                 float baseDamageAmount =
                     (_data[CurrentLevel].DamageAmount + (0.8f * _md.ComputedValue)) * reductionRate;
-                var damage = new Damage(_host, enemy, DamageType.Magical, baseDamageAmount);
+                var damage = new Damage(Host, enemy, DamageType.Magical, baseDamageAmount);
                 enemy.Damageable.TakeDamage(damage);
                 _effectSystem.AddEffect(_passiveEffect);
             };

@@ -10,22 +10,6 @@ namespace Xiaohai.Character.XiaoQiao
     public class XiaoQiao : Character
     {
         [Header("XiaoQiao")]
-        [Header("Ability Two")]
-        [SerializeField]
-        private Wind _wind;
-
-        [SerializeField]
-        [Range(0.5f, 30f)]
-        [Tooltip("Wind range radius")]
-        private float _windMaxRange;
-
-        [SerializeField]
-        [Range(0.1f, 30f)]
-        [Tooltip("Wind radius")]
-        private float _windSize;
-
-        private float _flyingDuration = 1.5f;
-
         [Header("Ability Three")]
         [SerializeField]
         private MeteorRain _meteorRain;
@@ -66,31 +50,6 @@ namespace Xiaohai.Character.XiaoQiao
         public override void Update()
         {
             base.Update();
-        }
-
-        public async Awaitable PerformAbilityTwo()
-        {
-            // 小乔在指定区域召唤出一道旋风，
-            // 对区域内敌人造成300/340/380/420/460/500（+50％法术加成）点法术伤害并击飞1.5秒，攻击盒半径240
-            _manaSystem.Consume(70);
-
-            // Get the world position of the attack area
-            var offset = _windMaxRange * AbilityTwoPosition;
-            var attackPosition = transform.position + new Vector3(offset.x, 0, offset.y);
-
-            await Awaitable.WaitForSecondsAsync(0.1f);
-            Wind wind = Instantiate(_wind, attackPosition, Quaternion.identity);
-            wind.transform.localScale = new Vector3(_windSize * 2, 1, _windSize * 2);
-            wind.OnHit += (enemy) =>
-            {
-                float baseDamageAmount = 300f + (_md.ComputedValue * 0.5f);
-                var damage = new Damage(this, enemy, DamageType.Magical, baseDamageAmount);
-                enemy.Damageable.TakeDamage(damage);
-
-                // Launch the target into sky for a given time
-                enemy.KnockUp(_flyingDuration);
-                _effectSystem.AddEffect(_passiveEffect);
-            };
         }
 
         // final 225

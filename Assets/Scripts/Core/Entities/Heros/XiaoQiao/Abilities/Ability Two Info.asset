@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da9cf76ee796404194061b988bf4adc, type: 3}
+  m_Name: Ability Two Info
+  m_EditorClassIdentifier: 
+  keys: 010000000200000003000000040000000500000006000000
+  values:
+  - DamageAmount: 300
+    CoolDown: 10
+    ManaCost: 70
+  - DamageAmount: 340
+    CoolDown: 9.6
+    ManaCost: 80
+  - DamageAmount: 380
+    CoolDown: 9.2
+    ManaCost: 90
+  - DamageAmount: 420
+    CoolDown: 8.8
+    ManaCost: 100
+  - DamageAmount: 460
+    CoolDown: 8.4
+    ManaCost: 110
+  - DamageAmount: 500
+    CoolDown: 8
+    ManaCost: 120

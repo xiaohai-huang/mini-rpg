@@ -15,20 +15,20 @@ MonoBehaviour:
   keys: 010000000200000003000000040000000500000006000000
   values:
   - DamageAmount: 585
-    CoolDown: 4
+    CoolDown: 5
     ManaCost: 45
   - DamageAmount: 635
-    CoolDown: 4
+    CoolDown: 4.8
     ManaCost: 45
   - DamageAmount: 685
-    CoolDown: 4
+    CoolDown: 4.6
     ManaCost: 45
   - DamageAmount: 735
-    CoolDown: 3.8
+    CoolDown: 4.4
     ManaCost: 50
   - DamageAmount: 785
-    CoolDown: 3.8
+    CoolDown: 4.2
     ManaCost: 55
   - DamageAmount: 835
-    CoolDown: 3.5
+    CoolDown: 4
     ManaCost: 60

@@ -15,5 +15,5 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         fileName = "Ability One Info",
         menuName = "My Scriptable Objects/Heros/XiaoQiao/Ability One Info"
     )]
-    public class AbilityOneSO : ScriptableDictionary<int, LevelInfo> { }
+    public class AbilityOneInfoSO : ScriptableDictionary<int, LevelInfo> { }
 }

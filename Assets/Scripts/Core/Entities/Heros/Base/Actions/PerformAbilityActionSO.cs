@@ -41,7 +41,6 @@ namespace Core.Game.Entities.Heros
 
         public override async void OnStateEnter()
         {
-            Debug.Log("perform " + OriginSO.Type);
             _character.SetAbilityInput(OriginSO.Type, false);
             await _ability.Perform();
         }
