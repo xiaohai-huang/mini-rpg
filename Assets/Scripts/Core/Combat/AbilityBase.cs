@@ -1,6 +1,7 @@
 using System;
 using Core.Game.Mana;
 using UnityEngine;
+using UnityEngine.Events;
 using Xiaohai.Character;
 
 namespace Core.Game.Combat
@@ -9,8 +10,32 @@ namespace Core.Game.Combat
     {
         public abstract string Name { get; }
         public abstract Character.Ability Type { get; }
-        public int MaxLevel { get; protected set; }
-        public int CurrentLevel { get; private set; } = 0;
+
+        /// <summary>
+        /// The first param is current level.
+        /// The second param is max level.
+        /// </summary>
+        public UnityEvent<int, int> OnLevelChange;
+        private int _maxLevel;
+        public int MaxLevel
+        {
+            get => _maxLevel;
+            protected set
+            {
+                _maxLevel = value;
+                OnLevelChange?.Invoke(CurrentLevel, value);
+            }
+        }
+        private int _currentLevel;
+        public int CurrentLevel
+        {
+            get => _currentLevel;
+            private set
+            {
+                _currentLevel = value;
+                OnLevelChange?.Invoke(CurrentLevel, MaxLevel);
+            }
+        }
         public bool HasEnoughMana => ManaSystem.CurrentMana >= ManaCost;
         public abstract int ManaCost { get; }
         public event Action<bool> OnPerformingChange;
