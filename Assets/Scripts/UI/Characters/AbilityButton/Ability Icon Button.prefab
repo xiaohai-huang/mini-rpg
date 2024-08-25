@@ -13,41 +13,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability Icon Button
       objectReference: {fileID: 0}
-    - target: {fileID: 2927536642344076361, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: _buttonSize
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2927536642344076361, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: ScaleAnimation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2927536642344076361, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: ShowDotStrategy
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047948522186549249, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047948522186549249, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047948522186549249, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047948522186549249, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3282963118777512642, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -57,11 +22,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3282963118777512642, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3282963118777512642, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
         type: 3}
@@ -153,58 +113,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4954533723849654711, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+    - target: {fileID: 5300038480811622446, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
         type: 3}
-      propertyPath: m_Sprite
+      propertyPath: m_Name
+      value: Level Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407042461911517258, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: m_Material
       value: 
-      objectReference: {fileID: 21300000, guid: fcf03a5400602fa43af75422fe69cc11,
-        type: 3}
-    - target: {fileID: 8970096477230543685, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.38431373
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970096477230543685, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970096477230543685, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970096477230543685, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 43fbece60aa1f5943a841296b2beb8d1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1040183554356727700, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+    - targetCorrespondingSourceObject: {fileID: 5300038480811622446, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1018077008148436682}
+      addedObject: {fileID: 7644085607473279243}
   m_SourcePrefab: {fileID: 100100000, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7, type: 3}
---- !u!1 &7009713525552480938 stripped
+--- !u!1 &2784769157558816016 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1040183554356727700, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+  m_CorrespondingSourceObject: {fileID: 5300038480811622446, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
     type: 3}
   m_PrefabInstance: {fileID: 8009924760067394878}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1018077008148436682
+--- !u!114 &7644085607473279243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009713525552480938}
+  m_GameObject: {fileID: 2784769157558816016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82a2b64a89b5724f97ce225592c6181, type: 3}
+  m_Script: {fileID: 11500000, guid: a53fb184fd2c40346bbf79318bab4d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventChannel: {fileID: 11400000, guid: 68e0ba2335d3fe34b8f79a34b78a983f, type: 2}
-  _inputType: 0
+  material: {fileID: 2100000, guid: 43fbece60aa1f5943a841296b2beb8d1, type: 2}
