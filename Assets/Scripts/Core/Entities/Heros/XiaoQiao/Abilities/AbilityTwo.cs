@@ -15,6 +15,10 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
 
+        public override bool Upgradable =>
+            Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
+            && Host.Level.AbilityUpgradeCredits > 0;
+
         [SerializeField]
         private Wind _wind;
 
@@ -45,13 +49,12 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             base.Awake();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
+            MaxLevel = _data.Count;
         }
 
         void Start()
         {
             _md = Host.Statistics.GetStat(StatType.MagicalDamage);
-            MaxLevel = _data.Count;
-            LevelUp();
         }
 
         protected override async Awaitable PerformAction()

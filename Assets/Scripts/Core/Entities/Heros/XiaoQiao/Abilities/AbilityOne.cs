@@ -25,6 +25,10 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         private AbilityOneInfoSO _data;
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
 
+        public override bool Upgradable =>
+            Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
+            && Host.Level.AbilityUpgradeCredits > 0;
+
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
         private Animator _animator;
         private EffectSystem _effectSystem;
@@ -37,13 +41,12 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             _animator = GetComponent<Animator>();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
+            MaxLevel = _data.Count;
         }
 
         void Start()
         {
             _md = Host.Statistics.GetStat(StatType.MagicalDamage);
-            MaxLevel = _data.Count;
-            LevelUp();
         }
 
         private readonly AwaitableCompletionSource _abilityOneCompletionSource = new();

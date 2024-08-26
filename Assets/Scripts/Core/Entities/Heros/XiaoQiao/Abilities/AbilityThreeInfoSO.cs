@@ -9,6 +9,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public int DamageAmount;
         public float CoolDown;
         public int ManaCost;
+        public int UnlockAtPlayerLevel;
     }
 
     [CreateAssetMenu(

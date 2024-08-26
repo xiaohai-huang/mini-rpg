@@ -17,18 +17,24 @@ MonoBehaviour:
   - DamageAmount: 585
     CoolDown: 5
     ManaCost: 45
+    UnlockAtPlayerLevel: 1
   - DamageAmount: 635
     CoolDown: 4.8
     ManaCost: 45
+    UnlockAtPlayerLevel: 3
   - DamageAmount: 685
     CoolDown: 4.6
     ManaCost: 45
+    UnlockAtPlayerLevel: 5
   - DamageAmount: 735
     CoolDown: 4.4
     ManaCost: 50
+    UnlockAtPlayerLevel: 7
   - DamageAmount: 785
     CoolDown: 4.2
     ManaCost: 55
+    UnlockAtPlayerLevel: 9
   - DamageAmount: 835
     CoolDown: 4
     ManaCost: 60
+    UnlockAtPlayerLevel: 11

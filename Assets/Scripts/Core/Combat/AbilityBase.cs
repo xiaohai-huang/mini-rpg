@@ -16,6 +16,8 @@ namespace Core.Game.Combat
         /// The second param is max level.
         /// </summary>
         public UnityEvent<int, int> OnLevelChange;
+        public UnityEvent OnLevelUp;
+        public UnityEvent OnLevelReset;
         private int _maxLevel;
         public int MaxLevel
         {
@@ -34,8 +36,10 @@ namespace Core.Game.Combat
             {
                 _currentLevel = value;
                 OnLevelChange?.Invoke(CurrentLevel, MaxLevel);
+                OnUpgradableChange?.Invoke(Upgradable);
             }
         }
+        public int NextLevel => Math.Min(CurrentLevel + 1, MaxLevel);
         public bool HasEnoughMana => ManaSystem.CurrentMana >= ManaCost;
         public abstract int ManaCost { get; }
         public event Action<bool> OnPerformingChange;
@@ -43,6 +47,8 @@ namespace Core.Game.Combat
         public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0;
         protected ManaSystem ManaSystem;
         protected Character Host { get; private set; }
+        public abstract bool Upgradable { get; }
+        public UnityEvent<bool> OnUpgradableChange;
 
         public virtual void Awake()
         {
@@ -77,9 +83,19 @@ namespace Core.Game.Combat
             if (CurrentLevel < MaxLevel)
             {
                 CurrentLevel++;
+                OnLevelUp?.Invoke();
             }
         }
 
-        public virtual void ResetLevel() => CurrentLevel = 0;
+        public virtual void ResetLevel()
+        {
+            CurrentLevel = 0;
+            OnLevelReset?.Invoke();
+        }
+
+        public void HandleAbilityUpgradeCreditsChange(int _)
+        {
+            OnUpgradableChange?.Invoke(Upgradable);
+        }
     }
 }

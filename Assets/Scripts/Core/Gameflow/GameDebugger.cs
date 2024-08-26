@@ -23,6 +23,15 @@ namespace Core.Game.Flow
             {
                 FindObjectsByType<BasicGameFlow>(FindObjectsSortMode.InstanceID)[0]
                     .InitGame(_character);
+                Timer.Instance.SetTimeout(
+                    () =>
+                    {
+                        _character.Level.Upgrade();
+                        _character.Level.Upgrade();
+                        _character.Level.Upgrade();
+                    },
+                    500f
+                );
             }
             else
             {
