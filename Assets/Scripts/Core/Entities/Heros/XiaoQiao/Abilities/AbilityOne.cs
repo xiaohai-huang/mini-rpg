@@ -37,13 +37,13 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             _animator = GetComponent<Animator>();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
-            MaxLevel = _data.Count;
-            LevelUp();
         }
 
         void Start()
         {
             _md = Host.Statistics.GetStat(StatType.MagicalDamage);
+            MaxLevel = _data.Count;
+            LevelUp();
         }
 
         private readonly AwaitableCompletionSource _abilityOneCompletionSource = new();

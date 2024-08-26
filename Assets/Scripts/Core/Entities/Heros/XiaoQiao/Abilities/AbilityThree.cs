@@ -39,13 +39,13 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             base.Awake();
             _effectSystem = GetComponent<EffectSystem>();
             _passiveEffect = _passiveEffectSO.CreateEffect();
-            MaxLevel = _data.Count;
-            LevelUp();
         }
 
         void Start()
         {
             _md = Host.Statistics.GetStat(StatType.MagicalDamage);
+            MaxLevel = _data.Count;
+            LevelUp();
         }
 
         protected override async Awaitable PerformAction()
