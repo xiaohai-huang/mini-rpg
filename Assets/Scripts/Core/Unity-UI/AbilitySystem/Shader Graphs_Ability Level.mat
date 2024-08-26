@@ -44,7 +44,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0.5
     - _ColorMask: 15
-    - _Gap: 0.03
+    - _Gap: 0.005
     - _Level: 1
     - _NumLevels: 6
     - _NumSegments: 6
@@ -53,14 +53,14 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Thickness: 0.04
+    - _Thickness: 0.03
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 1, a: 1}
-    - _EmptyColor: {r: 0, g: 0.5236089, b: 1, a: 0.5019608}
-    - _Fill_Color: {r: 1, g: 0.75416994, b: 0, a: 1}
+    - _EmptyColor: {r: 0.15686275, g: 0.27450982, b: 0.28235295, a: 0.3647059}
+    - _Fill_Color: {r: 0.8235294, g: 0.7176471, b: 0.45490196, a: 1}
     - _color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

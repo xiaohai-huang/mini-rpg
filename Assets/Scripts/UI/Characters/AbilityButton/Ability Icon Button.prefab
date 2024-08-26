@@ -123,6 +123,26 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 43fbece60aa1f5943a841296b2beb8d1, type: 2}
+    - target: {fileID: 7237426736722107575, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237426736722107575, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237426736722107575, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237426736722107575, guid: 6ef9cd1d4cf35e349bc463f191b9f8a7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -150,4 +170,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53fb184fd2c40346bbf79318bab4d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 43fbece60aa1f5943a841296b2beb8d1, type: 2}
