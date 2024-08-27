@@ -99,9 +99,30 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: "react/.nvmrc"
-      - run: npm ci
+
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('react/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node_modles
+        continue-on-error: true
+        run: npm list
         working-directory: ./react
-      - run: npm run build
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./react
+
+      - name: Build
+        run: npm run build
         working-directory: ./react
         env:
           BUILD_PATH: ./build
