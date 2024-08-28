@@ -8,7 +8,9 @@ namespace Core.Game.Entities
     {
         public int Max { get; private set; }
         public int Value { get; private set; }
+        public int XP;
         public UnityEvent<int, int> OnChange;
+        public UnityEvent<float> OnXPChange;
         public UnityEvent<int> OnAbilityUpgradeCreditsChange;
         private int _abilityUpgradeCredits;
         public int AbilityUpgradeCredits
