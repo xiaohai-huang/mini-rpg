@@ -68,7 +68,7 @@ jobs:
         working-directory: ./react
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         working-directory: ./react
 
       - name: Build
