@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b808be5129530404894f80d27f07fee5, type: 3}
-  m_Name: Apply Effects Action
+  m_Script: {fileID: 11500000, guid: 9e1dd2ff98933f5439751dbb34b30f2e, type: 3}
+  m_Name: Gain XP Effect
   m_EditorClassIdentifier: 
-  description: 
-  Effects:
-  - {fileID: 11400000, guid: 11fc03296708e9e4ebabb1538ab0899c, type: 2}
-  - {fileID: 11400000, guid: 77c0926ef0c20e04ba92dff6261f10e2, type: 2}
+  Name: Gain XP per n seconds
+  ShowInListUI: 0
+  CoolDownTime: 0
+  Icon: {fileID: 0}
+  XP_To_Gain: 33
+  Interval: 1
