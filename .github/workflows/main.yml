@@ -262,6 +262,7 @@ jobs:
           retention-days: 14
 
   buildForWindowsPlatform:
+    if: false
     name: Build For Windows Platform
     needs: buildReact
     runs-on: windows-2022
