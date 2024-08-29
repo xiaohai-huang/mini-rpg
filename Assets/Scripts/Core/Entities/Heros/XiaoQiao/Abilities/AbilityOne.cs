@@ -24,6 +24,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         [SerializeField]
         private AbilityOneInfoSO _data;
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
+        public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
 
         public override bool Upgradable =>
             Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
@@ -53,6 +54,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 
         protected override async Awaitable PerformAction()
         {
+            CD_Timer = Total_CD_Timer;
             ManaSystem.Consume(ManaCost);
             _abilityOneCompletionSource.Reset();
             // 小乔向指定方向扔出一把回旋飞行的扇子，

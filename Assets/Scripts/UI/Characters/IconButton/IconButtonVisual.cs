@@ -18,6 +18,9 @@ public class IconButtonVisual : MonoBehaviour
     private Image _background;
 
     [SerializeField]
+    protected GameObject _darkCover;
+
+    [SerializeField]
     private Image _dot;
 
     [SerializeField]
@@ -34,13 +37,13 @@ public class IconButtonVisual : MonoBehaviour
     [SerializeField]
     private float _buttonSize = 1f;
     private const float BASE_SIZE = 100f;
-    private AbilityButton _button;
+    protected AbilityButton _button;
 
     private float _scale = 1f;
     private const float SCALE_TRANSITION_SPEED = 8f;
     private const float PRESSED_SCALE = 0.8f;
 
-    void Awake()
+    public virtual void Awake()
     {
         _button = GetComponent<AbilityButton>();
         _background.rectTransform.sizeDelta = new Vector2(
@@ -49,7 +52,7 @@ public class IconButtonVisual : MonoBehaviour
         );
     }
 
-    void Update()
+    public virtual void Update()
     {
         if (ScaleAnimation)
         {

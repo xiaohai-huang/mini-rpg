@@ -44,11 +44,13 @@ namespace Core.Game.Combat
         public abstract int ManaCost { get; }
         public event Action<bool> OnPerformingChange;
         public bool Performing { get; private set; }
-        public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0;
+        public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0 && CD_Timer <= 0;
         protected ManaSystem ManaSystem;
         protected Character Host { get; private set; }
         public abstract bool Upgradable { get; }
         public UnityEvent<bool> OnUpgradableChange;
+        public float CD_Timer { get; protected set; }
+        public abstract float Total_CD_Timer { get; }
 
         public virtual void Awake()
         {
@@ -56,11 +58,19 @@ namespace Core.Game.Combat
             Host = GetComponent<Character>();
         }
 
+        public virtual void Update()
+        {
+            if (CD_Timer > 0)
+            {
+                CD_Timer -= Time.deltaTime;
+            }
+        }
+
         protected abstract Awaitable PerformAction();
 
         public async Awaitable<bool> Perform()
         {
-            if (HasEnoughMana && CurrentLevel != 0)
+            if (CanPerform)
             {
                 Performing = true;
                 OnPerformingChange?.Invoke(Performing);

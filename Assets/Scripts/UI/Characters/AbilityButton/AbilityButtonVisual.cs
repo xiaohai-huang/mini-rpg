@@ -1,93 +1,112 @@
+using Core.Game.Combat;
+using Core.Game.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityHFSM;
 
 [RequireComponent(typeof(AbilityButton))]
-public class AbilityButtonVisual : MonoBehaviour
+public class AbilityButtonVisual : IconButtonVisual
 {
-    [SerializeField]
-    private Image _background;
-
-    [SerializeField]
-    private Image _dot;
-
-    [SerializeField]
-    private Image _abilityIcon;
-
     [SerializeField]
     private Image _abilityLevel;
 
     [SerializeField]
-    private Color _activeColor;
+    private AbilityCDVisual _cdVisual;
 
     [SerializeField]
-    private Color _cancelColor;
+    private AbilityBase _ability;
+    private Material _abilityLevelMat;
+    private static readonly int ABILITY_LEVEL = Shader.PropertyToID("_Level");
+    private static readonly int ABILITY_LEVEL_NUM_LEVELS = Shader.PropertyToID("_NumLevels");
 
-    [Tooltip("The size of the button in percentage based on 100px button.")]
-    [Range(0, 2f)]
-    [SerializeField]
-    private float _buttonSize = 1f;
-    private const float BASE_SIZE = 100f;
-    private AbilityButton _button;
+    private StateMachine<States> _fsm;
 
-    void Awake()
+    enum States
     {
-        _button = GetComponent<AbilityButton>();
-        _abilityIcon.rectTransform.sizeDelta = new Vector2(BASE_SIZE, BASE_SIZE) * _buttonSize;
-        _abilityLevel.rectTransform.sizeDelta =
-            new Vector2(BASE_SIZE + 15f, BASE_SIZE + 15f) * _buttonSize;
-        _background.rectTransform.sizeDelta = new Vector2(
-            _button.MovementRange * 2,
-            _button.MovementRange * 2
+        Lv0,
+        Ready,
+        Performing,
+        Disabled,
+        Ghost
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        _ability.OnLevelChange.AddListener(HandleLevelChange);
+
+        _fsm = new StateMachine<States>(this);
+
+        _fsm.AddState(
+            States.Lv0,
+            onEnter: (_) =>
+            {
+                _darkCover.SetActive(true);
+            },
+            onExit: (_) =>
+            {
+                _darkCover.SetActive(false);
+            }
         );
+        _fsm.AddState(States.Ready, onEnter: (_) => { });
+        _fsm.AddState(
+            States.Performing,
+            onEnter: (_) => {
+                // play 'click' visual effect
+            }
+        );
+        _fsm.AddState(
+            States.Disabled,
+            onEnter: (_) =>
+            {
+                _darkCover.SetActive(true);
+                // TODO: disable interactions
+            },
+            onLogic: (_) =>
+            {
+                // show cd progress
+                if (_ability.CD_Timer > 0)
+                {
+                    _cdVisual.HandleCoolDownChange(_ability.CD_Timer, _ability.Total_CD_Timer);
+                }
+            },
+            onExit: (_) =>
+            {
+                _darkCover.SetActive(false);
+                _cdVisual.Hide();
+            }
+        );
+
+        _fsm.AddState(States.Ghost, new State<States>(isGhostState: true));
+
+        _fsm.AddTransition(States.Lv0, States.Ghost, (_) => _ability.CurrentLevel >= 1);
+
+        // Intermediate ghost state
+        _fsm.AddTransition(States.Ghost, States.Ready, (_) => _ability.CanPerform);
+        _fsm.AddTransition(States.Ghost, States.Disabled, (_) => !_ability.CanPerform);
+
+        _fsm.AddTransition(States.Ready, States.Performing, (_) => _ability.Performing);
+        _fsm.AddTransition(States.Performing, States.Disabled, (_) => !_ability.Performing);
+        _fsm.AddTransition(States.Disabled, States.Ghost);
+
+        _fsm.SetStartState(States.Lv0);
+        _fsm.Init();
     }
 
-    void OnEnable()
+    public override void Update()
     {
-        _button.OnBeginInteraction += OnBeginInteraction;
-        _button.OnMoving += OnMoving;
-        _button.OnReleased += OnReleased;
+        base.Update();
+        _fsm.OnLogic();
     }
 
-    void OnDisable()
+    public void HandleLevelChange(int current, int max)
     {
-        _button.OnBeginInteraction -= OnBeginInteraction;
-        _button.OnMoving -= OnMoving;
-        _button.OnReleased -= OnReleased;
-    }
-
-    void OnBeginInteraction()
-    {
-        _background.gameObject.SetActive(true);
-        _dot.gameObject.SetActive(true);
-        _dot.rectTransform.anchoredPosition = Vector2.zero;
-        _background.color = _activeColor;
-    }
-
-    private void OnMoving()
-    {
-        _dot.rectTransform.anchoredPosition = _button.PointerPosition;
-        if (_button.Cancelling)
+        if (_abilityLevelMat == null)
         {
-            _background.color = _cancelColor;
+            _abilityLevel.material = Instantiate(_abilityLevel.material);
+            _abilityLevelMat = _abilityLevel.material;
         }
-        else
-        {
-            _background.color = _activeColor;
-        }
+        _abilityLevelMat.SetFloat(ABILITY_LEVEL, current);
+        _abilityLevelMat.SetFloat(ABILITY_LEVEL_NUM_LEVELS, max);
     }
-
-    private void OnReleased(bool arg0)
-    {
-        _background.gameObject.SetActive(false);
-        _dot.gameObject.SetActive(false);
-    }
-
-#if UNITY_EDITOR
-    void OnDrawGizmosSelected()
-    {
-        _abilityIcon.rectTransform.sizeDelta = new Vector2(BASE_SIZE, BASE_SIZE) * _buttonSize;
-        _abilityLevel.rectTransform.sizeDelta =
-            new Vector2(BASE_SIZE + 15f, BASE_SIZE + 15f) * _buttonSize;
-    }
-#endif
 }
