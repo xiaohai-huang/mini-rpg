@@ -99,6 +99,18 @@ public class AbilityButtonVisual : IconButtonVisual
         _fsm.OnLogic();
     }
 
+    protected override Color GetBackgroundColor()
+    {
+        if (_fsm.ActiveState.name == States.Disabled)
+        {
+            return _cancelColor;
+        }
+        else
+        {
+            return base.GetBackgroundColor();
+        }
+    }
+
     public void HandleLevelChange(int current, int max)
     {
         if (_abilityLevelMat == null)

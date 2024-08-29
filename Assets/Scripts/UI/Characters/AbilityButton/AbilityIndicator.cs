@@ -1,3 +1,4 @@
+using Core.Game.Combat;
 using UnityEngine;
 
 namespace Xiaohai.UI
@@ -10,6 +11,8 @@ namespace Xiaohai.UI
         [SerializeField]
         private OnScreenInputEventChannel.Input _inputType;
 
+        [SerializeField]
+        protected AbilityBase _ability;
         protected AbilityButton _button;
 
         void OnEnable()
@@ -18,7 +21,6 @@ namespace Xiaohai.UI
             _button.OnBeginInteraction += OnBeginInteraction;
             _button.OnMoving += OnMoving;
             _button.OnReleased += OnReleased;
-            _button.OnCancellingChanged += OnCancellingChanged;
         }
 
         void OnDisable()
@@ -26,7 +28,6 @@ namespace Xiaohai.UI
             _button.OnBeginInteraction -= OnBeginInteraction;
             _button.OnMoving -= OnMoving;
             _button.OnReleased -= OnReleased;
-            _button.OnCancellingChanged -= OnCancellingChanged;
         }
 
         protected virtual void OnMoving() { }
@@ -34,7 +35,5 @@ namespace Xiaohai.UI
         protected virtual void OnReleased(bool released) { }
 
         protected virtual void OnBeginInteraction() { }
-
-        protected virtual void OnCancellingChanged(bool cancelling) { }
     }
 }

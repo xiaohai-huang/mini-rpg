@@ -31,6 +31,18 @@ namespace Xiaohai.UI
             SetColor(_activeColor);
         }
 
+        void Update()
+        {
+            if (_button.Cancelling || !_ability.CanPerform)
+            {
+                SetColor(_cancelColor);
+            }
+            else
+            {
+                SetColor(_activeColor);
+            }
+        }
+
         protected override void OnBeginInteraction()
         {
             _indicator.gameObject.SetActive(true);
@@ -39,12 +51,6 @@ namespace Xiaohai.UI
         protected override void OnReleased(bool released)
         {
             _indicator.gameObject.SetActive(false);
-        }
-
-        protected override void OnCancellingChanged(bool cancelling)
-        {
-            // turn red if the player is trying to cancel the action
-            SetColor(cancelling ? _cancelColor : _activeColor);
         }
 
         private void SetColor(Color color)

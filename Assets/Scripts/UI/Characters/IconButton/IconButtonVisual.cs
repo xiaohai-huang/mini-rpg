@@ -27,10 +27,10 @@ public class IconButtonVisual : MonoBehaviour
     private RectTransform _container;
 
     [SerializeField]
-    private Color _activeColor;
+    protected Color _activeColor;
 
     [SerializeField]
-    private Color _cancelColor;
+    protected Color _cancelColor;
 
     [Tooltip("The size of the button in percentage based on 100px button.")]
     [Range(0, 2f)]
@@ -62,6 +62,13 @@ public class IconButtonVisual : MonoBehaviour
                 SCALE_TRANSITION_SPEED * Time.deltaTime
             );
         }
+
+        _background.color = GetBackgroundColor();
+    }
+
+    protected virtual Color GetBackgroundColor()
+    {
+        return _button.Cancelling ? _cancelColor : _activeColor;
     }
 
     void OnEnable()
@@ -117,14 +124,6 @@ public class IconButtonVisual : MonoBehaviour
         )
         {
             _dot.rectTransform.anchoredPosition = _button.PointerPosition;
-            if (_button.Cancelling)
-            {
-                _background.color = _cancelColor;
-            }
-            else
-            {
-                _background.color = _activeColor;
-            }
         }
     }
 
