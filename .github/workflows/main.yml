@@ -344,7 +344,7 @@ jobs:
         run: echo "TARGET_DIR=${{ secrets.WEBGL_OUTPUT_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
 
       - name: Upload to Supabase Storage
-        uses: xiaohai-huang/upload-things-to-supabase-storage@v0.0.2
+        uses: xiaohai-huang/upload-things-to-supabase-storage@v0
         with:
           SUPABASE_PUBLIC_URL: ${{ secrets.SUPABASE_PUBLIC_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
