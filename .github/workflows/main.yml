@@ -327,11 +327,11 @@ jobs:
           retention-days: 14
 
   uploadWebGL:
-    name: Upload WebGL to MinIO
+    name: Upload WebGL to Supabase Storage
     needs: buildForWebGL
     runs-on: ubuntu-latest
     env:
-      TARGET_DIR: ${{ secrets.MINIO_DEPLOY_PATH }}/master # Default value
+      TARGET_DIR: ${{ secrets.WEBGL_OUTPUT_PATH }}/master # Default value
 
     steps:
       - uses: actions/download-artifact@v4
@@ -341,14 +341,13 @@ jobs:
 
       - name: Set Target Directory (if PR)
         if: github.event_name == 'pull_request' && github.ref_name != 'master'
-        run: echo "TARGET_DIR=${{ secrets.MINIO_DEPLOY_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
+        run: echo "TARGET_DIR=${{ secrets.WEBGL_OUTPUT_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
 
-      - name: MinIO Deploy
-        uses: hkdobrev/minio-deploy-action@v1
+      - name: Upload to Supabase Storage
+        uses: xiaohai-huang/upload-things-to-supabase-storage@v0.0.2
         with:
-          endpoint: ${{ secrets.MINIO_ENDPOINT }}
-          access_key: ${{ secrets.MINIO_ACCESS_KEY }}
-          secret_key: ${{ secrets.MINIO_SECRET_KEY }}
-          bucket: ${{ secrets.MINIO_DEPLOY_BUCKET }}
-          source_dir: build/WebGL
-          target_dir: ${{ env.TARGET_DIR }}
+          SUPABASE_PUBLIC_URL: ${{ secrets.SUPABASE_PUBLIC_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          BUCKET: ${{ secrets.BUCKET }}
+          SOURCE_DIR: build/WebGL
+          TARGET_DIR: ${{ env.TARGET_DIR }}
