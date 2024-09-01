@@ -42,6 +42,7 @@ public class AbilityButtonVisual : IconButtonVisual
             onEnter: (_) =>
             {
                 _darkCover.SetActive(true);
+                _purpleCover.SetActive(false);
             },
             onExit: (_) =>
             {
@@ -69,10 +70,16 @@ public class AbilityButtonVisual : IconButtonVisual
                 {
                     _cdVisual.HandleCoolDownChange(_ability.CD_Timer, _ability.Total_CD_Timer);
                 }
+
+                if (!_ability.HasEnoughMana)
+                {
+                    _purpleCover.SetActive(true);
+                }
             },
             onExit: (_) =>
             {
                 _darkCover.SetActive(false);
+                _purpleCover.SetActive(false);
                 _cdVisual.Hide();
             }
         );
@@ -86,6 +93,7 @@ public class AbilityButtonVisual : IconButtonVisual
         _fsm.AddTransition(States.Ghost, States.Disabled, (_) => !_ability.CanPerform);
 
         _fsm.AddTransition(States.Ready, States.Performing, (_) => _ability.Performing);
+        _fsm.AddTransition(States.Ready, States.Disabled, (_) => !_ability.CanPerform);
         _fsm.AddTransition(States.Performing, States.Disabled, (_) => !_ability.Performing);
         _fsm.AddTransition(States.Disabled, States.Ghost);
 

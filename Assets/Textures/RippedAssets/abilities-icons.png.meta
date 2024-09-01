@@ -162,7 +162,7 @@ TextureImporter:
         width: 77
         height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -294,7 +294,7 @@ TextureImporter:
         width: 77
         height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -316,7 +316,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,6 +325,28 @@ TextureImporter:
       bones: []
       spriteID: 3f5a85adab4533d4894584bfed567f81
       internalID: 1008847619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: purple cover
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 761
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31569c1dbf19204cb42479e31e5c515
+      internalID: -210918511
       vertices: []
       indices: 
       edges: []
@@ -345,7 +367,6 @@ TextureImporter:
     nameFileIdTable:
       Basic Attack Icon: 443539196
       Turret Attack Icon: -429895299
-      abilities-icons_0: -782408992
       abilities-icons_1: -4492128
       abilities-icons_10: 1960203561
       abilities-icons_11: -61590307
@@ -358,6 +379,7 @@ TextureImporter:
       abilities-icons_9: 946568025
       ability-locked: 1008847619
       normal-ability-plus: 139219913
+      purple cover: -210918511
       ultimate-ability-plus: 815089745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

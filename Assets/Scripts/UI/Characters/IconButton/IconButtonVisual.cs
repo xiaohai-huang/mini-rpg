@@ -21,6 +21,9 @@ public class IconButtonVisual : MonoBehaviour
     protected GameObject _darkCover;
 
     [SerializeField]
+    protected GameObject _purpleCover;
+
+    [SerializeField]
     private Image _dot;
 
     [SerializeField]

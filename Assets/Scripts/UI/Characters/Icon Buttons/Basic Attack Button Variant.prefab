@@ -62,12 +62,12 @@ PrefabInstance:
     - target: {fileID: 4802972117339308028, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4802972117339308028, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4802972117339308028, guid: 48759117a21777f46ba679d02126c6ea,
         type: 3}
@@ -192,6 +192,7 @@ PrefabInstance:
     - {fileID: 7341114441584019507, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     - {fileID: 4763326492863507829, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     - {fileID: 7192562123328556560, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
+    - {fileID: 711127061029242874, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7009713525552480938, guid: 48759117a21777f46ba679d02126c6ea,

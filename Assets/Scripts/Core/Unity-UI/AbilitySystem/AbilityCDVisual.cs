@@ -15,7 +15,7 @@ namespace Core.Game.UI
         /// <summary>
         /// Measured in seconds
         /// </summary>
-        public float Interval = 0.01f;
+        public float Interval = 0.1f;
 
         void Awake()
         {
@@ -32,7 +32,7 @@ namespace Core.Game.UI
             {
                 Show();
                 _blackBackground.fillAmount = current / total;
-                _number.text = current.ToString("F2");
+                _number.text = current.ToString("F1");
             }
         }
 
