@@ -11,7 +11,7 @@ namespace Core.Game.UI
 
         [SerializeField]
         private Image _XP_Progress;
-        private const string PROGRESS_REF = "_Progress";
+        private static readonly int PROGRESS_REF = Shader.PropertyToID("_Progress");
 
         [SerializeField]
         private TextMeshProUGUI _levelText;

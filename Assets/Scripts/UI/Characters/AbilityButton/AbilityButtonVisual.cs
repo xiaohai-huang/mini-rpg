@@ -1,5 +1,6 @@
 using Core.Game.Combat;
 using Core.Game.UI;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityHFSM;
@@ -14,10 +15,15 @@ public class AbilityButtonVisual : IconButtonVisual
     private AbilityCDVisual _cdVisual;
 
     [SerializeField]
+    private Image _abilityReadyEffect;
+
+    [SerializeField]
     private AbilityBase _ability;
     private Material _abilityLevelMat;
+    private Material _abilityReadyEffectMat;
     private static readonly int ABILITY_LEVEL = Shader.PropertyToID("_Level");
     private static readonly int ABILITY_LEVEL_NUM_LEVELS = Shader.PropertyToID("_NumLevels");
+    private static readonly int ABILITY_READY_EFFECT_PROGRESS = Shader.PropertyToID("_Progress");
 
     private StateMachine<States> _fsm;
 
@@ -48,7 +54,28 @@ public class AbilityButtonVisual : IconButtonVisual
                 _darkCover.SetActive(false);
             }
         );
-        _fsm.AddState(States.Ready, onEnter: (_) => { });
+        _fsm.AddState(
+            States.Ready,
+            onEnter: (_) =>
+            {
+                // Play ready effect
+                if (_abilityReadyEffectMat == null)
+                {
+                    _abilityReadyEffect.material = Instantiate(_abilityReadyEffect.material);
+                    _abilityReadyEffectMat = _abilityReadyEffect.material;
+                }
+                _abilityReadyEffectMat.SetFloat(ABILITY_READY_EFFECT_PROGRESS, 0);
+                DOTween.To(
+                    () => _abilityReadyEffectMat.GetFloat(ABILITY_READY_EFFECT_PROGRESS),
+                    (newValue) =>
+                    {
+                        _abilityReadyEffectMat.SetFloat(ABILITY_READY_EFFECT_PROGRESS, newValue);
+                    },
+                    1f,
+                    1
+                );
+            }
+        );
         _fsm.AddState(
             States.Performing,
             onEnter: (_) => {
