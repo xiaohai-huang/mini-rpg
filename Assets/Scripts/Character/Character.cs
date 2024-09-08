@@ -18,6 +18,8 @@ namespace Xiaohai.Character
         /// Final walk speed.
         /// </summary>
         public float MaxMoveSpeed => Statistics.GetStat(StatType.MovementSpeed).ComputedValue;
+
+        public float RotationSpeed = 12;
         public Vector3 Velocity;
         public Vector2 HorizontalInput;
         public Vector2 HorizontalAutoInput;
@@ -186,6 +188,27 @@ namespace Xiaohai.Character
                 }
             }
             return damageables;
+        }
+
+        public async Awaitable RotateTowards(Vector3 targetDirection)
+        {
+            // Rotate towards the direction
+            if (targetDirection != Vector3.zero)
+            {
+                var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+                float angles = Vector3.Angle(transform.forward, targetDirection);
+                while (angles > 1f)
+                {
+                    transform.rotation = Quaternion.Slerp(
+                        transform.rotation,
+                        targetRotation,
+                        Time.deltaTime * RotationSpeed
+                    );
+
+                    angles = Vector3.Angle(transform.forward, targetDirection);
+                    await Awaitable.NextFrameAsync();
+                }
+            }
         }
     }
 }

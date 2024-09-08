@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e72ef047f979ab4ab4ca3f2a83679c0, type: 3}
+  m_Name: Levels Info
+  m_EditorClassIdentifier: 
+  keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  values:
+  - XP: 0
+    CumulativeXP: 0
+  - XP: 280
+    CumulativeXP: 280
+  - XP: 380
+    CumulativeXP: 660
+  - XP: 480
+    CumulativeXP: 1140
+  - XP: 580
+    CumulativeXP: 1720
+  - XP: 680
+    CumulativeXP: 2400
+  - XP: 780
+    CumulativeXP: 3180
+  - XP: 880
+    CumulativeXP: 4060
+  - XP: 980
+    CumulativeXP: 5040
+  - XP: 1080
+    CumulativeXP: 6120
+  - XP: 1180
+    CumulativeXP: 7300
+  - XP: 1280
+    CumulativeXP: 8580
+  - XP: 1380
+    CumulativeXP: 9960
+  - XP: 1480
+    CumulativeXP: 11440
+  - XP: 1580
+    CumulativeXP: 13020

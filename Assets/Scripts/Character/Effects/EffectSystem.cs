@@ -23,13 +23,13 @@ public class EffectSystem : MonoBehaviour
 
     private Damageable _damageable;
     private ManaSystem _manaSystem;
-    public Base Entity;
+    public Base Host { get; private set; }
 
     void Awake()
     {
         _damageable = GetComponent<Damageable>();
         _manaSystem = GetComponent<ManaSystem>();
-        Entity = GetComponent<Base>();
+        Host = GetComponent<Base>();
     }
 
     public void AddEffect(Effect newEffect)

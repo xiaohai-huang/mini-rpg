@@ -7,17 +7,17 @@ namespace Core.Game.Entities
     [RequireComponent(typeof(Damageable))]
     public class Base : Entity
     {
-        public StatSystem Statistics;
-
         [SerializeField]
         private BaseStatsSO _baseStats;
-        private Damageable _damageable;
-        public Damageable Damageable => _damageable;
+        public StatSystem Statistics { get; private set; }
+        public Damageable Damageable { get; private set; }
+        public Level Level { get; private set; }
 
         public virtual void Awake()
         {
             Statistics = new StatSystem(_baseStats);
-            _damageable = GetComponent<Damageable>();
+            Damageable = GetComponent<Damageable>();
+            Level = GetComponent<Level>();
         }
     }
 }

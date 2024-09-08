@@ -19,11 +19,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    permissions:
-      contents: write
-      checks: write
-    name: Test project 🧪
+  buildReact:
+    name: Build React UI
     runs-on: ubuntu-latest
     steps:
       # Checkout (without LFS)
@@ -40,6 +37,62 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "react/.nvmrc"
+          cache: npm
+          cache-dependency-path: react/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./react
+
+      - name: Build
+        run: npm run build
+        working-directory: ./react
+        env:
+          BUILD_PATH: ./build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-React
+          path: react/build
+          retention-days: 14
+
+  test:
+    permissions:
+      contents: write
+      checks: write
+    name: Test project 🧪
+    needs: buildReact
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
 
       - name: Git LFS Pull
         run: |
@@ -51,8 +104,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Test-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
+            Library-Test-
             Library-
 
       # Check formating
@@ -70,50 +124,6 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-  buildReact:
-    name: Build React UI
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./react
-
-    steps:
-      # Checkout (without LFS)
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      - name: Restore LFS cache
-        uses: actions/cache@v4
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
-
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add .
-          git reset --hard
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: "react/.nvmrc"
-      - run: npm ci
-      - run: npm run build
-        env:
-          BUILD_PATH: ./build
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Build-React
-          path: react/build
-          retention-days: 14
 
   buildForWebGL:
     name: Build For WebGL Platform
@@ -134,6 +144,8 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
 
       - name: Git LFS Pull
         run: |
@@ -145,8 +157,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Web-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
+            Library-Web-
             Library-
 
       - name: Free disk space
@@ -171,6 +184,7 @@ jobs:
           retention-days: 14
 
   buildForAndroidPlatform:
+    if: false
     name: Build For Android Platform
     needs: buildReact
     runs-on: ubuntu-latest
@@ -189,6 +203,8 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
 
       - name: Git LFS Pull
         run: |
@@ -200,8 +216,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
+            Library-Android-
             Library-
 
       - name: Free disk space
@@ -232,6 +249,7 @@ jobs:
           retention-days: 14
 
   buildForWindowsPlatform:
+    if: false
     name: Build For Windows Platform
     needs: buildReact
     runs-on: windows-2022
@@ -250,6 +268,8 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
 
       - name: Git LFS Pull
         run: |
@@ -261,8 +281,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Win-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
+            Library-Win-
             Library-
 
       - name: Download React UI Build Output
@@ -307,11 +328,11 @@ jobs:
           retention-days: 14
 
   uploadWebGL:
-    name: Upload WebGL to MinIO
+    name: Upload WebGL to Supabase Storage
     needs: buildForWebGL
     runs-on: ubuntu-latest
     env:
-      TARGET_DIR: ${{ secrets.MINIO_DEPLOY_PATH }}/master # Default value
+      TARGET_DIR: ${{ secrets.WEBGL_OUTPUT_PATH }}/master # Default value
 
     steps:
       - uses: actions/download-artifact@v4
@@ -321,14 +342,13 @@ jobs:
 
       - name: Set Target Directory (if PR)
         if: github.event_name == 'pull_request' && github.ref_name != 'master'
-        run: echo "TARGET_DIR=${{ secrets.MINIO_DEPLOY_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
+        run: echo "TARGET_DIR=${{ secrets.WEBGL_OUTPUT_PATH }}/pr-${{ github.head_ref }}" >> $GITHUB_ENV
 
-      - name: MinIO Deploy
-        uses: hkdobrev/minio-deploy-action@v1
+      - name: Upload to Supabase Storage
+        uses: xiaohai-huang/upload-things-to-supabase-storage@v0
         with:
-          endpoint: ${{ secrets.MINIO_ENDPOINT }}
-          access_key: ${{ secrets.MINIO_ACCESS_KEY }}
-          secret_key: ${{ secrets.MINIO_SECRET_KEY }}
-          bucket: ${{ secrets.MINIO_DEPLOY_BUCKET }}
-          source_dir: build/WebGL
-          target_dir: ${{ env.TARGET_DIR }}
+          SUPABASE_PUBLIC_URL: ${{ secrets.SUPABASE_PUBLIC_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          BUCKET: ${{ secrets.BUCKET }}
+          SOURCE_DIR: build/WebGL
+          TARGET_DIR: ${{ env.TARGET_DIR }}

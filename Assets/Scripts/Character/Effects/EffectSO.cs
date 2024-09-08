@@ -7,8 +7,13 @@ public abstract class EffectSO : ScriptableObject
     public float CoolDownTime;
     public Sprite Icon;
 
-    public T CreateEffect<T>()
-        where T : Effect, new()
+    public abstract Effect CreateEffect();
+}
+
+public abstract class EffectSO<T> : EffectSO
+    where T : Effect, new()
+{
+    public override Effect CreateEffect()
     {
         var effect = new T
         {
@@ -20,10 +25,4 @@ public abstract class EffectSO : ScriptableObject
         };
         return effect;
     }
-}
-
-public abstract class EffectSO<T> : EffectSO
-    where T : Effect, new()
-{
-    public T CreateEffect() => CreateEffect<T>();
 }

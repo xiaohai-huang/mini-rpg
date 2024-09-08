@@ -62,6 +62,18 @@ namespace Xiaohai.UI
             SetColor(_activeColor);
         }
 
+        void Update()
+        {
+            if (_button.Cancelling || !_ability.CanPerform)
+            {
+                SetColor(_cancelColor);
+            }
+            else
+            {
+                SetColor(_activeColor);
+            }
+        }
+
         protected override void OnMoving()
         {
             var dir = new Vector3(_button.Direction.x, 0, _button.Direction.y);
@@ -82,12 +94,6 @@ namespace Xiaohai.UI
             }
             _arrowIndicator.gameObject.SetActive(true);
             _rangeIndicator.gameObject.SetActive(true);
-        }
-
-        protected override void OnCancellingChanged(bool cancelling)
-        {
-            // turn red if the player is trying to cancel the action
-            SetColor(cancelling ? _cancelColor : _activeColor);
         }
 
         Color _arrowActiveColor = new Color(0, 0.635f, 0.909f);

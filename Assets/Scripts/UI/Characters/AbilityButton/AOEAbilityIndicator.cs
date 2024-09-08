@@ -67,6 +67,14 @@ namespace Xiaohai.UI
                 );
                 _AOE_Indicator.localPosition = new Vector3(_position.x, 0, _position.y) * _radius;
             }
+            if (_button.Cancelling || !_ability.CanPerform)
+            {
+                SetColor(_cancelColor);
+            }
+            else
+            {
+                SetColor(_activeColor);
+            }
         }
 
         protected override void OnMoving()
@@ -89,20 +97,15 @@ namespace Xiaohai.UI
             _moving = false;
             _rangeIndicator.gameObject.SetActive(false);
             await Awaitable.NextFrameAsync();
+            SetColor(_activeColor);
             _AOE_Indicator.gameObject.SetActive(false);
             var buttonPos = _button.Position;
             _final_AOE_Indicator.localPosition = new Vector3(buttonPos.x, 0, buttonPos.y) * _radius;
 
             _final_AOE_Indicator.gameObject.SetActive(true);
 
-            await Awaitable.WaitForSecondsAsync(0.05f);
+            await Awaitable.WaitForSecondsAsync(0.1f);
             _final_AOE_Indicator.gameObject.SetActive(false);
-        }
-
-        protected override void OnCancellingChanged(bool cancelling)
-        {
-            // turn red if the player is trying to cancel the action
-            SetColor(cancelling ? _cancelColor : _activeColor);
         }
 
         private void SetColor(Color color)

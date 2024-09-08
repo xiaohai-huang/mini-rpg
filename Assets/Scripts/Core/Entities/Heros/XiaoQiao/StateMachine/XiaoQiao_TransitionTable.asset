@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: XiaoQiao_TransitionTable
   m_EditorClassIdentifier: 
   _transitions:
+  - FromState: {fileID: 11400000, guid: 1251c8279e10ff94597f5bc705055263, type: 2}
+    ToState: {fileID: 11400000, guid: 76de104acbf3f6340a272c8314e9d279, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: 15f8da037649b8548abaa6e1b997ab5a, type: 2}
+      Operator: 0
   - FromState: {fileID: 11400000, guid: 76de104acbf3f6340a272c8314e9d279, type: 2}
     ToState: {fileID: 11400000, guid: 4a76ae3abbb70ac43b05ec11b442f110, type: 2}
     Conditions:
@@ -30,9 +36,6 @@ MonoBehaviour:
     Conditions:
     - ExpectedResult: 0
       Condition: {fileID: 11400000, guid: 4743180b0ae4ef94cb1b6e85479d6682, type: 2}
-      Operator: 0
-    - ExpectedResult: 0
-      Condition: {fileID: 11400000, guid: 9c8c9bc3a8a382c43b3c27a1c601599f, type: 2}
       Operator: 0
   - FromState: {fileID: 11400000, guid: 285d74f8b15597641addfcb7d1e95e37, type: 2}
     ToState: {fileID: 11400000, guid: 76de104acbf3f6340a272c8314e9d279, type: 2}
@@ -55,9 +58,6 @@ MonoBehaviour:
     - ExpectedResult: 0
       Condition: {fileID: 11400000, guid: ede396854f4876e4e8dc6387e88d9130, type: 2}
       Operator: 0
-    - ExpectedResult: 0
-      Condition: {fileID: 11400000, guid: 979c57e6184f0d849895cee3574c06ba, type: 2}
-      Operator: 0
   - FromState: {fileID: 11400000, guid: 4a76ae3abbb70ac43b05ec11b442f110, type: 2}
     ToState: {fileID: 11400000, guid: c95ce9df3c5529f4d881e61c84329a02, type: 2}
     Conditions:
@@ -78,9 +78,6 @@ MonoBehaviour:
     Conditions:
     - ExpectedResult: 0
       Condition: {fileID: 11400000, guid: 59120f2b0c84ef2438df78f0d1021c7d, type: 2}
-      Operator: 0
-    - ExpectedResult: 0
-      Condition: {fileID: 11400000, guid: 3de3bff338bd6064a85b945c75f08218, type: 2}
       Operator: 0
   - FromState: {fileID: 11400000, guid: 4a76ae3abbb70ac43b05ec11b442f110, type: 2}
     ToState: {fileID: 11400000, guid: 73140e83f6ab2f142b49f5a0b59b9f18, type: 2}
