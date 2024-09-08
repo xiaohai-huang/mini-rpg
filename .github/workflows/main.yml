@@ -184,6 +184,7 @@ jobs:
           retention-days: 14
 
   buildForAndroidPlatform:
+    if: false
     name: Build For Android Platform
     needs: buildReact
     runs-on: ubuntu-latest
