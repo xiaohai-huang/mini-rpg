@@ -213,7 +213,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &5664363153411903872
 MonoBehaviour:
@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 8699412914618316923, guid: 84be72cf904f1434191e716cc3f29018,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

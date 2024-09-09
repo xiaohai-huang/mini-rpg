@@ -515,20 +515,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2295237822740581404, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1975
-      objectReference: {fileID: 0}
     - target: {fileID: 6755003902156142351, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016092672
+      value: 0.000000016092672
       objectReference: {fileID: 0}
     - target: {fileID: 6755003902156142351, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000060897807
+      value: -0.0000000060897807
       objectReference: {fileID: 0}
     - target: {fileID: 6792124779513868264, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
@@ -538,12 +533,12 @@ PrefabInstance:
     - target: {fileID: 8002617554403883826, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016092672
+      value: 0.000000016092672
       objectReference: {fileID: 0}
     - target: {fileID: 8002617554403883826, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000060897807
+      value: -0.0000000060897807
       objectReference: {fileID: 0}
     - target: {fileID: 8719519187876972757, guid: 05fbf6ab2efc2064cb3fdbe1279224ad,
         type: 3}
