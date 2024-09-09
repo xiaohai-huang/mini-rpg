@@ -3,16 +3,13 @@ using Core.Game.Combat;
 using Core.Game.Heros.XiaoQiao;
 using Core.Game.Statistics;
 using UnityEngine;
-using Xiaohai.Character;
 using Xiaohai.Character.XiaoQiao;
 
 namespace Core.Game.Entities.Heros.XiaoQiao
 {
-    public class AbilityThree : AbilityBase
+    public class AbilityThree : AbilityThreeBase
     {
         public override string Name => "星华缭乱";
-
-        public override Character.Ability Type => Character.Ability.Three;
 
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;

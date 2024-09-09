@@ -2,16 +2,13 @@ using Core.Game.Combat;
 using Core.Game.Heros.XiaoQiao;
 using Core.Game.Statistics;
 using UnityEngine;
-using Xiaohai.Character;
 using Xiaohai.Character.XiaoQiao;
 
 namespace Core.Game.Entities.Heros.XiaoQiao
 {
-    public class AbilityTwo : AbilityBase
+    public class AbilityTwo : AbilityTwoBase
     {
         public override string Name => "甜蜜恋风";
-
-        public override Character.Ability Type => Character.Ability.Two;
 
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;

@@ -2,15 +2,13 @@ using Core.Game.Combat;
 using Core.Game.Heros.XiaoQiao;
 using Core.Game.Statistics;
 using UnityEngine;
-using Xiaohai.Character;
 using Xiaohai.Character.XiaoQiao;
 
 namespace Core.Game.Entities.Heros.XiaoQiao
 {
-    public class AbilityOne : AbilityBase
+    public class AbilityOne : AbilityOneBase
     {
         public override string Name => "绽放之舞";
-        public override Character.Ability Type => Character.Ability.One;
 
         [SerializeField]
         private Fan _fanPrefab;

@@ -107,5 +107,30 @@ namespace Core.Game.Combat
         {
             OnUpgradableChange?.Invoke(Upgradable);
         }
+
+        public static AbilityBase GetAbility(MonoBehaviour mono, Character.Ability type)
+        {
+            Type t = null;
+            switch (type)
+            {
+                case Character.Ability.One:
+                {
+                    t = typeof(AbilityOneBase);
+                    break;
+                }
+                case Character.Ability.Two:
+                {
+                    t = typeof(AbilityTwoBase);
+                    break;
+                }
+                case Character.Ability.Three:
+                {
+                    t = typeof(AbilityThreeBase);
+                    break;
+                }
+            }
+
+            return (AbilityBase)mono.GetComponent(t);
+        }
     }
 }

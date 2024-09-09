@@ -23,14 +23,7 @@ public class AbilityPerformingCondition : Condition
 
     public override void Awake(StateMachine stateMachine)
     {
-        var abilities = stateMachine.GetComponents<AbilityBase>();
-        foreach (var ability in abilities)
-        {
-            if (ability.Type == OriginSO.Type)
-            {
-                _ability = ability;
-            }
-        }
+        _ability = AbilityBase.GetAbility(stateMachine, OriginSO.Type);
     }
 
     protected override bool Statement()

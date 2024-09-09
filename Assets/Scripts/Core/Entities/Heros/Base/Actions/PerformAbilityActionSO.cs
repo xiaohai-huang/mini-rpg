@@ -27,14 +27,7 @@ namespace Core.Game.Entities.Heros
         public override void Awake(StateMachine stateMachine)
         {
             _character = stateMachine.GetComponent<Character>();
-            var abilities = stateMachine.GetComponents<AbilityBase>();
-            foreach (var ability in abilities)
-            {
-                if (ability.Type == OriginSO.Type)
-                {
-                    _ability = ability;
-                }
-            }
+            _ability = AbilityBase.GetAbility(stateMachine, OriginSO.Type);
         }
 
         public override void OnUpdate() { }
