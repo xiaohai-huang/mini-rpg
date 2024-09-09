@@ -193,6 +193,7 @@ PrefabInstance:
     - {fileID: 4763326492863507829, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     - {fileID: 7192562123328556560, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     - {fileID: 711127061029242874, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
+    - {fileID: 348721523157308005, guid: 48759117a21777f46ba679d02126c6ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7009713525552480938, guid: 48759117a21777f46ba679d02126c6ea,
@@ -240,6 +241,7 @@ MonoBehaviour:
   ShowDotStrategy: 2
   _background: {fileID: 3506515524951783735}
   _darkCover: {fileID: 0}
+  _purpleCover: {fileID: 0}
   _dot: {fileID: 3650789382150081064}
   _container: {fileID: 1933852998869570717}
   _activeColor: {r: 0, g: 1, b: 0.97217274, a: 0.40392157}
