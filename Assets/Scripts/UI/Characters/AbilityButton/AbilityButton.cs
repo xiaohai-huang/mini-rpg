@@ -53,6 +53,7 @@ public class AbilityButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         _dot = new GameObject("Invisible Dot", typeof(Image)).GetComponent<Image>();
         _dot.transform.SetParent(transform);
         _dot.color = new Color(1, 1, 1, 0);
+        _dot.raycastTarget = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
