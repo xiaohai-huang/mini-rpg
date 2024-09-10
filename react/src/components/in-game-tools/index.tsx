@@ -27,12 +27,15 @@ export default function InGameTools({ className }: InGameToolsProps) {
         onClick={() => setShowTools(true)}
       />
       <div className={styles.container} style={{ opacity: showTools ? 1 : 0 }}>
+        <div style={{ marginTop: "10px" }} />
+
         {/* 己方英雄 */}
         <SelfHeroUtilities />
         {/* 敌方英雄 */}
         <OpponentHeroUtilities />
         {/* 通用 */}
         <GeneralUtilities />
+        <div style={{ marginBottom: "10px" }} />
 
         <Button
           label="X"
@@ -47,9 +50,9 @@ export default function InGameTools({ className }: InGameToolsProps) {
 function SelfHeroUtilities() {
   return (
     <div>
-      <h2 className={styles.title} style={{ color: "#7396A8" }}>
+      <text className={styles.title} style={{ color: "#7396A8" }}>
         己方英雄
-      </h2>
+      </text>
       <div className={styles.buttons}>
         <Button label="升级" icon={MoveUpIcon} />
         <Button label="重置等级" icon={ResetLevelIcon} />
@@ -67,9 +70,9 @@ function SelfHeroUtilities() {
 function OpponentHeroUtilities() {
   return (
     <div>
-      <h2 className={styles.title} style={{ color: "#8E6A84" }}>
+      <text className={styles.title} style={{ color: "#8E6A84" }}>
         敌方英雄
-      </h2>
+      </text>
       <div className={styles.buttons}>
         <Button label="升级" icon={MoveUpIcon} />
         <Button label="重置等级" icon={ResetLevelIcon} />
@@ -87,9 +90,9 @@ function OpponentHeroUtilities() {
 function GeneralUtilities() {
   return (
     <div>
-      <h2 className={styles.title} style={{ color: "#7CA482" }}>
+      <text className={styles.title} style={{ color: "#7CA482" }}>
         通用
-      </h2>
+      </text>
       <div className={styles.buttons}>
         <ToggleButton label="兵线" />
         <ToggleButton label="野怪" />
