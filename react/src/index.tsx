@@ -9,6 +9,8 @@ import TestPage from "./pages/test";
 import SettingsPage from "./pages/settings";
 import SummonersRiftPage from "./pages/summoners-rift";
 
+import "./lib/game-router";
+
 import "./index.scss";
 
 function App() {
@@ -39,5 +41,4 @@ function App() {
     </view>
   );
 }
-
 render(<App />);

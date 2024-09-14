@@ -1,6 +1,10 @@
 import { useState } from "react";
 import classNames from "classnames";
+
+import { agent } from "src/lib/game-router";
+
 import styles from "./index.module.scss";
+
 import MoveUpIcon from "./icons/move-up.png";
 import ResetLevelIcon from "./icons/settings.png";
 import TimerIcon from "./icons/timer.png";
@@ -54,7 +58,14 @@ function SelfHeroUtilities() {
         己方英雄
       </text>
       <div className={styles.buttons}>
-        <Button label="升级" icon={MoveUpIcon} />
+        <Button
+          label="升级"
+          icon={MoveUpIcon}
+          onClick={async () => {
+            const resp = await agent.post("/increment-level", { id: 1 });
+            console.log("resp:", resp);
+          }}
+        />
         <Button label="重置等级" icon={ResetLevelIcon} />
         <ToggleButton label="冷却" icon={TimerIcon} />
         <ToggleButton label="无敌" icon={HeartIcon} />
@@ -101,7 +112,14 @@ function GeneralUtilities() {
         <Button label="暗影暴君" />
         <Button label="暗影主宰" />
         <Button label="风暴龙王" />
-        <Button label="清空人偶" icon={TrashIcon} />
+        <Button
+          label="清空人偶"
+          icon={TrashIcon}
+          onClick={async () => {
+            const data = await agent.get("/");
+            console.log("data from router", data);
+          }}
+        />
       </div>
     </div>
   );
