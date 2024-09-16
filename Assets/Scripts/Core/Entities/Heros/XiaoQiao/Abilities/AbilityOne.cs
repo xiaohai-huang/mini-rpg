@@ -25,7 +25,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
 
         public override bool Upgradable =>
-            Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
+            NextLevel <= MaxLevel
+            && Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
             && Host.Level.AbilityUpgradeCredits > 0;
 
         private static readonly int ABILITY_ONE = Animator.StringToHash("Ability One");
@@ -72,11 +73,15 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         {
             Fan fan = Instantiate(_fanPrefab, _fanThrowPoint.position, _fanThrowPoint.rotation);
             fan.SetReceiver(Host);
+            float baseDamageAmount = _data[CurrentLevel].DamageAmount + (0.8f * _md.ComputedValue);
             fan.OnHit += (enemy, reductionRate) =>
             {
-                float baseDamageAmount =
-                    (_data[CurrentLevel].DamageAmount + (0.8f * _md.ComputedValue)) * reductionRate;
-                var damage = new Damage(Host, enemy, DamageType.Magical, baseDamageAmount);
+                var damage = new Damage(
+                    Host,
+                    enemy,
+                    DamageType.Magical,
+                    baseDamageAmount * reductionRate
+                );
                 enemy.Damageable.TakeDamage(damage);
                 _effectSystem.AddEffect(_passiveEffect);
             };

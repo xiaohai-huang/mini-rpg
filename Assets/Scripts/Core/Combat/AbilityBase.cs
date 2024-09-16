@@ -39,7 +39,7 @@ namespace Core.Game.Combat
                 OnUpgradableChange?.Invoke(Upgradable);
             }
         }
-        public int NextLevel => Math.Min(CurrentLevel + 1, MaxLevel);
+        public int NextLevel => CurrentLevel + 1;
         public bool HasEnoughMana => ManaSystem.CurrentMana >= ManaCost;
         public abstract int ManaCost { get; }
         public event Action<bool> OnPerformingChange;
@@ -100,6 +100,7 @@ namespace Core.Game.Combat
         public virtual void ResetLevel()
         {
             CurrentLevel = 0;
+            CD_Timer = 0;
             OnLevelReset?.Invoke();
         }
 

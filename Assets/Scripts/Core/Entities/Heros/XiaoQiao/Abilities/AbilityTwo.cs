@@ -13,7 +13,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
         public override bool Upgradable =>
-            Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
+            NextLevel <= MaxLevel
+            && Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
             && Host.Level.AbilityUpgradeCredits > 0;
 
         [SerializeField]
@@ -68,10 +69,9 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             await Awaitable.WaitForSecondsAsync(0.1f);
             Wind wind = Instantiate(_wind, attackPosition, Quaternion.identity);
             wind.transform.localScale = new Vector3(_windSize * 2, 1, _windSize * 2);
+            float baseDamageAmount = _data[CurrentLevel].DamageAmount + (_md.ComputedValue * 0.5f);
             wind.OnHit += (enemy) =>
             {
-                float baseDamageAmount =
-                    _data[CurrentLevel].DamageAmount + (_md.ComputedValue * 0.5f);
                 var damage = new Damage(Host, enemy, DamageType.Magical, baseDamageAmount);
                 enemy.Damageable.TakeDamage(damage);
 

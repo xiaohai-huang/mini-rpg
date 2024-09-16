@@ -15,7 +15,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
 
         public override bool Upgradable =>
-            Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
+            NextLevel <= MaxLevel
+            && Host.Level.Value >= _data[NextLevel].UnlockAtPlayerLevel
             && Host.Level.AbilityUpgradeCredits > 0;
 
         [SerializeField]
@@ -74,11 +75,15 @@ namespace Core.Game.Entities.Heros.XiaoQiao
 
             var meteorRain = Instantiate(_meteorRain, transform);
             meteorRain.transform.position += Vector3.up * 0.04f;
+            float baseDamageAmount = _data[CurrentLevel].DamageAmount + _md.ComputedValue;
             meteorRain.OnHit += (enemy, reductionRate) =>
             {
-                float baseDamageAmount =
-                    (_data[CurrentLevel].DamageAmount + _md.ComputedValue) * reductionRate;
-                var damage = new Damage(Host, enemy, DamageType.Magical, baseDamageAmount);
+                var damage = new Damage(
+                    Host,
+                    enemy,
+                    DamageType.Magical,
+                    baseDamageAmount * reductionRate
+                );
                 enemy.Damageable.TakeDamage(damage);
                 _effectSystem.AddEffect(_passiveEffect);
             };
