@@ -55,6 +55,16 @@ namespace Core.Game.Express
         {
             return _value.ToString();
         }
+
+        public int ToInt()
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        public float ToFloat()
+        {
+            return Convert.ToSingle(_value);
+        }
     }
 
     public struct Response

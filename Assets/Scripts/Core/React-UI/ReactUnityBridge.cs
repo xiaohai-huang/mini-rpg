@@ -40,7 +40,7 @@ namespace Core.Game.UI
                 "/increment-level",
                 (req, res) =>
                 {
-                    string id = req.body["id"].ToString();
+                    int id = req.body["id"].ToInt();
                     var nums = req.body["nums"].ToArray<float>();
                     Debug.Log("Increment the level by one for the player");
                     res.end($"Successfully upgraded the player with id: {id}!");
