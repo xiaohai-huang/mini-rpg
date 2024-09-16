@@ -35,7 +35,7 @@ class Agent {
     return await request({
       method: "POST",
       url: path,
-      body: JSON.stringify(body),
+      body,
     });
   }
 }

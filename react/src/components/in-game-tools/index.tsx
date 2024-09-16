@@ -62,7 +62,10 @@ function SelfHeroUtilities() {
           label="升级"
           icon={MoveUpIcon}
           onClick={async () => {
-            const resp = await agent.post("/increment-level", { id: 1 });
+            const resp = await agent.post("/increment-level", {
+              id: 1,
+              nums: [3, 4, 10],
+            });
             console.log("resp:", resp);
           }}
         />

@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b450752a53589ae459f426b2f6a3cb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 7485692668213135055}
   _startGameEventChannel: {fileID: 11400000, guid: c8739929642e15543bceaf706ebdf2b0,
     type: 2}
 --- !u!114 &5360968911978022723

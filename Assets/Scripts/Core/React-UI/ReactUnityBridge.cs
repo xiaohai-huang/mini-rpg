@@ -6,6 +6,9 @@ namespace Core.Game.UI
 {
     public class ReactUnityBridge : MonoBehaviour
     {
+        [SerializeField]
+        private ReactUnity.ReactRendererBase _renderer;
+
         [Header("Broadcasting On")]
         [SerializeField]
         private StartGameEventChannel _startGameEventChannel;
@@ -37,17 +40,17 @@ namespace Core.Game.UI
                 "/increment-level",
                 (req, res) =>
                 {
-                    string body = req.body;
-                    Debug.Log(body);
-                    Debug.Log("Increment the level for player");
-                    res.end("");
+                    string id = req.body["id"].ToString();
+                    var nums = req.body["nums"].ToArray<float>();
+                    Debug.Log("Increment the level by one for the player");
+                    res.end($"Successfully upgraded the player with id: {id}!");
                 }
             );
         }
 
         public void CreateRouter(object addRoute)
         {
-            app = new App();
+            app = new App(_renderer.Context.Script.Engine);
             app.Init(addRoute);
             AddRoutes();
         }
