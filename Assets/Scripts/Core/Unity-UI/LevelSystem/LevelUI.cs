@@ -25,13 +25,21 @@ namespace Core.Game.UI
 
         private Tweener _tweener;
 
+        private Material _progressMat;
+
         public void HandleXPChange(float xp)
         {
+            if (_progressMat == null)
+            {
+                _XP_Progress.material = Instantiate(_XP_Progress.material);
+                _progressMat = _XP_Progress.material;
+            }
+
             if (xp > _prevXP)
             {
                 _tweener = DOTween.To(
-                    () => _XP_Progress.material.GetFloat(PROGRESS_REF),
-                    newValue => _XP_Progress.material.SetFloat(PROGRESS_REF, newValue),
+                    () => _progressMat.GetFloat(PROGRESS_REF),
+                    newValue => _progressMat.SetFloat(PROGRESS_REF, newValue),
                     xp,
                     ProgressTweenDuration
                 );
@@ -39,7 +47,7 @@ namespace Core.Game.UI
             else
             {
                 _tweener.Kill();
-                _XP_Progress.material.SetFloat(PROGRESS_REF, xp);
+                _progressMat.SetFloat(PROGRESS_REF, xp);
             }
 
             _prevXP = xp;
