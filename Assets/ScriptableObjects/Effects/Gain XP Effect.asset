@@ -16,5 +16,5 @@ MonoBehaviour:
   ShowInListUI: 0
   CoolDownTime: 0
   Icon: {fileID: 0}
-  XP_To_Gain: 33
+  XP_To_Gain: 5
   Interval: 1
