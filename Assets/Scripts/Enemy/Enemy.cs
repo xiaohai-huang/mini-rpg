@@ -58,7 +58,13 @@ public class Enemy : Base
             {
                 _agent.enabled = false;
             },
-            onExit: (s) => _agent.enabled = true
+            onExit: (s) =>
+            {
+                if (!_static)
+                {
+                    _agent.enabled = true;
+                }
+            }
         );
 
         _fsm.AddTransition("CrowdControl", "Idle", t => _ccDuration <= 0);
