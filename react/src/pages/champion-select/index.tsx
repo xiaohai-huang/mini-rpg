@@ -220,7 +220,6 @@ function Page() {
         }}
         disabled={selectedChampionId === -1 || confirmed}
         onClick={() => {
-          console.log("click confirm");
           setTab("skin");
           setShowChampionsPanel(false);
           setConfirmed(true);

@@ -13,7 +13,6 @@ type MiniRouterProps = {
 
 function MiniRouter({ children }: MiniRouterProps) {
   const url = useReactiveValue(Bridge.Url);
-  console.log(JSON.stringify({ url }));
   const navigate = (newUrl: string) => {
     Bridge.Navigate(newUrl);
   };
