@@ -1,4 +1,5 @@
 using System;
+using Core.Game.Combat;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -59,14 +60,30 @@ namespace Core.Game.Entities
 
         public void Upgrade(bool clearExceedXP = false)
         {
+            int old = Value;
             Value = Math.Clamp(Value + 1, 1, Max);
-            AbilityUpgradeCredits++;
-            if (clearExceedXP)
+            if (old < Value)
             {
-                // have not tested
-                SetXP(_data[Value].CumulativeXP);
+                AbilityUpgradeCredits++;
+                if (clearExceedXP)
+                {
+                    // have not tested
+                    SetXP(_data[Value].CumulativeXP);
+                }
+                OnChange?.Invoke(Value, Max);
             }
-            OnChange?.Invoke(Value, Max);
+        }
+
+        public void Reset()
+        {
+            Value = 0;
+            AbilityUpgradeCredits = 0;
+            // Reset the level of abilities
+            foreach (var ability in GetComponents<AbilityBase>())
+            {
+                ability.ResetLevel();
+            }
+            Upgrade(clearExceedXP: true);
         }
 
         public void SetMax(int newMax)
@@ -78,11 +95,6 @@ namespace Core.Game.Entities
         public void HandleAbilityUpgrade()
         {
             AbilityUpgradeCredits--;
-        }
-
-        public void HandleAbilityReset()
-        {
-            AbilityUpgradeCredits = 0;
         }
 
         public void IncreaseXP(int xp)

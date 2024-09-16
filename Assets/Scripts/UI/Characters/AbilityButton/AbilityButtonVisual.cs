@@ -123,6 +123,7 @@ public class AbilityButtonVisual : IconButtonVisual
         _fsm.AddTransition(States.Ready, States.Disabled, (_) => !_ability.CanPerform);
         _fsm.AddTransition(States.Performing, States.Disabled, (_) => !_ability.Performing);
         _fsm.AddTransition(States.Disabled, States.Ghost);
+        _fsm.AddTransitionFromAny(States.Lv0, (_) => _ability.CurrentLevel == 0);
 
         _fsm.SetStartState(States.Lv0);
         _fsm.Init();

@@ -62,14 +62,20 @@ function SelfHeroUtilities() {
           label="升级"
           icon={MoveUpIcon}
           onClick={async () => {
-            const resp = await agent.post("/increment-level", {
-              id: 1,
-              nums: [3, 4, 10],
+            await agent.post("/increment-level", {
+              id: "hero-player",
             });
-            console.log("resp:", resp);
           }}
         />
-        <Button label="重置等级" icon={ResetLevelIcon} />
+        <Button
+          label="重置等级"
+          icon={ResetLevelIcon}
+          onClick={async () => {
+            await agent.post("/reset-level", {
+              id: "hero-player",
+            });
+          }}
+        />
         <ToggleButton label="冷却" icon={TimerIcon} />
         <ToggleButton label="无敌" icon={HeartIcon} />
         <Button label="+10000" icon={GoldIcon} />

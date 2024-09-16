@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Core.Game.Common;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Xiaohai.Character;
 
 namespace Core.Game.SpawnSystem
@@ -20,6 +20,8 @@ namespace Core.Game.SpawnSystem
         [SerializeField]
         private RuntimeCharacterAnchor _playerAnchor;
 
+        public HashSet<Entity> SpawnEntities { get; private set; } = new HashSet<Entity>();
+
         void Awake()
         {
             _factory = new HeroFactory(_data);
@@ -29,6 +31,7 @@ namespace Core.Game.SpawnSystem
         {
             var hero = _factory.Create(heroId, skinId, spawnPoint);
             hero.Id = heroTag;
+            SpawnEntities.Add(hero);
             return hero;
         }
 
@@ -48,6 +51,8 @@ namespace Core.Game.SpawnSystem
             existingPlayer.gameObject.SetActive(true);
             _playerAnchor.Provide(existingPlayer);
             _playerSpawnedEventChannel.RaiseEvent(existingPlayer.transform);
+            existingPlayer.Id = Constants.PLAYER_HERO_ID;
+            SpawnEntities.Add(existingPlayer);
             return existingPlayer;
         }
     }

@@ -1,4 +1,7 @@
+using System.Linq;
+using Core.Game.Entities;
 using Core.Game.Express;
+using Core.Game.SpawnSystem;
 using ReactUnity.Reactive;
 using UnityEngine;
 
@@ -8,6 +11,9 @@ namespace Core.Game.UI
     {
         [SerializeField]
         private ReactUnity.ReactRendererBase _renderer;
+
+        [SerializeField]
+        private HeroSpawnManager _heroSpawnManager;
 
         [Header("Broadcasting On")]
         [SerializeField]
@@ -40,10 +46,21 @@ namespace Core.Game.UI
                 "/increment-level",
                 (req, res) =>
                 {
-                    int id = req.body["id"].ToInt();
-                    var nums = req.body["nums"].ToArray<float>();
-                    Debug.Log("Increment the level by one for the player");
+                    string id = req.body["id"].ToString();
+                    var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
+                    hero.GetComponent<Level>().Upgrade(true);
                     res.end($"Successfully upgraded the player with id: {id}!");
+                }
+            );
+
+            app.POST(
+                "/reset-level",
+                (req, res) =>
+                {
+                    string id = req.body["id"].ToString();
+                    var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
+                    hero.GetComponent<Level>().Reset();
+                    res.end($"Successfully reset the player's level to 0");
                 }
             );
         }
