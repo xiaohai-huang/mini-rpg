@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Xiaohai.Character;
 
@@ -28,7 +26,4 @@ public class StaticEnemy : MonoBehaviour
             500f
         );
     }
-
-    // Update is called once per frame
-    void Update() { }
 }
