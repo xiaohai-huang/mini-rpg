@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2305171618837266756, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
       propertyPath: m_Name
-      value: Static Enemy Variant
+      value: Blue Static Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2305171618837266756, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 3595928741038043996, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595928741038043996, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
@@ -46,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 3595928741038043996, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3595928741038043996, guid: a8e55b79cf61a0448ba72b715c3a3836,
         type: 3}
