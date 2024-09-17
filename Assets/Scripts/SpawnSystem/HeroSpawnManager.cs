@@ -27,10 +27,10 @@ namespace Core.Game.SpawnSystem
             _factory = new HeroFactory(_data);
         }
 
-        public Character Spawn(int heroId, int skinId, Vector3 spawnPoint, string heroTag)
+        public Character Spawn(int heroId, int skinId, Vector3 spawnPoint, string entityId)
         {
             var hero = _factory.Create(heroId, skinId, spawnPoint);
-            hero.Id = heroTag;
+            hero.Id = entityId;
             SpawnEntities.Add(hero);
             return hero;
         }

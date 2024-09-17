@@ -17,10 +17,11 @@ function request(req) {
       req,
       {
         end: (message: string) => {
-          resolve(JSON.stringify(message));
+          resolve(message);
         },
       },
       (err) => {
+        console.error(err);
         reject(err);
       }
     );
@@ -31,7 +32,7 @@ class Agent {
   async get(path: string) {
     return await request({ method: "GET", url: path });
   }
-  async post(path: string, body: any) {
+  async post(path: string, body: any = null) {
     return await request({
       method: "POST",
       url: path,

@@ -61,8 +61,8 @@ function SelfHeroUtilities() {
         <Button
           label="升级"
           icon={MoveUpIcon}
-          onClick={async () => {
-            await agent.post("/increment-level", {
+          onClick={() => {
+            agent.post("/increment-level", {
               id: "hero-player",
             });
           }}
@@ -70,8 +70,8 @@ function SelfHeroUtilities() {
         <Button
           label="重置等级"
           icon={ResetLevelIcon}
-          onClick={async () => {
-            await agent.post("/reset-level", {
+          onClick={() => {
+            agent.post("/reset-level", {
               id: "hero-player",
             });
           }}
@@ -100,8 +100,20 @@ function OpponentHeroUtilities() {
         <ToggleButton label="无敌" icon={HeartIcon} />
         <Button label="+10000" icon={GoldIcon} />
         <ToggleButton label="风暴龙王buff" icon={SquirrelIcon} />
-        <Button label="韩信人偶" icon={DogIcon} />
-        <Button label="庄周人偶" icon={CatIcon} />
+        <Button
+          label="韩信人偶"
+          icon={DogIcon}
+          onClick={() => {
+            agent.post("/spawn-puppet", { id: "puppet-01", team: "red" });
+          }}
+        />
+        <Button
+          label="庄周人偶"
+          icon={CatIcon}
+          onClick={() => {
+            agent.post("/spawn-puppet", { id: "puppet-02", team: "red" });
+          }}
+        />
       </div>
     </div>
   );
@@ -125,7 +137,7 @@ function GeneralUtilities() {
           label="清空人偶"
           icon={TrashIcon}
           onClick={async () => {
-            const data = await agent.get("/");
+            const data = await agent.post("/clear-puppets");
             console.log("data from router", data);
           }}
         />

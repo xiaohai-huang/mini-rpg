@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using ReactUnity.Helpers;
 using ReactUnity.Scripting;
 
 namespace Core.Game.Express
 {
-    public struct Request
+    public struct RequestCtx
     {
         public Dictionary<string, Value> body;
     }
@@ -67,14 +68,47 @@ namespace Core.Game.Express
         }
     }
 
-    public struct Response
+    public class Response<T>
     {
-        public Action<string> end;
+        public T data;
+        public string message;
+        public bool error;
+    }
+
+    public class Response
+    {
+        public string message;
+        public bool error;
+    }
+
+    public class ResponseCtx
+    {
+        public Action<string> OnEnd;
+
+        public void end<T>(Response<T> response)
+        {
+            string json = JsonConvert.SerializeObject(response);
+            // pass to frontend
+            OnEnd.Invoke(json);
+        }
+
+        public void end(Response response)
+        {
+            string json = JsonConvert.SerializeObject(response);
+            // pass to frontend
+            OnEnd.Invoke(json);
+        }
+
+        public void end(string message)
+        {
+            var resp = new Response() { message = message };
+            end(resp);
+        }
     }
 
     public class App
     {
-        private readonly Dictionary<string, Action<Request, Response>> _callbacks = new();
+        private readonly Dictionary<string, Action<RequestCtx, ResponseCtx>> _callbacks = new();
         private Callback _onAddRoute;
         private readonly IJavaScriptEngine _engine;
 
@@ -88,14 +122,14 @@ namespace Core.Game.Express
             _onAddRoute = Callback.From(onAddRoute);
         }
 
-        public void GET(string path, Action<Request, Response> callback)
+        public void GET(string path, Action<RequestCtx, ResponseCtx> callback)
         {
             string key = GenKey("GET", path);
             _callbacks[key] = callback;
             _onAddRoute.Call("GET", path);
         }
 
-        public void POST(string path, Action<Request, Response> callback)
+        public void POST(string path, Action<RequestCtx, ResponseCtx> callback)
         {
             string key = GenKey("POST", path);
             _callbacks[key] = callback;
@@ -120,8 +154,8 @@ namespace Core.Game.Express
 
             _callbacks[key]
                 .Invoke(
-                    new Request() { body = json },
-                    new Response() { end = (message) => endCallback.Call(message) }
+                    new RequestCtx() { body = json },
+                    new ResponseCtx() { OnEnd = (message) => endCallback.Call(message) }
                 );
         }
 

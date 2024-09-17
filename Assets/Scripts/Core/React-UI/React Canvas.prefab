@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 7485692668213135055}
+  _heroSpawnManager: {fileID: 0}
+  _minionSpawnManager: {fileID: 0}
+  _player: {fileID: 11400000, guid: daab3df93d4156b429887fa2e34c165b, type: 2}
   _startGameEventChannel: {fileID: 11400000, guid: c8739929642e15543bceaf706ebdf2b0,
     type: 2}
 --- !u!114 &5360968911978022723

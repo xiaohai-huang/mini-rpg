@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Core.Game.Entities;
 using Core.Game.Express;
@@ -14,6 +15,12 @@ namespace Core.Game.UI
 
         [SerializeField]
         private HeroSpawnManager _heroSpawnManager;
+
+        [SerializeField]
+        private MinionSpawnManager _minionSpawnManager;
+
+        [SerializeField]
+        private RuntimeCharacterAnchor _player;
 
         [Header("Broadcasting On")]
         [SerializeField]
@@ -61,6 +68,33 @@ namespace Core.Game.UI
                     var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
                     hero.GetComponent<Level>().Reset();
                     res.end($"Successfully reset the player's level to 0");
+                }
+            );
+
+            app.POST(
+                "/spawn-puppet",
+                (req, res) =>
+                {
+                    string id = req.body["id"].ToString();
+                    string team = req.body["team"].ToString();
+                    _minionSpawnManager.Spawn(id, team, _player.Value.transform);
+                    res.end("Successfully spawn a puppet.");
+                }
+            );
+
+            app.POST(
+                "/clear-puppets",
+                (req, res) =>
+                {
+                    try
+                    {
+                        int count = _minionSpawnManager.ClearPuppets();
+                        res.end($"Successfully clear all puppets. {count} puppets were removed.");
+                    }
+                    catch (Exception e)
+                    {
+                        res.end($"Failed to clear puppets. {e.Message}");
+                    }
                 }
             );
         }
