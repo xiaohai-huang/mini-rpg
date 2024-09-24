@@ -15,6 +15,8 @@ MonoBehaviour:
   keys:
   - puppet-01
   - puppet-02
+  - minion-01
   values:
   - {fileID: 5728935202084979807, guid: 260b918a2215d6e40b2f419892ca6a0c, type: 3}
   - {fileID: 5728935202084979807, guid: f538ffdea21dfec44afa70a3a928f81f, type: 3}
+  - {fileID: 2346670405002570533, guid: a8e55b79cf61a0448ba72b715c3a3836, type: 3}

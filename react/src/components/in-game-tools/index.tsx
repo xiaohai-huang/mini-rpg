@@ -52,6 +52,8 @@ export default function InGameTools({ className }: InGameToolsProps) {
 }
 
 function SelfHeroUtilities() {
+  const [cd, setCD] = useState(false);
+  const [invincible, setInvincible] = useState(false);
   return (
     <div>
       <text className={styles.title} style={{ color: "#7396A8" }}>
@@ -78,22 +80,27 @@ function SelfHeroUtilities() {
         />
         <ToggleButton
           label="冷却"
+          checked={cd}
           icon={TimerIcon}
-          onClick={(active) => {
+          onChange={(newValue) => {
             agent.post("/set-zero-cooldown", {
               id: "hero-player",
-              enabled: !active,
+              enabled: newValue,
             });
+
+            setCD(newValue);
           }}
         />
         <ToggleButton
           label="无敌"
           icon={HeartIcon}
-          onClick={(active) => {
+          checked={invincible}
+          onChange={(newValue) => {
             agent.post("/set-invincible", {
               id: "hero-player",
-              enabled: !active,
+              enabled: newValue,
             });
+            setInvincible(newValue);
           }}
         />
         <Button label="+10000" icon={GoldIcon} />
@@ -138,13 +145,22 @@ function OpponentHeroUtilities() {
 }
 
 function GeneralUtilities() {
+  const [waveEnabled, setWaveEnabled] = useState(false);
   return (
     <div>
       <text className={styles.title} style={{ color: "#7CA482" }}>
         通用
       </text>
       <div className={styles.buttons}>
-        <ToggleButton label="兵线" />
+        <ToggleButton
+          label="兵线"
+          checked={waveEnabled}
+          onChange={(newValue) => {
+            agent.post("/spawn-minion-wave", { enabled: newValue });
+
+            setWaveEnabled(newValue);
+          }}
+        />
         <ToggleButton label="野怪" />
         <Button label="暴君" />
         <Button label="主宰" />
@@ -154,9 +170,8 @@ function GeneralUtilities() {
         <Button
           label="清空人偶"
           icon={TrashIcon}
-          onClick={async () => {
-            const data = await agent.post("/clear-puppets");
-            console.log("data from router", data);
+          onClick={() => {
+            agent.post("/clear-puppets");
           }}
         />
       </div>
@@ -183,20 +198,28 @@ function Button({ className, label, icon, onClick = () => {} }: ButtonProps) {
 type ToggleButtonProps = {
   label: string;
   icon?: string;
-  onClick?: (active: boolean) => void;
+  checked?: boolean;
+  onChange?: (checked: boolean) => void; // Add onChange prop
 };
 
-function ToggleButton({ label, icon, onClick }: ToggleButtonProps) {
-  const [active, setActive] = useState(false);
+function ToggleButton({
+  checked = false,
+  label,
+  icon,
+  onChange = () => {}, // Default to an empty function
+}: ToggleButtonProps) {
+  const handleClick = () => {
+    const newChecked = !checked; // Toggle checked state
+    onChange(newChecked); // Call onChange with the new state
+  };
+
   return (
     <button
-      className={classNames(styles.button, { [styles.active]: active })}
-      onClick={() => {
-        onClick?.(active);
-        setActive((prev) => !prev);
-      }}
+      className={classNames(styles.button, { [styles.active]: checked })}
+      onClick={handleClick} // Use handleClick here
     >
-      {icon && <image source={icon} className={styles.icon} />}
+      {icon && <img src={icon} className={styles.icon} />}{" "}
+      {/* Use <img> instead of <image> */}
       <span className={styles.label}>{label}</span>
     </button>
   );

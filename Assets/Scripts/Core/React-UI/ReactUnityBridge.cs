@@ -27,6 +27,9 @@ namespace Core.Game.UI
         [Header("Broadcasting On")]
         [SerializeField]
         private StartGameEventChannel _startGameEventChannel;
+
+        [SerializeField]
+        private IntEventChannel _createMinionWaveEventChannel;
         public ReactiveValue<string> Url = new("/");
 
         public void StartGame(int heroId, int skinId)
@@ -123,6 +126,16 @@ namespace Core.Game.UI
                     var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
                     hero.GetComponent<Damageable>().Invincible = enabled;
                     res.end($"Hero (id:{id}) invincible is set to {text}");
+                }
+            );
+
+            app.POST(
+                "/spawn-minion-wave",
+                (req, res) =>
+                {
+                    bool enabled = req.body["enabled"].ToBoolean();
+                    _createMinionWaveEventChannel.RaiseEvent(enabled ? 1 : 0);
+                    res.end(enabled ? "Spawning minion waves." : "Stop spawning minion waves.");
                 }
             );
         }

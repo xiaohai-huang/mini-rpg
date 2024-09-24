@@ -236,6 +236,86 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d839a72af664042418b37e2f26ccd97d, type: 3}
+--- !u!1 &154044782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154044783}
+  - component: {fileID: 154044784}
+  - component: {fileID: 154044785}
+  m_Layer: 0
+  m_Name: --Managers--
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154044783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154044782}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &154044784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154044782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0aaadbbff9cf24b8b448472ceaf726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minionSpawnPoints:
+  - {fileID: 1216668510}
+  - {fileID: 1177723660}
+  _createMinionEventChannel: {fileID: 11400000, guid: 3f1eae091a740524f99c79c689c4f44a,
+    type: 2}
+  _killMinionsEventChannel: {fileID: 11400000, guid: 4e09d0437da07ad4eb61dff1ce11e201,
+    type: 2}
+--- !u!114 &154044785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154044782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b09d99f4674e4d8c2ce452c878390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventChannel: {fileID: 11400000, guid: e12b819342a8d0e44a48e05d2b87768c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 154044784}
+        m_TargetAssemblyTypeName: Core.SummonersRift.MinionWaveManager, Main
+        m_MethodName: HandleMinionWaveRequest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &365923898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7133155043934150416, guid: 736011396c35022479eeaa637055dcbe,
@@ -581,6 +661,8 @@ Transform:
   - {fileID: 365923898}
   - {fileID: 2059337094}
   - {fileID: 1482590476}
+  - {fileID: 1216668510}
+  - {fileID: 1177723660}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113679576
@@ -683,6 +765,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f538ffdea21dfec44afa70a3a928f81f, type: 3}
+--- !u!1 &1177723659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177723660}
+  m_Layer: 10
+  m_Name: Red Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1177723660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177723659}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.91393155, z: -0, w: 0.4058684}
+  m_LocalPosition: {x: 14.7, y: 0, z: 11.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113679575}
+  m_LocalEulerAnglesHint: {x: 0, y: -132.109, z: 0}
 --- !u!1 &1204484593
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +953,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1216668509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216668510}
+  m_Layer: 10
+  m_Name: Blue Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216668510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216668509}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5102175, z: -0, w: 0.86004543}
+  m_LocalPosition: {x: -36.2, y: 0, z: -41.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113679575}
+  m_LocalEulerAnglesHint: {x: 0, y: 61.357, z: 0}
 --- !u!1 &1334064080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1907,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 6269644430581422718}
   - {fileID: 1717016696}
+  - {fileID: 154044783}
   - {fileID: 21553946}
   - {fileID: 1113679575}
   - {fileID: 1489094821}

@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Game.Entities;
 using UnityEngine;
+using Xiaohai.Character;
 
 namespace Core.Game.SpawnSystem
 {
@@ -31,16 +33,34 @@ namespace Core.Game.SpawnSystem
             return minion;
         }
 
-        public int ClearPuppets()
+        public void VoidSpawn(string id, string team, Transform spawnPoint)
         {
-            static bool filter(Base entity) => entity.Id.StartsWith("puppet-");
-            var puppets = SpawnEntities.Where(filter);
-            foreach (var puppet in puppets)
+            Spawn(id, team, spawnPoint);
+        }
+
+        int ClearEntity(Func<Base, bool> filter)
+        {
+            var entity = SpawnEntities.Where(filter);
+            foreach (var puppet in entity)
             {
                 Destroy(puppet.gameObject);
             }
 
             return SpawnEntities.RemoveWhere(entity => filter(entity));
+        }
+
+        public int ClearPuppets()
+        {
+            return ClearEntity(entity => entity.Id.StartsWith("puppet-"));
+        }
+
+        public void KillMinions()
+        {
+            var minions = SpawnEntities.Where(entity => entity.Id.StartsWith("minion-"));
+            foreach (var minion in minions)
+            {
+                minion.GetComponent<Damageable>().Kill();
+            }
         }
     }
 }

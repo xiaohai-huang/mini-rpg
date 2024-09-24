@@ -129,6 +129,8 @@ GameObject:
   - component: {fileID: 269178516}
   - component: {fileID: 269178517}
   - component: {fileID: 269178518}
+  - component: {fileID: 269178519}
+  - component: {fileID: 269178520}
   m_Layer: 0
   m_Name: --Managers--
   m_TagString: Untagged
@@ -181,6 +183,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 4766e80de40d16940ab1203e3438939c, type: 2}
+--- !u!114 &269178519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269178515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04a03a7f8f884a4d887e386df4088ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventChannel: {fileID: 11400000, guid: 3f1eae091a740524f99c79c689c4f44a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 269178518}
+        m_TargetAssemblyTypeName: Core.Game.SpawnSystem.MinionSpawnManager, Main
+        m_MethodName: VoidSpawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &269178520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269178515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf050f717c50dcb46802be1b8cf63ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventChannel: {fileID: 11400000, guid: 4e09d0437da07ad4eb61dff1ce11e201, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 269178518}
+        m_TargetAssemblyTypeName: Core.Game.SpawnSystem.MinionSpawnManager, Main
+        m_MethodName: KillMinions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &504017384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +325,12 @@ PrefabInstance:
       propertyPath: _minionSpawnManager
       value: 
       objectReference: {fileID: 269178518}
+    - target: {fileID: 6401847847920494352, guid: ee541f3a8baa58047b2bc3575c1057ad,
+        type: 3}
+      propertyPath: _createMinionWaveEventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: e12b819342a8d0e44a48e05d2b87768c,
+        type: 2}
     - target: {fileID: 8457256177553197212, guid: ee541f3a8baa58047b2bc3575c1057ad,
         type: 3}
       propertyPath: m_Name
