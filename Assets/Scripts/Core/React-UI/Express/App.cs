@@ -66,6 +66,11 @@ namespace Core.Game.Express
         {
             return Convert.ToSingle(_value);
         }
+
+        public bool ToBoolean()
+        {
+            return Convert.ToBoolean(_value);
+        }
     }
 
     public class Response<T>

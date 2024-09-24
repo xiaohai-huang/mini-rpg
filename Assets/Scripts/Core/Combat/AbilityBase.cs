@@ -41,7 +41,16 @@ namespace Core.Game.Combat
         }
         public int NextLevel => CurrentLevel + 1;
         public bool HasEnoughMana => ManaSystem.CurrentMana >= ManaCost;
-        public abstract int ManaCost { get; }
+        public int ManaCost
+        {
+            get
+            {
+                if (ManaSystem.ZeroCooldown)
+                    return 0;
+                return CurrentLevelManaCost;
+            }
+        }
+        public abstract int CurrentLevelManaCost { get; }
         public event Action<bool> OnPerformingChange;
         public bool Performing { get; private set; }
         public virtual bool CanPerform => HasEnoughMana && CurrentLevel != 0 && CD_Timer <= 0;
@@ -60,6 +69,12 @@ namespace Core.Game.Combat
 
         public virtual void Update()
         {
+            if (ManaSystem.ZeroCooldown)
+            {
+                CD_Timer = 0;
+                return;
+            }
+
             if (CD_Timer > 0)
             {
                 CD_Timer -= Time.deltaTime;
@@ -132,6 +147,16 @@ namespace Core.Game.Combat
             }
 
             return (AbilityBase)mono.GetComponent(t);
+        }
+
+        protected void StartCDTimer(float time)
+        {
+            if (ManaSystem.ZeroCooldown)
+            {
+                CD_Timer = 0;
+                return;
+            }
+            CD_Timer = time;
         }
     }
 }

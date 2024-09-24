@@ -85,9 +85,8 @@ public class AbilityButtonVisual : IconButtonVisual
         );
         _fsm.AddState(
             States.Disabled,
-            onEnter: (_) =>
-            {
-                _darkCover.SetActive(true);
+            onEnter: (_) => {
+                // _darkCover.SetActive(true);
                 // TODO: disable interactions
             },
             onLogic: (_) =>

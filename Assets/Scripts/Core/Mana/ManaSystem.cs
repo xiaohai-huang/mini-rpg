@@ -10,6 +10,7 @@ namespace Core.Game.Mana
     {
         public int CurrentMana { get; private set; }
         public int MaxMana { get; private set; }
+        public bool ZeroCooldown;
 
         [Header("Broadcasting On")]
         public UnityEvent<int, int> OnChange;
@@ -86,6 +87,9 @@ namespace Core.Game.Mana
 
         public bool Consume(int amount)
         {
+            if (ZeroCooldown)
+                return true;
+
             if (amount == 0)
                 return true;
 

@@ -76,8 +76,26 @@ function SelfHeroUtilities() {
             });
           }}
         />
-        <ToggleButton label="冷却" icon={TimerIcon} />
-        <ToggleButton label="无敌" icon={HeartIcon} />
+        <ToggleButton
+          label="冷却"
+          icon={TimerIcon}
+          onClick={(active) => {
+            agent.post("/set-zero-cooldown", {
+              id: "hero-player",
+              enabled: !active,
+            });
+          }}
+        />
+        <ToggleButton
+          label="无敌"
+          icon={HeartIcon}
+          onClick={(active) => {
+            agent.post("/set-invincible", {
+              id: "hero-player",
+              enabled: !active,
+            });
+          }}
+        />
         <Button label="+10000" icon={GoldIcon} />
         <ToggleButton label="风暴龙王buff" icon={SquirrelIcon} />
         <Button label="友方人偶" icon={DogIcon} />

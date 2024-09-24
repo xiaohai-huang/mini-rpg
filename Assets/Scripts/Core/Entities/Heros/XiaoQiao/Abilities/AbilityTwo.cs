@@ -10,7 +10,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
     {
         public override string Name => "甜蜜恋风";
 
-        public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
+        public override int CurrentLevelManaCost =>
+            CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
         public override bool Upgradable =>
             NextLevel <= MaxLevel
@@ -59,7 +60,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
         {
             // 小乔在指定区域召唤出一道旋风，
             // 对区域内敌人造成300/340/380/420/460/500（+50％法术加成）点法术伤害并击飞1.5秒，攻击盒半径240
-            CD_Timer = Total_CD_Timer;
+            StartCDTimer(Total_CD_Timer);
             ManaSystem.Consume(ManaCost);
 
             // Get the world position of the attack area

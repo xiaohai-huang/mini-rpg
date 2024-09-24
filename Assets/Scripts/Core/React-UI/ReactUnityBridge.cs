@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Core.Game.Entities;
 using Core.Game.Express;
+using Core.Game.Mana;
 using Core.Game.SpawnSystem;
 using ReactUnity.Reactive;
 using UnityEngine;
@@ -95,6 +96,31 @@ namespace Core.Game.UI
                     {
                         res.end($"Failed to clear puppets. {e.Message}");
                     }
+                }
+            );
+
+            app.POST(
+                "/set-zero-cooldown",
+                (req, res) =>
+                {
+                    string id = req.body["id"].ToString();
+                    bool enabled = req.body["enabled"].ToBoolean();
+                    var text = enabled ? "zero" : "normal";
+                    var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
+                    hero.GetComponent<ManaSystem>().ZeroCooldown = enabled;
+                    res.end($"Hero (id:{id}) cooldown is set to {text}");
+                }
+            );
+
+            app.POST(
+                "/set-invincible",
+                (req, res) =>
+                {
+                    string id = req.body["id"].ToString();
+                    bool enabled = req.body["enabled"].ToBoolean();
+                    var text = enabled ? "enabled" : "disabled";
+
+                    res.end($"Hero (id:{id}) invincible is set to {text}");
                 }
             );
         }

@@ -11,7 +11,8 @@ namespace Core.Game.Entities.Heros.XiaoQiao
     {
         public override string Name => "星华缭乱";
 
-        public override int ManaCost => CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
+        public override int CurrentLevelManaCost =>
+            CurrentLevel == 0 ? 0 : _data[CurrentLevel].ManaCost;
         public override float Total_CD_Timer => _data[CurrentLevel].CoolDown;
 
         public override bool Upgradable =>
@@ -58,7 +59,7 @@ namespace Core.Game.Entities.Heros.XiaoQiao
             // 每个敌人最多承受4次攻击，
             // 当多颗流星命中同一目标时，从第二颗流星开始将只造成50％伤害。
             // 释放期间持续获得被动加速效果。
-            CD_Timer = Total_CD_Timer;
+            StartCDTimer(Total_CD_Timer);
             ManaSystem.Consume(ManaCost);
 
             await Awaitable.WaitForSecondsAsync(0.1f);
