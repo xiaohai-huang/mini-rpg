@@ -4,6 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using ReactUnity.Helpers;
 using ReactUnity.Scripting;
+using UnityEngine;
 
 namespace Core.Game.Express
 {
@@ -156,12 +157,19 @@ namespace Core.Game.Express
 
             var endCallback = Callback.From(end);
             string key = GenKey(method, path);
-
-            _callbacks[key]
-                .Invoke(
-                    new RequestCtx() { body = json },
-                    new ResponseCtx() { OnEnd = (message) => endCallback.Call(message) }
-                );
+            try
+            {
+                _callbacks[key]
+                    .Invoke(
+                        new RequestCtx() { body = json },
+                        new ResponseCtx() { OnEnd = (message) => endCallback.Call(message) }
+                    );
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to execute the route handler for {key}");
+                Debug.LogError(e);
+            }
         }
 
         private static string GenKey(string method, string path) => $"/{method}/-{path}";
