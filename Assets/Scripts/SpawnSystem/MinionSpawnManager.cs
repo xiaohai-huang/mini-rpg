@@ -33,13 +33,14 @@ namespace Core.Game.SpawnSystem
 
         public int ClearPuppets()
         {
-            var puppets = SpawnEntities.Where(entity => entity.Id.StartsWith("puppet-"));
+            static bool filter(Base entity) => entity.Id.StartsWith("puppet-");
+            var puppets = SpawnEntities.Where(filter);
             foreach (var puppet in puppets)
             {
                 Destroy(puppet.gameObject);
             }
 
-            return SpawnEntities.RemoveWhere(entity => entity.Id.StartsWith("puppet-"));
+            return SpawnEntities.RemoveWhere(entity => filter(entity));
         }
     }
 }
