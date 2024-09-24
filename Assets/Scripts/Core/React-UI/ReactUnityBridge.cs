@@ -6,6 +6,7 @@ using Core.Game.Mana;
 using Core.Game.SpawnSystem;
 using ReactUnity.Reactive;
 using UnityEngine;
+using Xiaohai.Character;
 
 namespace Core.Game.UI
 {
@@ -119,7 +120,8 @@ namespace Core.Game.UI
                     string id = req.body["id"].ToString();
                     bool enabled = req.body["enabled"].ToBoolean();
                     var text = enabled ? "enabled" : "disabled";
-
+                    var hero = _heroSpawnManager.SpawnEntities.First(entity => entity.Id == id);
+                    hero.GetComponent<Damageable>().Invincible = enabled;
                     res.end($"Hero (id:{id}) invincible is set to {text}");
                 }
             );

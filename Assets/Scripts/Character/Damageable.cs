@@ -10,6 +10,7 @@ namespace Xiaohai.Character
     [RequireComponent(typeof(Base))]
     public class Damageable : MonoBehaviour
     {
+        public bool Invincible;
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
 
@@ -76,6 +77,8 @@ namespace Xiaohai.Character
 
         public void TakeDamage(int amount)
         {
+            if (Invincible)
+                return;
             if (IsDead)
                 return;
             ReduceHealth(amount);
