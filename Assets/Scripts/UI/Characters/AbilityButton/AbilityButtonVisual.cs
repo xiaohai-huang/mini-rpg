@@ -94,6 +94,10 @@ public class AbilityButtonVisual : IconButtonVisual
                 // show cd progress
                 if (_ability.CD_Timer > 0)
                 {
+                    if (!_darkCover.activeSelf)
+                    {
+                        _darkCover.SetActive(true);
+                    }
                     _cdVisual.HandleCoolDownChange(_ability.CD_Timer, _ability.Total_CD_Timer);
                 }
 
