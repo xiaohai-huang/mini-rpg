@@ -63,7 +63,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &4220372239969308510
 MonoBehaviour:
@@ -167,6 +167,8 @@ MonoBehaviour:
   _minionSpawnManager: {fileID: 0}
   _player: {fileID: 11400000, guid: daab3df93d4156b429887fa2e34c165b, type: 2}
   _startGameEventChannel: {fileID: 11400000, guid: c8739929642e15543bceaf706ebdf2b0,
+    type: 2}
+  _createMinionWaveEventChannel: {fileID: 11400000, guid: e12b819342a8d0e44a48e05d2b87768c,
     type: 2}
 --- !u!114 &5360968911978022723
 MonoBehaviour:
