@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Game.Combat;
 using Core.Game.Entities;
 using Core.Game.Mana;
 using UnityEngine;
@@ -91,9 +92,9 @@ public class EffectSystem : MonoBehaviour
         _damageable.RestoreHealth(healthToAdd);
     }
 
-    public void DealDamage(int damageAmount)
+    public void DealDamage(Damage dmg)
     {
-        _damageable.TakeDamage(damageAmount);
+        _damageable.TakeDamage(dmg);
     }
 
     public void RecoverMana(int manaToAdd)
